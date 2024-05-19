@@ -1,0 +1,111 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          String        @id @default(uuid())
+  email       String        @unique
+  name        String?
+  phone       String?
+  address     String?
+  Transaction Transaction[]
+  Product     Product[]
+
+  // 
+  Trolly   Trolly? @relation(fields: [trollyId], references: [id])
+  trollyId String? @unique
+
+  // 
+  Role   Role?   @relation(fields: [roleId], references: [id])
+  roleId String?
+}
+
+model Product {
+  id      String    @id @default(uuid())
+  name    String?
+  brand   String?
+  stock   Int
+  price   Int
+  // 
+  userId  String?
+  User    User?     @relation(fields: [userId], references: [id])
+  // 
+  typeId  String?
+  type    Type?     @relation(fields: [typeId], references: [id])
+  // 
+  Package Package[]
+  Box     Box[]
+}
+
+model Trolly {
+  id   String @id @default(uuid())
+  // 
+  User User?
+  Box  Box[]
+}
+
+model Box {
+  id        String   @id @default(uuid())
+  amount    Int
+  price     Int
+  // 
+  Product   Product? @relation(fields: [productId], references: [id])
+  productId String?
+  // 
+  Trolly    Trolly?  @relation(fields: [trollyId], references: [id])
+  trollyId  String?
+  // 
+}
+
+model Package {
+  id            String       @id @default(uuid())
+  amount        Int
+  price         Int
+  // 
+  Product       Product?     @relation(fields: [productId], references: [id])
+  productId     String?
+  // 
+  Transaction   Transaction? @relation(fields: [transactionId], references: [id])
+  transactionId String?
+  //
+}
+
+model Transaction {
+  id           String    @id @default(uuid())
+  drop_address String?
+  // who's buy 
+  User         User?     @relation(fields: [userId], references: [id])
+  userId       String?
+  // 
+  // that status transaction is []
+  Status       Status?   @relation(fields: [statusId], references: [id])
+  statusId     String?
+  // 
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  // 
+  Package      Package[]
+}
+
+model Status {
+  id          String        @id @default("SIMPAN")
+  Transaction Transaction[]
+}
+
+model Type {
+  id      String    @id @default("TIDAK TAHU")
+  Product Product[]
+}
+
+model Role {
+  id   String @id @default("USER")
+  User User[]
+}
