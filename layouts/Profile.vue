@@ -7,8 +7,8 @@
 import type { Item } from "~/types/LinkItem"
 
 const itemsArray = ref<Item[]>([
-  { title: "Profile", link: "#" },
-  { title: "Trolly", link: "/trolly" },
-  { title: "history", link: "/history" },
+  { title: "Profile", link: "/user/profile" },
+  { title: "Trolly", link: "/user/trolly" },
+  { title: "history", link: "/user/history" },
 ])
 </script>

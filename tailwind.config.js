@@ -11,20 +11,18 @@ export default {
   theme: {
     container: {
       center: true,
-     
+
       padding: {
-        DEFAULT: "2vw",
-        sm: "3vw",
-        md: "3vw",
-        lg: "3vw",
-        
+        DEFAULT: "1vh",
+        sm: "6px",
+        md: "6px",
+        lg: "6px",
       },
     },
     extend: {},
-
   },
   daisyui: {
-    themes: ["dracula", ],
+    themes: ["dracula"],
   },
   plugins: [require("daisyui")],
 }

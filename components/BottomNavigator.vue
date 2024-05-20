@@ -1,12 +1,14 @@
 <template>
-  <div class="btm-nav btm-nav-xs md:hidden">
+  <div class="btm-nav btm-nav-sm md:hidden">
     <NuxtLink
       v-for="link in linkMenu"
       :key="link.link"
       :to="link.link"
-      class="text-accent"
+      :class="`text-accent ${
+        $route.path.includes(link.link) ? ' active' : ''
+      } `"
     >
-      <component :is="link.icon" />
+      <component :is="link.icon" class="h-6 w-6" />
     </NuxtLink>
   </div>
 </template>
@@ -14,20 +16,19 @@
 <script lang="ts" setup>
 import IconsUser from "~/components/Icons/User.vue"
 import IconsHome from "~/components/Icons/Home.vue"
-import IconsInfo from "~/components/Icons/Info.vue"
+import IconsShop from "~/components/Icons/Shop.vue"
 import IconsChartbar from "~/components/Icons/Chartbar.vue"
 import type { Component } from "vue"
-import { ref } from "vue"
 
 type ItemIcons = {
   link: string
   icon: Component
 }
 
-const linkMenu = [
-  { link: "/", icon: IconsHome },
-  { link: "/user", icon: IconsUser },
-  { link: "/info", icon: IconsInfo },
+const linkMenu: ItemIcons[] = [
+  { link: "/home", icon: IconsHome },
+  { link: "/shop", icon: IconsShop },
   { link: "/table", icon: IconsChartbar },
+  { link: "/user", icon: IconsUser },
 ]
 </script>

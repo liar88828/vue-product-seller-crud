@@ -3,7 +3,7 @@
     <NuxtLink
       v-for="item in props.items"
       :key="item.link"
-      :to="`/user${item.link}`"
+      :to="`${item.link}`"
       role="tab"
       :class="` tab ${$route.path.includes(item.link) ? 'tab-active' : ''}`"
       >{{ item.title }}</NuxtLink

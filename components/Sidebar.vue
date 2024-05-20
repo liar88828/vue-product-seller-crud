@@ -1,38 +1,142 @@
+<script lang="ts" setup>
+import IconsHome from "~/components/Icons/Home.vue"
+import IconsUser from "~/components/Icons/User.vue"
+import IconsInfo from "~/components/Icons/Info.vue"
+import IconsChartBar from "~/components/Icons/Chartbar.vue"
+
+const dataLink = [
+  {
+    title: "Home",
+    link: "/#",
+    icon: IconsHome,
+    sub: [],
+  },
+  {
+    title: "Shop",
+    link: "/shop",
+    icon: IconsHome,
+    sub: [],
+  },
+  {
+    title: "User",
+    link: "/",
+    icon: IconsUser,
+    sub: [
+      {
+        title: "Profile",
+        link: "/user/#",
+        sub: [],
+      },
+      {
+        title: "Trolly",
+        link: "/user/trolly",
+        sub: [],
+      },
+      {
+        title: "History",
+        link: "/user/history",
+        sub: [],
+      },
+    ],
+  },
+
+  {
+    title: "Table",
+    link: "/#",
+    icon: IconsChartBar,
+    sub: [
+      {
+        title: "Index",
+        link: "/table",
+        sub: [],
+      },
+    ],
+  },
+  {
+    title: "Info",
+    link: "/#",
+    icon: IconsInfo,
+    sub: [
+      {
+        title: "Index",
+        link: "/info",
+        sub: [],
+      },
+    ],
+  },
+]
+</script>
+
 <template>
   <ul
-    class="menu hidden sm:block menu-xs sm:menu-sm bg-base-200 rounded-lg max-w-xs"
+    :class="`menu   menu-sm sm:menu-lg bg-base-200 rounded-lg max-w-lg ${
+      $route.path.includes('/shop') ? 'hidden ' : 'hidden  sm:block  '
+    }
+    `"
   >
-    <li>
-      <a> resume.pdf </a>
-    </li>
-    <li>
-      <details open>
-        <summary>My Files</summary>
+    <li v-for="data in dataLink" :key="data.title">
+      <NuxtLink
+        v-if="data.sub.length === 0"
+        :to="data.link"
+        :class="`${$route.path.includes(data.link) ? 'active' : ''}`"
+      >
+        <component :is="data.icon" /> {{ data.title }}
+      </NuxtLink>
+      <!--  -->
+      <details open v-if="data.sub.length > 0">
+        <summary><component :is="data.icon" /> {{ data.title }}</summary>
         <ul>
-          <li>
-            <a> Project-final.psd </a>
-          </li>
-          <li>
-            <a> Project-final-2.psd </a>
-          </li>
-          <li>
-            <details open>
-              <summary>Images</summary>
-              <ul>
-                <li>
-                  <a> Screenshot1.png </a>
-                </li>
-                <li>
-                  <a> Screenshot2.png </a>
-                </li>
-              </ul>
-            </details>
+          <li v-for="subLink in data.sub" :key="subLink.title">
+            <NuxtLink
+              :to="subLink.link"
+              :class="`${$route.path.includes(subLink.link) ? 'active' : ''}`"
+            >
+              {{ subLink.title }}
+            </NuxtLink>
           </li>
         </ul>
       </details>
     </li>
-    <li>
-      <a> reports-final-2.pdf </a>
-    </li>
   </ul>
 </template>
+<!-- <li>
+  <details open>
+    <summary><IconsUser /> User</summary>
+    <ul>
+      <li>
+        <NuxtLink
+          to="/user"
+          :class="`${$route.path.includes('/user') ? 'active' : ''}`"
+        >
+          Profile
+        </NuxtLink>
+      </li>
+      <li>
+        <a> Trolly</a>
+      </li>
+      <li>
+        <a> History</a>
+      </li>
+    </ul>
+  </details>
+</li>
+<li>
+  <details open>
+    <summary>Table</summary>
+    <ul>
+      <li>
+        <a> Index</a>
+      </li>
+    </ul>
+  </details>
+</li>
+<li>
+  <details open>
+    <summary>Info</summary>
+    <ul>
+      <li>
+        <a> Index</a>
+      </li>
+    </ul>
+  </details>
+</li> -->

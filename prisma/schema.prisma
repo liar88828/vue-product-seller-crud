@@ -29,20 +29,22 @@ model User {
 }
 
 model Product {
-  id      String    @id @default(uuid())
-  name    String?
-  brand   String?
-  stock   Int
-  price   Int
+  id          String    @id @default(uuid())
+  name        String?
+  description String?
+  image       String?
+  brand       String?
+  stock       Int
+  price       Int
   // 
-  userId  String?
-  User    User?     @relation(fields: [userId], references: [id])
+  userId      String?
+  User        User?     @relation(fields: [userId], references: [id])
   // 
-  typeId  String?
-  type    Type?     @relation(fields: [typeId], references: [id])
+  typeId      String?
+  type        Type?     @relation(fields: [typeId], references: [id])
   // 
-  Package Package[]
-  Box     Box[]
+  Package     Package[]
+  Box         Box[]
 }
 
 model Trolly {

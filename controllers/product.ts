@@ -9,6 +9,8 @@ export class ProductController {
       brand: data.brand,
       userId: data.userId,
       typeId: data.typeId,
+      description: data.description,
+      image: data.image,
     }
   }
 }

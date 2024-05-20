@@ -17,10 +17,7 @@
 </template>
 
 <script lang="ts" setup>
-type ProductTotal = {
-  totalProduct: number
-  totalSend: number
-  totalPay: number
-}
+import type { ProductTotal } from "~/types/product/total"
+
 defineProps<ProductTotal>()
 </script>

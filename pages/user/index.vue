@@ -1,5 +1,9 @@
 <template>
-  <NuxtLayout name="profile">
-    <PageProfile />
-  </NuxtLayout>
+  <div>index</div>
 </template>
+
+<script lang="ts" setup>
+await navigateTo("/user/profile")
+</script>
+
+<style></style>
