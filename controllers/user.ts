@@ -9,6 +9,7 @@ export class UserController {
       name: data.name,
       address: data.address,
       phone: data.phone,
+      roleId: data.roleId,
     }
   }
 }

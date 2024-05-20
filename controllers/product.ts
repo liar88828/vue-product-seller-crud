@@ -7,7 +7,7 @@ export class ProductController {
       price: data.price,
       stock: data.stock,
       brand: data.brand,
-      supplierId: data.supplierId,
+      userId: data.userId,
       typeId: data.typeId,
     }
   }

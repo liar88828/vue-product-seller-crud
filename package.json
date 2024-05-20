@@ -17,6 +17,9 @@
     "vue-router": "^4.3.2"
   },
   "devDependencies": {
-    "prisma": "^5.14.0"
+    "daisyui": "^4.11.1",
+    "prisma": "^5.14.0",
+    "typescript": "^5.4.5",
+    "vue-tsc": "^1"
   }
 }
