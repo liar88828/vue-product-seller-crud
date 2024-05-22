@@ -6,26 +6,19 @@
 
   <!-- <PageShopHeader /> -->
 
-  <div class="grid sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-2">
-    <div class="sm:col-span-1 md:col-span-2">
-      <PageShopDropMenu />
-    </div>
-    <div class="sm:col-span-3 md:col-span-4 lg:col-span-6">
-      <div
-        class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2"
-      >
-        <PageShopItemProduct :product="dataProduct" />
-        <PageShopItemProduct :product="dataProduct" />
-        <PageShopItemProduct :product="dataProduct" />
-        <PageShopItemProduct :product="dataProduct" />
-        <PageShopItemProduct :product="dataProduct" />
-      </div>
-    </div>
-  </div>
+  <PageShop :dataRelated="dataRelated" />
 </template>
 
 <script lang="ts" setup>
 import type { Product } from "@prisma/client"
+import Shop from "../../components/Page/Shop/index.vue"
+
+const dataRelated = {
+  name: "Wireless Noise-Cancelling Earbuds",
+  brand: "Premium audio experience",
+  price: 149.99,
+  img: "https://picsum.photos/220",
+}
 
 const dataProduct: Product = {
   name: "Acme Circles T-Shirt",
@@ -39,5 +32,3 @@ const dataProduct: Product = {
   image: "https://picsum.photos/100",
 }
 </script>
-
-<style></style>

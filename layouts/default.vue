@@ -1,10 +1,11 @@
 <template>
   <section class="min-h-screen bg-base-300 w-screen">
-    <Navigator />
+    <Navigator :class="{ hidden: $route.path.includes('shop') }" />
+    <PageShopHeader :class="{ hidden: !$route.path.includes('shop') }" />
     <div class="flex">
       <Sidebar />
       <main class="container mx-auto mt-2">
-        <Breadcrumbs />
+        <!-- <Breadcrumbs /> -->
         <slot />
         <BottomNavigator />
       </main>

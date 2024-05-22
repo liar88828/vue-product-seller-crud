@@ -9,4 +9,9 @@ export type ProductItem = {
   price: number
   userId: string | null
   typeId: string | null
+  spec_prod?: {
+    type: string
+    list: string[]
+  }[]
+  spec_good?: string[]
 }

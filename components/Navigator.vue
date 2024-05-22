@@ -1,5 +1,5 @@
 <template>
-  <div class="navbar bg-base-100 shadow">
+  <section class="navbar bg-base-100 shadow">
     <div class="navbar-start">
       <NuxtLink class="btn btn-ghost text" to="/">daisyUI</NuxtLink>
     </div>
@@ -13,6 +13,7 @@
           </div>
           <p class="hidden sm:block">Client</p>
         </div>
+        
         <div
           tabindex="0"
           class="mt-3 z-[1] card card-compact dropdown-content w-52 bg-base-100 shadow"
@@ -58,7 +59,7 @@
         </ul>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script lang="ts" setup>

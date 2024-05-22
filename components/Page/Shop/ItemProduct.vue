@@ -1,6 +1,6 @@
 <template>
-  <div class="card card-compact ">
-    <div class="card-body bg-base-100 shadow ">
+  <div class="card card-compact">
+    <div class="card-body bg-base-100 shadow">
       <a class="block" href="#">
         <img
           :src="`${
@@ -14,18 +14,21 @@
       </a>
       <div class="p-4 space-y-2">
         <h3 class="font-bold text-sm sm:text-md lg:text-lg">
-          <a href="#">{{ product.name }} {{ product.brand }}</a>
+          <a href="#"
+            >{{ product.name }}
+            <!-- {{ product.brand }} -->
+          </a>
         </h3>
-        <p class="text-xs line-clamp-2">
+        <!-- <p class="text-xs line-clamp-2">
           {{ product.description }}
-        </p>
+        </p> -->
         <div class="flex items-center justify-between">
           <div class="flex flex-col">
-            <span class="font-semibold text-xs sm:text-lg">
+            <span class="font-semibold text-md sm:text-lg">
               ${{ product.price }}
             </span>
-            <span class="font-semibold text-xs">
-              {{ product.stock }} stocks
+            <span class="font-normal text-xs">
+              {{ product.stock }} Sold
             </span>
           </div>
           <button class="btn btn-square btn-xs sm:btn-sm">
