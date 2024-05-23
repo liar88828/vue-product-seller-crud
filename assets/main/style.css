@@ -2,8 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer utilities {
+/* @layer utilities {
   .card {
-    @apply static;
+    @apply shadow-slate-900 shadow;
+  }
+} */
+
+@layer base {
+  .card-shadow {
+    @apply shadow shadow-slate-700;
   }
 }

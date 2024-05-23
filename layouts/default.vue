@@ -4,7 +4,7 @@
     <PageShopHeader :class="{ hidden: !$route.path.includes('shop') }" />
     <div class="flex">
       <Sidebar />
-      <main class="container mx-auto mt-2">
+      <main class="container mx-auto mt-2 pb-20">
         <!-- <Breadcrumbs /> -->
         <slot />
         <BottomNavigator />

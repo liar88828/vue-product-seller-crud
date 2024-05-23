@@ -1,6 +1,6 @@
 <template>
-  <section class="card card-compact">
-    <div class="card-body bg-base-100">
+  <section class="card card-compact bg-base-100 static">
+    <div class="card-body">
       <NuxtLink class="inset-0 z-10" to="#">
         <span class="sr-only">View</span>
       </NuxtLink>

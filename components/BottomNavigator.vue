@@ -17,7 +17,7 @@
 import IconsUser from "~/components/Icons/User.vue"
 import IconsHome from "~/components/Icons/Home.vue"
 import IconsShop from "~/components/Icons/Shop.vue"
-import IconsChartbar from "~/components/Icons/Chartbar.vue"
+import IconsSell from "~/components/Icons/Sell.vue"
 import type { Component } from "vue"
 
 type ItemIcons = {
@@ -28,7 +28,7 @@ type ItemIcons = {
 const linkMenu: ItemIcons[] = [
   { link: "/home", icon: IconsHome },
   { link: "/shop", icon: IconsShop },
-  { link: "/table", icon: IconsChartbar },
+  { link: "/sell", icon: IconsSell },
   { link: "/user", icon: IconsUser },
 ]
 </script>

@@ -65,20 +65,33 @@ const dataLink = [
     ],
   },
 ]
+import { useRoute } from "vue-router"
+const hiddenList = [
+  // "shop",
+  "sell",
+]
+const $route = useRoute()
+function isShopOrSellRoute() {
+  const paths = $route.path
+  return hiddenList.some((segment) => paths.includes(segment))
+}
+
+// console.log(isShopOrSellRoute())
+
+const conditionalClasses = isShopOrSellRoute() ? "hidden" : "hidden sm:block"
 </script>
 
 <template>
   <ul
-    :class="`menu   menu-sm sm:menu-lg bg-base-200 rounded-lg max-w-lg ${
-      $route.path.includes('/shop') ? 'hidden ' : 'hidden  sm:block  '
-    }
+    :class="`  menu menu-sm sm:menu-lg bg-base-200 rounded-lg  w-52 max-w-6xl ${conditionalClasses}
     `"
   >
     <li v-for="data in dataLink" :key="data.title">
       <NuxtLink
         v-if="data.sub.length === 0"
         :to="data.link"
-        :class="`${$route.path.includes(data.link) ? 'active' : ''}`"
+        :class="`${$route.path.includes(data.link) ? 'active' : ''}
+        `"
       >
         <component :is="data.icon" /> {{ data.title }}
       </NuxtLink>

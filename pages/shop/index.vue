@@ -11,7 +11,6 @@
 
 <script lang="ts" setup>
 import type { Product } from "@prisma/client"
-import Shop from "../../components/Page/Shop/index.vue"
 
 const dataRelated = {
   name: "Wireless Noise-Cancelling Earbuds",

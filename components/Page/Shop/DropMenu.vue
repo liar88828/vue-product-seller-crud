@@ -1,6 +1,6 @@
 <template>
   <ul
-    class="menu sm:menu-vertical menu-horizontal bg-base-100 rounded shadow w-full flex justify-between"
+    class="menu md:menu-vertical menu-horizontal bg-base-100 rounded shadow w-full flex justify-between"
   >
     <li class="shadow bg-base-300">
       <a href="">Filter</a>
