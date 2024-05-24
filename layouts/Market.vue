@@ -4,8 +4,8 @@
 </template>
 
 <script lang="ts" setup>
-import { ProductLink } from "~/assets/shopLink"
+import { MarketLink } from "~/assets/shopLink"
 import type { Item } from "~/types/LinkItem"
 
-const itemsArray = ref<Item[]>(ProductLink)
+const itemsArray = ref<Item[]>(MarketLink)
 </script>

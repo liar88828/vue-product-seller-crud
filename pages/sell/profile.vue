@@ -1,19 +1,20 @@
 <template>
   <section class="space-y-5">
-    <article class="grid sm:grid-cols-3 sm:grid-rows-1 sm:gap-5 gap-1">
+    <article class="grid sm:grid-cols-3 sm:grid-rows-1 sm:gap-5 gap-4">
       <ProductCardBox class="row-span-2 sm:col-span-2" />
-      <BoxGrid1 class="row-span-1 col-span-1" />
-      <BoxGrid2 class="row-span-1 col-span-1" />
+      <ProductCardBoxGrid1 class="row-span-1 col-span-1" />
+      <ProductCardBoxGrid2 class="row-span-1 col-span-1" />
     </article>
 
     <article class="card card-compact">
       <div class="card-body">
         <h2 class="card-title">Categories Product</h2>
-        <div class="overflow-x-auto flex flex-row gap-2 sm:gap-6">
-          <ProductCategory :data="dataRelated" />
-          <ProductCategory :data="dataRelated" />
-          <ProductCategory :data="dataRelated" />
-          <ProductCategory :data="dataRelated" />
+        <div class="overflow-x-auto flex flex-row gap-3 sm:gap-6">
+          <ProductCategory
+            v-for="dataIcon in dataCategory"
+            :key="dataIcon.title"
+            :data="dataIcon"
+          />
         </div>
       </div>
     </article>
@@ -22,15 +23,11 @@
       <div class="card-body">
         <h2 class="card-title">New Products</h2>
         <div class="overflow-x-scroll flex flex-row gap-2 sm:gap-6">
-          <ProductCard :data="dataRelated" />
-          <ProductCard :data="dataRelated" />
-          <ProductCard :data="dataRelated" />
-          <ProductCard :data="dataRelated" />
-          <ProductCard :data="dataRelated" />
-          <ProductCard :data="dataRelated" />
-          <ProductCard :data="dataRelated" />
-          <ProductCard :data="dataRelated" />
-          <ProductCard :data="dataRelated" />
+          <ProductCard
+            v-for="dataRelated in dataRelateds"
+            :key="dataRelated.name"
+            :data="dataRelated"
+          />
         </div>
       </div>
     </article>
@@ -62,15 +59,11 @@
       <div class="card-body">
         <h2 class="card-title">Trending Products</h2>
         <div class="overflow-x-scroll flex flex-row gap-2 sm:gap-6">
-          <ProductCard :data="dataRelated" />
-          <ProductCard :data="dataRelated" />
-          <ProductCard :data="dataRelated" />
-          <ProductCard :data="dataRelated" />
-          <ProductCard :data="dataRelated" />
-          <ProductCard :data="dataRelated" />
-          <ProductCard :data="dataRelated" />
-          <ProductCard :data="dataRelated" />
-          <ProductCard :data="dataRelated" />
+          <ProductCard
+            v-for="dataRelated in dataRelateds"
+            :key="dataRelated.name"
+            :data="dataRelated"
+          />
         </div>
       </div>
     </article>
@@ -102,27 +95,28 @@
       <div class="card-body">
         <h2 class="card-title">Best Sellers</h2>
         <div class="overflow-x-scroll flex flex-row gap-2 sm:gap-6">
-          <ProductCard :data="dataRelated" />
-          <ProductCard :data="dataRelated" />
-          <ProductCard :data="dataRelated" />
-          <ProductCard :data="dataRelated" />
-          <ProductCard :data="dataRelated" />
-          <ProductCard :data="dataRelated" />
-          <ProductCard :data="dataRelated" />
-          <ProductCard :data="dataRelated" />
-          <ProductCard :data="dataRelated" />
+          <ProductCard
+            v-for="dataRelated in dataRelateds"
+            :key="dataRelated.name"
+            :data="dataRelated"
+          />
         </div>
       </div>
     </article>
   </section>
 </template>
 <script lang="ts" setup>
-import BoxGrid1 from "./BoxGrid1.vue"
-import BoxGrid2 from "./BoxGrid2.vue"
-const dataRelated = {
-  name: "Wireless Noise-Cancelling Earbuds",
-  brand: "Premium audio experience",
-  price: 149.99,
-  img: "https://picsum.photos/220",
-}
+import { dataRelateds } from "~/assets/example/dataRelateds"
+import IconsBread from "~/components/Icons/Bread.vue"
+import IconsChocolate from "~/components/Icons/Choco.vue"
+import IconsGrapes from "~/components/Icons/Grapes.vue"
+import IconsMilk from "~/components/Icons/Milk.vue"
+import type { ItemIcons } from "~/types/icon"
+
+const dataCategory: ItemIcons[] = [
+  { link: "/grapes", icon: IconsGrapes, title: "Grapes" },
+  { link: "/chocolate  ", icon: IconsChocolate, title: "Chocolate" },
+  { link: "/Milk", icon: IconsMilk, title: "Milk" },
+  { link: "/Bread", icon: IconsBread, title: "Bread" },
+]
 </script>

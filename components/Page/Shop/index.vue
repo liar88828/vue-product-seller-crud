@@ -6,7 +6,7 @@
     </div>
     <div class="md:col-span-3 lg:col-span-4 xl:col-span-6">
       <div
-        class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:grid-cols-5 gap-2"
+        class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl::grid-cols-6 gap-2"
       >
         <!-- <PageShopItemProduct :product="dataProduct" />
 	        <PageShopItemProduct :product="dataProduct" />
