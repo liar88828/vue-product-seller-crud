@@ -1,4 +1,4 @@
-import type { Product } from "@prisma/client"
+import { type Product } from "@prisma/client"
 export type ProductItem = Product & {
   // id: string
   // name: string | null

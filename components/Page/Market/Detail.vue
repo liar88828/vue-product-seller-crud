@@ -27,15 +27,15 @@
         <div>
           <h3 class="text-2xl font-bold mb-5">Customer Information</h3>
           <div class="gap-2 flex flex-col">
-            <div class=" flex items-center justify-between">
+            <div class="flex items-center justify-between">
               <div class="font-medium">Name</div>
               <div>{{ data.userBuy.name }}</div>
             </div>
-            <div class=" flex items-center justify-between">
+            <div class="flex items-center justify-between">
               <div class="font-medium">Phone</div>
-              <div>{{ formatPhone(data.userBuy.phone) }}</div>
+              <div>{{ formatPhone(data.userBuy.phone ?? "") }}</div>
             </div>
-            <div class=" flex items-center justify-between">
+            <div class="flex items-center justify-between">
               <div class="font-medium">Address</div>
               <div>{{ data.userBuy.address }}</div>
             </div>
@@ -106,92 +106,13 @@
 
 <script lang="ts" setup>
 import { dataCompany } from "~/assets/example/dataCompany"
+import { dataProduct, dataProduct2 } from "~/assets/example/dataProduct"
+import { userProfile } from "~/assets/example/dataUser"
 import type { Purchase } from "~/types/product/purchase"
 
-const data: Purchase = {
-  trolly: [
-    {
-      brand: "Hart Hagerty",
-      image:
-        "https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg",
-      name: "Shoes",
-      price: 10000,
-      stock: 20,
-      id: "1",
-    },
-    {
-      brand: "Hart Hagerty",
-      image:
-        "https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg",
-      name: "Shoes",
-      price: 245_000,
-      stock: 54,
-      id: "2",
-    },
-    {
-      brand: "Hart Hagerty",
-      image:
-        "https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg",
-      name: "Shoes",
-      price: 245_000,
-      stock: 54,
-      id: "2",
-    },
-    {
-      brand: "Hart Hagerty",
-      image:
-        "https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg",
-      name: "Shoes",
-      price: 245_000,
-      stock: 54,
-      id: "2",
-    },
-    {
-      brand: "Hart Hagerty",
-      image:
-        "https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg",
-      name: "Shoes",
-      price: 245_000,
-      stock: 54,
-      id: "2",
-    },
-    {
-      brand: "Hart Hagerty",
-      image:
-        "https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg",
-      name: "Shoes",
-      price: 245_000,
-      stock: 54,
-      id: "2",
-    },
-    {
-      brand: "Hart Hagerty",
-      image:
-        "https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg",
-      name: "Shoes",
-      price: 245_000,
-      stock: 54,
-      id: "2",
-    },
-    {
-      brand: "Hart Hagerty",
-      image:
-        "https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg",
-      name: "Shoes",
-      price: 245_000,
-      stock: 54,
-      id: "2",
-    },
-  ],
-  id: "1",
-  userBuy: {
-    id: "1",
-    name: "John Doe",
-    phone: "123123112",
-    address: "Jl. Jendral Sudirman No. 1",
-  },
-}
-
+defineProps<{
+  data: Purchase
+}>()
 const company = dataCompany
 const { formatPhone, formatRupiah, totalNumber } = useFormat()
 const { clickImage, refImage } = useImage("purchase")

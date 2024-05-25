@@ -1,8 +1,9 @@
 <template>
   <NuxtLayout name="market">
-    <ProductTableConfirm/>
+    <PageMarketConfirm :data-purchases="dataPurchases" />
   </NuxtLayout>
 </template>
 
-<script lang="ts" setup></script>
-
+<script lang="ts" setup>
+import { dataPurchases } from "~/assets/example/dataPurchase"
+</script>

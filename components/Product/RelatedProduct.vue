@@ -8,14 +8,13 @@
         alt="Related product"
         class="rounded-lg object-cover w-full aspect-square group-hover:opacity-50 transition-opacity"
         height="300"
-        :src="data.img"
+        :src="data.image ?? 'https://picsum.photos/300'"
         width="300"
       />
       <div class="flex-1 py-4">
         <h3 class="font-semibold tracking-tight">
           {{ data.name }}
         </h3>
-        <!-- <small class="text-sm leading-none">{{ data.brand }}</small> -->
         <h4 class="font-semibold">${{ data.price }}</h4>
         <span class="font-normal text-xs"> {{ 123 }} Sold </span>
         <button class="btn btn-square btn-xs sm:btn-sm">
@@ -28,12 +27,9 @@
   </section>
 </template>
 <script lang="ts" setup>
+import type { Product } from "@prisma/client"
+
 defineProps<{
-  data: {
-    name: string
-    brand: string
-    price: number
-    img: string
-  }
+  data: Product
 }>()
 </script>

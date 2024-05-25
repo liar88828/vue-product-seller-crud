@@ -1,5 +1,4 @@
 <template>
-
   <section class="grid md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-2">
     <div class="md:col-span-1 lg:col-span-2">
       <PageShopDropMenu />
@@ -8,21 +7,6 @@
       <div
         class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl::grid-cols-6 gap-2"
       >
-        <!-- <PageShopItemProduct :product="dataProduct" />
-	        <PageShopItemProduct :product="dataProduct" />
-	        <PageShopItemProduct :product="dataProduct" />
-	        <PageShopItemProduct :product="dataProduct" />
-	        <PageShopItemProduct :product="dataProduct" /> -->
-
-        <ProductRelatedProduct :data="dataRelated" />
-        <ProductRelatedProduct :data="dataRelated" />
-        <ProductRelatedProduct :data="dataRelated" />
-        <ProductRelatedProduct :data="dataRelated" />
-        <ProductRelatedProduct :data="dataRelated" />
-        <ProductRelatedProduct :data="dataRelated" />
-        <ProductRelatedProduct :data="dataRelated" />
-        <ProductRelatedProduct :data="dataRelated" />
-        <ProductRelatedProduct :data="dataRelated" />
         <ProductRelatedProduct :data="dataRelated" />
         <ProductRelatedProduct :data="dataRelated" />
         <ProductRelatedProduct :data="dataRelated" />
@@ -32,7 +16,9 @@
 </template>
 
 <script setup lang="ts">
+import type { Product } from "@prisma/client"
+
 defineProps<{
-  dataRelated: { name: string; brand: string; price: number; img: string }
+  dataRelated: Product
 }>()
 </script>

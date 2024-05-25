@@ -1,73 +1,30 @@
-<template>
-  <section class="card bg-base-100 card-compact">
-    <div class="card-body">
-      <ProductTableOption />
-      <div class="overflow-x-auto">
-        <table class="table table-xs table-zebra bg-base-200">
-          <!-- head -->
-          <thead>
-            <tr>
-              <th>
-                <label>
-                  <input type="checkbox" class="checkbox" />
-                </label>
-              </th>
-              <th>Name</th>
-              <th>Price</th>
-              <th>Stock</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <!-- row 1 -->
-            <tr v-for="data in dataProduct" :key="data.id">
-              <th>
-                <label>
-                  <input type="checkbox" class="checkbox" />
-                </label>
-              </th>
-              <td>
-                <div class="flex items-center gap-3">
-                  <div class="avatar">
-                    <div class="mask mask-squircle w-12 h-12">
-                      <img :src="data.image ?? ''" :alt="data.name ?? ''" />
-                    </div>
-                  </div>
-                  <div>
-                    <div class="font-bold">{{ data.name }}</div>
-                    <div class="text-sm opacity-50">{{ data.brand }}</div>
-                  </div>
-                </div>
-              </td>
-              <td>
-                {{ formatRupiah(data.price) }}
-              </td>
-              <td>
-                {{ formatNumber(data.stock) }}
-              </td>
-              <th>
-                <NuxtLink
-                  class="btn btn-outline btn-xs"
-                  :to="`/product/detail/${data.id}`"
-                >
-                  details</NuxtLink
-                >
-              </th>
-            </tr>
-          </tbody>
-          <!-- foot -->
-          <!-- <tfoot></tfoot> -->
-        </table>
-      </div>
-    </div>
-  </section>
-</template>
-
-<script lang="ts" setup>
+import type { Product } from "@prisma/client"
 import type { ProductItem } from "~/types/product/item"
 
-const { formatRupiah, formatNumber } = useFormat()
-const dataProduct: ProductItem[] = [
+export const dataProduct: Product = {
+  image: "https://picsum.photos/200",
+  name: "Acme Circles ",
+  price: 49.99,
+  stock: 2,
+  brand: "Acme",
+  typeId: "1",
+  id: "1",
+  description: "Acme Circles T-Shirt",
+  userId: "1",
+}
+export const dataProduct2: Product = {
+  image: "https://picsum.photos/220",
+  name: "Shock",
+  price: 443,
+  stock: 64,
+  brand: "adidasss",
+  typeId: "13",
+  id: "1234",
+  description: "i dont know",
+  userId: "112",
+}
+
+export const dataProducts: ProductItem[] = [
   {
     brand: "Hart Hagerty",
     description:
@@ -186,6 +143,3 @@ const dataProduct: ProductItem[] = [
     ],
   },
 ]
-</script>
-
-<style></style>

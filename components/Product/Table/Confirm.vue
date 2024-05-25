@@ -8,13 +8,12 @@
             <tr>
               <th>
                 <label>
-                  <input type="checkbox" class="checkbox" />
+                  <input type="checkbox" class="checkbox checkbox-sm" />
                 </label>
               </th>
               <th>Buyer</th>
               <th>Product Name</th>
               <th>Total</th>
-              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -22,25 +21,26 @@
             <tr v-for="data in dataProduct" :key="data.id">
               <th>
                 <label>
-                  <input type="checkbox" class="checkbox" />
+                  <input type="checkbox" class="checkbox checkbox-sm" />
                 </label>
               </th>
               <td>
-                <div class="">
+                <div class="space-y-2">
                   <div class="font-bold">{{ data.userBuy.name }}</div>
                   <div class="text-sm opacity-50">
                     {{ data.userBuy.address }}
                   </div>
-                  <div>{{ formatPhone(data.userBuy.phone) }}</div>
+                  <div>{{ formatPhone(data.userBuy.phone ?? "") }}</div>
                 </div>
               </td>
               <td>
                 <div
-                  class="justify-between flex"
+                  class="flex gap-2 space-y-2"
                   v-for="trolly in data.trolly"
                   :key="trolly.id"
+
                 >
-                  <div class="flex items-center gap-3">
+                  <div class="flex items-center gap-3 ">
                     <div class="avatar">
                       <div class="mask mask-squircle w-12 h-12">
                         <img
@@ -50,32 +50,36 @@
                       </div>
                     </div>
                   </div>
-                  <div class="">
+                  <div class="space-y-1">
                     <div class="font-bold">{{ trolly.name }}</div>
                     <div class="text-sm opacity-50">{{ trolly.brand }}</div>
                     <div class="">{{ formatRupiah(trolly.price) }}</div>
                   </div>
                 </div>
               </td>
-              <td>
-                <!-- get total price and qty -->
-                {{
+              <td class='space-y-2'>
+                <p>
+
+                  <!-- get total price and qty -->
+                  {{
                   formatRupiah(
                     data.trolly
                       .map((t) => t.price * t.stock)
                       .reduce((a, b) => a + b, 0)
                   )
                 }}
-              </td>
-
+                      </p>
+                
               <td>
                 <NuxtLink
                   class="btn btn-outline btn-xs"
-                  :to="`/market/confirm/detail/${data.id}`"
+                  :to="`/product/payment/${data.id}`"
                 >
                   details</NuxtLink
                 >
               </td>
+              </td>
+
             </tr>
           </tbody>
         </table>
@@ -85,8 +89,12 @@
 </template>
 
 <script lang="ts" setup>
-import { dataProduct } from '~/assets/example/dataPurchase'
+import type { Purchase } from "~/types/product/purchase"
 
+// import { dataProduct } from '~/assets/example/dataPurchase'
+defineProps<{
+  dataProduct: Purchase[]
+}>()
 
 const { formatRupiah, formatNumber, totalNumber, formatPhone } = useFormat()
 </script>

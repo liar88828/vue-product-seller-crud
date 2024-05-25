@@ -13,3 +13,8 @@
     @apply shadow shadow-slate-700;
   }
 }
+@layer components {
+  table {
+    @apply table table-zebra table-xs table-auto bg-base-100;
+  }
+}

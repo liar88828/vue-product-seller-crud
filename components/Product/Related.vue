@@ -11,7 +11,9 @@
 </template>
 
 <script setup lang="ts">
+import type { Product } from '@prisma/client'
+
 defineProps<{ 
-	dataRelated: { name: string; brand: string; price: number; img: string; };
+	dataRelated: Product;
 }>()
 </script>

@@ -83,7 +83,7 @@ const conditionalClasses = isShopOrSellRoute() ? "hidden" : "hidden sm:block"
 
 <template>
   <ul
-    :class="`  menu menu-sm sm:menu-lg bg-base-200 rounded-lg  w-52 max-w-6xl ${conditionalClasses}
+    :class="`menu menu-sm sm:menu-lg bg-base-200 rounded-lg  w-52 max-w-6xl ${conditionalClasses}
     `"
   >
     <li v-for="data in dataLink" :key="data.title">
