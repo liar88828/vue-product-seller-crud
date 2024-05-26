@@ -44,6 +44,7 @@
       </div>
       <ElementsDivider />
 
+
       <div
         class="relative w-full overflow-auto border rounded border-slate-600"
       >
@@ -106,8 +107,6 @@
 
 <script lang="ts" setup>
 import { dataCompany } from "~/assets/example/dataCompany"
-import { dataProduct, dataProduct2 } from "~/assets/example/dataProduct"
-import { userProfile } from "~/assets/example/dataUser"
 import type { Purchase } from "~/types/product/purchase"
 
 defineProps<{

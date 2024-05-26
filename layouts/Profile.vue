@@ -1,10 +1,10 @@
 <template>
-  <MainTab :items="itemsArray" />
+  <MainBodyTab :items="itemsArray" />
   <slot />
 </template>
 
 <script lang="ts" setup>
-import { ProductLink } from "~/assets/shopLink"
+import { ProductLink } from "~/assets/link/tabLink"
 import type { Item } from "~/types/LinkItem"
 
 const itemsArray = ref<Item[]>(ProductLink)

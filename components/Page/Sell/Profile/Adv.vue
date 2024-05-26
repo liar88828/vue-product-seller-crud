@@ -3,7 +3,7 @@
     :class="`hero rounded-lg `"
     :style="`background-image: url(${data.image});`"
   >
-    <pre class="hero-overlay bg-opacity-60"></pre>
+    <pre class="hero-overlay bg-opacity-45"></pre>
     <div class="hero-content">
       <div class="flex">
         <div>
@@ -16,7 +16,7 @@
             {{ data.slogans }}
           </p>
           <div class="flex items-center justify-between">
-            <ul>
+            <ul class='sm:text-lg text-md'>
               <li v-for="d in data.description">- {{ d }}</li>
             </ul>
             <NuxtLink :to="data.link" class="btn btn-outline sm:btn-md btn-sm"

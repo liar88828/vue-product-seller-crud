@@ -46,16 +46,5 @@
 <script lang="ts" setup>
 import { dataAdv, dataAdv2 } from "~/assets/example/dataAdv"
 import { dataRelateds } from "~/assets/example/dataRelateds"
-import IconsBread from "~/components/Icons/Bread.vue"
-import IconsChocolate from "~/components/Icons/Choco.vue"
-import IconsGrapes from "~/components/Icons/Grapes.vue"
-import IconsMilk from "~/components/Icons/Milk.vue"
-import type { ItemIcons } from "~/types/icon"
-
-const dataCategory: ItemIcons[] = [
-  { link: "/grapes", icon: IconsGrapes, title: "Grapes" },
-  { link: "/chocolate  ", icon: IconsChocolate, title: "Chocolate" },
-  { link: "/Milk", icon: IconsMilk, title: "Milk" },
-  { link: "/Bread", icon: IconsBread, title: "Bread" },
-]
+import { dataCategory } from "~/assets/link/shopLink"
 </script>

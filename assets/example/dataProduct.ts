@@ -1,5 +1,5 @@
 import type { Product } from "@prisma/client"
-import type { ProductItem } from "~/types/product/item"
+import type { DataTechnicalSpc, ProductItem } from "~/types/product/item"
 
 export const dataProduct: Product = {
   image: "https://picsum.photos/200",
@@ -141,5 +141,32 @@ export const dataProducts: ProductItem[] = [
         ],
       },
     ],
+  },
+]
+
+export const dataTechnicalSpc: DataTechnicalSpc[] = [
+  {
+    t: "Movement",
+    p: "Swiss-made automatic movement with 28,800 vph and 42-hour power reserve.",
+  },
+  {
+    t: "Case",
+    p: "Stainless steel case with a diameter of 40mm and a thickness of 12mm.",
+  },
+  {
+    t: "Dial",
+    p: "Scratch-resistant sapphire crystal with a silver-tone dial and luminous hands and markers.",
+  },
+  {
+    t: "Strap",
+    p: "Genuine leather strap with a deployant buckle closure.",
+  },
+  {
+    t: "Water Resistance",
+    p: "Water-resistant up to 100 meters (330 feet).",
+  },
+  {
+    t: "Warranty",
+    p: "5-year international warranty.",
   },
 ]

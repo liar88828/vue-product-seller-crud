@@ -1,6 +1,6 @@
 <template>
   <NuxtLayout name="market">
-    <ProductTable />
+    <ProductTableMarket />
   </NuxtLayout>
 </template>
 

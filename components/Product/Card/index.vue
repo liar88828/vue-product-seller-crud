@@ -1,9 +1,10 @@
 <template>
-  <div class="card card-compact bg-base-100 shadow-xl">
+  <div :class="`card card-compact bg-base-100 shadow-xl ${static && 'static'}`">
     <figure>
+      <!-- rounded-lg -->
       <img
         alt="Related product"
-        class="rounded-lg object-cover w-full aspect-square group-hover:opacity-50 transition-opacity"
+        class="object-cover w-full aspect-square group-hover:opacity-50 transition-opacity"
         height="300"
         :src="data.image ?? 'https://picsum.photos/300'"
         width="300"
@@ -50,6 +51,11 @@ defineProps({
     required: true,
   },
   detail: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
+  static: {
     type: Boolean,
     required: false,
     default: false,
