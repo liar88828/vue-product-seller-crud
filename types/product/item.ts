@@ -16,3 +16,8 @@ export type ProductItem = Product & {
   }[]
   spec_good?: string[]
 }
+
+export type DataTechnicalSpc = {
+  t: string
+  p: string
+}

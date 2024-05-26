@@ -1,10 +1,9 @@
 <template>
   <NuxtLayout name="market">
-    <PageHistoryOrder :data-orders="dataOrders" />
+    <ProductTableOrder :data-orders="dataHistoris" />
   </NuxtLayout>
 </template>
 
 <script lang="ts" setup>
-import { dataOrders } from "~/assets/example/dataOrder"
+import { dataHistoris } from "~/assets/example/dataHistory"
 </script>
-

@@ -1,4 +1,5 @@
 <template>
+  <!-- <PageShopHeader /> -->
   <section class="grid md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-2">
     <div class="md:col-span-1 lg:col-span-2">
       <PageShopDropMenu />
@@ -7,9 +8,14 @@
       <div
         class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl::grid-cols-6 gap-2"
       >
-        <ProductRelatedProduct :data="dataRelated" />
-        <ProductRelatedProduct :data="dataRelated" />
-        <ProductRelatedProduct :data="dataRelated" />
+        <ProductCard
+          v-for="product in dataProducts"
+          :data="product"
+          :key="product.id"
+          :static="true"
+        />
+        <!-- <ProductRelatedProduct :data="dataRelated" />
+        <ProductRelatedProduct :data="dataRelated" /> -->
       </div>
     </div>
   </section>
@@ -19,6 +25,6 @@
 import type { Product } from "@prisma/client"
 
 defineProps<{
-  dataRelated: Product
+  dataProducts: Product[]
 }>()
 </script>

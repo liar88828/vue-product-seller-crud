@@ -2,16 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
-/* @layer utilities {
+@layer utilities {
   .card {
-    @apply shadow-slate-900 shadow;
+    @apply  shadow-md;
   }
-} */
+}
 
 @layer base {
   .card-shadow {
     @apply shadow shadow-slate-700;
   }
+
+  .title-sm {
+    @apply md:text-2xl sm:text-lg ;
+  }
+  
+  .title-md {
+    @apply md:text-3xl sm:text-xl text-lg ;
+  }
+  
 }
 @layer components {
   table {

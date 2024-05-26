@@ -2,12 +2,13 @@
   <section class="space-y-5">
     <PageSellProfileGrid />
 
-    <ProductCardContainer class="" title="Categories Product">
-      <ProductCategory
+    <ProductCardContainer class="bg-base-200" title="Categories Product">
+      <ProductCardCategory
         v-for="dataIcon in dataCategory"
         :key="dataIcon.title"
         :data="dataIcon"
       />
+
     </ProductCardContainer>
 
     <ProductCardContainer class="bg-info/10" title="New Products">
@@ -46,16 +47,5 @@
 <script lang="ts" setup>
 import { dataAdv, dataAdv2 } from "~/assets/example/dataAdv"
 import { dataRelateds } from "~/assets/example/dataRelateds"
-import IconsBread from "~/components/Icons/Bread.vue"
-import IconsChocolate from "~/components/Icons/Choco.vue"
-import IconsGrapes from "~/components/Icons/Grapes.vue"
-import IconsMilk from "~/components/Icons/Milk.vue"
-import type { ItemIcons } from "~/types/icon"
-
-const dataCategory: ItemIcons[] = [
-  { link: "/grapes", icon: IconsGrapes, title: "Grapes" },
-  { link: "/chocolate  ", icon: IconsChocolate, title: "Chocolate" },
-  { link: "/Milk", icon: IconsMilk, title: "Milk" },
-  { link: "/Bread", icon: IconsBread, title: "Bread" },
-]
+import { dataCategory } from "~/assets/link/shopLink"
 </script>

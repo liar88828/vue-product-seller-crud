@@ -3,11 +3,11 @@
     class="hero rounded-lg"
     :style="`background-image: url(${data.image});`"
   >
-    <div class="hero-overlay bg-opacity"></div>
+    <div class="hero-overlay bg-opacity-45"></div>
 
     <div class="hero-content">
       <div class="flex">
-        <div class="w-96 sm:w-fit">
+        <div class="md:w-fit">
           <h2 :class="` text-2xl font-bold ${data.color.dis} `">
             {{ data.discount }}
           </h2>

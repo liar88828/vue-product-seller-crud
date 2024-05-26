@@ -3,18 +3,16 @@
     <h3 class="font-semibold text-lg">Categories</h3>
     <div class="grid gap-1">
       <a
-        v-for="category in categories"
+        v-for="data in staticLink.category.list"
         class="text-sm font-medium hover:underline underline-offset-4"
-        :href="category.link"
+        :href="data.link"
       >
-        {{ category.title }}
+        {{ data.title }}
       </a>
     </div>
-
-    
   </div>
 </template>
 
 <script lang="ts" setup>
-import { categories, colors, prices } from "~/assets/shopLink"
+import { staticLink } from "~/assets/link/shopLink"
 </script>

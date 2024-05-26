@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { Purchase } from '~/types/product/purchase'
+import type { Purchase } from "~/types/product/purchase"
 
 defineProps<{
   dataPurchases: Purchase[]

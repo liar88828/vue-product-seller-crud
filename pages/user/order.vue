@@ -1,6 +1,6 @@
 <template>
   <NuxtLayout name="profile">
-    <PageHistoryOrder :data-orders="dataOrders" />
+    <ProductTableOrder :data-orders="dataOrders" />
   </NuxtLayout>
 </template>
 
