@@ -13,6 +13,12 @@
         :key="dataPreview.name"
       />
     </ProductDetailReviewParent>
+
+    <ProductDetailReviewParent>
+      <ProductDetailMarket :data="dataPreviews[0]" />
+    </ProductDetailReviewParent>
+
+    
     <ProductDetailRelatedParent>
       <ProductCard
         v-for="dataProduct in dataProducts"

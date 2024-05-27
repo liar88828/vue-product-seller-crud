@@ -1,5 +1,5 @@
 <template>
-  <section class="navbar bg-base-100 shadow">
+  <section class="navbar bg-base-100 shadow px-5 ">
     <div class="navbar-start hidden sm:block">
       <a class="flex items-center gap-2" href="#">
         <IconsHandLove />
@@ -11,11 +11,27 @@
     </div>
 
     <div class="navbar-center w-[80%] sm:w-[60%]">
-      <div
+      <!-- <div
         class="input input-bordered input-sm input:input-md flex items-center gap-2 w-full"
       >
         <IconsSearch />
         <input type="text" class="grow" placeholder="Search" v-model="search" />
+      </div> -->
+
+      <div class="join w-full">
+        <div
+          class="join-item input input-bordered input-sm md:input-md flex items-center gap-2 w-full"
+        >
+          <IconsSearch />
+          <input placeholder="Search" />
+        </div>
+        <select class="select select-bordered join-item select-sm md:select-md">
+          <option disabled selected>Filter</option>
+          <option>Sci-fi</option>
+          <option>Drama</option>
+          <option>Action</option>
+        </select>
+        <button class="btn-sm md:btn-md btn join-item">Search</button>
       </div>
     </div>
 

@@ -1,5 +1,5 @@
 <template>
-  <div role="tablist " class="tabs tabs-lifted px-3 tabs-xs sm:tabs-md">
+  <div role="tablist " class="tabs tabs-lifted px-3 tabs-sm sm:tabs-md">
     <NuxtLink
       v-for="item in props.items"
       :key="item.link"

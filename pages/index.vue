@@ -1,5 +1,5 @@
 <template>index</template>
 
-<script lang="ts" setup></script>
-
-<style></style>
+<script lang="ts" setup>
+await navigateTo("/home")
+</script>

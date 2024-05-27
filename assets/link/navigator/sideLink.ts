@@ -2,6 +2,7 @@ import IconsHome from "~/components/Icons/Home.vue"
 import IconsUser from "~/components/Icons/User.vue"
 import IconsInfo from "~/components/Icons/Info.vue"
 import IconsChartBar from "~/components/Icons/Chartbar.vue"
+import IconsShop from "~/components/Icons/Shop.vue"
 
 export const dataLink = [
   {
@@ -13,7 +14,7 @@ export const dataLink = [
   {
     title: "Shop",
     link: "/shop",
-    icon: IconsHome,
+    icon: IconsShop,
     sub: [],
   },
   {

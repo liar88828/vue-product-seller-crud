@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { dataLink } from "~/assets/link/dataLink"
+import { dataLink } from "~/assets/link/navigator/sideLink"
 </script>
 
 <template>

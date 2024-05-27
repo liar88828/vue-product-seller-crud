@@ -92,5 +92,8 @@ export const dataCategory: ItemIcons[] = [
     title: "Chocolate",
   },
   { link: "/shop?category=Milk", icon: IconsMilk, title: "Milk" },
+  { link: "/shop?category=Milk", icon: IconsMilk, title: "Milk" },
+  { link: "/shop?category=Milk", icon: IconsMilk, title: "Milk" },
+  { link: "/shop?category=Milk", icon: IconsMilk, title: "Milk" },
   { link: "/shop?category=Bread", icon: IconsBread, title: "Bread" },
 ]

@@ -8,7 +8,6 @@
         :key="dataIcon.title"
         :data="dataIcon"
       />
-
     </ProductCardContainer>
 
     <ProductCardContainer class="bg-info/10" title="New Products">
@@ -18,6 +17,7 @@
         :data="dataRelated"
       />
     </ProductCardContainer>
+
     <!--  -->
     <PageSellProfileAdv :data="dataAdv" />
     <!--  -->

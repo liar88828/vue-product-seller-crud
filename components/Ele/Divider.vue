@@ -1,5 +1,5 @@
 <template>
-  <div class="divider">{{ title ?? "" }}</div>
+  <div class="divider ">{{ title ?? "" }}</div>
   <!-- <div class="divider">Default</div> -->
 </template>
 
