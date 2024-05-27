@@ -40,7 +40,7 @@
 
 <script lang="ts" setup>
 import { ref } from "vue"
-import type { Item } from "~/types/LinkItem"
+import type { Item } from "~/types/globals/LinkItem"
 const linkMenu = ref<{ server: Item[]; client: Item[] }>({
   server: [
     // {

@@ -1,7 +1,7 @@
 <template>
-  <PageShop :dataProducts="dataProducts" />
+  <PageShop :dataProducts="dataProductDetails" />
 </template>
 
 <script lang="ts" setup>
-import { dataProduct, dataProducts } from "~/assets/example/dataProduct"
+import { dataProductDetails } from "~/assets/example/dataProduct"
 </script>

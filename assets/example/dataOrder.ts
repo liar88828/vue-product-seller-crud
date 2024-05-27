@@ -1,7 +1,7 @@
 import type { Product, User } from "@prisma/client"
 import { dataProduct, dataProduct2 } from "./dataProduct"
 import { userProfile, userProfile2 } from "./dataUser"
-import type { ProfileCompany } from "~/types/profile"
+import type { ProfileCompany } from "~/types/market/profile"
 import { dataCompany } from "./dataCompany"
 
 export type OrderProps = {

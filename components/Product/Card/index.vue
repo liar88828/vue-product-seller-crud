@@ -1,5 +1,9 @@
 <template>
-  <div :class="`card card-compact bg-base-100 shadow-xl ${static && 'static'}`">
+  <div
+    :class="`card card-compact bg-base-100 w-40 sm:w-52 md:w-60 shadow-xl ${
+      static && 'static'
+    }`"
+  >
     <figure>
       <!-- rounded-lg -->
       <img
@@ -11,13 +15,17 @@
       />
     </figure>
     <div class="card-body w-40">
-      <div class="flex-1 py-4 space-y-2">
-        <h3 class="font-semibold tracking-tight">
+      <div class="">
+        <h3 class="font-bold sm:text-lg text-md">
           {{ data.name }}
         </h3>
-        <p class="font-normal text-xs">{{ 123 }} Sold</p>
-        <div class="flex justify-between">
-          <h4 class="font-semibold text-lg">${{ data.price }}</h4>
+
+        <div class="flex justify-between items-center">
+          <div class="">
+            <h4 class="font-semibold sm:text-lg text-md">${{ data.price }}</h4>
+            <p class="font-normal text-xs">{{ 123 }} Sold</p>
+          </div>
+
           <NuxtLink
             :to="`/product/detail/${data.id}`"
             class="btn btn-outline btn-sm"

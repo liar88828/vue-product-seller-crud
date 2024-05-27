@@ -1,4 +1,4 @@
-import type { ControlCreateProduct } from "~/types/ReturnCreateProduct"
+import type { ControlCreateProduct } from "~/types/user/ReturnCreateProduct"
 
 export class ProductController {
   sanitize(data: ControlCreateProduct): ControlCreateProduct {

@@ -24,7 +24,16 @@ export const dataProduct2: Product = {
   userId: "112",
 }
 
-export const dataProducts: ProductItem[] = [
+export const dataProducts: Product[] = [
+  dataProduct,
+  dataProduct2,
+  dataProduct,
+  dataProduct2,
+  dataProduct,
+  dataProduct2,
+]
+
+export const dataProductDetails: ProductItem[] = [
   {
     brand: "Hart Hagerty",
     description:

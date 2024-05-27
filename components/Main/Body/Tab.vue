@@ -12,7 +12,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { Item } from "~/types/LinkItem"
+import type { Item } from "~/types/globals/LinkItem"
 
 const { getActive } = useStyle()
 const props = defineProps<{ items: Item[] }>()

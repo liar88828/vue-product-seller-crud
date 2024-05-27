@@ -10,7 +10,7 @@
           {{ data.status }}
         </span>
         <NuxtLink
-          :to="`/product/payment/${data.id}`"
+          :to="`/product/look/${data.id}`"
           class="btn btn-info sm:btn-sm btn-xs btn-outline"
           >Payment</NuxtLink
         >

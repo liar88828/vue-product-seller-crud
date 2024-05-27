@@ -45,7 +45,12 @@
 </template>
 
 <script lang="ts" setup>
-import { dataAdv, dataAdv2 } from "~/assets/example/dataAdv"
-import { dataRelateds } from "~/assets/example/dataRelateds"
-import { dataCategory } from "~/assets/link/shopLink"
+import type { Product } from "@prisma/client"
+import type { ItemIcons } from "~/types/globals/icon"
+defineProps<{
+  dataAdv: any
+  dataAdv2: any
+  dataRelateds: Product[]
+  dataCategory: ItemIcons[]
+}>()
 </script>

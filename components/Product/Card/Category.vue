@@ -11,7 +11,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-import type { ItemIcons } from "~/types/icon"
+import type { ItemIcons } from "~/types/globals/icon"
 
 defineProps<{ data: ItemIcons }>()
 </script>

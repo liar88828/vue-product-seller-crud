@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { StaticLink } from "~/types/global/StaticLink"
+import type { StaticLink } from "~/types/globals/StaticLink"
 
 const { data } = defineProps<{ data: StaticLink }>()
 </script>

@@ -1,8 +1,8 @@
 import type { Product, User } from "@prisma/client"
 
 export type Purchase = {
-  userBuy: User
   id: string
+  userBuy: User
   trolly: Product[]
   dateBuy: Date
 }

@@ -1,10 +1,13 @@
 <template>
   <LayCardWrap class="bg-base-100">
     <ProductTableMarketOption />
-    <ProductTableMarketBody :data-product="dataProducts" />
+    <ProductTableMarketBody :data-product="data" />
   </LayCardWrap>
 </template>
 
 <script lang="ts" setup>
-import { dataProducts } from "~/assets/example/dataProduct"
+import type { ProductItem } from "~/types/product/item"
+defineProps<{
+  data: ProductItem[]
+}>()
 </script>

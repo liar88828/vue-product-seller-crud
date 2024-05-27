@@ -1,4 +1,4 @@
-import type { AdvProps } from "~/types/grid"
+import type { AdvProps } from "~/types/product/grid"
 
 export const dataAdv: AdvProps = {
   image:

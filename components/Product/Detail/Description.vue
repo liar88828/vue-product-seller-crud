@@ -27,11 +27,12 @@ defineProps<{ data: ProductItem }>()
       </div>
 
       <div class="flex flex-col sm:flex-row gap-4">
-        <button class="btn btn-info">Add to Cart</button>
-        <button class="btn btn-outline">
-          <IconsLove class="w-5 h-5 mr-2" />
-          Save for Later
-        </button>
+        <NuxtLink
+        :to="'/product/checkout/' + data.id"
+        class="btn btn-info">
+          <IconsSell class="w-5 h-5 mr-2" /> Buy Now
+        </NuxtLink>
+        <button class="btn btn-outline">Add to Cart</button>
       </div>
     </LayCardWrap>
   </section>

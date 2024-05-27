@@ -9,8 +9,8 @@ import IconsChocolate from "~/components/Icons/Choco.vue"
 import IconsGrapes from "~/components/Icons/Grapes.vue"
 import IconsMilk from "~/components/Icons/Milk.vue"
 
-import type { StaticLink } from "~/types/global/StaticLink"
-import type { ItemIcons } from "~/types/icon"
+import type { StaticLink } from "~/types/globals/StaticLink"
+import type { ItemIcons } from "~/types/globals/icon"
 
 export const staticLink = {
   color: {

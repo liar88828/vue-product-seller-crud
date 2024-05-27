@@ -1,5 +1,8 @@
 <template>
   <NuxtLayout name="market">
-    <PageMarketProfile />
+    <ProfileMarket :data="dataCompany" />
   </NuxtLayout>
 </template>
+<script lang="ts" setup>
+import { dataCompany } from "~/assets/example/dataCompany"
+</script>

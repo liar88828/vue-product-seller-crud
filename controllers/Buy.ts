@@ -3,7 +3,7 @@ import type {
   GetBoxReturn,
   GetPackageProps,
   GetPackageReturn,
-} from "~/types/GetBox"
+} from "~/types/transaction/GetBox"
 
 export class BuyController {
   getBox(id_trolly: string, data: GetBoxProps[]): GetBoxReturn[] {

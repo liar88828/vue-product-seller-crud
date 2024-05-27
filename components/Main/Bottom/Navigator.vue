@@ -1,5 +1,5 @@
 <template>
-  <div class="btm-nav md:hidden">
+  <div class="btm-nav md:hidden ">
     <NuxtLink
       v-for="link in linkMenu"
       :key="link.link"

@@ -71,7 +71,7 @@
               <td>
                 <NuxtLink
                   class="btn btn-outline btn-xs"
-                  :to="`/product/payment/${data.id}`"
+                  :to="`/market/confirm/${data.id}`"
                 >
                   details</NuxtLink
                 >

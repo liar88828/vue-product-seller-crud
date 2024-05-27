@@ -6,26 +6,26 @@
   <div class="space-y-5">
     <ProductDetailSpec :data="dataDescription" />
     <ProductDetailTech :data="dataTechnicalSpc" />
-    <ProductDetailReviewParent>
-      <ProductDetailReviewChild
+
+    <ProductParent :title="'Customer Review'">
+      <ProductDetailReview
         v-for="dataPreview in dataPreviews"
         :data="dataPreview"
         :key="dataPreview.name"
       />
-    </ProductDetailReviewParent>
+    </ProductParent>
 
-    <ProductDetailReviewParent>
+    <ProductParent title=" Market">
       <ProductDetailMarket :data="dataPreviews[0]" />
-    </ProductDetailReviewParent>
+    </ProductParent>
 
-    
-    <ProductDetailRelatedParent>
+    <ProductParent :grid="true" :title="'Related Products'">
       <ProductCard
         v-for="dataProduct in dataProducts"
         :data="dataProduct"
         :key="dataProduct.id"
       />
-    </ProductDetailRelatedParent>
+    </ProductParent>
   </div>
 </template>
 

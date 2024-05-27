@@ -1,10 +1,8 @@
 <template>
   <NuxtLayout name="profile">
-    <PageUserProfile :data="data" />
+    <ProfileUser :data="userProfile" />
   </NuxtLayout>
 </template>
 <script lang="ts" setup>
-import { userProfile } from "~/assets/example/dataUser"
-
-const data = userProfile
+import { userProfile } from '~/assets/example/dataUser'
 </script>

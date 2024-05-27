@@ -1,5 +1,5 @@
 import type { Box, Trolly, User } from "@prisma/client"
-import type { GetBoxProps } from "~/types/GetBox"
+import type { GetBoxProps } from "~/types/transaction/GetBox"
 import { prisma } from "~/config/prisma"
 import { control } from "~/export/control"
 

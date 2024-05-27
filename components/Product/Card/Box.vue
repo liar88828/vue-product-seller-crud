@@ -23,7 +23,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { DataBoxProps } from '~/types/grid'
+import type { DataBoxProps } from '~/types/product/grid'
 
 
 

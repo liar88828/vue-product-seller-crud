@@ -1,4 +1,4 @@
-import type { DataBoxProps } from "~/types/grid"
+import type { DataBoxProps } from "~/types/product/grid"
 
 export const dataGrid1: DataBoxProps = {
   image:
@@ -22,8 +22,8 @@ export const dataGrid2: DataBoxProps = {
   slogans: "Good Choice & Price ",
   description: "If a dog chews shoes whose shoes does he choose?",
   color: {
-    bg: "bg-green-200",
-    dis: "text-[#edff47]",
+    bg: "bg-yellow-200",
+    dis: "text-[#7fffd4]",
   },
   link: "#",
 }

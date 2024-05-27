@@ -3,7 +3,7 @@ import IconsHome from "~/components/Icons/Home.vue"
 import IconsShop from "~/components/Icons/Shop.vue"
 import IconsSell from "~/components/Icons/Sell.vue"
 import IconsMarket from "~/components/Icons/Market.vue"
-import type { ItemIcons } from "~/types/icon"
+import type { ItemIcons } from "~/types/globals/icon"
 
 export const linkMenu: ItemIcons[] = [
   { link: "/home", icon: IconsHome, title: "Home" },

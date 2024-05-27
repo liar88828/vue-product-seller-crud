@@ -1,7 +1,7 @@
 import type { Package, Transaction } from "@prisma/client"
 import { prisma } from "~/config/prisma"
 import { control } from "~/export/control"
-import type { GetPackageProps } from "~/types/GetBox"
+import type { GetPackageProps } from "~/types/transaction/GetBox"
 
 export class TransactionDB {
   async wantBuy({ data: { pack, trans }, id_user }: WantBuyProps) {

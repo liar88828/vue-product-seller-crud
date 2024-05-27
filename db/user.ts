@@ -1,5 +1,5 @@
 import { prisma } from "~/config/prisma"
-import type { ControlCreateUser } from "~/types/ControlCreateUser"
+import type { ControlCreateUser } from "~/types/user/ControlCreateUser"
 
 class UserMutation {
   async create(data: ControlCreateUser) {

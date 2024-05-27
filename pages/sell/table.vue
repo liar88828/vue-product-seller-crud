@@ -1,6 +1,5 @@
 <template>
   <NuxtLayout name="profile">
-    <PageTrolly/>
   </NuxtLayout>
 </template>
 

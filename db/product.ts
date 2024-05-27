@@ -1,7 +1,7 @@
 import { prisma } from "~/config/prisma"
-import type { Pagination } from "~/types/Pagination"
-import type { DeleteDataDB } from "../types/DeleteDataDB"
-import type { ControlCreateProduct } from "~/types/ReturnCreateProduct"
+import type { Pagination } from "~/types/globals/Pagination"
+import type { DeleteDataDB } from "../types/product/DeleteDataDB"
+import type { ControlCreateProduct } from "~/types/user/ReturnCreateProduct"
 
 class ProductMutation {
   async delete({ id, id_user }: DeleteDataDB) {
