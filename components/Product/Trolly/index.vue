@@ -1,7 +1,7 @@
 <template>
-  <div class="card bg-base-100">
-    <div class="card-body">
-      <h1 class="card-title">Shopping Cart</h1>
+  <Card>
+    <CardBody>
+      <CardHead title="Shopping Cart" />
       <div class="space-y-3">
         <div class="space-y-3">
           <ProductCardHorizonTrolly
@@ -17,16 +17,16 @@
           :total-send="5.99"
         />
       </div>
-      <div class="card-actions justify-between">
+      <CardActionBetween>
         <NuxtLink to="/shop" class="btn btn-outline btn-sm"
           >Continue Shopping</NuxtLink
         >
         <NuxtLink :to="'/product/pay/' + 1" class="btn btn-info btn-sm"
           >Proceed to Checkout</NuxtLink
         >
-      </div>
-    </div>
-  </div>
+      </CardActionBetween>
+    </CardBody>
+  </Card>
 </template>
 
 <script lang="ts" setup>

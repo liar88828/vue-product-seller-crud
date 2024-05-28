@@ -3,7 +3,7 @@
     <PageSellProfileGrid />
 
     <ProductCardContainer class="bg-base-200" title="Categories Product">
-      <ProductCardCategory
+      <CardCategory
         v-for="dataIcon in dataCategory"
         :key="dataIcon.title"
         :data="dataIcon"

@@ -1,7 +1,7 @@
 <template>
-  <LayCardWrap class="bg-base-100">
+  <Card>
     <ProductTableConfirmBody :data-product="dataProduct" />
-  </LayCardWrap>
+  </Card>
 </template>
 
 <script lang="ts" setup>

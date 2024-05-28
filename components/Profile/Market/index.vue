@@ -4,8 +4,8 @@
 // https://v0.dev/t/go7HyHEA5ur
 -->
 
-  <main class="card bg-base-100" ref="refImage">
-    <div class="card-body">
+  <Card ref="refImage">
+    <CardBody>
       <div class="flex justify-between items-center gap-5">
         <div class="space-y-2">
           <h1 class="text-3xl font-bold">{{ data.name }}</h1>
@@ -20,8 +20,8 @@
         <ProfileMarketInformation :data="data" />
         <ProfileMarketDescribe :data="data" />
       </div>
-    </div>
-  </main>
+    </CardBody>
+  </Card>
 </template>
 
 <script lang="ts" setup>

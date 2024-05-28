@@ -14,7 +14,7 @@ defineProps<{
       </h2>
       <div class="grid grid-cols-2 gap-5 md:gap-7 mt-4">
         <div v-for="item in data.spec_prod" :key="item.type">
-          <h3 class="text-md sm:text-lg font-bold ">{{ item.type }}</h3>
+          <h3 class="text-md sm:text-lg font-bold">{{ item.type }}</h3>
           <ul>
             <li v-for="data in item.list">
               <span class="text-sm sm:text-md"> - {{ data }} </span>

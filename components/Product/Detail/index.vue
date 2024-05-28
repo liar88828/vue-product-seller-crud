@@ -7,25 +7,26 @@
     <ProductDetailSpec :data="dataDescription" />
     <ProductDetailTech :data="dataTechnicalSpc" />
 
-    <ProductParent :title="'Customer Review'">
+    <CardParent :title="'Customer Review'">
       <ProductDetailReview
         v-for="dataPreview in dataPreviews"
         :data="dataPreview"
         :key="dataPreview.name"
       />
-    </ProductParent>
+    </CardParent>
 
-    <ProductParent title=" Market">
+    <CardParent :title="'Market'">
       <ProductDetailMarket :data="dataPreviews[0]" />
-    </ProductParent>
+    </CardParent>
 
-    <ProductParent :grid="true" :title="'Related Products'">
+    <CardParentGrid :title="'Related Products'">
       <ProductCard
         v-for="dataProduct in dataProducts"
         :data="dataProduct"
         :key="dataProduct.id"
+        :full="true"
       />
-    </ProductParent>
+    </CardParentGrid>
   </div>
 </template>
 

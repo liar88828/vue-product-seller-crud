@@ -26,7 +26,7 @@ const { getMultiCon } = useStyle()
       <MainBodySidebar
         :class="
           getMultiCon({
-            array: ['shop', 'sell'],
+            array: ['shop', 'sell','home'],
             con1: 'hidden ',
             con2: ' hidden md:block',
           })

@@ -1,6 +1,6 @@
 <template>
-  <LayCardWrap class="bg-base-100">
-    <h1 class="card-title">History</h1>
+  <Card>
+    <CardHead title="History" />
     <!-- list history -->
     <ProductCardContainer
       v-for="data in dataPurchase"
@@ -19,7 +19,7 @@
         </div>
       </div>
     </ProductCardContainer>
-  </LayCardWrap>
+  </Card>
 </template>
 
 <script lang="ts" setup>

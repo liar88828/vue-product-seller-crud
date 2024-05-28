@@ -16,8 +16,7 @@
 </template>
 
 <script setup>
-import { staticLink } from '~/assets/link/shopLink'
-
+import { staticLink } from "~/assets/link/shopLink"
 
 defineProps({
   market: {

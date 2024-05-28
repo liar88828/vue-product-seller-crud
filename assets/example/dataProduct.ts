@@ -151,6 +151,84 @@ export const dataProductDetails: ProductItem[] = [
       },
     ],
   },
+  {
+    brand: "Hart Hagerty",
+    description:
+      "The Nagasaki Lander is the trademarked name of several series of Nagasaki sport bikes, that started with the 1984 ABC800J",
+    image:
+      "https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg",
+    name: "Shoes",
+    price: 123,
+    stock: 10,
+    id: "2",
+    typeId: "1",
+    userId: "1",
+    spec_good: [
+      "Powerful noise-cancelling technology",
+      "Wireless Bluetooth connectivity",
+      "Long-lasting battery life",
+      "Comfortable and adjustable design",
+    ],
+    spec_prod: [
+      {
+        type: "Audio",
+        list: [
+          "Powerful noise-cancelling technology",
+          "Wireless Bluetooth connectivity",
+          "Long-lasting battery life",
+          "Comfortable and adjustable design",
+        ],
+      },
+      {
+        type: "Design",
+        list: [
+          "Powerful noise-cancelling technology",
+          "Wireless Bluetooth connectivity",
+          "Long-lasting battery life",
+          "Comfortable and adjustable design",
+        ],
+      },
+    ],
+  },
+  {
+    brand: "Hart Hagerty",
+    description:
+      "The Nagasaki Lander is the trademarked name of several series of Nagasaki sport bikes, that started with the 1984 ABC800J",
+    image:
+      "https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg",
+    name: "Shoes",
+    price: 123,
+    stock: 10,
+    id: "2",
+    typeId: "1",
+    userId: "1",
+    spec_good: [
+      "Powerful noise-cancelling technology",
+      "Wireless Bluetooth connectivity",
+      "Long-lasting battery life",
+      "Comfortable and adjustable design",
+    ],
+    spec_prod: [
+      {
+        type: "Audio",
+        list: [
+          "Powerful noise-cancelling technology",
+          "Wireless Bluetooth connectivity",
+          "Long-lasting battery life",
+          "Comfortable and adjustable design",
+        ],
+      },
+      {
+        type: "Design",
+        list: [
+          "Powerful noise-cancelling technology",
+          "Wireless Bluetooth connectivity",
+          "Long-lasting battery life",
+          "Comfortable and adjustable design",
+        ],
+      },
+    ],
+  },
 ]
 
 export const dataTechnicalSpc: DataTechnicalSpc[] = [

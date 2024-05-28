@@ -11,6 +11,7 @@
         <ProductCard
           v-for="product in dataProducts"
           :data="product"
+          :full="true"
           :key="product.id"
           :static="true"
         />

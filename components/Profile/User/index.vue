@@ -1,6 +1,6 @@
 <template>
-  <div class="card bg-base-100">
-    <div class="card-body">
+  <Card >
+    <CardBody >
       <!--  -->
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
         <div class="stats shadow">
@@ -95,8 +95,8 @@
         <button class="btn btn-primary">Edit</button>
         <button class="btn btn-primary">Print</button>
       </div>
-    </div>
-  </div>
+    </CardBody>
+  </Card>
 </template>
 
 <script lang="ts" setup>

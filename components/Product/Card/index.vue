@@ -1,11 +1,7 @@
 <template>
-  <div
-    :class="`card card-compact bg-base-100 w-40 sm:w-52 md:w-60 shadow-xl ${
-      static && 'static'
-    }`"
-  >
+  <!-- sm:w-40 md:w-60 -->
+  <Card :class="` ${static && ' static '} ${full ? 'w-full' : 'w-40 '}`">
     <figure>
-      <!-- rounded-lg -->
       <img
         alt="Related product"
         class="object-cover w-full aspect-square group-hover:opacity-50 transition-opacity"
@@ -14,11 +10,10 @@
         width="300"
       />
     </figure>
-    <div class="card-body w-40">
-      <div class="">
-        <h3 class="font-bold sm:text-lg text-md">
-          {{ data.name }}
-        </h3>
+    <!-- 'sm:w-full' -->
+    <CardBodyBox :class="''">
+      <div class="flex justify-between flex-col h-full">
+        <CardHead :title="data.name" />
 
         <div class="flex justify-between items-center">
           <div class="">
@@ -26,33 +21,32 @@
             <p class="font-normal text-xs">{{ 123 }} Sold</p>
           </div>
 
-          <NuxtLink
-            :to="`/product/detail/${data.id}`"
-            class="btn btn-outline btn-sm"
-            v-if="detail === false"
-          >
-            <IconsTrolley />
-            <span class="sr-only">Add to Favorites</span>
-          </NuxtLink>
-          <NuxtLink
-            to="#"
-            class="btn btn-outline btn-sm"
-            v-if="detail === true"
-          >
-            <IconsDetail />
-            <span class="sr-only">Add to Favorites</span>
-          </NuxtLink>
+          <div class="">
+            <NuxtLink
+              :to="`/product/detail/${data.id}`"
+              class="btn btn-outline btn-sm"
+              v-if="detail === false"
+            >
+              <IconsTrolley />
+            </NuxtLink>
+
+            <NuxtLink
+              to="#"
+              class="btn btn-outline btn-sm"
+              v-if="detail === true"
+            >
+              <IconsDetail />
+            </NuxtLink>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
+    </CardBodyBox>
+  </Card>
 </template>
+
 <script lang="ts" setup>
 import type { Product } from "@prisma/client"
-// <{
-//   data: Product
-//   detail?: boolean
-// }>
+
 defineProps({
   data: {
     type: Object as PropType<Product>,
@@ -64,6 +58,11 @@ defineProps({
     default: false,
   },
   static: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
+  full: {
     type: Boolean,
     required: false,
     default: false,

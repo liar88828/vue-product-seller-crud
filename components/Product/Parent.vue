@@ -1,19 +1,18 @@
 <template>
-  <LayCardWrap :class="props.class">
-    <div class="flex justify-between">
-      <h2 class="card-title">{{ props.title }}</h2>
-      <component :is="right" v-if="right" />
-    </div>
+  <CardInit :class="props.class">
+    <CardHead :title="props.title" :right="props.right" />
+
     <div :class="classProps">
       <slot />
     </div>
-  </LayCardWrap>
+  </CardInit>
 </template>
 <script lang="ts" setup>
-// import type { Component } from "vue"
-
 const props = defineProps({
-  title: String,
+  title: {
+    type: String,
+    required: true,
+  },
   grid: {
     type: Boolean,
     default: false,

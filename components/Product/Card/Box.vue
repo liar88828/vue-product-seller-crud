@@ -1,12 +1,12 @@
 <template>
-  <div class="shadow-xl image-full card bg-red-200">
+  <CardImage class="bg-red-200">
     <figure>
       <img
         src="https://thumbs.dreamstime.com/z/cold-beer-hot-pizza-table-close-up-horizontal-arugula-rustic-style-53826451.jpg"
         alt="chicken"
       />
     </figure>
-    <div class="card-body">
+    <CardBody>
       <h2 class="card-title text-[#bd1e59]">100% Natural</h2>
       <h1 class="text-2xl sm:text-6xl font-extrabold">
         Fresh Smoothie &amp; Summer Juice
@@ -15,16 +15,13 @@
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dignissim massa
         diam elementum.
       </p>
-      <div class="card-actions justify-end">
+      <CardActionEnd>
         <button class="btn btn-outline">Shop Now</button>
-      </div>
-    </div>
-  </div>
+      </CardActionEnd>
+    </CardBody>
+  </CardImage>
 </template>
 
 <script lang="ts" setup>
-import type { DataBoxProps } from '~/types/product/grid'
-
-
-
+import type { DataBoxProps } from "~/types/product/grid"
 </script>

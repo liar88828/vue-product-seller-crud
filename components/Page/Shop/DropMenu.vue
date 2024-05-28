@@ -9,9 +9,9 @@
       </a> -->
       <EleModalFilter />
     </li>
-    <EleMenuDrop :data="staticLink.price" />
-    <EleMenuDrop :data="staticLink.category" />
-    <EleMenuDrop :data="staticLink.color" />
+    <EleMenuDrop :open="true" :data="staticLink.price" />
+    <EleMenuDrop :open="true" :data="staticLink.category" />
+    <EleMenuDrop :open="true" :data="staticLink.color" />
   </ul>
 </template>
 

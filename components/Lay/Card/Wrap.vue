@@ -1,9 +1,7 @@
 <template>
-  <section :class="`card card-compact ${props.class}`">
-    <div class="card-body">
-      <slot />
-    </div>
-  </section>
+  <CardInit :class="`card card-compact ${props.class}`">
+    <slot />
+  </CardInit>
 </template>
 
 <script lang="ts" setup>
