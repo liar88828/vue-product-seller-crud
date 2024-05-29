@@ -1,12 +1,12 @@
 <template>
   <Card>
     <CardBodyCenter :class="' w-20 sm:w-30 md:w-40 '">
-      <CardHeadCenter>
+      <NuxtLink :to="data.link" class="flex items-center flex-col gap-2">
         <component :is="data.icon" class="h-10 w-10" />
-      </CardHeadCenter>
-      <CardActionCenter>
-        <NuxtLink :to="data.link"> {{ data.title }} </NuxtLink>
-      </CardActionCenter>
+        <CardHeadTitle :title="data.title" 
+        :class="'text-xs md:text-sm lg:text-md' "
+        />
+      </NuxtLink>
     </CardBodyCenter>
   </Card>
 </template>

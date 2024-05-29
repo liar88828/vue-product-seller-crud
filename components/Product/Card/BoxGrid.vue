@@ -5,7 +5,7 @@
   >
     <div class="hero-overlay bg-opacity-45"></div>
 
-    <div class="hero-content">
+    <div class="hero-content text-slate-300">
       <div class="flex">
         <div class="md:w-fit">
           <h2
@@ -21,7 +21,7 @@
           <div class="card-actions justify-end mt-2">
             <NuxtLink
               :to="data.link ? data.link : '/#'"
-              class="btn btn-outline sm:btn-md btn-sm"
+              class="btn sm:btn-md btn-sm"
               >Buy Now</NuxtLink
             >
           </div>

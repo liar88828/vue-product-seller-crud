@@ -1,5 +1,9 @@
 <template>
-  <section :class="`shadow-xl card bg-base-100 card-compact ${props.class}`">
+  <section
+    :class="`shadow-xl card bg-base-100 
+    ${props.compact ? 'card-compact' : ''}
+    ${props.class}`"
+  >
     <slot />
   </section>
 </template>
@@ -9,6 +13,11 @@ const props = defineProps({
   class: {
     default: "",
     type: String,
+    required: false,
+  },
+  compact: {
+    default: true,
+    type: Boolean,
     required: false,
   },
 })

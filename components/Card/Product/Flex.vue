@@ -1,6 +1,6 @@
 <template>
   <!-- sm:w-40 md:w-60 -->
-  <Card :class="styleCard" :compact="true">
+  <Card :class="'card-bordered '">
     <figure>
       <img
         alt="Related product"
@@ -10,28 +10,22 @@
         width="300"
       />
     </figure>
-    <!-- 'sm:w-full' -->
-    <!-- border border-red-700 -->
-    <CardBodyBox
-      :class="`${
-        full2 ? 'w-full ' : ' w-[13vh] sm:w-[14vh] md:w-full '
-      } border border-base-300  `"
-    >
-      <div class="flex justify-between flex-col h-full">
+    <CardBodyBox :class="'w-[14vh] sm:w-[15vh] md:w-[18vh]'">
+      <div :class="`flex justify-between flex-col h-full`">
         <CardHead
           :title="data.name"
           :class="'text-sm sm:text-md md:text-lg font-bold'"
         />
 
-        <div class="flex justify-between items-center ">
+        <div class="flex justify-between">
           <div class="">
-            <h4 class="font-semibold text-xs sm:text-md sm:text-lg">
+            <h4 class="text-sm sm:text-md md:text-lg font-semibold">
               ${{ data.price }}
             </h4>
-            <p class="font-normal text-xs">{{ 123 }} Sold</p>
+            <p class="font-normal text-xs whitespace-nowrap">{{ 123 }} Sold</p>
           </div>
 
-          <div class=" flex h-full items-end">
+          <div class="flex items-end">
             <NuxtLink
               :to="`/product/detail/${data.id}`"
               class="btn btn-outline sm:btn-sm btn-xs btn-square"
@@ -83,13 +77,4 @@ const props = defineProps({
     default: false,
   },
 })
-
-const styleCard = computed(() => {
-  return `
-  ${props.static ? " static " : ""}
-  ${props.full ? " w-full " : " w-40"}
- 
-  `
-})
-// console.log(props.full,'is full')
 </script>

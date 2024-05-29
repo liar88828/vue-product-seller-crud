@@ -1,15 +1,15 @@
 <template>
-  <CardBody :class="` ${props.class ?? ' w-40 '}`">
+  <Card :class="`card-compact ${props.class}`">
     <slot />
-  </CardBody>
+  </Card>
 </template>
 
 <script lang="ts" setup>
 const props = defineProps({
   class: {
-    default: "",
     type: String,
     required: false,
+    default: "",
   },
 })
 </script>

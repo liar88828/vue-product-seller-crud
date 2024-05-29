@@ -4,7 +4,7 @@
     :style="`background-image: url(${data.image});`"
   >
     <pre class="hero-overlay bg-opacity-45"></pre>
-    <div class="hero-content">
+    <div class="hero-content text-slate-300">
       <div class="flex">
         <div>
           <h1
@@ -16,10 +16,10 @@
             {{ data.slogans }}
           </p>
           <div class="flex items-center justify-between">
-            <ul class='sm:text-lg text-md'>
+            <ul class="sm:text-lg text-md">
               <li v-for="d in data.description">- {{ d }}</li>
             </ul>
-            <NuxtLink :to="data.link" class="btn btn-outline sm:btn-md btn-sm"
+            <NuxtLink :to="data.link" class="btn  sm:btn-md btn-sm"
               >Learn</NuxtLink
             >
           </div>

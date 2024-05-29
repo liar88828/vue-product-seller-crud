@@ -3,27 +3,29 @@
 @tailwind utilities;
 
 @layer utilities {
-  .card {
+  /* .card {
     @apply  shadow-md;
-  }
+  } */
 }
 
 @layer base {
+  .TEST_CSS {
+    @apply border-red-500 border-2;
+  }
   .card-shadow {
     @apply shadow shadow-slate-700;
   }
 
   .title-sm {
-    @apply md:text-2xl sm:text-lg ;
+    @apply md:text-2xl sm:text-lg;
   }
-  
+
   .title-md {
-    @apply md:text-3xl sm:text-xl text-lg ;
+    @apply md:text-3xl sm:text-xl text-lg;
   }
-  
 }
 @layer components {
-  table {
+  /* table {
     @apply table table-zebra table-xs table-auto bg-base-100;
-  }
+  } */
 }

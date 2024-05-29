@@ -26,7 +26,7 @@ const { getMultiCon } = useStyle()
       <MainBodySidebar
         :class="
           getMultiCon({
-            array: ['shop', 'sell','home'],
+            array: ['shop', 'sell', 'home'],
             con1: 'hidden ',
             con2: ' hidden md:block',
           })
@@ -34,7 +34,7 @@ const { getMultiCon } = useStyle()
       />
       <main class="container mx-auto mt-2 pb-20">
         <slot />
-        <MainBottomNavigator class='fixed'/>
+        <MainBottomNavigator class="fixed" />
       </main>
     </div>
   </section>

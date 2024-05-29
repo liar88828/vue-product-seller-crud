@@ -198,5 +198,5 @@ const dataFilter = {
     max: 0,
   },
 }
-console.log(isMore(filterCase.price.max.toString()))
+// console.log(isMore(filterCase.price.max.toString()))
 </script>

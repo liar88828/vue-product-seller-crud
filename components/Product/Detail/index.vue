@@ -1,5 +1,5 @@
 <template>
-  <div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto py-5 sm:py-12">
+  <div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto py-5 sm:py-12 md:px-4 ">
     <ProductDetailImageDetail />
     <ProductDetailDescription :data="dataDescription" />
   </div>
@@ -20,11 +20,13 @@
     </CardParent>
 
     <CardParentGrid :title="'Related Products'">
-      <ProductCard
+      <CardProductGrid
         v-for="dataProduct in dataProducts"
         :data="dataProduct"
         :key="dataProduct.id"
         :full="true"
+        :full2="true"
+
       />
     </CardParentGrid>
   </div>

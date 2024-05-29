@@ -24,12 +24,12 @@
         >
           <input placeholder="Search" />
         </div>
-        <select class="select select-bordered join-item select-sm md:select-md">
+        <!-- <select class="select select-bordered join-item select-sm md:select-md">
           <option disabled selected class="hidden sm:inline">Filter</option>
           <option>Sci-fi</option>
           <option>Drama</option>
           <option>Action</option>
-        </select>
+        </select> -->
         <button class="btn-sm md:btn-md btn join-item">
           <IconsSearch />
           <span class="hidden sm:inline"> Search </span>

@@ -1,5 +1,4 @@
 <template>
-  <!-- <PageShopHeader /> -->
   <section class="grid md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-2">
     <div class="md:col-span-1 lg:col-span-2">
       <PageShopDropMenu />
@@ -15,8 +14,6 @@
           :key="product.id"
           :static="true"
         />
-        <!-- <ProductRelatedProduct :data="dataRelated" />
-        <ProductRelatedProduct :data="dataRelated" /> -->
       </div>
     </div>
   </section>
