@@ -1,12 +1,12 @@
 <template>
-  <Card :class="'sm:card-normal'" ref="refImage">
+  <CardInit :class="'sm:card-normal'" ref="refImage">
     <TransactionPayInfoMarket :company="company" />
     <EleDivider />
     <TransactionPayInfoCustomer :data="data" />
     <EleDivider />
     <TransactionPayTable :data="data" />
     <TransactionPayTotal :data="data" />
-  </Card>
+  </CardInit>
   <div class="flex flex-col gap-2 p-5">
     <button @click="() => clickImage" class="btn btn-info w-full">
       Save Image
@@ -25,4 +25,6 @@ defineProps<{
   company: ProfileCompany
   data: Purchase
 }>()
+
+
 </script>

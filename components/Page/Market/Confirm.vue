@@ -1,5 +1,5 @@
 <template>
-  <ProductTableConfirm :data-product="dataPurchases" />
+  <ProductConfirm :data-product="dataPurchases" />
 </template>
 
 <script lang="ts" setup>

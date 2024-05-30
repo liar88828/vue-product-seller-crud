@@ -5,7 +5,7 @@
   >
     <div class="hero-overlay bg-opacity-45"></div>
 
-    <div class="hero-content text-slate-300">
+    <div class="hero-content text-slate-200">
       <div class="flex">
         <div class="md:w-fit">
           <h2

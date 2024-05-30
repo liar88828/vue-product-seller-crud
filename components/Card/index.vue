@@ -1,7 +1,8 @@
 <template>
   <section
-    :class="`shadow-xl card bg-base-100 
-    ${props.compact ? 'card-compact' : ''}
+    :class="`shadow-xl card 
+    ${props.compact ? ' card-compact ' : ''}
+    ${props.bg ? ' bg-base-100 ' : ''}
     ${props.class}`"
   >
     <slot />
@@ -10,6 +11,7 @@
 
 <script lang="ts" setup>
 const props = defineProps({
+  bg: { type: Boolean, default: true, required: false },
   class: {
     default: "",
     type: String,
@@ -21,4 +23,5 @@ const props = defineProps({
     required: false,
   },
 })
+// console.log(props.bg, "bg")
 </script>

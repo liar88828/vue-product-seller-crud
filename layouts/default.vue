@@ -3,24 +3,27 @@ const { getMultiCon } = useStyle()
 </script>
 
 <template>
-  <section data-theme="cyberpunk" class="min-h-screen bg-base-300 w-screen">
+  <!-- data-theme="cyberpunk" -->
+  <section class="min-h-screen bg-base-300 w-screen">
     <MainHeadNavigator
       :class="
         getMultiCon({
-          array: ['shop', 'product'],
+          array: ['shop', 'product', 'home'],
           con1: 'hidden',
           con2: '',
         })
       "
     />
+    <!-- ${$route.path.includes('market') ? 'hidden' : ''} -->
     <MainHeadShop
-      :class="
-        getMultiCon({
-          array: ['shop', 'product'],
-          con1: '',
-          con2: 'hidden',
-        })
-      "
+      :class="`
+
+      ${getMultiCon({
+        array: ['shop', 'product', 'home'],
+        con1: '',
+        con2: 'hidden',
+      })}
+       `"
     />
     <div class="flex">
       <MainBodySidebar

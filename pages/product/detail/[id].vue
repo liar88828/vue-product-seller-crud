@@ -6,10 +6,13 @@ import {
   dataProducts,
   dataTechnicalSpc,
 } from "~/assets/example/dataProduct"
+
+import { marketStatic } from "~/assets/example/dataCompany"
 </script>
 
 <template>
   <ProductDetail
+    :static="marketStatic"
     :data-products="dataProducts"
     :data-description="dataDescription"
     :data-previews="dataPreviews"

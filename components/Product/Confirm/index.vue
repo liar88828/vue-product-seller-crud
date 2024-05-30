@@ -1,7 +1,7 @@
 <template>
-  <Card>
-    <ProductTableConfirmBody :data-product="dataProduct" />
-  </Card>
+  <CardInit :title="'Confirm'">
+    <ProductConfirmTable :data-product="dataProduct" />
+  </CardInit>
 </template>
 
 <script lang="ts" setup>

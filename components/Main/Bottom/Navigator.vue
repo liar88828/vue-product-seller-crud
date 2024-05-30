@@ -1,10 +1,10 @@
 <template>
-  <div class="btm-nav md:hidden ">
+  <div class="btm-nav md:hidden shadow-top">
     <NuxtLink
       v-for="link in linkMenu"
       :key="link.link"
       :to="link.link"
-      :class="`text-accent ${
+      :class="`text-primary ${
         $route.path.includes(link.link) ? ' active' : ''
       } `"
     >

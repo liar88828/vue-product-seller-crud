@@ -1,6 +1,6 @@
 export const useStyle = () => {
   const route = useRoute()
-
+  // console.log(route.path)
   const getStatus = (text: string) => {
     if (text === "Waiting") {
       return "btn btn-primary btn-outline sm:btn-sm btn-xs active"

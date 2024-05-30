@@ -1,5 +1,5 @@
 <template>
-  <NuxtLink :to="link" class="btn btn-outline btn-sm">
+  <NuxtLink :to="link" class="btn sm:btn-outline btn-sm">
     <span> More </span>
     <IconsMore />
   </NuxtLink>

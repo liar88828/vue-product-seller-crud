@@ -1,7 +1,7 @@
 <template>
-  <ProductTrolly :data="dataProductDetails" />
+  <ProductTrolly :data="dataProducts" />
 </template>
 
 <script lang="ts" setup>
-import { dataProductDetails } from "~/assets/example/dataProduct"
+import { dataProducts } from "~/assets/example/dataProduct"
 </script>

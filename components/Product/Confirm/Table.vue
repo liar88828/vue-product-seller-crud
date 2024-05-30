@@ -1,12 +1,15 @@
 <template>
-<Table>
+<Tables 
+>
+<!-- :bg="'bg-base-300'" -->
+
   <thead>
     <tr>
-      <th>
+      <!-- <th>
         <label>
           <input type="checkbox" class="checkbox checkbox-sm" />
         </label>
-      </th>
+      </th> -->
       <th>Buyer</th>
       <th>Product Name</th>
       <th>Total</th>
@@ -16,11 +19,11 @@
   <tbody>
     <!-- row 1 -->
     <tr v-for="data in dataProduct" :key="data.id">
-      <th>
+      <!-- <th>
         <label>
           <input type="checkbox" class="checkbox checkbox-sm" />
         </label>
-      </th>
+      </th> -->
       <td>
         <div class="space-y-2">
           <div class="font-bold">{{ data.userBuy.name }}</div>
@@ -80,7 +83,7 @@
     </tr>
   </tbody>
 
-</Table>  
+</Tables>  
 </template>
 
 <script lang="ts" setup>

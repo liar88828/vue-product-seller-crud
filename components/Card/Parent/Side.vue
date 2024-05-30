@@ -1,9 +1,9 @@
 <template>
-  <CardInit :class="props.class" :bg="props.bg">
-    <CardHead :title="props.title" :class="props.class2">
+  <CardInit>
+    <CardHead :title="props.title" :class="'text-xl sm:text-2xl md:text-3xl'">
       <component :is="props.right" v-if="props.right" :link="props.other" />
     </CardHead>
-    <div class="overflow-x-auto flex gap-2 sm:gap-3 md:gap-5 rounded-lg">
+    <div class="flex flex-col space-y-3">
       <slot />
     </div>
   </CardInit>
@@ -12,7 +12,6 @@
 <script lang="ts" setup>
 const props = defineProps({
   bg: { type: Boolean, default: true, required: false },
-
   title: {
     type: String,
     required: true,

@@ -1,8 +1,7 @@
 <template>
   <CardInit :class="props.class">
     <CardHead :title="props.title" :right="props.right" />
-
-    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 sm:gap-6 gap-3">
       <slot />
     </div>
   </CardInit>

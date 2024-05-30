@@ -1,4 +1,4 @@
-import type { ProfileCompany } from "~/types/market/profile"
+import type { MarketStatic, ProfileCompany } from "~/types/market/profile"
 
 export const dataCompany: ProfileCompany = {
   name: "PT. Orak Genah",
@@ -29,4 +29,11 @@ export const dataCompany: ProfileCompany = {
     "We are a team of dedicated individuals who believe in creating beautiful clothing that is good for the planet and the people who make it.",
     "We partner with local artisans and use traditional techniques whenever possible to preserve cultural heritage.",
   ],
+}
+
+export const marketStatic: MarketStatic = {
+  follow: 44_234_234_223_429,
+  product: 44_234_234_223_429,
+  since: "2022-11-12",
+  response: "100%",
 }

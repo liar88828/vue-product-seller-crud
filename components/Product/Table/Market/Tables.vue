@@ -3,9 +3,9 @@
     <!-- head -->
     <thead>
       <tr>
-        <th>
+        <!-- <th>
           <input type="checkbox" class="checkbox" />
-        </th>
+        </th> -->
         <th>Name</th>
         <th>Price</th>
         <th>Stock</th>
@@ -15,13 +15,13 @@
     <tbody>
       <!-- row 1 -->
       <tr v-for="data in dataProduct" :key="data.id">
-        <th>
+        <!-- <th>
           <input type="checkbox" class="checkbox" />
-        </th>
+        </th> -->
         <td>
-          <div class="flex items-center gap-3">
-            <div class="avatar">
-              <div class="mask mask-squircle w-12 h-12">
+          <div class="flex items-center gap-3 static">
+            <div class="avatar static">
+              <div class="mask mask-squircle w-12 h-12 static ">
                 <img :src="data.image ?? ''" :alt="data.name ?? ''" />
               </div>
             </div>
@@ -39,7 +39,7 @@
         </td>
         <th>
           <NuxtLink
-            class="btn btn-outline btn-xs"
+            class="btn sm:btn-outline btn-xs"
             :to="`/product/detail/${data.id}`"
           >
             <IconsDetail class="h-5 w-5" />

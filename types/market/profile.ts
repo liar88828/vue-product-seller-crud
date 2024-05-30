@@ -19,3 +19,9 @@ export type ProfileCompany = {
   }
   additional: string[]
 }
+export type MarketStatic = {
+  follow: number
+  product: number
+  since: string
+  response: string
+}

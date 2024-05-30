@@ -1,10 +1,10 @@
 <template>
-  <Card>
+  <!-- <Card>
     <CardBody>
       <CardHead title="Shopping Cart" />
       <div class="space-y-3">
         <div class="space-y-3">
-          <ProductCardHorizonTrolly
+          <CardProductSideDesc
             v-for="dataProduct in data"
             :key="dataProduct.id"
             :data="dataProduct"
@@ -26,11 +26,26 @@
         >
       </CardActionBetween>
     </CardBody>
-  </Card>
+  </Card> -->
+  <!-- ---------------------- -->
+  <CardParentSide :title="'Trolly'" :right="Trash">
+    <CardProductSide
+      v-for="dataProduct in data"
+      :data="dataProduct"
+      :key="dataProduct.id"
+    />
+    <ProductTrollyTotal
+      :total-pay="99.98"
+      :total-product="4"
+      :total-send="5.99"
+    />
+    <CardProductSideTotal />
+  </CardParentSide>
 </template>
 
 <script lang="ts" setup>
 import type { Product } from "@prisma/client"
+import Trash from '../../Card/Product/Side/Trash.vue'
 
 defineProps<{ data: Product[] }>()
 </script>

@@ -14,7 +14,7 @@
     <!-- More Star -->
     <IconsStar
       v-for="i in moreStar"
-      :class="'w-3 h-3 sm:w-5 sm:h-5 text-base-300'"
+      :class="'w-3 h-3 sm:w-5 sm:h-5 text-slate-400'"
     />
   </div>
 </template>

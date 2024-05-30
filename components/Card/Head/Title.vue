@@ -1,6 +1,6 @@
 <template>
   <h2 :class="`card-title ${props.class}`">{{ props.title }}</h2>
-  
+  <slot />
 </template>
 
 <script lang="ts" setup>

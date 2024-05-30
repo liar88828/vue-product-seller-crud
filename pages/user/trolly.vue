@@ -1,9 +1,9 @@
 <template>
   <NuxtLayout name="profile">
-    <ProductTrolly :data="dataProductDetails" />
+    <ProductTrolly :data="dataProducts" />
   </NuxtLayout>
 </template>
 
 <script lang="ts" setup>
-import { dataProductDetails } from "~/assets/example/dataProduct"
+import {  dataProducts } from "~/assets/example/dataProduct"
 </script>

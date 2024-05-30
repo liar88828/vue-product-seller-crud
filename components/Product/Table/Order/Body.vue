@@ -28,7 +28,7 @@
           </td> -->
         <th>
           <NuxtLink
-            class="btn btn-outline btn-sm btn-square sm:btn-block"
+            class="btn btn-sm btn-square sm:btn-block  "
             :to="`/product/detail/${data.id}`"
           >
             <IconsDetail class="h-5 w-5" />

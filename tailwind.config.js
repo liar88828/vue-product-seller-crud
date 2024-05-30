@@ -23,14 +23,14 @@ export default {
   },
   daisyui: {
     themes: [
-      {
-        cyberpunk: {
-          ...require("daisyui/src/theming/themes")["cyberpunk"],
-          "base-100": "#FFDDE9",
-        },
-      },
-      "cyberpunk",
-      // "light",
+      // {
+      //   cyberpunk: {
+      //     ...require("daisyui/src/theming/themes")["cyberpunk"],
+      //     "base-100": "#FFDDE9",
+      //   },
+      // },
+      // "cyberpunk",
+      "light",
       // "dark",
       // "cupcake",
       // "bumblebee",

@@ -1,5 +1,4 @@
 <template>
-  <!-- sm:w-40 md:w-60 -->
   <Card :class="styleCard" :compact="true">
     <figure>
       <img
@@ -10,45 +9,10 @@
         width="300"
       />
     </figure>
-    <!-- 'sm:w-full' -->
-    <!-- border border-red-700 -->
-    <CardBodyBox
-      :class="`${
-        full2 ? 'w-full ' : ' w-[13vh] sm:w-[14vh] md:w-full '
-      } border border-base-300  `"
-    >
+
+    <CardBodyBox :class="`w-full   `">
       <div class="flex justify-between flex-col h-full">
-        <CardHead
-          :title="data.name"
-          :class="'text-sm sm:text-md md:text-lg font-bold'"
-        />
-
-        <div class="flex justify-between items-center ">
-          <div class="">
-            <h4 class="font-semibold text-xs sm:text-md sm:text-lg">
-              ${{ data.price }}
-            </h4>
-            <p class="font-normal text-xs">{{ 123 }} Sold</p>
-          </div>
-
-          <div class=" flex h-full items-end">
-            <NuxtLink
-              :to="`/product/detail/${data.id}`"
-              class="btn btn-outline sm:btn-sm btn-xs btn-square"
-              v-if="detail === false"
-            >
-              <IconsTrolley />
-            </NuxtLink>
-
-            <NuxtLink
-              to="#"
-              class="btn btn-outline sm:btn-sm btn-xs"
-              v-if="detail === true"
-            >
-              <IconsDetail />
-            </NuxtLink>
-          </div>
-        </div>
+        <CardProductDesc :data="data" v-model:detail="props.detail" />
       </div>
     </CardBodyBox>
   </Card>
@@ -73,11 +37,6 @@ const props = defineProps({
     default: false,
   },
   full: {
-    type: Boolean,
-    required: false,
-    default: false,
-  },
-  full2: {
     type: Boolean,
     required: false,
     default: false,
