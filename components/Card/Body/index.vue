@@ -1,5 +1,5 @@
 <template>
-  <div :class="`card-body   ${props.class} `">
+  <div :class="`card-body ${props.class} `">
     <slot />
   </div>
 </template>

@@ -46,7 +46,7 @@ export const staticLink = {
     list: [
       { title: "Electronics", link: "/electronics" },
       { title: "Clothing", link: "/clothing" },
-      { title: "Home & Garden", link: "/home_Garden" },
+      { title: "Home ", link: "/home_Garden" },
       { title: "Beauty ", link: "/Beauty_Personal_Care" },
       { title: "Sports ", link: "/Sports_Outdoors" },
     ],

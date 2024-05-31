@@ -1,5 +1,5 @@
 <template>
-  <LayCardWrap class="space-y-3 bg-base-100 static">
+  <LayCardWrap class="space-y-3 static card-bordered">
     <div class="flex justify-between">
       <h2 class="titles">
         Market :

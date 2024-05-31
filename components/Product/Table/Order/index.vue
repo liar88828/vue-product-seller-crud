@@ -1,18 +1,37 @@
 <template>
-  <LayCardWrap>
-    <ProductTableOrderOption />
-    <ProductTableParent v-for="data in dataOrders" :key="data.id" :data="data">
+  <CardInit :class="`   `">
+    <ProductTableOrderOption :data="dataOrders" />
+    <ProductTableParent
+      v-for="data in filterStatus"
+      :key="data.id"
+      :data="data"
+    >
       <ProductTableOrderBody :products="data.trolly" />
     </ProductTableParent>
-  </LayCardWrap>
+  </CardInit>
+  <!-- {{ filterStatus }} -->
 </template>
 
 <script lang="ts" setup>
 import type { OrderProps } from "~/assets/example/dataOrder"
+// import { storeFilter, type FilterData } from "~/assets/filter"
 
-defineProps<{
+const props = defineProps<{
   dataOrders: OrderProps[]
 }>()
+
+// const stores = reactive<FilterData>(storeFilter)
+const { filterStatus } = useFilterOrder(props.dataOrders)
+
+// const stores = reactive<FilterData>(storeFilter)
+// const filterStatus = computed(() =>
+//   props.dataOrders.filter((d) => {
+//     if (stores.status === "Status") {
+//       return d
+//     }
+//     return d.status.toLowerCase().includes(stores.status.toLowerCase())
+//   })
+// )
 </script>
 <!-- <div
 class="card space-y-3 bg-base-100 static"

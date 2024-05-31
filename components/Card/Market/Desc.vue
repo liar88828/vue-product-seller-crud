@@ -11,37 +11,37 @@
       </div>
       <NuxtLink
         to="#"
-        class="btn sm:btn-outline btn-xs sm:btn-sm flex-nowrap flex"
+        class="btn sm:btn-outline btn-sm btn-square sm:btn-md flex-nowrap flex"
       >
         <IconsPersonAdd class="w-5 h-5" />
-        <span class="hidden sm:block"> Add </span>
+        <!-- <span class="hidden sm:block"> Add </span> -->
       </NuxtLink>
     </div>
 
     <div class="flex justify-between">
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-1">
         <dl class="flex items-center gap-2 justify-between">
-          <dt class="text-xs sm:text-sm">Follow</dt>
+          <dt class="text-xs sm:text-lg ">Follow</dt>
           <dd class="font-bold text-xs sm:text-sm md:text-lg">
             {{ getNumber(static.follow) }}
           </dd>
         </dl>
         <dl class="flex items-center gap-2 justify-between">
-          <dt class="text-xs sm:text-sm">Product</dt>
+          <dt class="text-xs sm:text-lg ">Product</dt>
           <dd class="font-bold text-xs sm:text-sm md:text-lg">
             {{ getNumber(static.product) }}
           </dd>
         </dl>
 
         <dl class="flex items-center gap-2 justify-between">
-          <dt class="text-xs sm:text-sm">Since</dt>
+          <dt class="text-xs sm:text-lg ">Since</dt>
           <dd class="font-bold text-xs sm:text-sm md:text-lg">
             {{ static.since }}
           </dd>
         </dl>
 
         <dl class="flex items-center gap-2 justify-between">
-          <dt class="text-xs sm:text-sm">Response</dt>
+          <dt class="text-xs sm:text-lg ">Response</dt>
           <dd class="font-bold text-xs sm:text-sm md:text-lg">
             {{ static.response }}
           </dd>
@@ -57,10 +57,10 @@
       </NuxtLink> -->
         <NuxtLink
           to="/market/profile"
-          class="btn btn-info btn-xs sm:btn-sm flex-nowrap flex"
+          class="btn btn-info btn-sm sm:btn-md flex-nowrap flex btn-square"
         >
           <IconsMarket class="w-5 h-5" />
-          <span class="hidden sm:block"> Visit </span>
+          <!-- <span class="hidden sm:block"> Visit </span> -->
         </NuxtLink>
       </div>
     </div>

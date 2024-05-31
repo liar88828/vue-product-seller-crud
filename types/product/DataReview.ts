@@ -3,4 +3,5 @@ export type DataPreviewProps = {
   time: Date
   text: string
   img: string
+  id: string
 }

@@ -1,4 +1,7 @@
-export default (number: number) =>
+export default (
+  number: number,
+  format: "compact" | "standard" | "scientific" | "engineering" = "compact"
+) =>
   new Intl.NumberFormat("id-ID", {
-    notation: "compact",
+    notation: format,
   }).format(number)

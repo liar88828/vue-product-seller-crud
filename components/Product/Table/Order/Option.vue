@@ -8,21 +8,66 @@
       <ul
         class="menu menu-xs menu-horizontal bg-base-100 rounded shadow w-full flex justify-between"
       >
-        <EleMenuDrop :data="staticLink.sort" />
-        <EleMenuDrop :data="staticLink.status" />
+        <!-- <EleSelect :data="staticLink.sort" 
+        :select=""
+      /> -->
+
+        <!-- v-model:select="store.category" -->
+        <!-- @vue-skip -->
+        <!-- <EleSelect class="z-20" :data="staticLink.category" /> -->
+        <!-- <EleSelect class="z-20" :data="staticLink.category" /> -->
+        <!-- <IconsInfo /> -->
+
+        <EleSelect
+          v-model:select="storeFilterOrder.status"
+          :data="staticLink.status"
+        />
+
+        <EleSelect
+          v-model:select="storeFilterOrder.category"
+          :data="staticLink.category"
+        />
+
+        <!-- <div class="flex gap-2">
+          
+          <Select
+            v-model:select="storeFilterOrder.status"
+            :data="staticLink.status"
+          />
+
+          <Select
+            v-model:select="storeFilterOrder.category"
+            :data="staticLink.category"
+            :class="'w-20'"
+          />
+        </div> -->
+
+        <!-- <EleMenuDrop :data="staticLink.status" /> -->
       </ul>
     </div>
   </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { staticLink } from "~/assets/link/shopLink"
+import type { OrderProps } from "~/assets/example/dataOrder"
+// import { storeFilter, type FilterData } from "~/assets/filter"
+// import { storeFilterOrder } from "~/composables/useFilterOrder"
 
-defineProps({
+// const store = inject("user_order", reactive<FilterData>(storeFilter))
+// const { stores } = useFilterOrder()
+const props = defineProps({
+  data: {
+    type: Object as PropType<OrderProps[]>,
+    required: true,
+  },
   market: {
     type: Boolean,
     default: false,
     required: false,
   },
 })
+// const { mutation } = useContexts<FilterData>("user_order", storeFilter)
+// const { store } = useFilter<OrderProps>(props.data, "",)
+// useUseContexts
 </script>

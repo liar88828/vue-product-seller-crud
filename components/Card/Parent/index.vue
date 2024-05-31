@@ -1,7 +1,10 @@
 <template>
   <CardInit :class="props.class">
-    <CardHead :title="props.title" :right="props.right" />
-    <div class="grid gap-2">
+    <CardHead :title="props.title">
+      <slot name="rightSlot"></slot>
+      <component :is="props.right" v-if="props.right" :class="props.class2" />
+    </CardHead>
+    <div class="space-y-2">
       <slot />
     </div>
   </CardInit>
@@ -14,6 +17,7 @@ const props = defineProps({
     required: true,
   },
   class: String,
+  class2: String,
   right: Object as () => Component,
 })
 </script>

@@ -7,39 +7,27 @@
 
 <script lang="ts" setup>
 import type { ProductItem } from "~/types/product/item"
-const props = defineProps<{
-  data: ProductItem[]
-}>()
-const stores = reactive({
-  search: "",
-  category: "Category",
-  stock: "Stock",
-  price: "Price",
-})
-provide<{
-  search: string
-  category: string
-  stock: string
-  price: string
-}>("market_product", stores)
+const props = defineProps<{ data: ProductItem[] }>()
 
+// provide<FilterData>("market_product", stores)
+const { store } = useMarket()
 const newData = computed(() => {
   const search = props.data.filter((data) => {
-    return data.name.toLowerCase().includes(stores.search.toLowerCase())
+    return data.name.toLowerCase().includes(store.search.toLowerCase())
   })
   // stock High and Low
   const stock = search.sort((a, b) => {
-    if (stores.stock !== "Stock") {
-      if (stores.stock === "Low") return a.stock - b.stock
-      if (stores.stock === "High") return b.stock - a.stock
+    if (store.stock !== "Stock") {
+      if (store.stock === "Low") return a.stock - b.stock
+      if (store.stock === "High") return b.stock - a.stock
     }
     return 0
   })
 
   const price = stock.sort((a, b) => {
-    if (stores.price !== "Price") {
-      if (stores.price === "Low") return a.price - b.price
-      if (stores.price === "High") return b.price - a.price
+    if (store.price !== "Price") {
+      if (store.price === "Low") return a.price - b.price
+      if (store.price === "High") return b.price - a.price
     }
     return 0
   })

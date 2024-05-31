@@ -1,56 +1,50 @@
 <template>
-  <Card >
-    <CardBody >
+  <Card>
+    <CardBody>
       <!--  -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
-        <div class="stats shadow">
-          <div class="stat">
-            <div class="stat-figure text-primary">
-              <IconsLoveOutlet class="inline-block w-8 h-8 stroke-current" />
-            </div>
-            <div class="stat-title text-sm sm:text-md font-bold">Total Buy</div>
-            <div class="stat-value text-primary text-lg sm:text-2xl">25.6K</div>
-            <div class="stat-desc text-xs sm:text-md">
-              21% more than
-              <br />
-              last month
-            </div>
+      <div class="grid grid-cols-3 sm:grid-cols-2 md:grid-cols-3 gap-2">
+        <CardProfileStatic
+          :data="userStatics[0]"
+          :class="'text-primary'"
+          :icon="IconsLoveOutlet"
+        />
+
+        <CardProfileStatic
+          :data="userStatics[1]"
+          :class="'text-warning'"
+          :icon="Thunder"
+        />
+        <CardProfileStatic
+          :data="userStatics[2]"
+          :class="'text-secondary'"
+          :icon="Book"
+          :is-task="true"
+        />
+
+
+        <!-- <CardInit :class="'card-bordered '">
+          <div class="card-title text-secondary">
+            <IconsThunder class="inline-block w-8 h-8 stroke-current" />
           </div>
-        </div>
-        <div class="stats shadow">
-          <div class="stat">
-            <div class="stat-figure text-secondary">
-              <IconsThunder class="inline-block w-8 h-8 stroke-current" />
-            </div>
-            <div class="stat-title text-sm sm:text-md font-bold">
-              Page Views
-            </div>
-            <div class="stat-value text-secondary text-lg sm:text-2xl">
-              2.6M
-            </div>
-            <div class="stat-desc text-xs sm:text-md">
-              21% more than
-              <br />
-              last month
-            </div>
+          <div class="card-title text-sm sm:text-md font-bold">Page Views</div>
+          <div class="card-value text-secondary text-lg sm:text-2xl">2.6M</div>
+          <div class="card-desc text-xs sm:text-md">
+            21% more than
+            <br />
+            last month
           </div>
-        </div>
-        <div class="stats shadow">
-          <div class="stat">
-            <div class="stat-figure text-warning">
-              <div class="stat-figure text-warning">
-                <IconsBook class="inline-block w-8 h-8 stroke-current" />
-              </div>
-            </div>
-            <div class="stat-title text-sm sm:text-md font-bold">
-              Tasks done
-            </div>
-            <div class="stat-value text-warning text-lg sm:text-2xl">86%</div>
-            <div class="stat-desc text-xs sm:text-md">
-              31 tasks <br />remaining
-            </div>
+        </CardInit>
+
+        <CardInit class="card">
+          <div class="card-body text-warning">
+            <IconsBook class="inline-block w-8 h-8 stroke-current" />
           </div>
-        </div>
+          <div class="card-title text-sm sm:text-md font-bold">Tasks done</div>
+          <div class="card-value text-warning text-lg sm:text-2xl">86%</div>
+          <div class="card-desc text-xs sm:text-md">
+            31 tasks <br />remaining
+          </div>
+        </CardInit> -->
         <!--  -->
       </div>
 
@@ -92,15 +86,20 @@
       </div>
       <!-- <EleDivider /> -->
       <div class="card-actions justify-end">
-        <button class="btn btn-primary">Edit</button>
-        <button class="btn btn-primary">Print</button>
+        <button class="btn btn-outline">Edit</button>
+        <button class="btn btn-outline">Print</button>
+        <button class="btn btn-outline btn-error">Exit</button>
       </div>
     </CardBody>
   </Card>
 </template>
 
 <script lang="ts" setup>
+import IconsLoveOutlet from "~/components/Icons/Love/Outlet.vue"
 import type { User } from "@prisma/client"
+import { userStatics } from "~/assets/example/user/static"
+import Thunder from "~/components/Icons/Thunder.vue"
+import Book from "~/components/Icons/Person/Book.vue"
 
 defineProps<{ data: User }>()
 </script>

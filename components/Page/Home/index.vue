@@ -7,7 +7,7 @@
       :flex="true"
       :class="'bg-base-100 '"
       :title="'Find By Category'"
-      :class2="'text-sm sm:text-md md:text-lg'"
+      :class2="'text-sm sm:text-md md:text-lg '"
       :right="Counts"
     >
       <CardCategory

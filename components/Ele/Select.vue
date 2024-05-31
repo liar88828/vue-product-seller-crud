@@ -8,10 +8,10 @@ const select = defineModel("select", { required: true })
 
 <template>
   <select class="select select-bordered select-sm" v-model="select">
-    <option disabled selected>{{ props.data.title }}</option>
+    <option >{{ props.data.title }}</option>
     <option v-for="d in props.data.list" :key="d.title">
       {{ d.title }}
     </option>
-    <option></option>
+    <!-- <option></option> -->
   </select>
 </template>
