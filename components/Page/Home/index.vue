@@ -32,8 +32,6 @@
         v-for="dataRelated in dataProducts"
         :key="dataRelated.id"
         :data="dataRelated"
-        :full="true"
-        :full2="false"
       />
     </CardParentFlex>
 
@@ -55,8 +53,6 @@
         v-for="dataRelated in dataProducts"
         :key="dataRelated.id"
         :data="dataRelated"
-        :full="true"
-        :full2="false"
       />
     </CardParentFlex>
 
@@ -78,8 +74,6 @@
         v-for="dataRelated in dataProducts"
         :key="dataRelated.id"
         :data="dataRelated"
-        :full="true"
-        :full2="false"
       />
     </CardParentFlex>
 

@@ -19,12 +19,12 @@
         <!-- <IconsInfo /> -->
 
         <EleSelect
-          v-model:select="storeFilterOrder.status"
+          v-model:select="store.status"
           :data="staticLink.status"
         />
 
         <EleSelect
-          v-model:select="storeFilterOrder.category"
+          v-model:select="store.category"
           :data="staticLink.category"
         />
 
@@ -51,11 +51,8 @@
 <script lang="ts" setup>
 import { staticLink } from "~/assets/link/shopLink"
 import type { OrderProps } from "~/assets/example/dataOrder"
-// import { storeFilter, type FilterData } from "~/assets/filter"
-// import { storeFilterOrder } from "~/composables/useFilterOrder"
+const { store } = useOrder()
 
-// const store = inject("user_order", reactive<FilterData>(storeFilter))
-// const { stores } = useFilterOrder()
 const props = defineProps({
   data: {
     type: Object as PropType<OrderProps[]>,

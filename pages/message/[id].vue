@@ -1,5 +1,5 @@
 <template>
-  <Chat :data="dataChat1"  />
+  <Chat :data="dataChat1" />
 </template>
 
 <script lang="ts" setup>

@@ -10,7 +10,7 @@
         width="300"
       />
     </figure>
-    <CardBodyBox :class="'w-[17vh] sm:w-[19vh] md:w-[18vh]'">
+    <CardBodyBox :class="'w-[20vh] sm:w-[22vh] md:w-[24vh]'">
       <div :class="`flex  flex-col h-full`">
         <CardProductDesc :data="data" v-model:detail="props.detail" />
       </div>
@@ -31,11 +31,6 @@ const props = defineProps({
     required: false,
     default: false,
   },
-
-  full: {
-    type: Boolean,
-    required: false,
-    default: false,
-  },
+ 
 })
 </script>

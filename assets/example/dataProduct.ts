@@ -1,5 +1,5 @@
 import type { Product } from "@prisma/client"
-import type { DataTechnicalSpc, ProductItem } from "~/types/product/item"
+import type { DataTechnicalSpec, ProductItem } from "~/types/product/item"
 
 export const dataProduct: Product = {
   image: "https://picsum.photos/200",
@@ -17,7 +17,7 @@ export const dataProduct2: Product = {
   name: "Shock",
   price: 443,
   stock: 64,
-  brand: "adidasss",
+  brand: "Adidas's",
   typeId: "13",
   id: "1234",
   description: "i dont know",
@@ -28,7 +28,7 @@ export const dataProduct3: Product = {
   name: "Shock",
   price: 443,
   stock: 64,
-  brand: "adidasss",
+  brand: "Adidas's",
   typeId: "13",
   id: "2131",
   description: "i dont know",
@@ -39,7 +39,7 @@ export const dataProduct54: Product = {
   name: "Shock",
   price: 443,
   stock: 64,
-  brand: "adidasss",
+  brand: "adidas's",
   typeId: "13",
   id: "2131",
   description: "i dont know",
@@ -72,7 +72,7 @@ export const dataProduct11: Product = {
   name: "Shock",
   price: 443,
   stock: 64,
-  brand: "adidasss",
+  brand: "adidas's",
   typeId: "13",
   id: "2131",
   description: "i dont know",
@@ -186,15 +186,15 @@ export const dataProductDetails: ProductItem[] = [
     id: "1",
     typeId: "1",
     userId: "1",
-    spec_good: [
+    desc: [
       "Powerful noise-cancelling technology",
       "Wireless Bluetooth connectivity",
       "Long-lasting battery life",
       "Comfortable and adjustable design",
     ],
-    spec_prod: [
+    desc_spec: [
       {
-        type: "Audio",
+        title: "Audio",
         list: [
           "Powerful noise-cancelling technology",
           "Wireless Bluetooth connectivity",
@@ -203,13 +203,19 @@ export const dataProductDetails: ProductItem[] = [
         ],
       },
       {
-        type: "Design",
+        title: "Design",
         list: [
           "Powerful noise-cancelling technology",
           "Wireless Bluetooth connectivity",
           "Long-lasting battery life",
           "Comfortable and adjustable design",
         ],
+      },
+    ],
+    desc_tech: [
+      {
+        text: "Powerful noise-cancelling technology",
+        title: "Audio",
       },
     ],
   },
@@ -225,15 +231,21 @@ export const dataProductDetails: ProductItem[] = [
     id: "23423",
     typeId: "1",
     userId: "1",
-    spec_good: [
+    desc: [
       "Powerful noise-cancelling technology",
       "Wireless Bluetooth connectivity",
       "Long-lasting battery life",
       "Comfortable and adjustable design",
     ],
-    spec_prod: [
+    desc_tech: [
       {
-        type: "Audio",
+        text: "Powerful noise-cancelling technology",
+        title: "Audio",
+      },
+    ],
+    desc_spec: [
+      {
+        title: "Audio",
         list: [
           "Powerful noise-cancelling technology",
           "Wireless Bluetooth connectivity",
@@ -242,7 +254,7 @@ export const dataProductDetails: ProductItem[] = [
         ],
       },
       {
-        type: "Design",
+        title: "Design",
         list: [
           "Powerful noise-cancelling technology",
           "Wireless Bluetooth connectivity",
@@ -264,15 +276,21 @@ export const dataProductDetails: ProductItem[] = [
     id: "2",
     typeId: "1",
     userId: "1",
-    spec_good: [
+    desc: [
       "Powerful noise-cancelling technology",
       "Wireless Bluetooth connectivity",
       "Long-lasting battery life",
       "Comfortable and adjustable design",
     ],
-    spec_prod: [
+    desc_tech: [
       {
-        type: "Audio",
+        text: "Powerful noise-cancelling technology",
+        title: "Audio",
+      },
+    ],
+    desc_spec: [
+      {
+        title: "Audio",
         list: [
           "Powerful noise-cancelling technology",
           "Wireless Bluetooth connectivity",
@@ -281,7 +299,7 @@ export const dataProductDetails: ProductItem[] = [
         ],
       },
       {
-        type: "Design",
+        title: "Design",
         list: [
           "Powerful noise-cancelling technology",
           "Wireless Bluetooth connectivity",
@@ -303,15 +321,21 @@ export const dataProductDetails: ProductItem[] = [
     id: "2",
     typeId: "1",
     userId: "1",
-    spec_good: [
+    desc: [
       "Powerful noise-cancelling technology",
       "Wireless Bluetooth connectivity",
       "Long-lasting battery life",
       "Comfortable and adjustable design",
     ],
-    spec_prod: [
+    desc_tech: [
       {
-        type: "Audio",
+        text: "Powerful noise-cancelling technology",
+        title: "Audio",
+      },
+    ],
+    desc_spec: [
+      {
+        title: "Audio",
         list: [
           "Powerful noise-cancelling technology",
           "Wireless Bluetooth connectivity",
@@ -320,7 +344,7 @@ export const dataProductDetails: ProductItem[] = [
         ],
       },
       {
-        type: "Design",
+        title: "Design",
         list: [
           "Powerful noise-cancelling technology",
           "Wireless Bluetooth connectivity",
@@ -342,15 +366,22 @@ export const dataProductDetails: ProductItem[] = [
     id: "2",
     typeId: "1",
     userId: "1",
-    spec_good: [
+    desc: [
       "Powerful noise-cancelling technology",
       "Wireless Bluetooth connectivity",
       "Long-lasting battery life",
       "Comfortable and adjustable design",
     ],
-    spec_prod: [
+
+    desc_tech: [
       {
-        type: "Audio",
+        text: "Powerful noise-cancelling technology",
+        title: "Audio",
+      },
+    ],
+    desc_spec: [
+      {
+        title: "Audio",
         list: [
           "Powerful noise-cancelling technology",
           "Wireless Bluetooth connectivity",
@@ -359,7 +390,7 @@ export const dataProductDetails: ProductItem[] = [
         ],
       },
       {
-        type: "Design",
+        title: "Design",
         list: [
           "Powerful noise-cancelling technology",
           "Wireless Bluetooth connectivity",
@@ -371,29 +402,29 @@ export const dataProductDetails: ProductItem[] = [
   },
 ]
 
-export const dataTechnicalSpc: DataTechnicalSpc[] = [
+export const dataTechnicalSpc: DataTechnicalSpec[] = [
   {
-    t: "Movement",
-    p: "Swiss-made automatic movement with 28,800 vph and 42-hour power reserve.",
+    title: "Movement",
+    text: "Swiss-made automatic movement with 28,800 vph and 42-hour power reserve.",
   },
   {
-    t: "Case",
-    p: "Stainless steel case with a diameter of 40mm and a thickness of 12mm.",
+    title: "Case",
+    text: "Stainless steel case with a diameter of 40mm and a thickness of 12mm.",
   },
   {
-    t: "Dial",
-    p: "Scratch-resistant sapphire crystal with a silver-tone dial and luminous hands and markers.",
+    title: "Dial",
+    text: "Scratch-resistant sapphire crystal with a silver-tone dial and luminous hands and markers.",
   },
   {
-    t: "Strap",
-    p: "Genuine leather strap with a deployant buckle closure.",
+    title: "Strap",
+    text: "Genuine leather strap with a deploying buckle closure.",
   },
   {
-    t: "Water Resistance",
-    p: "Water-resistant up to 100 meters (330 feet).",
+    title: "Water Resistance",
+    text: "Water-resistant up to 100 meters (330 feet).",
   },
   {
-    t: "Warranty",
-    p: "5-year international warranty.",
+    title: "Warranty",
+    text: "5-year international warranty.",
   },
 ]

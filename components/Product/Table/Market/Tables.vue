@@ -21,7 +21,7 @@
         <td>
           <div class="flex items-center gap-3 static">
             <div class="avatar static">
-              <div class="mask mask-squircle w-12 h-12 static ">
+              <div class="mask mask-squircle w-12 h-12 static">
                 <img :src="data.image ?? ''" :alt="data.name ?? ''" />
               </div>
             </div>
@@ -39,12 +39,12 @@
         </td>
         <th>
           <NuxtLink
-            class="btn sm:btn-outline btn-xs"
-            :to="`/product/detail/${data.id}`"
+            class="btn sm:btn-outline btn-sm btn-square"
+            :to="`/market/product/${data.id}`"
           >
             <IconsDetail class="h-5 w-5" />
-            <span class="hidden sm:block">Detail</span></NuxtLink
-          >
+            <!-- <span class="hidden sm:block">Detail</span> -->
+          </NuxtLink>
         </th>
       </tr>
     </tbody>

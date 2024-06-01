@@ -2,12 +2,12 @@
   <div
     class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto py-5 sm:py-12 md:px-4"
   >
-    <ProductDetailImageDetail />
-    <ProductDetailDescription :data="dataDescription" />
+    <ProductDetailImageDetail :data="dataImage" />
+    <ProductDetailDescription :data="dataProduct" />
   </div>
   <div class="space-y-5">
-    <ProductDetailSpec :data="dataDescription" />
-    <ProductDetailTech :data="dataTechnicalSpc" />
+    <ProductDetailSpec :data="dataProduct.desc_spec" />
+    <ProductDetailTech :data="dataProduct.desc_tech" />
 
     <CardParent :title="'Customer Review'">
       <CardReview
@@ -37,14 +37,15 @@
 
 <script setup lang="ts">
 import type { Product } from "@prisma/client"
+import type { DataImage } from "~/assets/example/product/image"
 import type { MarketStatic } from "~/types/market/profile"
 import type { DataPreviewProps } from "~/types/product/DataReview"
-import type { DataTechnicalSpc, ProductItem } from "~/types/product/item"
+import type { ProductItem } from "~/types/product/item"
 defineProps<{
   static: MarketStatic
-  dataDescription: ProductItem
-  dataTechnicalSpc: DataTechnicalSpc[]
+  dataProduct: ProductItem
   dataPreviews: DataPreviewProps[]
   dataProducts: Product[]
+  dataImage: DataImage[]
 }>()
 </script>

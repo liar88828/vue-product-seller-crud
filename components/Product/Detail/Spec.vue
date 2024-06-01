@@ -2,22 +2,28 @@
 import type { ProductItem } from "~/types/product/item"
 
 defineProps<{
-  data: ProductItem
+  data: ProductItem["desc_spec"]
 }>()
 </script>
 
 <template>
-  <CardInit class='card-normal'>
+  <CardInit class="card-normal">
     <CardHeadTitle
       title=" Product Specifications"
       :class="'text-xl sm:text-2xl font-bold'"
-    />
-    <div class="grid grid-cols-2 gap-5 md:gap-7 mt-4">
-      <div v-for="item in data.spec_prod" :key="item.type">
-        <h3 class="text-md sm:text-lg font-bold">{{ item.type }}</h3>
-        <ul>
-          <li v-for="data in item.list">
-            <span class="text-sm sm:text-md"> - {{ data }} </span>
+    >
+      <p class="product-desc-p">
+        this product has good specification this is good
+      </p>
+    </CardHeadTitle>
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 md:gap-7 mt-4"
+    >
+      <div v-for="item in data" :key="item.title">
+        <h3 class="text-md sm:text-lg font-bold">{{ item.title }}</h3>
+        <ul class="flex flex-wrap sm:flex-none gap-2 list-inside list-disc">
+          <li v-for="d in item.list" class="text-sm sm:text-md">
+            {{ d }}
           </li>
         </ul>
       </div>

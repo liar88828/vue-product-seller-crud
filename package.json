@@ -15,7 +15,8 @@
     "html-to-image": "^1.11.11",
     "nuxt": "^3.11.2",
     "vue": "^3.4.27",
-    "vue-router": "^4.3.2"
+    "vue-router": "^4.3.2",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "daisyui": "^4.11.1",

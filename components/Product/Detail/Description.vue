@@ -13,7 +13,7 @@ defineProps<{ data: ProductItem }>()
     <div class="grid gap-4">
       <div
         class="flex items-center gap-2 font-semibold text-sm sm:text-md md:text-lg"
-        v-for="item in data.spec_good"
+        v-for="item in data.desc"
         :key="item"
       >
         <IconsCheck class="w-5 h-5 fill-primary" />

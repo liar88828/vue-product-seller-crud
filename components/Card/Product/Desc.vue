@@ -13,8 +13,11 @@
     <div class="flex justify-between mt-2">
       <div class="flex flex-col gap-1">
         <h4 :class="priceStyle">{{ getRupiah(data.price) }}</h4>
-        <p class="text-sm whitespace-nowrap">
-          <span class="badge badge-primary badge-sm sm:badge-md">{{ 123 }}</span> <span class='text-xs sm:text-sm'>Sold</span>
+        <p class="text-sm whitespace-nowrap space-x-1">
+          <span class="badge badge-primary badge-sm sm:badge-md">{{
+            123
+          }}</span>
+          <span class="text-xs sm:text-sm">Sold</span>
         </p>
       </div>
 
@@ -45,7 +48,7 @@
 
 <script setup lang="ts">
 import type { Product } from "@prisma/client"
-import Counter from './Counter.vue'
+import Counter from "./Counter.vue"
 
 const props = defineProps<{ data: Product; side?: boolean; detail?: boolean }>()
 // const detail = defineModel("detail", { required: true })

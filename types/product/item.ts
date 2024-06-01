@@ -10,14 +10,13 @@ export type ProductItem = Product & {
   // userId: string | null
   // typeId: string | null
 
-  spec_prod?: {
-    type: string
-    list: string[]
-  }[]
-  spec_good?: string[]
+  desc: string[]
+  desc_spec: DataSpec[]
+  desc_tech: DataTechnicalSpec[]
 }
 
-export type DataTechnicalSpc = {
-  t: string
-  p: string
+export type DataTechnicalSpec = { title: string; text: string }
+export type DataSpec = {
+  title: string
+  list: string[]
 }

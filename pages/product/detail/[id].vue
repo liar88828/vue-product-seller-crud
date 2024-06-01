@@ -1,21 +1,17 @@
 <script setup lang="ts">
-import { dataDescription } from "~/assets/example/dataDescription"
+import { dataProductDetail } from "~/assets/example/dataDescription"
 import { dataPreviews } from "~/assets/example/dataPreview"
-import {
-  dataProductDetails,
-  dataProducts,
-  dataTechnicalSpc,
-} from "~/assets/example/dataProduct"
-
+import { dataProducts } from "~/assets/example/dataProduct"
 import { marketStatic } from "~/assets/example/dataCompany"
+import { dataImage } from "~/assets/example/product/image"
 </script>
 
 <template>
   <ProductDetail
+    :dataProduct="dataProductDetail"
     :static="marketStatic"
     :data-products="dataProducts"
-    :data-description="dataDescription"
     :data-previews="dataPreviews"
-    :data-technical-spc="dataTechnicalSpc"
+    :data-image="dataImage"
   />
 </template>

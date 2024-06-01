@@ -9,31 +9,10 @@
 import type { ProductItem } from "~/types/product/item"
 const props = defineProps<{ data: ProductItem[] }>()
 
-// provide<FilterData>("market_product", stores)
-const { store } = useMarket()
-const newData = computed(() => {
-  const search = props.data.filter((data) => {
-    return data.name.toLowerCase().includes(store.search.toLowerCase())
-  })
-  // stock High and Low
-  const stock = search.sort((a, b) => {
-    if (store.stock !== "Stock") {
-      if (store.stock === "Low") return a.stock - b.stock
-      if (store.stock === "High") return b.stock - a.stock
-    }
-    return 0
-  })
-
-  const price = stock.sort((a, b) => {
-    if (store.price !== "Price") {
-      if (store.price === "Low") return a.price - b.price
-      if (store.price === "High") return b.price - a.price
-    }
-    return 0
-  })
-  return price
-})
+const { filter } = useMarket()
+const newData = computed(() => filter(props.data))
 </script>
+
 <!-- // find category
 if (stores.category !== "Category") {
   search = search && data.typeId === stores.category
@@ -63,3 +42,28 @@ if (stores.stock !== "Stock") {
 // if (stores.price !== "Price") {
 //   search = search && data.price < Number(stores.price)
 // } -->
+
+<!-- ---------------- -->
+
+<!-- const newData = computed(() => {
+  const search = props.data.filter((data) => {
+    return data.name.toLowerCase().includes(store.search.toLowerCase())
+  })
+  // stock High and Low
+  const stock = search.sort((a, b) => {
+    if (store.stock !== "Stock") {
+      if (store.stock === "Low") return a.stock - b.stock
+      if (store.stock === "High") return b.stock - a.stock
+    }
+    return 0
+  })
+
+  const price = stock.sort((a, b) => {
+    if (store.price !== "Price") {
+      if (store.price === "Low") return a.price - b.price
+      if (store.price === "High") return b.price - a.price
+    }
+    return 0
+  })
+  return price
+}) -->

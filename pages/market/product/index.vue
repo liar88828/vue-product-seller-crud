@@ -1,9 +1,9 @@
 <template>
   <NuxtLayout name="market">
-    <ProductTableMarket :data="dataProducts" />
+    <ProductTableMarket :data="dataProductDetails" />
   </NuxtLayout>
 </template>
 
 <script lang="ts" setup>
-import { dataProducts } from "~/assets/example/dataProduct"
+import { dataProductDetails } from "~/assets/example/dataProduct"
 </script>
