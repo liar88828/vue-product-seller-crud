@@ -1,10 +1,9 @@
 <template>
-  <div
-    class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto py-5 sm:py-12 md:px-4"
-  >
+  <div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto md:px-4 mb-5">
     <ProductDetailImageDetail :data="dataImage" />
     <ProductDetailDescription :data="dataProduct" />
   </div>
+  <!-- mb-28 sm:mb-16 md:px-5 -->
   <div class="space-y-5">
     <ProductDetailSpec :data="dataProduct.desc_spec" />
     <ProductDetailTech :data="dataProduct.desc_tech" />

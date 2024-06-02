@@ -4,7 +4,7 @@
       alt="Headphone"
       class="rounded-xl object-cover w-full aspect-square shadow-lg"
       height="600"
-      :src="data[0].img || 'https://picsum.photos/220'"
+      :src="imageRender"
       width="600"
     />
 
@@ -29,8 +29,16 @@
 
 <script lang="ts" setup>
 import type { DataImage } from "~/assets/example/product/image"
+import { useImageSelect } from "~/composables/useImageSelect"
 
-defineProps<{ data: DataImage[] }>()
-
-const selectImage = ref("")
+const props = defineProps<{ data: DataImage[] }>()
+const { imageRender, selectImage } = useImageSelect(props.data)
+// const selectImage = ref("")
+// const imageRender = computed(() => {
+//   if (selectImage.value === "") {
+//     return props.data[0].img || "https://picsum.photos/220"
+//   } else {
+//     return selectImage.value
+//   }
+// })
 </script>

@@ -10,10 +10,11 @@
     </div> -->
     <div class="chat-header font-bold sm:text-xl">
       {{ data.name }}
-      <!-- <time class="text-xs opacity-50">{{ data.time }}</time> -->
+
+      <time class="text-xs opacity-50">{{ data.time }}</time>
     </div>
+
     <div class="chat-bubble">{{ data.msg }}</div>
-    <div class="chat-footer opacity-50">{{ data.time }}</div>
   </div>
 </template>
 

@@ -1,5 +1,6 @@
 <template>
   <PageShop :dataProducts="dataProducts" />
+  <ButtonScroll />
 </template>
 
 <script lang="ts" setup>

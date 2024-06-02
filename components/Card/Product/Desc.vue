@@ -26,7 +26,7 @@
 
         <div class="" v-if="!side">
           <NuxtLink
-            :to="`/product/detail/${data.id}`"
+            :to="`/shop/product/${data.id}`"
             class="btn sm:btn-outline sm:btn-md btn-sm btn-square"
             v-if="detail === false"
           >

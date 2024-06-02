@@ -1,27 +1,25 @@
 <template>
-  <!-- sm:h-[86vh] -->
   <div
     :class="[
-      ' h-[95vh] sm:h-[92vh] md:h-[92vh] lg:h-[91vh]    pt-16',
-      ' overflow-y-scroll   transition-all duration-300 ease-linear ',
+      ' h-[70vh] sm:h-[71vh] md:h-[80vh] lg:h-[80vh] overflow-y-scroll border border-gray-300 p-2 transition-all duration-300 ease-linear flex flex-col justify-between',
       { fullscreen: isFullscreen },
     ]"
     ref="chatContainer"
   >
+    <ButtonScroll />
+
     <Minimize
       :isFullscreen="isFullscreen"
       :toggleFullscreen="toggleFullscreen"
     />
 
     <ChatMessage
-      class=""
       v-for="message in data"
       :data="message"
       :user="{ name: 'Alex' }"
     />
   </div>
   <ChatSend
-    class=""
     v-model:message="message"
     v-model:isFullscreen="isFullscreen"
     :onSend="onSend"

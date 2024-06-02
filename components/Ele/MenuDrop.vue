@@ -11,7 +11,7 @@ const props = defineProps<{ data: StaticLink; open?: boolean }>()
         <component :is="data.icon" class="h-5 w-5" />
         <span> {{ data.title }}</span>
       </summary>
-      <ul class="bg-base-300">
+      <ul class="bg-base-100 shadow">
         <li v-for="d in props.data.list" :key="d.title">
           <a>{{ d.title }}</a>
         </li>

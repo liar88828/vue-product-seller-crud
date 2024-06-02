@@ -1,10 +1,5 @@
 <template>
-  <MainHeadNavChat class="z-20 fixed">
-    <ModalChat />
-  </MainHeadNavChat>
-  <div class="container bg-base-300 min-h-screen">
-    <Chat :data="dataChat1" />
-  </div>
+  <Chat :data="dataChat1" />
 </template>
 
 <script lang="ts" setup>

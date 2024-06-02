@@ -1,14 +1,10 @@
 <script setup lang="ts">
-import Setting from "../Icons/Setting.vue"
+import Bell from "../Icons/Bell/index.vue"
 </script>
 
 <template>
   <div class="dropdown dropdown-end">
-    <!-- <div tabindex="0" role="button" class="btn btn-ghost">
-      <p class="hidden sm:block">Client</p>
-    </div> -->
-    <DropDownIcon index="9" indicator="2" :icon="Setting" />
-
+    <DropDownIcon index="9" indicator="2" :icon="Bell" />
     <ul
       tabindex="9"
       class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"

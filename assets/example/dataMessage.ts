@@ -28,6 +28,48 @@ export const dataChat1: MessageProps[] = [
     left: false,
     id: "4",
   },
+  {
+    name: "Emily",
+    msg: "bright smooth uncle soft lying share duck yard alive caught flight ring broke monkey yesterday street quiet accident notice particular ground improve pencil post",
+    time: "14:30",
+    left: true,
+    id: "5",
+  },
+  {
+    name: "Michael",
+    msg: "oil central wire develop select enter snake spend lose length solve feel sound tiny ice experiment see bread drive gain strike central addition bread",
+    time: "16:45",
+    left: false,
+    id: "6",
+  },
+  {
+    name: "Sarah",
+    msg: "remember climb foot spider call nation serve value race complex board idea wing stone subject month east split consonant electric final wing noise leg",
+    time: "18:20",
+    left: true,
+    id: "7",
+  },
+  {
+    name: "David",
+    msg: "fact tree knew chosen beauty monkey proud wild mark separate space sense imagine oil stem company ship basic spend still figure wire twelve yellow",
+    time: "12:15",
+    left: false,
+    id: "8",
+  },
+  {
+    name: "Laura",
+    msg: "type mirror meal get act ahead leave result wave cat noise current write bet happen cap wish entire hat dinner pen mark forgot race",
+    time: "22:10",
+    left: true,
+    id: "9",
+  },
+  {
+    name: "James",
+    msg: "sign addition catch village worry wet fell final bend receive add itself sat ear original stay hill guard entire glass save paint mass middle",
+    time: "08:50",
+    left: false,
+    id: "10",
+  },
 ]
 export const dataMessage1: MessageListProps = {
   name: "Alex",

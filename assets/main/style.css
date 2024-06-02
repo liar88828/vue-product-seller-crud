@@ -7,12 +7,7 @@
     @apply  shadow-md;
   } */
 }
-.select-rm {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  text-indent: 1px;
-  text-overflow: "";
-}
+
 @layer base {
   .icons {
     @apply w-5 h-5;
@@ -20,14 +15,26 @@
   .textarea-edit {
     @apply textarea textarea-bordered textarea-sm h-40 w-full;
   }
+  .product-desc-h-p {
+    @apply card-title text-xl sm:text-2xl md:text-xl font-bold lg:text-2xl;
+  }
+
   .product-desc-h {
-    @apply card-title text-xl sm:text-2xl font-bold;
+    @apply card-title text-xl sm:text-2xl  font-bold;
   }
   .product-desc-p {
     @apply mt-2 text-sm sm:text-[1rem] md:text-lg;
   }
+  .product-desc-p-p {
+    @apply mt-2 text-sm sm:text-[1rem] md:text-sm lg:text-[1.2rem] text-justify;
+  }
+
+  .product-desc-li-p {
+    @apply flex items-center  font-semibold text-sm sm:text-[1rem] md:text-sm lg:text-lg  list-inside list-disc;
+  }
+
   .product-desc-li {
-    @apply flex items-center gap-2 font-semibold text-sm sm:text-[1rem] md:text-lg;
+    @apply flex items-center   font-semibold text-sm sm:text-[1rem] md:text-lg  list-inside list-disc;
   }
   .product-icon {
     @apply btn  btn-sm btn-square btn-outline;
@@ -67,3 +74,14 @@
 /* box-shadow:
 rgba(17, 17, 26, 0.1) 0px 4px 16px, 
 rgba(17, 17, 26, 0.05) 0px 8px 32px; */
+
+html {
+  scroll-behavior: smooth;
+}
+
+.select-rm {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  text-indent: 1px;
+  text-overflow: "";
+}

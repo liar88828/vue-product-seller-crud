@@ -35,7 +35,7 @@ const { getMultiCon } = useStyle()
           })
         "
       />
-      <main class="container mx-auto mt-2 pb-20">
+      <main class="container mx-auto mt-5 mb-20 min-h-screen">
         <slot />
         <MainBottomNavigator class="fixed" />
       </main>
