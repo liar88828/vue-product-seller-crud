@@ -1,6 +1,6 @@
 <template>
   <CardInit :class="props.class">
-    <CardHead :title="props.title">
+    <CardHead :title="props.title" :class="props.class2">
       <slot name="rightSlot"></slot>
       <component :is="props.right" v-if="props.right" :class="props.class2" />
     </CardHead>

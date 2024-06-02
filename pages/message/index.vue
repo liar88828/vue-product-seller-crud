@@ -1,7 +1,6 @@
 <template>
-  <ChatList :data="dataMessages" :new-message="countUnRead" />
+  <PageChatList :data="dataNotifies" :new-message="countUnRead" />
 </template>
 <script lang="ts" setup>
-import { countUnRead, dataMessages } from "~/assets/example/message/dataMessage"
-// console.log(countUnRead,'un read')
+import { countUnRead, dataNotifies } from "~/assets/example/message/dataMessage"
 </script>

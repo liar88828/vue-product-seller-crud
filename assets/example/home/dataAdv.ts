@@ -15,5 +15,5 @@ export const dataAdv2: AdvProps = {
   title: "Pay With",
   description: ["Dana", "Ovo", "Mandiri"],
   slogans: "0% daily interest deposit. 100% safe.",
-  link: "/sell",
+  link: "/#",
 }

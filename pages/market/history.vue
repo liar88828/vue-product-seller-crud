@@ -1,6 +1,6 @@
 <template>
   <NuxtLayout name="market">
-    <ProductTableOrder :data-orders="dataOrders" />
+    <PageTransactionOrder :data-orders="dataOrders" />
   </NuxtLayout>
 </template>
 

@@ -1,7 +1,7 @@
 <template>
-  <TransactionPay :data="dataOrders[0]" :company="dataCompany">
+  <PageTransactionPay :data="dataOrders[0]" :company="dataCompany">
     <button class="btn btn-primary w-full">Confirm</button>
-    <button class="btn btn-error w-fill">Delete</button></TransactionPay
+    <button class="btn btn-error w-fill">Delete</button></PageTransactionPay
   >
 </template>
 

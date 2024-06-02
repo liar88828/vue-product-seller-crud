@@ -1,5 +1,5 @@
 <template>
-  <MainBodyTab :items="itemsArray" />
+  <ElHeadTab :items="itemsArray" />
   <slot />
 </template>
 

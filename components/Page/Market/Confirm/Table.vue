@@ -1,14 +1,9 @@
 <template>
-<Tables >
-<!-- :bg="'bg-base-300'" -->
+<ElTables >
 
   <thead>
     <tr>
-      <!-- <th>
-        <label>
-          <input type="checkbox" class="checkbox checkbox-sm" />
-        </label>
-      </th> -->
+ 
       <th>Buyer</th>
       <th>Product Name</th>
       <th>Total</th>
@@ -16,13 +11,7 @@
   </thead>
 
   <tbody>
-    <!-- row 1 -->
     <tr v-for="data in dataProduct" :key="data.id">
-      <!-- <th>
-        <label>
-          <input type="checkbox" class="checkbox checkbox-sm" />
-        </label>
-      </th> -->
       <td>
         <div class="space-y-2">
           <div class="font-bold">{{ data.userBuy.name }}</div>
@@ -61,11 +50,7 @@
 
           <!-- get total price and qty -->
           {{
-          getRupiah(
-            data.trolly
-              .map((t) => t.price * t.stock)
-              .reduce((a, b) => a + b, 0)
-          )
+          getRupiah( totalProduct )
         }}
               </p>
         
@@ -82,13 +67,14 @@
     </tr>
   </tbody>
 
-</Tables>  
+</ElTables>  
 </template>
 
 <script lang="ts" setup>
 import type { OrderProps } from '~/types/product/order'
 
-defineProps<{
+const props=defineProps<{
   dataProduct: OrderProps[]
 }>()
+const totalProduct=computed(()=> props.dataProduct.flatMap((t)=>t.trolly).map((t)=>t.price).reduce((a,b)=>a+b,0))
 </script>

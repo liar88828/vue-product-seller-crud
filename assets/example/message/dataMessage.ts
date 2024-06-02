@@ -1,4 +1,5 @@
 import type { MessageListProps, MessageProps } from "~/types/globals/message"
+import type { NotifyMessage } from "~/types/globals/notify"
 export const dataChat1: MessageProps[] = [
   {
     name: "Alex",
@@ -95,3 +96,53 @@ export const dataMessages: MessageListProps[] = [dataMessage1, dataMessage2]
 export const countUnRead = dataMessages.filter(
   (item) => item.read === false
 ).length
+
+const dataNotify: NotifyMessage = {
+  type: "Message",
+  name: "John",
+  link: "/message/1",
+  time: new Date(),
+  id: "1",
+  read: false,
+  img: "https://picsum.photos/63",
+  msg: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+}
+const dataTransaction: NotifyMessage = {
+  type: "Transaction",
+  name: "Alex",
+  link: "/product/look/1",
+  time: new Date(),
+  id: "2",
+  read: false,
+  img: "https://picsum.photos/18",
+  msg: "Your order has been confirmed",
+}
+
+const dataTransactionSuccess: NotifyMessage = {
+  type: "Transaction",
+  name: "Alex",
+  link: "/product/look/1",
+  time: new Date(),
+  id: "7",
+  read: false,
+  img: "https://picsum.photos/87",
+  msg: "Your order has been taken",
+}
+
+const dataConfirmProduct: NotifyMessage = {
+  type: "Confirm",
+  name: "Sarah",
+  link: "/market/confirm",
+  time: new Date(),
+  id: "4",
+  read: false,
+  img: "https://picsum.photos/6",
+  msg: "Confirm product order",
+}
+
+export const dataNotifies: NotifyMessage[] = [
+  dataNotify,
+  dataTransaction,
+  dataTransactionSuccess,
+  dataConfirmProduct,
+]

@@ -13,7 +13,7 @@ const onPay = () => {
 </script>
 
 <template>
-  <TransactionPay :data="dataOrders[0]" :company="dataCompany">
+  <PageTransactionPay :data="dataOrders[0]" :company="dataCompany">
     <button @click="onPay" class="btn btn-primary w-full">Pay</button>
-  </TransactionPay>
+  </PageTransactionPay>
 </template>

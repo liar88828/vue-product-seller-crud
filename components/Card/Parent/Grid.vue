@@ -1,7 +1,7 @@
 <template>
   <CardInit :class="props.class">
-    <CardHead :title="props.title" :right="props.right" />
-    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 sm:gap-6 gap-3">
+    <CardHead :title="props.title" :class="props.class2" :right="props.right" />
+    <div class="grid1">
       <slot />
     </div>
   </CardInit>
@@ -13,6 +13,7 @@ const props = defineProps({
     required: true,
   },
   class: String,
+  class2: String,
   right: Object as () => Component,
 })
 </script>

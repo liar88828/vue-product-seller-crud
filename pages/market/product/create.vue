@@ -2,13 +2,11 @@
   <CardWrap title="Create Product">
     <p>create product page will be here</p>
     <form action="" class="space-y-2 w-full">
-      <Input types="text" title="Name" v-model:input="state.name" />
-      <Input types="text" title="Brand" v-model:input="state.brand" />
-      <Input types="number" title="Price" v-model:input="state.price" />
-      <Input types="text" title="Stock" v-model:input="state.stock" />
-      <Textarea title="Stock" v-model:textarea="state.description" />
-      <!-- <Input types="text" title="Name" v-model:state="state.name" />
-      <Input types="text" title="Name" v-model:state="state.name" /> -->
+      <ElInput types="text" title="Name" v-model:input="state.name" />
+      <ElInput types="text" title="Brand" v-model:input="state.brand" />
+      <ElInput types="number" title="Price" v-model:input="state.price" />
+      <ElInput types="text" title="Stock" v-model:input="state.stock" />
+      <ElTextarea title="Stock" v-model:textarea="state.description" />
     </form>
     <button type="submit" @click="onSubmit" class="btn btn-info btn-outline">
       Submit

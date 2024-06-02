@@ -59,7 +59,6 @@ const dataProduct5: Product = {
   description: "Latest model with GPS",
   userId: "114",
 }
-
 const dataProductDetail: ProductItem = {
   name: "High-Quality Noise-Cancelling Headphones",
   description:
@@ -119,4 +118,7 @@ export const dataProducts: Product[] = [
   dataProduct3,
   dataProduct4,
   dataProduct5,
+  dataProductDetail,
+  dataProductDetail2,
+  dataProductDetail3,
 ]

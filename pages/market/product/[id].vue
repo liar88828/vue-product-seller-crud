@@ -1,5 +1,8 @@
 <template>
-  <ProductEdit :dataImage="dataImage" :dataProduct="dataProductDetails[0]" />
+  <PageProductEdit
+    :dataImage="dataImage"
+    :dataProduct="dataProductDetails[0]"
+  />
 </template>
 
 <script lang="ts" setup>

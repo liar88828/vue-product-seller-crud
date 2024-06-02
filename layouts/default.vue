@@ -5,7 +5,7 @@ const { getMultiCon } = useStyle()
 <template>
   <!-- data-theme="cyberpunk" -->
   <section class="min-h-screen bg-base-300 w-screen">
-    <MainHeadNavigator
+    <ElNav
       :class="
         getMultiCon({
           array: ['shop', 'product', 'home'],
@@ -15,7 +15,7 @@ const { getMultiCon } = useStyle()
       "
     />
     <!-- ${$route.path.includes('market') ? 'hidden' : ''} -->
-    <MainHeadShop
+    <ElNavShop
       :class="`
 
       ${getMultiCon({
@@ -26,7 +26,7 @@ const { getMultiCon } = useStyle()
        `"
     />
     <div class="flex">
-      <MainBodySidebar
+      <ElSide
         :class="
           getMultiCon({
             array: ['shop', 'sell', 'home'],
@@ -35,9 +35,9 @@ const { getMultiCon } = useStyle()
           })
         "
       />
-      <main class="container mx-auto mt-5 mb-20 min-h-screen">
+      <main class="container mx-auto mt-5 mb-20 md:mb-10 min-h-screen">
         <slot />
-        <MainBottomNavigator class="fixed" />
+        <ElNavBottom class="fixed" />
       </main>
     </div>
   </section>

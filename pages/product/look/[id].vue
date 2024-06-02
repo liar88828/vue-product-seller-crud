@@ -1,6 +1,6 @@
 <template>
-  <TransactionPay :data="dataOrders[0]" :company="dataCompany">
-  </TransactionPay>
+  <PageTransactionPay :data="dataOrders[0]" :company="dataCompany">
+  </PageTransactionPay>
 </template>
 
 <script lang="ts" setup>

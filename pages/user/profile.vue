@@ -1,6 +1,6 @@
 <template>
   <NuxtLayout name="profile">
-    <ProfileUser :data="userProfile" />
+    <PageProfileUser :data="userProfile" />
   </NuxtLayout>
 </template>
 <script lang="ts" setup>

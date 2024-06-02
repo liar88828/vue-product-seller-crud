@@ -1,9 +1,9 @@
 <template>
-  <MainHeadNavChat class="z-20 fixed">
-    <ModalChat />
-  </MainHeadNavChat>
+  <ElNavChat class="z-20 fixed">
+    <Search />
+  </ElNavChat>
   <div class="container bg-base-300 min-h-screen">
-    <Chat :data="dataChat1" />
+    <PageChat :data="dataChat1" />
   </div>
 </template>
 
@@ -13,6 +13,7 @@ definePageMeta({
 })
 
 import { dataChat1 } from "~/assets/example/message/dataMessage"
+import Search from "~/components/Page/Chat/Message/Search.vue"
 </script>
 
 <style>

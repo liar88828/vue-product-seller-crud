@@ -1,6 +1,6 @@
 <template>
   <NuxtLayout name="market">
-    <ProductTableMarket :data="dataProductDetails" />
+    <PageProductMarket :data="dataProductDetails" />
   </NuxtLayout>
 </template>
 

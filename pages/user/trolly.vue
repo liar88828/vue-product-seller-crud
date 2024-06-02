@@ -1,6 +1,6 @@
 <template>
   <NuxtLayout name="profile">
-    <ProductTrolly :data="dataProducts" />
+    <PageTransactionTrolly :data="dataProducts" />
   </NuxtLayout>
 </template>
 
