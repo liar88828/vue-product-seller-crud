@@ -12,9 +12,9 @@
 </template>
 
 <script setup lang="ts">
-import type { Purchase } from "~/types/product/purchase"
+import type { OrderProps } from "~/types/product/order"
 
 defineProps<{
-  data: Purchase
+  data: OrderProps
 }>()
 </script>

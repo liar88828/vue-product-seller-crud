@@ -5,5 +5,5 @@
 </template>
 
 <script lang="ts" setup>
-import { dataOrders } from "~/assets/example/dataOrder"
+import { dataOrders } from "~/assets/example/transaction/dataOrder"
 </script>

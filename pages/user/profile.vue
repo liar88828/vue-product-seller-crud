@@ -4,5 +4,5 @@
   </NuxtLayout>
 </template>
 <script lang="ts" setup>
-import { userProfile } from '~/assets/example/dataUser'
+import { userProfile } from "~/assets/example/user/dataUser"
 </script>

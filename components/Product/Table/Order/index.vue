@@ -1,18 +1,14 @@
 <template>
   <CardInit :class="`   `">
     <ProductTableOrderOption :data="dataOrders" />
-    <ProductTableParent
-      v-for="data in filterStatus"
-      :key="data.id"
-      :data="data"
-    >
+    <CardTable v-for="data in filterStatus" :key="data.id" :data="data">
       <ProductTableOrderBody :products="data.trolly" />
-    </ProductTableParent>
+    </CardTable>
   </CardInit>
 </template>
 
 <script lang="ts" setup>
-import type { OrderProps } from "~/assets/example/dataOrder"
+import type { OrderProps } from "~/types/product/order"
 
 const props = defineProps<{
   dataOrders: OrderProps[]

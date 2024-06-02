@@ -4,5 +4,5 @@
 </template>
 
 <script lang="ts" setup>
-import { dataProducts } from "~/assets/example/dataProduct"
+import { dataProducts } from "~/assets/example/product/dataProduct"
 </script>

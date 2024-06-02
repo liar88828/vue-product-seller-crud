@@ -16,15 +16,13 @@
 </template>
 
 <script setup lang="ts">
-import type { Purchase } from "~/types/product/purchase"
 import type { ProfileCompany } from "~/types/market/profile"
+import type { OrderProps } from "~/types/product/order"
 
 const { clickImage, refImage } = useImage("purchase")
 
 defineProps<{
   company: ProfileCompany
-  data: Purchase
+  data: OrderProps
 }>()
-
-
 </script>

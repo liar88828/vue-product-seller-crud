@@ -15,7 +15,7 @@
           {{ item.name }}
         </td>
         <td class="border border-slate-600">
-          {{ formatRupiah(item.price) }}
+          {{ getRupiah(item.price) }}
         </td>
         <td class="border border-slate-600">
           {{ item.stock }}
@@ -27,10 +27,8 @@
 </template>
 
 <script lang="ts" setup>
-import type { Purchase } from "~/types/product/purchase"
-
-const { formatNumber, formatRupiah } = useFormat()
+import type { OrderProps } from "~/types/product/order"
 defineProps<{
-  data: Purchase["trolly"]
+  data: OrderProps["trolly"]
 }>()
 </script>

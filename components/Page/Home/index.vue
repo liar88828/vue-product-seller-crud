@@ -1,6 +1,6 @@
 <template>
   <section class="space-y-5">
-    <PageSellProfileGrid />
+    <PageHomeGrid />
 
     <CardParentFlex
       :bg="false"
@@ -18,7 +18,6 @@
       />
     </CardParentFlex>
 
-    <!-- :class="'bg-info/10'" -->
     <CardParentFlex
       :class2="'text-sm sm:text-md md:text-lg '"
       :title="'New Products'"
@@ -35,11 +34,8 @@
       />
     </CardParentFlex>
 
-    <!--  -->
-    <PageSellProfileAdv :data="dataAdv" />
-    <!--  -->
+    <PageHomeAdv :data="dataAdv" />
 
-    <!-- class="bg-primary/10" -->
     <CardParentFlex
       title="Trending Products"
       :class2="'text-sm sm:text-md md:text-lg '"
@@ -56,11 +52,8 @@
       />
     </CardParentFlex>
 
-    <!--  -->
-    <PageSellProfileAdv :data="dataAdv2" />
-    <!--  -->
+    <PageHomeAdv :data="dataAdv2" />
 
-    <!-- class="bg-accent/10" -->
     <CardParentFlex
       :bg="false"
       :class="'bg-base-100 '"

@@ -1,5 +1,7 @@
 <template>
-  <div class="relative w-full overflow-x-hidden border rounded border-slate-600">
+  <div
+    class="relative w-full overflow-x-hidden border rounded border-slate-600"
+  >
     <table class="table table-zebra table-xs table-auto sm:table-sm">
       <thead>
         <tr>
@@ -36,10 +38,10 @@
 </template>
 
 <script setup lang="ts">
-import type { Purchase } from "~/types/product/purchase"
+import type { OrderProps } from "~/types/product/order"
 
 defineProps<{
-  data: Purchase
+  data: OrderProps
 }>()
 const { formatRupiah, totalNumber } = useFormat()
 </script>

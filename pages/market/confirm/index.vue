@@ -1,9 +1,9 @@
 <template>
   <NuxtLayout name="market">
-    <PageMarketConfirm :data-purchases="dataPurchases" />
+    <PageMarketConfirm :data-purchases="dataOrders" />
   </NuxtLayout>
 </template>
 
 <script lang="ts" setup>
-import { dataPurchases } from "~/assets/example/dataPurchase"
+import { dataOrders } from "~/assets/example/transaction/dataOrder"
 </script>

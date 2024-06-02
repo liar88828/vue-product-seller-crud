@@ -1,6 +1,5 @@
 <template>
-<Tables 
->
+<Tables >
 <!-- :bg="'bg-base-300'" -->
 
   <thead>
@@ -30,7 +29,7 @@
           <div class="text-sm opacity-50">
             {{ data.userBuy.address }}
           </div>
-          <div>{{ formatPhone(data.userBuy.phone ?? "") }}</div>
+          <div>{{ getPhone(data.userBuy.phone ?? "") }}</div>
         </div>
       </td>
       <td>
@@ -53,7 +52,7 @@
           <div class="space-y-1">
             <div class="font-bold">{{ trolly.name }}</div>
             <div class="text-sm opacity-50">{{ trolly.brand }}</div>
-            <div class="">{{ formatRupiah(trolly.price) }}</div>
+            <div class="">{{ getRupiah(trolly.price) }}</div>
           </div>
         </div>
       </td>
@@ -62,7 +61,7 @@
 
           <!-- get total price and qty -->
           {{
-          formatRupiah(
+          getRupiah(
             data.trolly
               .map((t) => t.price * t.stock)
               .reduce((a, b) => a + b, 0)
@@ -87,9 +86,9 @@
 </template>
 
 <script lang="ts" setup>
-import type { Purchase } from "~/types/product/purchase"
-const { formatRupiah,  formatPhone } = useFormat()
+import type { OrderProps } from '~/types/product/order'
+
 defineProps<{
-  dataProduct: Purchase[]
+  dataProduct: OrderProps[]
 }>()
 </script>

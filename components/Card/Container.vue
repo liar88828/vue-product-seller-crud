@@ -16,9 +16,3 @@ const props = defineProps<{
   right?: Component
 }>()
 </script>
-
-<!-- <ProductCard
-v-for="dataRelated in dataRelateds"
-:key="dataRelated.id"
-:data="dataRelated"
-/> -->

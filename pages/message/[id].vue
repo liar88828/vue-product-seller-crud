@@ -12,7 +12,7 @@ definePageMeta({
   layout: "chat",
 })
 
-import { dataChat1 } from "~/assets/example/dataMessage"
+import { dataChat1 } from "~/assets/example/message/dataMessage"
 </script>
 
 <style>

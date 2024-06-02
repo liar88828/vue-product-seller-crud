@@ -18,10 +18,7 @@
         <!-- <EleSelect class="z-20" :data="staticLink.category" /> -->
         <!-- <IconsInfo /> -->
 
-        <EleSelect
-          v-model:select="store.status"
-          :data="staticLink.status"
-        />
+        <EleSelect v-model:select="store.status" :data="staticLink.status" />
 
         <EleSelect
           v-model:select="store.category"
@@ -50,7 +47,7 @@
 
 <script lang="ts" setup>
 import { staticLink } from "~/assets/link/shopLink"
-import type { OrderProps } from "~/assets/example/dataOrder"
+import type { OrderProps } from "~/types/product/order"
 const { store } = useOrder()
 
 const props = defineProps({

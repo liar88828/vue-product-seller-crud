@@ -1,5 +1,5 @@
 <template>
-  <LayCardWrap class="space-y-3 static card-bordered">
+  <CardWrap class="space-y-3 static card-bordered">
     <div class="flex justify-between">
       <h2 class="titles">
         Market :
@@ -17,12 +17,12 @@
       </div>
     </div>
     <slot />
-  </LayCardWrap>
+  </CardWrap>
 </template>
 
 <script lang="ts" setup>
-import type { OrderProps } from "~/assets/example/dataOrder"
-const { getStatus } = useStyle()
+import type { OrderProps } from "~/types/product/order"
+
 defineProps<{
   data: OrderProps
 }>()
