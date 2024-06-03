@@ -1,6 +1,6 @@
 import { toPng, toJpeg } from "html-to-image"
 import { ref, computed } from "vue"
-export const useImage = (title: string) => {
+export const useImages = (title: string) => {
   //@ts-ignore
   const refImage = ref<HTMLDivElement>(null)
 

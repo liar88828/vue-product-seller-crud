@@ -9,6 +9,20 @@
 }
 
 @layer base {
+  .auth-h {
+    @apply text-2xl font-bold lg:text-4xl;
+  }
+  .auth-h2 {
+    @apply font-semibold text-lg my-5 text-center md:text-2xl lg:text-3xl;
+  }
+
+  .auth-p {
+    @apply text-2xl font-bold lg:text-4xl;
+  }
+
+  .icon-square {
+    @apply btn btn-square btn-sm p-1;
+  }
   .grid1 {
     @apply grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6    sm:gap-3 gap-2;
   }

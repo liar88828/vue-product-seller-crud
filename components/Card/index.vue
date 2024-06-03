@@ -1,7 +1,7 @@
 <template>
   <section
     :class="`shadow-xl card 
-    ${props.compact ? ' card-compact ' : ''}
+    ${props.compact ? ' card-compact lg:card-normal' : ''}
     ${props.bg ? ' bg-base-100 ' : ''}
     ${props.class}`"
   >

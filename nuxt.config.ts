@@ -7,7 +7,7 @@ export default defineNuxtConfig({
     typeCheck: true,
   },
 
-  modules: ["@nuxtjs/tailwindcss"],
+  modules: ["@nuxtjs/tailwindcss", "@nuxt/image"],
 
   postcss: {
     plugins: {

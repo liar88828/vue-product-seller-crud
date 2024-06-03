@@ -23,7 +23,7 @@ import Total from "./Total.vue"
 import Customer from "./Customer.vue"
 import Market from "./Market.vue"
 
-const { clickImage, refImage } = useImage("purchase")
+const { clickImage, refImage } = useImages("purchase")
 
 defineProps<{
   company: ProfileCompany

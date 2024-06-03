@@ -10,22 +10,22 @@ import IconsBellOutline from "~/components/Icons/Bell/Outline.vue"
       class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
     >
       <li>
-        <button>
+        <NuxtLink :to="{ name: 'auth-sign-in' }">
           <IconsPersonBook class="w-5 h-5" />
           Sign In
-        </button>
+        </NuxtLink>
       </li>
       <li>
-        <button>
+        <NuxtLink :to="{ name: 'auth-sign-up' }">
           <IconsPersonEdit class="w-5 h-5" />
           Sign Up
-        </button>
+        </NuxtLink>
       </li>
       <li>
-        <button>
+        <NuxtLink :to="{ name: 'auth-sign-out' }">
           <IconsExit class="w-5 h-5" />
           Sign Out
-        </button>
+        </NuxtLink>
       </li>
     </ul>
   </div>

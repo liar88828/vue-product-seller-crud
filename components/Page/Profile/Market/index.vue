@@ -31,5 +31,5 @@ defineProps<{
   data: ProfileCompany
 }>()
 
-const { clickImage, refImage } = useImage("Market Profile")
+const { clickImage, refImage } = useImages("Market Profile")
 </script>

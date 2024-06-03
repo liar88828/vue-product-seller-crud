@@ -14,10 +14,8 @@ const { getMultiCon } = useStyle()
         })
       "
     />
-    <!-- ${$route.path.includes('market') ? 'hidden' : ''} -->
     <ElNavShop
       :class="`
-
       ${getMultiCon({
         array: ['shop', 'product', 'home'],
         con1: '',
