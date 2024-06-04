@@ -6,6 +6,7 @@
         <figure class="lg:w-1/2">
           <NuxtImg src="/img/sign_in.svg" class="hidden lg:block" />
         </figure>
+
         <div class="lg:w-1/2">
           <div class="space-y-2">
             <h1 class="auth-h">Sign In</h1>

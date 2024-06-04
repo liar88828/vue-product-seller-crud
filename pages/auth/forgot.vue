@@ -1,10 +1,13 @@
 <template>
   <Card :compact="false">
     <CardBody>
-      <div class="flex items-center justify-center">
+      <PageAuthBack :link="'/auth/sign-up'" />
+
+      <!-- <div class="flex items-center justify-center">
         <NuxtImg src="/img/shopease-white.png" class="w-16 h-1w-16" />
         <h1 class="card-title">ShopEase</h1>
-      </div>
+      </div> -->
+
       <div class="lg:flex lg:gap-10">
         <figure class="lg:w-1/2">
           <NuxtImg src="/img/forgot.svg" class="hidden lg:block" />
