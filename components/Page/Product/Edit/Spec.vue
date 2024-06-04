@@ -82,6 +82,7 @@
 <script setup lang="ts">
 import type { ProductItem } from "~/types/product/item"
 import Titles from "./Titles.vue"
+import { useProductSpec } from "#imports"
 
 const props = defineProps<{
   data: ProductItem["desc_spec"]

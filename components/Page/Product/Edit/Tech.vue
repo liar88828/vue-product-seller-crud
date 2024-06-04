@@ -54,6 +54,7 @@
 </template>
 
 <script setup lang="ts">
+import { useProductTech } from "#imports"
 import type { ProductItem } from "~/types/product/item"
 
 const props = defineProps<{

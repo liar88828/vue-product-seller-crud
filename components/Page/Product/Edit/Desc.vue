@@ -61,6 +61,7 @@
 </template>
 
 <script setup lang="ts">
+import { useProductDesc } from "#imports"
 import type { ProductItem } from "~/types/product/item"
 const props = defineProps<{ data: ProductItem }>()
 const { getText, multiple, refEdit, onAdd, onDelete, onSave } = useProductDesc(

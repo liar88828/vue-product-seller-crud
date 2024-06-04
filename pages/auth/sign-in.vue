@@ -13,26 +13,29 @@
             <p class="">Sign In to your account</p>
           </div>
 
-          <form action="">
+          <form @submit.prevent="handleSubmit">
             <ElInput
               v-model:input="store.email"
               types="email"
               :title="'Email'"
+              :err="errStore.data.email"
             />
             <ElInput
               v-model:input="store.password"
               types="password"
               :title="'Password'"
+              :err="errStore.data.password"
             />
+            <div class="flex flex-nowrap gap-2">
+              <NuxtLink to="/auth/forgot" class="link link-primary">
+                Forgot Password?
+              </NuxtLink>
+            </div>
+            <div class="flex flex-col gap-2 mt-4">
+              <button type="submit" class="btn btn-primary">Sign Up</button>
+            </div>
           </form>
-          <div class="flex flex-nowrap gap-2">
-            <NuxtLink to="/auth/forgot" class="link link-primary">
-              Forgot Password?
-            </NuxtLink>
-          </div>
-          <div class="flex flex-col gap-2 mt-4">
-            <NuxtLink to="/home" class="btn btn-primary">Sign Up</NuxtLink>
-          </div>
+
           <p>
             Don't have an account?
             <NuxtLink to="/auth/sign-up" class="link link-primary">
@@ -55,19 +58,11 @@
 </template>
 
 <script lang="ts" setup>
+import { useSignIn } from "~/composables/auth/useSignin"
+
 definePageMeta({
   layout: "auth",
 })
 
-const store = reactive<{
-  name: string
-  email: string
-  password: string
-  confPass: string
-}>({
-  confPass: "",
-  name: "",
-  email: "",
-  password: "",
-})
+const { errStore, store, handleSubmit } = useSignIn()
 </script>

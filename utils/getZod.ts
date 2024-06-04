@@ -1,6 +1,6 @@
 import type { Product } from "@prisma/client"
 import { ZodType, z } from "zod"
-import type { SignInProps } from "~/types/auth/user"
+import type { SignInProps, SignUpProps } from "~/types/auth/user"
 
 export default () => {
   const createProductSchema = z.object({
@@ -27,7 +27,12 @@ export default () => {
     .refine((data) => data.password === data.confPass, {
       message: "Passwords don't match",
       path: ["confirm"],
-    }) satisfies ZodType<SignInProps>
+    }) satisfies ZodType<SignUpProps>
 
-  return { createProductSchema, signUpSchema }
+  const signInSchema = z.object({
+    email: z.string().email().min(10),
+    password: z.string().min(8),
+  }) satisfies ZodType<SignInProps>
+
+  return { createProductSchema, signUpSchema, signInSchema }
 }

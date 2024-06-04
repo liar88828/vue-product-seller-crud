@@ -14,21 +14,29 @@
           </div>
 
           <form @submit.prevent="handleSubmit">
-            <ElInput v-model:input="store.name" types="text" :title="'Name'" />
+            <ElInput
+              v-model:input="store.name"
+              types="text"
+              :title="'Name'"
+              :err="errStore.data.name"
+            />
             <ElInput
               v-model:input="store.email"
               types="email"
               :title="'Email'"
+              :err="errStore.data.email"
             />
             <ElInput
               v-model:input="store.password"
               types="password"
               :title="'Password'"
+              :err="errStore.data.password"
             />
             <ElInput
               v-model:input="store.confPass"
               types="password"
               :title="'Conf Password'"
+              :err="errStore.data.confPass"
             />
             <div class="flex flex-col gap-2 mt-4">
               <button type="submit" class="btn btn-primary">Sign Up</button>
@@ -45,28 +53,14 @@
       </div>
     </CardBody>
   </Card>
-  {{ store }}
+  <!-- {{ store }} -->
 </template>
 
 <script lang="ts" setup>
-import type { SignInProps } from "~/types/auth/user"
+import { useSignUp } from "~/composables/auth/useSignUp"
 
 definePageMeta({
   layout: "auth",
 })
-
-const store = reactive<SignInProps>({
-  confPass: "",
-  name: "",
-  email: "",
-  password: "",
-})
-
-const handleSubmit = async () => {
-  console.log(store)
-
-  const valid = getTry(() => getZod().signUpSchema.parse(store))
-  // to="/auth/verify"
-  console.log(valid)
-}
+const { errStore, store, handleSubmit } = useSignUp()
 </script>
