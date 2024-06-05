@@ -8,83 +8,88 @@
   } */
 }
 
+.theme-icon {
+  @apply w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12;
+}
+.icons {
+  @apply w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8;
+}
+.auth-h {
+  @apply text-2xl font-bold lg:text-4xl;
+}
+.auth-h2 {
+  @apply font-semibold text-lg my-5 text-center md:text-2xl lg:text-3xl;
+}
+
+.auth-p {
+  @apply text-2xl font-bold lg:text-4xl;
+}
+
+.icon-square {
+  @apply btn btn-square btn-sm p-1;
+}
+.grid1 {
+  @apply grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6    sm:gap-3 gap-2;
+}
+.grid2 {
+  @apply grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6 gap-2;
+}
+
+.textarea-edit {
+  @apply textarea textarea-bordered textarea-sm h-40 w-full;
+}
+.product-desc-h-p {
+  @apply card-title text-xl sm:text-2xl md:text-xl font-bold lg:text-2xl;
+}
+
+.product-desc-h {
+  @apply card-title text-xl sm:text-2xl  font-bold;
+}
+.product-desc-p {
+  @apply mt-2 text-sm sm:text-[1rem] md:text-lg;
+}
+.product-desc-p-p {
+  @apply mt-2 text-sm sm:text-[1rem] md:text-sm lg:text-[1.2rem] text-justify;
+}
+
+.product-desc-li-p {
+  @apply flex items-center  font-semibold text-sm sm:text-[1rem] md:text-sm lg:text-lg  list-inside list-disc;
+}
+
+.product-desc-li {
+  @apply flex items-center   font-semibold text-sm sm:text-[1rem] md:text-lg  list-inside list-disc;
+}
+.product-icon {
+  @apply btn  btn-sm btn-square btn-outline;
+}
+
+.shadow-top {
+  box-shadow: 0px -1px 10px 1px /* theme('colors.primary') */ rgba(
+      0,
+      0,
+      0,
+      0.172
+    ) /* 
+
+  ; */;
+}
+
+.TEST_CSS {
+  @apply border-red-500 border-2;
+}
+.card-shadow {
+  @apply shadow shadow-slate-700;
+}
+
+.title-sm {
+  @apply md:text-2xl sm:text-lg;
+}
+
+.title-md {
+  @apply md:text-3xl sm:text-2xl text-lg;
+}
+
 @layer base {
-  .auth-h {
-    @apply text-2xl font-bold lg:text-4xl;
-  }
-  .auth-h2 {
-    @apply font-semibold text-lg my-5 text-center md:text-2xl lg:text-3xl;
-  }
-
-  .auth-p {
-    @apply text-2xl font-bold lg:text-4xl;
-  }
-
-  .icon-square {
-    @apply btn btn-square btn-sm p-1;
-  }
-  .grid1 {
-    @apply grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6    sm:gap-3 gap-2;
-  }
-  .grid2 {
-    @apply grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6 gap-2;
-  }
-  .icons {
-    @apply w-5 h-5;
-  }
-  .textarea-edit {
-    @apply textarea textarea-bordered textarea-sm h-40 w-full;
-  }
-  .product-desc-h-p {
-    @apply card-title text-xl sm:text-2xl md:text-xl font-bold lg:text-2xl;
-  }
-
-  .product-desc-h {
-    @apply card-title text-xl sm:text-2xl  font-bold;
-  }
-  .product-desc-p {
-    @apply mt-2 text-sm sm:text-[1rem] md:text-lg;
-  }
-  .product-desc-p-p {
-    @apply mt-2 text-sm sm:text-[1rem] md:text-sm lg:text-[1.2rem] text-justify;
-  }
-
-  .product-desc-li-p {
-    @apply flex items-center  font-semibold text-sm sm:text-[1rem] md:text-sm lg:text-lg  list-inside list-disc;
-  }
-
-  .product-desc-li {
-    @apply flex items-center   font-semibold text-sm sm:text-[1rem] md:text-lg  list-inside list-disc;
-  }
-  .product-icon {
-    @apply btn  btn-sm btn-square btn-outline;
-  }
-
-  .shadow-top {
-    box-shadow: 0px -1px 10px 1px /* theme('colors.primary') */ rgba(
-        0,
-        0,
-        0,
-        0.172
-      ) /* 
-
-    ; */;
-  }
-
-  .TEST_CSS {
-    @apply border-red-500 border-2;
-  }
-  .card-shadow {
-    @apply shadow shadow-slate-700;
-  }
-
-  .title-sm {
-    @apply md:text-2xl sm:text-lg;
-  }
-
-  .title-md {
-    @apply md:text-3xl sm:text-xl text-lg;
-  }
 }
 @layer components {
   /* table {
@@ -99,9 +104,26 @@ html {
   scroll-behavior: smooth;
 }
 
-.select-rm {
+/* .select-rm {
   -webkit-appearance: none;
   -moz-appearance: none;
   text-indent: 1px;
   text-overflow: "";
+} */
+
+:root {
+  --scrollbar-color: theme("colors.primary"); /* red */
+}
+
+::-webkit-scrollbar {
+  /* -webkit-appearance: none;
+  width: 2rem; */
+
+  background-color: theme("colors.base-300");
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 1rem;
+  border: 2px theme("colors.base-300") solid;
+  background-color: var(--scrollbar-color);
 }

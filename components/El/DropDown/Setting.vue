@@ -1,8 +1,7 @@
 <template>
   <div class="dropdown dropdown-end">
     <div tabindex="0" role="button" class="btn btn-ghost">
-      <IconsSetting class="h-5 w-5" />
-      <p class="hidden sm:block">Client</p>
+      <IconsSetting class="icons" />
     </div>
     <ul
       tabindex="0"

@@ -58,7 +58,7 @@
 </template>
 
 <script lang="ts" setup>
-import { useSignIn } from "~/composables/auth/useSignin"
+import { useSignIn } from "~/composables/auth/useSignIn"
 
 definePageMeta({
   layout: "auth",

@@ -3,10 +3,11 @@ export type DataBoxProps = {
   discount: string
   description: string
   slogans: string
-  color: {
-    bg: string
-    dis: string
-  }
+  color: string
+  // color: {
+  //   bg: string
+  //   // dis: string
+  // }
   image: string
   link?: string
 }

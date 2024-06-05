@@ -3,7 +3,7 @@ import { dataLink } from "~/assets/link/navigator/sideLink"
 </script>
 
 <template>
-  <ul class="menu menu-sm sm:menu-lg bg-base-200 w-52 max-w-6xl min-h-screen">
+  <ul class="menu menu-sm sm:menu-lg bg-base-100 w-52 max-w-6xl min-h-screen">
     <li v-for="data in dataLink" :key="data.title">
       <NuxtLink
         v-if="data.sub.length === 0"

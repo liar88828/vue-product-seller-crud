@@ -14,7 +14,7 @@
           <!-- <IconsBook class="inline-block w-8 h-8 stroke-current" /> -->
         </div>
 
-        <div class="card-title text-sm sm:text-md font-bold">
+        <div class="card-title text-sm sm:text-md font-bold whitespace-nowrap">
           {{ data.title }}
         </div>
       </article>
@@ -35,9 +35,11 @@
       </article>
     </div>
     <!--  -->
-    <span class="border-t-2 border-slate-300 text-xs sm:text-md">
-      Remaining - {{ getDate(data.day,'medium') }}
-    </span>
+    <p class="border-t-2 border-slate-300 text-xs sm:text-md">
+      <span> Remaining </span>
+      <br class="sm:hidden" />
+      <span> {{ getDate(data.day, "medium") }} </span>
+    </p>
   </CardInit>
 </template>
 

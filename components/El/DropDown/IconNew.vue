@@ -1,8 +1,7 @@
 <template>
   <div :tabindex="index" role="button" class="btn btn-ghost btn-sm">
     <div class="indicator">
-      <!-- <slot /> -->
-      <component :is="icon" class="icons" />
+      <slot />
       <span class="badge badge-sm indicator-item badge-primary">
         {{ indicator }}
       </span>

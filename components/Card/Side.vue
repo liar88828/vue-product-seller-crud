@@ -1,5 +1,5 @@
 <template>
-  <Card :class="`card-side ${props.class}`">
+  <Card :class="`card-side ${props.class}`" :bg="props.bg">
     <slot />
   </Card>
 </template>
@@ -10,6 +10,11 @@ const props = defineProps({
     type: String,
     required: false,
     default: "",
+  },
+  bg: {
+    type: Boolean,
+    required: false,
+    default: true,
   },
 })
 </script>

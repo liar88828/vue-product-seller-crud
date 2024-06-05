@@ -5,7 +5,7 @@ export type NotifyProps = {
   read?: boolean
 }
 export type NotifyMessage = {
-  type: string
+  type: TypeMessage
   name: string
   link: string
   time: Date
@@ -14,3 +14,12 @@ export type NotifyMessage = {
   img: string
   msg: string
 }
+
+export type TypeMessage =
+  | "Message"
+  | "Transaction"
+  | "Confirm"
+  | "User"
+  | "Admin"
+  | "Select"
+export type FilterMessage = { value: TypeMessage; name: string }

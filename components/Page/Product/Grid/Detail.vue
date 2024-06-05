@@ -1,8 +1,9 @@
 <template>
   <CardParentGrid
-    :class="'card-normal'"
+    :class="'card-normal bg-base-100/70'"
     :class2="'text-xl sm:text-2xl font-bold'"
     :title="'Related Products'"
+    :bg="false"
   >
     <Grid
       v-for="dataProduct in data"

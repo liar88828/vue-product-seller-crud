@@ -7,7 +7,7 @@
     />
   </CardHead>
 
-  <div class="">
+  <div>
     <ElRating :rating="3" />
 
     <div class="flex justify-between mt-2">

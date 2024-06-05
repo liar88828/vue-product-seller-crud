@@ -1,5 +1,5 @@
 <template>
-  <CardSide>
+  <CardSide :bg="true" :class="'h-32 '">
     <figure class="w-1/4">
       <img
         :src="data.img"
@@ -15,6 +15,9 @@
             {{ data.type }}
           </p>
         </template>
+        <NuxtLink :to="data.link" class="btn btn-outline btn-sm self-end">
+          Reply
+        </NuxtLink>
       </CardHead>
       <CardActionBetween class="flex-nowrap">
         <div class="flex justify-between flex-col">
@@ -26,9 +29,9 @@
 
           <span class="text-xs sm:text-sm">{{ getDate(data.time) }}</span>
         </div>
-        <NuxtLink :to="data.link" class="btn btn-outline btn-sm self-end"
-          >Reply</NuxtLink
-        >
+        <!-- <NuxtLink :to="data.link" class="btn btn-outline btn-sm self-end">
+          Reply
+        </NuxtLink> -->
       </CardActionBetween>
     </CardBody>
   </CardSide>

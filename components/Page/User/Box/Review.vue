@@ -1,5 +1,5 @@
 <template>
-  <CardSide :class="' card-compact '">
+  <CardSide :class="' card-compact '" :bg="true">
     <figure>
       <img :src="data.img" :alt="data.name" />
     </figure>

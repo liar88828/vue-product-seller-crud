@@ -54,7 +54,7 @@
 </template>
 
 <script setup lang="ts">
-import { useProductTech } from "#imports"
+import { useProductTech } from "~/composables/product/useProductTech"
 import type { ProductItem } from "~/types/product/item"
 
 const props = defineProps<{

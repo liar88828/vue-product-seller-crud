@@ -7,7 +7,7 @@ defineProps<{
 </script>
 
 <template>
-  <CardInit class="card-normal">
+  <CardInit class="card-normal bg-base-200">
     <CardHeadTitle
       title=" Product Specifications"
       :class="'text-xl sm:text-2xl font-bold'"

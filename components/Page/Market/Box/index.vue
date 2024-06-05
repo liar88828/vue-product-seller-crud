@@ -1,5 +1,5 @@
 <template>
-  <CardInit class="card-normal">
+  <CardInit class="card-normal bg-base-100/70">
     <CardHeadTitle title="Market" :class="'text-xl sm:text-2xl font-bold'" />
     <Body>
       <Desc :data="data" :static="static" />

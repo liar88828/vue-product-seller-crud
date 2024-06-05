@@ -8,6 +8,7 @@
 </template>
 <script lang="ts" setup>
 const props = defineProps({
+  bg: { type: Boolean, default: true, required: false },
   title: {
     type: String,
     required: true,

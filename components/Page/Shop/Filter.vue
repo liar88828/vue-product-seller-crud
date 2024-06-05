@@ -1,10 +1,10 @@
 <template>
-  <div class="h-full bg-base-100">
+  <div class="h-full bg-base-100 rounded-lg">
     <ul
       ref="size"
       class="menu md:menu-vertical menu-horizontal rounded w-full flex justify-between md:space-y-2"
     >
-      <li class="bg-base-100 shadow">
+      <li class="bg-base-200 rounded-lg">
         <ElModalFilter />
       </li>
       <ElMenuDrop :open="getData" :data="staticLink.price" />
@@ -24,9 +24,9 @@ onMounted(() => {
   // console.log(getData.value)
 
   if (size.value) {
-    console.log("is mobile", size.value.clientWidth)
-    console.log("is mobile")
-    console.log(size.value.clientWidth < 183 ? true : false)
+    // console.log("is mobile", size.value.clientWidth)
+    // console.log("is mobile")
+    // console.log(size.value.clientWidth < 183 ? true : false)
     getData.value = size.value.clientWidth <= 183 ? true : false
     getData.value = size.value.clientWidth <= 382 ? true : false
   }
@@ -35,9 +35,8 @@ onMounted(() => {
 })
 onMounted(() => {
   if (size.value) {
-    console.log("is mounted")
-
-    console.log(size.value.clientWidth <= 183 ? true : false)
+    // console.log("is mounted")
+    // console.log(size.value.clientWidth <= 183 ? true : false)
   }
 })
 // const sizeValue = computed(() => size.value?.clientWidth ?? 0)

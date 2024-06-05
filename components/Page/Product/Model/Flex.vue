@@ -10,7 +10,7 @@
       />
     </figure>
     <CardBodyBox :class="'w-[20vh] sm:w-[22vh] md:w-[24vh]'">
-      <div :class="`flex  flex-col h-full`">
+      <div :class="`flex flex-col h-full justify-between`">
         <Desc :data="data" v-model:detail="props.detail" />
       </div>
     </CardBodyBox>

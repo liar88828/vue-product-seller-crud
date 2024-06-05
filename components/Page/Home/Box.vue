@@ -8,9 +8,7 @@
     <div class="hero-content text-slate-200">
       <div class="flex">
         <div class="md:w-fit">
-          <h2
-            :class="`text-2xl font-bold ${data.color.dis ?? 'text-[#7fffd4]'}`"
-          >
+          <h2 :class="[color, `text-2xl font-bold `]">
             {{ data.discount }}
           </h2>
 
@@ -35,4 +33,5 @@
 import type { DataBoxProps } from "~/types/product/grid"
 
 const { data } = defineProps<{ data: DataBoxProps }>()
+const color = computed(() => data.color)
 </script>

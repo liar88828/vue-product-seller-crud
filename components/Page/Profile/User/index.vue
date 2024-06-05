@@ -1,5 +1,5 @@
 <template>
-  <Card>
+  <Card :bg="false" :class="`bg-base-100/80  `">
     <CardBody>
       <!--  -->
       <div class="grid grid-cols-3 sm:grid-cols-2 md:grid-cols-3 gap-2">

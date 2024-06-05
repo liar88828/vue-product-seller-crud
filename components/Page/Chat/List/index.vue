@@ -1,28 +1,30 @@
 <!-- Main Chat List -->
 <template>
-  <!-- :right="UnRead" -->
-  <CardParent :title="'Message'">
+  <CardParent :title="'Message'" :class="'bg-base-100/85'">
     <template #rightSlot>
-      <div class="join">
-        <input
-          type="text"
-          class="input input-bordered w-full input-sm join-item"
-          placeholder="Search Name ...."
-        />
-        <ElIndicator :count="newMessage">
-          <div class="join-item btn btn-outline btn-sm">
-            <IconsBell class="icons" />
-          </div>
-        </ElIndicator>
+      <Search :newMessage="newMessage" />
+    </template>
+    <template #filter>
+      <div class="flex gap-5 justify-end">
+        <Filter :data="data" />
       </div>
     </template>
-    <Box v-for="dataList in props.data" :data="dataList" :key="dataList.name" />
+    <Box v-for="dataList in newData" :data="dataList" :key="dataList.name" />
+    <div class="flex justify-center pt-5">
+      <ElPagination :keys="getKey('message_page')" :total="10" />
+    </div>
   </CardParent>
+  {{ page("message_page") }}
 </template>
 
 <script lang="ts" setup>
 import type { NotifyMessage } from "~/types/globals/notify"
 import Box from "./Box.vue"
+import Search from "./Search.vue"
+import Filter from "./Filter.vue"
+import { useList } from "~/composables/message/useList"
+const { filter, page } = useList()
+const newData = computed(() => filter(props.data))
 const props = defineProps<{
   data: NotifyMessage[]
   newMessage: number

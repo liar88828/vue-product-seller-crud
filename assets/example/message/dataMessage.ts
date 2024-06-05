@@ -146,3 +146,14 @@ export const dataNotifies: NotifyMessage[] = [
   dataTransactionSuccess,
   dataConfirmProduct,
 ]
+
+export const dataNotifyExample: NotifyMessage = {
+  type: "Message",
+  name: "John",
+  link: "/message/1",
+  time: new Date(),
+  id: "1",
+  read: false,
+  img: "https://picsum.photos/63",
+  msg: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+}

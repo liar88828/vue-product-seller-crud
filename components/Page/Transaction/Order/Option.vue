@@ -1,12 +1,9 @@
 <template>
-  <div class="flex justify-between">
-    <div class="">
-      <h1 class="title-md font-bold">Order History</h1>
-    </div>
-
+  <div class="flex justify-between items-center">
+    <h1 class="title-md font-bold">Order History</h1>
     <div class="flex flex-wrap gap-1 justify-end">
       <ul
-        class="menu menu-xs menu-horizontal bg-base-100 rounded shadow w-full flex justify-between"
+        class="menu menu-xs menu-horizontal bg-base-100 rounded w-full flex justify-between gap-2"
       >
         <!-- <ElSelect :data="staticLink.sort" 
         :select=""

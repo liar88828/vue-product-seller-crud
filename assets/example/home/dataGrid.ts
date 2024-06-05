@@ -7,10 +7,11 @@ export const dataGrid1: DataBoxProps = {
   title: "Fresh",
   slogans: "Healthy Choices, Delicious",
   description: "If a dog chews shoes whose shoes does he choose?",
-  color: {
-    bg: "bg-blue-200",
-    dis: "text-[#42bef8]",
-  },
+  color: "bg-blue-200",
+  // color: {
+  //   bg: "bg-blue-200",
+  //   dis: "text-[#42bef8]",
+  // },
   link: "#",
 }
 
@@ -21,10 +22,11 @@ export const dataGrid2: DataBoxProps = {
   title: "Natural",
   slogans: "Good Choice & Price ",
   description: "If a dog chews shoes whose shoes does he choose?",
-  color: {
-    bg: "bg-yellow-200",
-    dis: "text-[#7fffd4]",
-  },
+  color: "bg-yellow-200",
+  // color: {
+  //   bg: "bg-yellow-200",
+  //   dis: "text-[#7fffd4]",
+  // },
   link: "#",
 }
 
@@ -36,8 +38,9 @@ export const dataGrid3: DataBoxProps = {
   slogans: "Fresh Smoothie & Summer Juice",
   description:
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dignissim massa diam elementum",
-  color: {
-    bg: "bg-[#bd1e59]",
-    dis: "text-[#bd1e59]",
-  },
+  color: "text-red-200",
+  // color: {
+  //   bg: "text-red-200",
+  //   dis: "text-red-200",
+  // },
 }

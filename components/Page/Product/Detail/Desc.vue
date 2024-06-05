@@ -4,7 +4,7 @@ import type { ProductItem } from "~/types/product/item"
 defineProps<{ data: ProductItem }>()
 </script>
 <template>
-  <CardInit class="card-normal">
+  <CardInit class="card-normal bg-base-100/70" :bg="false">
     <CardHeadTitle
       :replace="true"
       :title="data.name"

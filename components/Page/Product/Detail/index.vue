@@ -1,5 +1,5 @@
 <template>
-  <div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto md:px-4 mb-5">
+  <div class="grid md:grid-cols-2 gap-8 mb-5">
     <ImageDetail :data="dataImage" />
     <Desc :data="dataProduct" />
   </div>

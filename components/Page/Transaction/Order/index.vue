@@ -1,5 +1,5 @@
 <template>
-  <CardInit :class="`   `">
+  <CardInit>
     <Option :data="dataOrders" />
     <CardTable v-for="data in filterStatus" :key="data.id" :data="data">
       <Tables :products="data.trolly" />

@@ -11,7 +11,7 @@
     </figure>
 
     <CardBodyBox :class="`w-full`">
-      <div class="flex justify-between flex-col h-full">
+      <div class="flex flex-col h-full justify-between">
         <Desc :data="data" v-model:detail="props.detail" />
       </div>
     </CardBodyBox>
