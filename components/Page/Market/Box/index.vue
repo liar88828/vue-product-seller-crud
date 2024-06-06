@@ -8,7 +8,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { MarketStatic } from "~/types/market/profile"
+import type { MarketStatic } from "~/types/profile/profile"
 import type { DataPreviewProps } from "~/types/product/DataReview"
 import Desc from "./Desc.vue"
 

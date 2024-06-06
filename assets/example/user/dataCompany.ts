@@ -1,4 +1,4 @@
-import type { MarketStatic, ProfileCompany } from "~/types/market/profile"
+import type { MarketStatic, ProfileCompany } from "~/types/profile/profile"
 
 export const dataCompany: ProfileCompany = {
   name: "PT. Orak Genah",

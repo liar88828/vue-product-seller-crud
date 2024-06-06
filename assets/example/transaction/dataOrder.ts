@@ -10,6 +10,10 @@ const dataHistory: OrderProps = {
   Market: dataCompany,
   dateBuy: new Date(),
   status: "Delivered",
+
+  discount: 20,
+  expired: new Date(),
+  promoCode: "FASDFSD5756",
 }
 const dataHistory2: OrderProps = {
   id: "3",
@@ -18,6 +22,9 @@ const dataHistory2: OrderProps = {
   Market: dataCompany,
   dateBuy: new Date(),
   status: "Cancelled",
+  discount: 20,
+  expired: new Date(),
+  promoCode: "FASDFSD5756",
 }
 const dataOrder: OrderProps = {
   id: "1",
@@ -26,6 +33,9 @@ const dataOrder: OrderProps = {
   userBuy: userProfile,
   Market: dataCompany,
   dateBuy: new Date(),
+  discount: 20,
+  expired: new Date(),
+  promoCode: "FASDFSD5756",
 }
 
 const dataOrder2: OrderProps = {
@@ -35,5 +45,8 @@ const dataOrder2: OrderProps = {
   Market: dataCompany,
   dateBuy: new Date(),
   status: "Waiting",
+  discount: 20,
+  expired: new Date(),
+  promoCode: "FASDFSD5756",
 }
 export const dataOrders = [dataOrder, dataOrder2, dataHistory, dataHistory2]

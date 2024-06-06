@@ -6,6 +6,7 @@ import type {
 import type { keyPage } from "~/types/globals/pagenation"
 const exData: FilterMessage = { value: "Select", name: "" }
 export const useList = () => {
+  const keys: keyPage = "message_page"
   const store = reactive<{ value: TypeMessage; name: string }>(exData)
   const filter = (data: NotifyMessage[]) =>
     data
@@ -22,8 +23,8 @@ export const useList = () => {
         return d.name.toLowerCase().includes(store.name.toLowerCase())
       })
   const page = (k: keyPage) => useState(k)
-
   return {
+    keys,
     filter,
     store,
     page,

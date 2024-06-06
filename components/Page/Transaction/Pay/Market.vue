@@ -1,24 +1,44 @@
 <template>
-  <div class="space-y-4">
-    <div class="flex items-center gap-3">
-      <IconsCardBoardClose />
-      <div class="text-2xl font-medium">{{ company.name }}</div>
+  <h3 class="nota-title">
+    <IconsCardBoardClose />
+    <spam>{{ company.name }}</spam>
+  </h3>
+  <div class="flex justify-between">
+    <div class="w-2/3">
+      <div class="gap-2 flex flex-col">
+        <div class="flex flex-col">
+          <div class="font-medium">Name</div>
+          <div>{{ company.address }}</div>
+        </div>
+        <div class="flex flex-col">
+          <div class="font-medium">Email</div>
+          <div>{{ company.contact.email }}</div>
+        </div>
+        <div class="flex flex-col">
+          <div class="font-medium">Phone</div>
+          <div>{{ getPhone(company.contact.phone) }}</div>
+        </div>
+      </div>
     </div>
 
-    <h2 class="text-2xl font-bold">{{ company.address }}</h2>
-    <div class="gap-4 mt-5">
-      <p class="text-xl font-semibold">{{ company.contact.email }}</p>
-      <p class="text-xl font-semibold">
-        {{ getPhone(company.contact.phone) }}
-      </p>
+    <div class="w-1/3 flex justify-end mr-2">
+      <slot />
+      <!-- <button @click="downloadQRCode()">Download</button> -->
+      <!-- <input type="text" v-model="text" /> -->
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import type { ProfileCompany } from "~/types/market/profile"
+import type { ProfileCompany } from "~/types/profile/profile"
+// const { $downloadQRCode } = useNuxtApp()
 
 defineProps<{
   company: ProfileCompany
 }>()
+
+// // Function to download the QR Code
+// function downloadQRCode() {
+//   $downloadQRCode()
+// }
 </script>

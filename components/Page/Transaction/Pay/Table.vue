@@ -18,7 +18,7 @@
           <td class="border border-slate-600">
             <div class="flex items-center gap-3">
               <IconsCardBoardClose />
-              <div class="font-bold">{{ item.name }}</div>
+              <div class="font-bold">{{ getTextSplit(item.name, 20) }}</div>
             </div>
           </td>
           <td class="border border-slate-600">

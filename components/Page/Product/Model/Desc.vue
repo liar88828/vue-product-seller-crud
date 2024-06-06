@@ -1,10 +1,20 @@
 <template>
   <CardHead :title="data.name" :class="titleStyle">
-    <Trash
-      @click="handlerDeleteTrolly"
-      v-if="side"
-      :styles="'btn-sm btn-square btn-error'"
-    />
+    <div class="flex gap-2" v-if="side">
+      <button
+        @click="handlerDeleteTrolly"
+        class="btn btn-sm btn-square btn-error"
+      >
+        <IconsTrash />
+      </button>
+      <button
+        v-if="$route.path.includes('like')"
+        @click="handlerAddTrolly"
+        class="btn btn-sm btn-square btn-info"
+      >
+        <IconsTrolley />
+      </button>
+    </div>
   </CardHead>
 
   <div>
@@ -49,13 +59,16 @@
 <script setup lang="ts">
 import type { Product } from "@prisma/client"
 import Counter from "./Counter.vue"
-import Trash from "./Side/Trash.vue"
 
-const props = defineProps<{ data: Product; side?: boolean; detail?: boolean }>()
+const props = defineProps<{
+  data: Product
+  side?: boolean
+  detail?: boolean
+}>()
 // const detail = defineModel("detail", { required: true })
 
 const titleStyle = props.side
-  ? "text-md sm:text-lg md:text-xl font-bold"
+  ? "text-sm sm:text-md md:text-lg font-bold"
   : "text-sm sm:text-md md:text-lg font-bold"
 
 const priceStyle = props.side
@@ -66,5 +79,9 @@ const counter = ref<number>(0)
 
 const handlerDeleteTrolly = () => {
   console.log(`delete trolly ${props.data.id}`)
+}
+
+const handlerAddTrolly = () => {
+  console.log(`Add trolly ${props.data.id}`)
 }
 </script>

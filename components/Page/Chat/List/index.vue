@@ -11,10 +11,9 @@
     </template>
     <Box v-for="dataList in newData" :data="dataList" :key="dataList.name" />
     <div class="flex justify-center pt-5">
-      <ElPagination :keys="getKey('message_page')" :total="10" />
+      <ElPagination :keys="keys" :total="10" />
     </div>
   </CardParent>
-  {{ page("message_page") }}
 </template>
 
 <script lang="ts" setup>
@@ -23,7 +22,7 @@ import Box from "./Box.vue"
 import Search from "./Search.vue"
 import Filter from "./Filter.vue"
 import { useList } from "~/composables/message/useList"
-const { filter, page } = useList()
+const { filter, page, keys } = useList()
 const newData = computed(() => filter(props.data))
 const props = defineProps<{
   data: NotifyMessage[]

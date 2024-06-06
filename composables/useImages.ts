@@ -1,14 +1,15 @@
-import { toPng, toJpeg } from "html-to-image"
-import { ref, computed } from "vue"
+import { toJpeg } from "html-to-image"
+import { ref } from "vue"
 export const useImages = (title: string) => {
   //@ts-ignore
-  const refImage = ref<HTMLDivElement>(null)
+  const refImage = ref<HTMLDivElement>()
 
-  const clickImage = computed(() => {
+  const clickImage = () => {
     if (refImage.value === null) {
       return
     }
-
+    // console.log(refImage.value)
+    //@ts-ignore
     toJpeg(refImage.value, { cacheBust: true })
       .then((dataUrl) => {
         const link = document.createElement("a")
@@ -19,7 +20,7 @@ export const useImages = (title: string) => {
       .catch((err) => {
         console.log(err)
       })
-  })
+  }
 
   return {
     refImage,

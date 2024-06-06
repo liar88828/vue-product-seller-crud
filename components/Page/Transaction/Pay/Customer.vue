@@ -1,7 +1,10 @@
 <template>
   <div class="gap-4">
     <div>
-      <h3 class="text-2xl font-bold mb-5">Customer Information</h3>
+      <h3 class="nota-title">
+        <IconsUser />
+        <span> Customer Information </span>
+      </h3>
       <div class="gap-2 flex flex-col">
         <div class="flex items-center justify-between">
           <div class="font-medium">Name</div>

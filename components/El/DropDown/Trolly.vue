@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { dataProducts } from "~/assets/example/product/dataProduct"
-import Trolley from "~/components/Icons/Trolley.vue"
 const totalTrolly = computed(() => dataProducts.length)
 const totalPrice = computed(() => dataProducts.reduce((a, b) => a + b.price, 0))
 </script>

@@ -1,5 +1,6 @@
 export const ProductLink = [
   { title: "Profile", link: "/user/profile" },
+  { title: "Like", link: "/user/like" },
   { title: "Trolly", link: "/user/trolly" },
   { title: "Order", link: "/user/order" },
   { title: "History", link: "/user/history" },

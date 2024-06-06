@@ -15,6 +15,7 @@
     "@prisma/client": "5.14.0",
     "html-to-image": "^1.11.11",
     "nuxt": "^3.11.2",
+    "qrcode-vue3": "^1.6.8",
     "vue": "^3.4.27",
     "vue-router": "^4.3.2",
     "zod": "^3.23.8"

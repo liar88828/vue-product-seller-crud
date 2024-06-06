@@ -1,26 +1,20 @@
 <template>
   <div class="space-y-5">
-    <div>
+    <div class="w-full">
       <h3 class="font-medium">About {{ data.name }}</h3>
-      <p class="text-gray-500 dark:text-gray-400">
-        {{ data.description }}
-      </p>
+      <textarea v-model="data.description"> </textarea>
     </div>
     <div>
       <h3 class="font-medium">Our Vision</h3>
-      <p class="text-gray-500 dark:text-gray-400">{{ data.vision }}</p>
+      <textarea v-model="data.vision"></textarea>
     </div>
     <div>
       <h3 class="font-medium">Our Mission</h3>
-      <p class="text-gray-500 dark:text-gray-400">
-        {{ data.mission }}
-      </p>
+      <textarea v-model="data.mission"></textarea>
     </div>
     <div>
       <h3 class="font-medium">Company History</h3>
-      <p class="text-gray-500 dark:text-gray-400">
-        {{ data.history }}
-      </p>
+      <textarea v-model="data.history"></textarea>
     </div>
   </div>
 </template>

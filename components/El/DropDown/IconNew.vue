@@ -13,7 +13,5 @@
 defineProps<{
   index: string
   indicator: string
-  // text: string
-  icon: Component
 }>()
 </script>

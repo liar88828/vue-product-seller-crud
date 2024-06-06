@@ -8,6 +8,29 @@
   } */
 }
 
+.profile-edit {
+  div {
+    @apply w-full;
+  }
+  input {
+    @apply w-full;
+  }
+  textarea {
+    @apply w-full h-40;
+  }
+}
+
+.nota-title {
+  @apply text-xl sm:text-2xl font-bold mb-2 flex items-center gap-2;
+}
+
+.total-p {
+  @apply text-2xl sm:text-3xl font-semibold;
+}
+.total-p2 {
+  @apply text-lg sm:text-xl font-semibold;
+}
+
 .theme-icon {
   @apply w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12;
 }

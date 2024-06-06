@@ -1,5 +1,7 @@
 <template>
-  <PageTransactionTrolly :data="dataProducts" />
+  <NuxtLayout name="profile">
+    <PageTransactionLike :data="dataProducts" />
+  </NuxtLayout>
 </template>
 
 <script lang="ts" setup>

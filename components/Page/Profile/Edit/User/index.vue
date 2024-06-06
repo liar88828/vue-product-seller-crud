@@ -1,27 +1,6 @@
 <template>
-  <Card :bg="false" :class="`bg-base-100/90`">
+  <Card :bg="false" :class="`bg-base-100/80  `">
     <CardBody>
-      <!--  -->
-      <div class="grid grid-cols-3 sm:grid-cols-2 md:grid-cols-3 gap-2">
-        <Static
-          :data="userStatics[0]"
-          :class="'text-primary'"
-          :icon="IconsLoveOutlet"
-        />
-
-        <Static
-          :data="userStatics[1]"
-          :class="'text-warning'"
-          :icon="Thunder"
-        />
-        <Static
-          :data="userStatics[2]"
-          :class="'text-secondary'"
-          :icon="Book"
-          :is-task="true"
-        />
-      </div>
-
       <div class="px-4 py-5 sm:px-6">
         <h3 class="text-lg leading-6 font-medium">User Profile</h3>
         <p class="mt-1 max-w-2xl text-sm">
@@ -35,48 +14,44 @@
           <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
             <dt class="text-sm font-medium">Full name</dt>
             <dd class="mt-1 text-sm sm:mt-0 sm:col-span-2">
-              {{ data.name }}
+              <input v-model="data.name" class="w-full" />
             </dd>
           </div>
           <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
             <dt class="text-sm font-medium">Email address</dt>
             <dd class="mt-1 text-sm sm:mt-0 sm:col-span-2">
-              {{ data.email }}
+              <input v-model="data.email" class="w-full" />
             </dd>
           </div>
           <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
             <dt class="text-sm font-medium">Phone number</dt>
             <dd class="mt-1 text-sm sm:mt-0 sm:col-span-2">
-              {{ data.phone }}
+              <input v-model="data.phone" class="w-full" />
             </dd>
           </div>
           <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
             <dt class="text-sm font-medium">Address</dt>
             <dd class="mt-1 text-sm sm:mt-0 sm:col-span-2">
-              {{ data.address }}
+              <textarea v-model="data.address" class="w-full h-20"></textarea>
             </dd>
           </div>
         </dl>
       </div>
       <!-- <EleDivider /> -->
       <div class="card-actions justify-end">
-        <NuxtLink to="/user/profile/edit" class="btn btn-outline"
-          >Edit</NuxtLink
-        >
-        <button class="btn btn-outline">Print</button>
-        <button class="btn btn-outline btn-error">Exit</button>
+        <button @click="handleSave" class="btn btn-Info">Save</button>
       </div>
     </CardBody>
   </Card>
 </template>
 
 <script lang="ts" setup>
-import IconsLoveOutlet from "~/components/Icons/Love/Outlet.vue"
 import type { User } from "@prisma/client"
-import { userStatics } from "~/assets/example/user/static"
-import Thunder from "~/components/Icons/Thunder.vue"
-import Book from "~/components/Icons/Person/Book.vue"
-import Static from "./Static.vue"
 
-defineProps<{ data: User }>()
+const props = defineProps<{ data: User }>()
+
+const handleSave = async () => {
+  console.log(props.data)
+  await navigateTo("/user/profile")
+}
 </script>

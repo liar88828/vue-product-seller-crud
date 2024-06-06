@@ -1,5 +1,5 @@
 import type { Product, User } from "@prisma/client"
-import type { ProfileCompany } from "../market/profile"
+import type { ProfileCompany } from "../profile/profile"
 
 export type OrderProps = {
   id: string
@@ -8,4 +8,7 @@ export type OrderProps = {
   userBuy: User
   Market: ProfileCompany
   dateBuy: Date
+  expired: Date
+  promoCode: string
+  discount: number
 }
