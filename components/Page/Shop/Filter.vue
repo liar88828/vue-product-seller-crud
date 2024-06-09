@@ -19,6 +19,8 @@ import { staticLink } from "~/assets/link/shopLink"
 
 const size = ref<HTMLUListElement>()
 const getData = ref<boolean>(false)
+const { store } = useShop()
+
 onMounted(() => {
   // getData.value = size.value?.clientWidth ?? 0
   // console.log(getData.value)

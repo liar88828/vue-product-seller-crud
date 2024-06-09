@@ -4,15 +4,13 @@
       <Market :company="company">
         <ElQRBarcode :qrValue="fullUrl" class="bg-white rounded-3xl" />
       </Market>
-      <ElDivider />
+      <ElDivider class="my-0" />
       <Customer :data="data" />
-      <ElDivider />
+      <ElDivider class="my-0" />
       <Dates :data="data" />
-      <ElDivider />
-
+      <ElDivider class="my-0" />
       <Table :data="data" />
-      <ElDivider />
-
+      <ElDivider class="my-0" />
       <Total :data="data" />
     </CardInit>
   </div>

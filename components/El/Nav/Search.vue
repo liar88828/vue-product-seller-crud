@@ -3,9 +3,14 @@
     <input
       placeholder="Search"
       class="join-item input input-bordered input-sm md:input-md w-full"
+      v-model="search"
     />
-    <button class="btn-sm md:btn-md btn join-item">
+    <button @click="handleSearch" class="btn-sm md:btn-md btn join-item">
       <IconsSearch />
     </button>
   </div>
 </template>
+
+<script lang="ts" setup>
+const { handleSearch, search } = useSearch()
+</script>

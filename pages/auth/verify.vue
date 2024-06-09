@@ -1,11 +1,11 @@
 <template>
-  <Card :compact="false">
+  <Card :compact="false" class="lg:h-[50rem]">
     <CardBody class="flex items-center">
       <PageAuthBack link="/auth/sign-up" />
       <!--  -->
-      <div class="lg:flex">
+      <div class="lg:flex gap-5 justify-between h-full">
         <figure class="lg:w-1/2">
-          <NuxtImg src="/img/register.svg" class="hidden lg:block" />
+          <NuxtImg src="/img/otp.svg" class="hidden lg:inline" />
         </figure>
         <div class="lg:1/2 flex flex-col justify-center">
           <div class="text-center space-y-2">
