@@ -23,6 +23,17 @@ export const useSignUp = () => {
     // to="/auth/verify"
     console.log(valid)
     if (valid.success) {
+      const { data, error } = useFetch("/api/auth/sign-up", {
+        method: "POST",
+        body: valid.data,
+      })
+      if (!data.value) {
+        console.log(error.value)
+      } else if (error.value) {
+        throw createError({ statusCode: 404, statusMessage: "Error Sign up" })
+      } else {
+        await navigateTo("/home")
+      }
       await navigateTo("/auth/verify")
     } else {
       console.error(" is error ")

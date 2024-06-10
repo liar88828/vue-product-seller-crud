@@ -1,3 +1,5 @@
 export default defineEventHandler(async (event) => {
-  return 'Hello Nitro'
+  const sessionId = "2"
+  const user = await db.user.findId(sessionId)
+  return { user }
 })

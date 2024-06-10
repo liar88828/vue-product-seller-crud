@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { TypeMessage } from "~/types/globals/notify"
+import type { TypeMessage } from "~/types/message/notify"
 const data: TypeMessage[] = [
   "Admin",
   "Confirm",

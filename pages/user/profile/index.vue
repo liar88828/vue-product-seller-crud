@@ -1,8 +1,12 @@
 <template>
   <NuxtLayout name="profile">
-    <PageProfileUser :data="userProfile" />
+    <!-- @vue-expect-error -->
+    <PageProfileUser :data="data?.user" />
   </NuxtLayout>
 </template>
 <script lang="ts" setup>
-import { userProfile } from "~/assets/example/user/dataUser"
+const { data } = await useFetch("/api/user/")
+if (!data.value) {
+  throw createError({ statusCode: 404, statusMessage: "Page Not Found" })
+}
 </script>

@@ -13,6 +13,6 @@
 </template>
 
 <script lang="ts" setup>
-import type { NotifyProps } from "~/types/globals/notify"
+import type { NotifyProps } from "~/types/message/notify"
 const { data } = defineProps<{ data: NotifyProps }>()
 </script>

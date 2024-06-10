@@ -1,6 +1,5 @@
-import type { Package, Transaction } from "@prisma/client"
-import { prisma } from "~/config/prisma"
-import { control } from "~/server/controllers"
+import type { Transaction } from "@prisma/client"
+import { prisma } from "~/server/config/prisma"
 import type { GetPackageProps } from "~/types/transaction/GetBox"
 
 export class TransactionDB {

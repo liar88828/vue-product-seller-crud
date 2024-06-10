@@ -1,25 +1,28 @@
 <template>
   <section class="space-y-5">
-    <PageHomeDiscount />
-    <PageProductCategoryFlex title="Find By Category" :data="dataCategory" />
-    <PageProductFlex
-      :data="dataProducts"
+    <LazyPageHomeDiscount />
+    <LazyPageProductCategoryFlex
+      title="Find By Category"
+      :data="dataCategory"
+    />
+    <LazyPageProductFlex
+      :data="dataNewProducts"
       title="New Products"
       link="/shop?category=new-products"
     />
-    <PageHomeAdv :data="dataAdv" />
-    <PageProductFlex
-      :data="dataProducts"
+    <LazyPageHomeAdv :data="dataAdv" />
+    <LazyPageProductFlex
+      :data="dataTrending"
       title="Trending Products"
       link="/shop?category=trading-products"
     />
-    <PageHomeAdv :data="dataAdv2" />
-    <PageProductFlex
-      :data="dataProducts"
+    <LazyPageHomeAdv :data="dataAdv2" />
+    <LazyPageProductFlex
+      :data="dataBestSellers"
       title="Best Sellers"
       link="/shop?category=best-seller"
     />
-    <PageHomeFooter />
+    <LazyPageHomeFooter />
   </section>
 </template>
 
@@ -29,8 +32,10 @@ import type { AdvProps } from "~/types/product/grid"
 import type { Product } from "@prisma/client"
 defineProps<{
   dataCategory: ItemIcons[]
-  dataProducts: Product[]
   dataAdv: AdvProps
   dataAdv2: AdvProps
+  dataBestSellers: Product[]
+  dataTrending: Product[]
+  dataNewProducts: Product[]
 }>()
 </script>

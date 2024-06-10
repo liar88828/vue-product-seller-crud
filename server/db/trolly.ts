@@ -1,7 +1,6 @@
 import type { Box, Trolly, User } from "@prisma/client"
 import type { GetBoxProps } from "~/types/transaction/GetBox"
-import { prisma } from "~/config/prisma"
-import { control } from "~/server/controllers"
+import { prisma } from "~/server/config/prisma"
 
 export class TrollyMutation {
   async createTrolly(id: string, box: GetBoxProps[]) {

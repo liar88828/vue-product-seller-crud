@@ -1,13 +1,14 @@
 import type { User } from "@prisma/client"
 
 export const userProfile: User = {
+  id: "user_1",
   name: "John Doe",
   email: "johndoe@example.com",
   phone: "08123456-7890",
   address: "123 Main St, Anytown, USA 12345",
-  id: "user_1",
-  roleId: "ADMIN",
-  trollyId: "trolly_1",
+  id_role: "ADMIN",
+  id_trolly: "trolly_1",
+  followId: 1,
 }
 
 export const userProfile2: User = {
@@ -16,6 +17,7 @@ export const userProfile2: User = {
   phone: "08123456-7890",
   address: "123 Main St, Anytown, USA 12345",
   id: "user_1",
-  roleId: "ADMIN",
-  trollyId: "trolly_1",
+  id_role: "ADMIN",
+  id_trolly: "trolly_1",
+  followId: 1,
 }

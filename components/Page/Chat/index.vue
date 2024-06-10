@@ -32,11 +32,11 @@
 <script lang="ts" setup>
 import { ref, watch, nextTick } from "vue"
 import Minimize from "./Message/Minimize.vue"
-import type { MessageProps } from "~/types/globals/message"
+import type { MessageContact } from "~/types/message/message"
 import Send from "./Message/Send.vue"
 import Text from "./Message/Text.vue"
 const props = defineProps<{
-  data: MessageProps[]
+  data: MessageContact[]
 }>()
 
 const message = ref<string>("")
@@ -53,10 +53,12 @@ const onSend = (): void => {
   if (message.value.trim() !== "") {
     props.data.push({
       id: (props.data.length + 1).toString(),
-      left: false,
       msg: message.value,
       name: "Alex",
-      time: new Date().toLocaleTimeString(),
+      time: new Date(),
+      img: "https://picsum.photos/200",
+      read: false,
+      message: [],
     })
     message.value = ""
     nextTick(() => {

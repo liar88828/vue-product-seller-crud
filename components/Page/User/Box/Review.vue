@@ -16,7 +16,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { DataPreviewProps } from "~/types/product/DataReview"
+import type { DataPreviewProps } from "~/types/product/review"
 defineProps<{
   data: DataPreviewProps
 }>()

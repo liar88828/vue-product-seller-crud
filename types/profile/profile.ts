@@ -18,10 +18,12 @@ export type ProfileCompany = {
     whatsapp: string
   }
   additional: string[]
+  marketStatic: MarketStatic
 }
+
 export type MarketStatic = {
   follow: number
   product: number
-  since: string
+  since: Date
   response: string
 }

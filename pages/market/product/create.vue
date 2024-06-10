@@ -20,13 +20,14 @@ import type { Product } from "@prisma/client"
 const state = reactive<Product>({
   brand: "",
   description: "",
-  id: "",
+  id: 0,
   image: "",
   name: "",
   price: 0,
   stock: 0,
-  typeId: "",
-  userId: "",
+  id_order: "",
+  id_type: "",
+  id_user: "",
 })
 
 async function onSubmit() {

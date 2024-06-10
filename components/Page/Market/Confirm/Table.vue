@@ -1,9 +1,7 @@
 <template>
 <ElTables >
-
   <thead>
     <tr>
- 
       <th>Buyer</th>
       <th>Product Name</th>
       <th>Total</th>
@@ -71,10 +69,11 @@
 </template>
 
 <script lang="ts" setup>
+import type { DataMarket } from '~/types/market/confirm'
 import type { OrderProps } from '~/types/product/order'
 
 const props=defineProps<{
-  dataProduct: OrderProps[]
+  dataProduct: DataMarket[]
 }>()
 const totalProduct=computed(()=> props.dataProduct.flatMap((t)=>t.trolly).map((t)=>t.price).reduce((a,b)=>a+b,0))
 </script>

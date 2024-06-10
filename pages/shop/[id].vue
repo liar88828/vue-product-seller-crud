@@ -1,19 +1,19 @@
 <script setup lang="ts">
-import { dataPreviews } from "~/assets/example/product/dataPreview"
-import {
-  dataProductDetails,
-  dataProducts,
-} from "~/assets/example/product/dataProduct"
-import { marketStatic } from "~/assets/example/user/dataCompany"
-import { dataImage } from "~/assets/example/product/image"
+import type { ProductDetail } from "~/types/product/detail"
+
+const { id } = useRoute().params
+const { data, error } = await useFetch<ProductDetail>(`/api/shop/${id}`)
+if (!data.value) {
+  throw createError({ statusCode: 404, statusMessage: "Page Not Found" })
+}
 </script>
 
 <template>
+  <!-- @vue-expect-error -->
   <PageProductDetail
-    :dataProduct="dataProductDetails[0]"
-    :static="marketStatic"
-    :data-products="dataProducts"
-    :data-previews="dataPreviews"
-    :data-image="dataImage"
+    :dataDetail="data?.dataDetail"
+    :static="data?.static"
+    :dataRelated="data?.dataRelated"
+    :data-previews="data?.dataPreviews"
   />
 </template>

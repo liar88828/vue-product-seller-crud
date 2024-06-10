@@ -57,7 +57,7 @@
 
 <script setup lang="ts">
 import type { MarketStatic } from "~/types/profile/profile"
-import type { DataPreviewProps } from "~/types/product/DataReview"
+import type { DataPreviewProps } from "~/types/product/review"
 
 defineProps<{
   data: DataPreviewProps

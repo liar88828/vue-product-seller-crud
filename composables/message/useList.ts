@@ -2,7 +2,7 @@ import type {
   FilterMessage,
   NotifyMessage,
   TypeMessage,
-} from "~/types/globals/notify"
+} from "~/types/message/notify"
 import type { keyPage } from "~/types/globals/pagenation"
 const exData: FilterMessage = { value: "Select", name: "" }
 export const useList = () => {

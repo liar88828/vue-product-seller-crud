@@ -18,18 +18,25 @@ model User {
   address     String?
   Transaction Transaction[]
   Product     Product[]
+  password    String
 
   // 
-  Trolly   Trolly? @relation(fields: [trollyId], references: [id])
-  trollyId String? @unique
+  Trolly    Trolly? @relation(fields: [id_trolly], references: [id])
+  id_trolly String? @unique
 
   // 
-  Role   Role?   @relation(fields: [roleId], references: [id])
-  roleId String?
+  Role        Role?         @relation(fields: [id_role], references: [id])
+  id_role     String?
+  Order       Order[]
+  MessageList MessageList[]
+  Preview     Preview[]
+  Company     Company?
+  Follow      Follow?       @relation(fields: [id_follow], references: [id])
+  id_follow   Int?
 }
 
 model Product {
-  id          String    @id @default(uuid())
+  id          Int       @id @default(autoincrement())
   name        String
   description String?
   image       String
@@ -37,14 +44,78 @@ model Product {
   stock       Int
   price       Int
   // 
-  userId      String?
-  User        User?     @relation(fields: [userId], references: [id])
+  id_user     String?
+  User        User?     @relation(fields: [id_user], references: [id])
   // 
-  typeId      String?
-  type        Type?     @relation(fields: [typeId], references: [id])
+  id_type     String?
+  type        Type?     @relation(fields: [id_type], references: [id])
   // 
   Package     Package[]
   Box         Box[]
+  Tech        Tech[]
+  Spec        Spec[]
+  Desc        Desc[]
+  Img         Image[]
+  Order       Order?    @relation(fields: [id_order], references: [id])
+  id_order    Int?
+  Preview     Preview[]
+  Company     Company?  @relation(fields: [id_company], references: [id])
+  id_company  Int?
+}
+
+model Image {
+  id String @id
+
+  Product    Product? @relation(fields: [id_product], references: [id])
+  id_product Int?
+}
+
+model Desc {
+  id String @id
+
+  Product    Product? @relation(fields: [id_product], references: [id])
+  id_product Int?
+}
+
+model Tech {
+  id    Int    @id @default(autoincrement())
+  title String
+  text  String
+
+  Product    Product?    @relation(fields: [id_product], references: [id])
+  id_product Int?
+  List       List_Tech[]
+}
+
+model List_Tech {
+  id     String @id
+  Tech   Tech?  @relation(fields: [techId], references: [id])
+  techId Int?
+}
+
+model Spec {
+  id         String      @id
+  title      String
+  list       List_Spec[]
+  Product    Product?    @relation(fields: [id_product], references: [id])
+  id_product Int?
+}
+
+model List_Spec {
+  id String @id
+
+  Spec    Spec?   @relation(fields: [id_spec], references: [id])
+  id_spec String?
+}
+
+model Preview {
+  id         Int      @id @default(autoincrement())
+  user       User     @relation(fields: [id_user], references: [id])
+  time       DateTime @default(now())
+  text       String
+  id_user    String
+  Product    Product? @relation(fields: [id_product], references: [id])
+  id_product Int?
 }
 
 model Trolly {
@@ -55,28 +126,28 @@ model Trolly {
 }
 
 model Box {
-  id        String   @id @default(uuid())
-  amount    Int
-  price     Int
+  id         String   @id @default(uuid())
+  amount     Int
+  price      Int
   // 
-  Product   Product? @relation(fields: [productId], references: [id])
-  productId String?
+  Product    Product? @relation(fields: [id_product], references: [id])
+  id_product Int?
   // 
-  Trolly    Trolly?  @relation(fields: [trollyId], references: [id])
-  trollyId  String?
+  Trolly     Trolly?  @relation(fields: [id_trolly], references: [id])
+  id_trolly  String?
   // 
 }
 
 model Package {
-  id            String       @id @default(uuid())
-  amount        Int
-  price         Int
+  id             String       @id @default(uuid())
+  amount         Int
+  price          Int
   // 
-  Product       Product?     @relation(fields: [productId], references: [id])
-  productId     String?
+  Product        Product?     @relation(fields: [id_product], references: [id])
+  id_product     Int?
   // 
-  Transaction   Transaction? @relation(fields: [transactionId], references: [id])
-  transactionId String?
+  Transaction    Transaction? @relation(fields: [id_transaction], references: [id])
+  id_transaction String?
   //
 }
 
@@ -84,12 +155,12 @@ model Transaction {
   id           String    @id @default(uuid())
   drop_address String?
   // who's buy 
-  User         User?     @relation(fields: [userId], references: [id])
-  userId       String?
+  User         User?     @relation(fields: [id_user], references: [id])
+  id_user      String?
   // 
   // that status transaction is []
-  Status       Status?   @relation(fields: [statusId], references: [id])
-  statusId     String?
+  Status       Status?   @relation(fields: [id_status], references: [id])
+  id_status    String?
   // 
   createdAt    DateTime  @default(now())
   updatedAt    DateTime  @updatedAt
@@ -110,4 +181,93 @@ model Type {
 model Role {
   id   String @id @default("USER")
   User User[]
+}
+
+model Company {
+  id          Int    @id @default(autoincrement())
+  name        String
+  industry    String
+  address     String
+  description String
+  mission     String
+  vision      String
+  history     String
+
+  email          String
+  phone          String
+  website        String
+  since          DateTime     @default(now())
+  Contact        Contact?     @relation(fields: [id_contact], references: [id])
+  id_contact     Int?         @unique
+  SocialMedia    SocialMedia? @relation(fields: [id_socialMedia], references: [id])
+  id_socialMedia Int?         @unique
+  Additional     Additional[]
+  Order          Order[]
+  product        Product[]
+  User           User?        @relation(fields: [id_user], references: [id])
+  id_user        String?      @unique
+  Follow         Follow?      @relation(fields: [id_follow], references: [id])
+  id_follow      Int?
+}
+
+model Follow {
+  id      Int       @id @default(autoincrement())
+  User    User[]
+  Company Company[]
+}
+
+model Contact {
+  id      Int      @id @default(autoincrement())
+  email   String
+  phone   String
+  website String
+  Company Company?
+}
+
+model SocialMedia {
+  id        Int      @id @default(autoincrement())
+  instagram String
+  facebook  String
+  twitter   String
+  whatsapp  String
+  Company   Company?
+}
+
+model Additional {
+  id         String   @id
+  Company    Company? @relation(fields: [id_company], references: [id])
+  id_company Int?
+}
+
+model Order {
+  id         Int       @id @default(autoincrement())
+  trolly     Product[]
+  userBuy    User      @relation(fields: [id_user], references: [id])
+  market     Company   @relation(fields: [id_company], references: [id])
+  discount   String
+  status     String
+  promoCode  String
+  dateBuy    DateTime
+  expired    DateTime
+  id_user    String
+  id_company Int
+}
+
+model MessageContact {
+  id      Int           @id @default(autoincrement())
+  name    String
+  time    DateTime
+  img     String
+  message MessageList[]
+  read    Boolean
+}
+
+model MessageList {
+  id                Int             @id @default(autoincrement())
+  name              User?           @relation(fields: [id_user], references: [id])
+  time              DateTime
+  msg               String
+  MessageContact    MessageContact? @relation(fields: [id_messageContact], references: [id])
+  id_messageContact Int?
+  id_user           String?
 }

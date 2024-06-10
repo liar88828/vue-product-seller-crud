@@ -27,9 +27,9 @@
 </template>
 
 <script lang="ts" setup>
-import type { MessageListProps } from "~/types/globals/message"
+import type { MessageContact } from "~/types/message/message"
 
 defineProps<{
-  data: MessageListProps
+  data: MessageContact
 }>()
 </script>

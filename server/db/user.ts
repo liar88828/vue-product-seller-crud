@@ -1,4 +1,5 @@
-import { prisma } from "~/config/prisma"
+import type { User } from "@prisma/client"
+import { prisma } from "~/server/config/prisma"
 import type { ControlCreateUser } from "~/types/user/ControlCreateUser"
 
 class UserMutation {
@@ -30,10 +31,11 @@ export class UserDB extends UserMutation {
   }
 
   async findId(id: string) {
-    return prisma.user.findUnique({
+    const res = await prisma.user.findUnique({
       where: {
         id,
       },
     })
+    return res as User
   }
 }

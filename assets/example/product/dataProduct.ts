@@ -10,10 +10,13 @@ const dataProduct2: Product = {
   price: 443,
   stock: 64,
   brand: "Adidas's",
-  typeId: "13",
-  id: "1234",
+  id_type: "13",
+  id: 123,
   description: "i dont know",
-  userId: "112",
+  id_user: "112",
+
+  id_company: 1,
+  id_order: 1,
 }
 const dataProduct3: Product = {
   image: "https://picsum.photos/220",
@@ -21,10 +24,12 @@ const dataProduct3: Product = {
   price: 443,
   stock: 64,
   brand: "Adidas's",
-  typeId: "13",
-  id: "2131",
+  id_type: "13",
+  id: 213,
   description: "i dont know",
-  userId: "112",
+  id_user: "112",
+  id_company: 1,
+  id_order: 1,
 }
 const dataProduct1: Product = {
   image: "https://picsum.photos/200",
@@ -32,10 +37,12 @@ const dataProduct1: Product = {
   price: 120,
   stock: 30,
   brand: "Nike",
-  typeId: "11",
-  id: "1001",
+  id_type: "11",
+  id: 1001,
   description: "Comfortable running shoes",
-  userId: "110",
+  id_user: "110",
+  id_company: 1,
+  id_order: 1,
 }
 const dataProduct4: Product = {
   image: "https://picsum.photos/230",
@@ -43,10 +50,12 @@ const dataProduct4: Product = {
   price: 25,
   stock: 100,
   brand: "H&M",
-  typeId: "14",
-  id: "1003",
+  id_type: "14",
+  id: 1003,
   description: "Soft cotton t-shirt",
-  userId: "113",
+  id_user: "113",
+  id_company: 1,
+  id_order: 1,
 }
 const dataProduct5: Product = {
   image: "https://picsum.photos/240",
@@ -54,28 +63,32 @@ const dataProduct5: Product = {
   price: 199,
   stock: 20,
   brand: "Apple",
-  typeId: "15",
-  id: "1004",
+  id_type: "15",
+  id: 1004,
   description: "Latest model with GPS",
-  userId: "114",
+  id_user: "114",
+  id_company: 1,
+  id_order: 1,
 }
 const dataProductDetail: ProductItem = {
   name: "High-Quality Noise-Cancelling Headphones",
   description:
     "Experience the ultimate in audio immersion with our premium noise-cancelling headphones. Crafted with the finest materials and advanced technology, these headphones deliver unparalleled sound quality and comfort for the discerning listener.",
   brand: "Apple",
-  id: "1",
+  id: 1,
   image: "https://picsum.photos/220",
   price: 199.99,
   stock: 10,
-  typeId: "1",
-  userId: "1",
+  id_type: "1",
+  id_user: "1",
   desc: dataDesc,
   desc_tech: dataTech,
   desc_spec: dataSpec,
+  id_company: 1,
+  id_order: 1,
 }
 
-const dataProductDetail2 = {
+const dataProductDetail2: ProductItem = {
   brand: "Hart Hagerty",
   description:
     "The Nagasaki Lander is the trademarked name of several series of Nagasaki sport bikes, that started with the 1984 ABC800J",
@@ -84,15 +97,17 @@ const dataProductDetail2 = {
   name: "Shoes",
   price: 123,
   stock: 10,
-  id: "23423",
-  typeId: "1",
-  userId: "1",
+  id: 3423,
+  id_type: "1",
+  id_user: "1",
   desc: dataDesc2,
   desc_tech: dataTech2,
   desc_spec: dataSpec2,
+  id_company: 1,
+  id_order: 1,
 }
 
-const dataProductDetail3 = {
+const dataProductDetail3: ProductItem = {
   brand: "Hart Hagerty",
   description:
     "The Nagasaki Lander is the trademarked name of several series of Nagasaki sport bikes, that started with the 1984 ABC800J",
@@ -100,12 +115,14 @@ const dataProductDetail3 = {
   name: "Shoes",
   price: 123,
   stock: 10,
-  id: "2",
-  typeId: "1",
-  userId: "1",
+  id: 2,
+  id_type: "1",
+  id_user: "1",
   desc: dataDesc3,
   desc_tech: dataTech3,
   desc_spec: dataSpec3,
+  id_company: 1,
+  id_order: 1,
 }
 export const dataProductDetails: ProductItem[] = [
   dataProductDetail,

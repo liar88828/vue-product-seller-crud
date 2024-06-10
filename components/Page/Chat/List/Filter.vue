@@ -6,7 +6,7 @@
 
 <script lang="ts" setup>
 import { useList } from "~/composables/message/useList"
-import type { NotifyMessage } from "~/types/globals/notify"
+import type { NotifyMessage } from "~/types/message/notify"
 const { store } = useList()
 
 defineProps({

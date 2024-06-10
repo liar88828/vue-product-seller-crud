@@ -14,21 +14,23 @@
 </template>
 
 <script lang="ts" setup>
-import type { MessageProps } from "~/types/globals/message"
+import type { MessageContact } from "~/types/message/message"
 const props = defineProps<{
-  data: MessageProps[]
+  data: MessageContact[]
 }>()
 
-const data = ref<MessageProps[]>(props.data)
+const data = ref<MessageContact[]>(props.data)
 const message = ref<string>("")
 const scroll = ref()
 const onSend = () => {
   data.value.push({
     id: "1",
-    left: false,
     msg: message.value,
     name: "Alex",
-    time: "10:00",
+    time: new Date(),
+    message: [],
+    img:'',
+    read:false
   })
   // scroll down
   // scroll.value.scrollTop = scroll.value.scrollHeight

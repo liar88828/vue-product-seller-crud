@@ -38,7 +38,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { NotifyMessage } from "~/types/globals/notify"
+import type { NotifyMessage } from "~/types/message/notify"
 const props = defineProps<{
   data: NotifyMessage
 }>()

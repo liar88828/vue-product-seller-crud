@@ -1,32 +1,23 @@
 <template>
   <div class="grid md:grid-cols-2 gap-8 mb-5">
-    <ImageDetail :data="dataImage" />
-    <Desc :data="dataProduct" />
+    <ImageDetail :data="dataDetail.image" />
+    <Desc :data="dataDetail" />
   </div>
   <div class="space-y-5">
-    <Spec :data="dataProduct.desc_spec" />
-    <Tech :data="dataProduct.desc_tech" />
+    <Spec :data="dataDetail.desc_spec" />
+    <Tech :data="dataDetail.desc_tech" />
     <PageUserBox :data="dataPreviews" />
     <PageMarketBox :data="dataPreviews[0]" :static="static" />
-    <PageProductGridDetail :title="'Related Products'" :data="dataProducts" />
+    <PageProductGridDetail :title="'Related Products'" :data="dataRelated" />
   </div>
 </template>
 
 <script setup lang="ts">
-import type { Product } from "@prisma/client"
-import type { DataImage } from "~/assets/example/product/image"
-import type { MarketStatic } from "~/types/profile/profile"
-import type { DataPreviewProps } from "~/types/product/DataReview"
-import type { ProductItem } from "~/types/product/item"
 import ImageDetail from "./Images.vue"
 import Desc from "./Desc.vue"
 import Spec from "./Spec.vue"
 import Tech from "./Tech.vue"
-defineProps<{
-  static: MarketStatic
-  dataProduct: ProductItem
-  dataPreviews: DataPreviewProps[]
-  dataProducts: Product[]
-  dataImage: DataImage[]
-}>()
+import type { ProductDetail } from "~/types/product/detail"
+
+defineProps<ProductDetail>()
 </script>

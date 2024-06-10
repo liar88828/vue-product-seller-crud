@@ -2,19 +2,20 @@ import { userProfile, userProfile2 } from "../user/dataUser"
 import { dataCompany } from "../user/dataCompany"
 import { dataProducts } from "../product/dataProduct"
 import type { OrderProps } from "~/types/product/order"
+import type { DataCompany } from "~/types/market/confirm"
 
-const dataHistory: OrderProps = {
-  id: "3",
+const dataHistory: DataCompany = {
+  id: 3,
   trolly: dataProducts,
   userBuy: userProfile2,
   Market: dataCompany,
-  dateBuy: new Date(),
-  status: "Delivered",
-
   discount: 20,
-  expired: new Date(),
+  status: "Delivered",
   promoCode: "FASDFSD5756",
+  dateBuy: new Date(),
+  expired: new Date(),
 }
+
 const dataHistory2: OrderProps = {
   id: "3",
   trolly: dataProducts,

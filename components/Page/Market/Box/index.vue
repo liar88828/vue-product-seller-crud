@@ -9,7 +9,7 @@
 
 <script lang="ts" setup>
 import type { MarketStatic } from "~/types/profile/profile"
-import type { DataPreviewProps } from "~/types/product/DataReview"
+import type { DataPreviewProps } from "~/types/product/review"
 import Desc from "./Desc.vue"
 
 defineProps<{

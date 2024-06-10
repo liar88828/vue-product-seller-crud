@@ -1,11 +1,11 @@
 <template>
-  <PageProductEdit
-    :dataImage="dataImage"
-    :dataProduct="dataProductDetails[0]"
-  />
+  <!-- :dataImage="dataImage"  -->
+  <PageProductEdit :dataProduct="data?.product" />
 </template>
 
 <script lang="ts" setup>
 import { dataProductDetails } from "~/assets/example/product/dataProduct"
 import { dataImage } from "~/assets/example/product/image"
+const { id } = useRoute().params
+const { data } = await useFetch(`/api/product/${id}`)
 </script>

@@ -17,7 +17,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { NotifyMessage } from "~/types/globals/notify"
+import type { NotifyMessage } from "~/types/message/notify"
 import Box from "./Box.vue"
 import Search from "./Search.vue"
 import Filter from "./Filter.vue"

@@ -1,5 +1,7 @@
-import { db } from "~/server/db"
+import { prisma } from "~/server/config/prisma"
+import { DataProduct } from "~/types/product/DataProduct"
 
 export default defineEventHandler(async (event) => {
-  return db.user.findAll()
+  const product: DataProduct[] = await prisma.product.findMany({ take: 100 })
+  return { product }
 })

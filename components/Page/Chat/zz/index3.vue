@@ -25,12 +25,12 @@
 
 <script lang="ts" setup>
 import { ref, watch, nextTick } from "vue"
-import type { MessageProps } from "~/types/globals/message"
+import type { MessageContact } from "~/types/message/message"
 import Message from "../Message/Text.vue"
 import Minimize from "../Message/Minimize.vue"
 import Send from "../Message/Send.vue"
 const props = defineProps<{
-  data: MessageProps[]
+  data: MessageContact[]
 }>()
 
 const message = ref<string>("")

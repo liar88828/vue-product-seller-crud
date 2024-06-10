@@ -13,7 +13,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { DataPreviewProps } from "~/types/product/DataReview"
+import type { DataPreviewProps } from "~/types/product/review"
 import Review from "./Review.vue"
 
 defineProps<{

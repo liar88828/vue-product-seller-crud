@@ -5,9 +5,10 @@
 </template>
 
 <script lang="ts" setup>
-import type { OrderProps } from "~/types/product/order"
+import type { DataMarket } from "~/types/market/confirm"
+// import type { OrderProps } from "~/types/product/order"
 
 defineProps<{
-  dataPurchases: OrderProps[]
+  dataPurchases: DataMarket[]
 }>()
 </script>

@@ -4,8 +4,7 @@ import type { SignInProps, SignUpProps } from "~/types/auth/user"
 
 export default () => {
   const createProductSchema = z.object({
-    id: z.string(),
-    //
+    id: z.number(),
     name: z.string(),
     description: z.string(),
     image: z.string(),
@@ -13,8 +12,10 @@ export default () => {
     price: z.number(),
     stock: z.number(),
     //
-    userId: z.string(),
-    typeId: z.string(),
+    id_user: z.string(),
+    id_type: z.string(),
+    id_order: z.number(),
+    id_company: z.number(),
   }) satisfies ZodType<Product>
 
   const signUpSchema = z

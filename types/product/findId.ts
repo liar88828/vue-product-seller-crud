@@ -1,4 +1,4 @@
 export type DeleteDataDB = {
-  id: string
+  id: number
   id_user: string
 }

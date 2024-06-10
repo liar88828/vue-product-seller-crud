@@ -10,9 +10,9 @@ import { dataImage } from "~/assets/example/product/image"
 
 <template>
   <PageProductDetail
-    :dataProduct="dataProductDetails[0]"
+    :dataDetail="dataProductDetails[0]"
     :static="marketStatic"
-    :data-products="dataProducts"
+    :dataRelated="dataProducts"
     :data-previews="dataPreviews"
     :data-image="dataImage"
   />

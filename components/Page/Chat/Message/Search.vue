@@ -56,8 +56,6 @@
 </template>
 
 <script lang="ts" setup>
-const { formatRupiah } = useFormat()
-
 const filterCase = reactive<{
   category: string
   sort: string

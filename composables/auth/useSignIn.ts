@@ -22,7 +22,17 @@ export const useSignIn = () => {
     // else not found will redirect to sign up
     // and make new Account then send otp
     if (valid.success) {
-      await navigateTo("/home")
+      const { data, error } = useFetch("/api/auth/sign-in", {
+        method: "POST",
+        body: valid.data,
+      })
+      if (!data.value) {
+        console.log(error.value)
+      } else if (error.value) {
+        throw createError({ statusCode: 404, statusMessage: "Error Sign In" })
+      } else {
+        await navigateTo("/home")
+      }
     } else {
       console.error(" is error ")
       errStore.success = false

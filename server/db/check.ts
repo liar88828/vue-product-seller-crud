@@ -1,4 +1,4 @@
-import { prisma } from "~/config/prisma"
+import { prisma } from "~/server/config/prisma"
 
 export class CheckDB {
   async Status() {
@@ -15,15 +15,16 @@ export class CheckDB {
 
   async transaction(id_user: string) {
     const found = await prisma.transaction.findMany({
-      where: { userId: id_user },
+      where: { id_user },
       select: { id: true },
     })
     if (!found) {
       const create = await prisma.transaction.create({
         data: {
-          userId: id_user,
+          id_user,
         },
       })
+      return create
     }
   }
 
@@ -46,6 +47,7 @@ export class CheckDB {
           },
         },
       })
+      return create
     }
   }
 }

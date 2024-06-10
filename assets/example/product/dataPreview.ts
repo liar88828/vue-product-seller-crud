@@ -1,4 +1,4 @@
-import type { DataPreviewProps } from "~/types/product/DataReview"
+import type { DataPreviewProps } from "~/types/product/review"
 
 export const dataPreview: DataPreviewProps = {
   name: "Alex",
