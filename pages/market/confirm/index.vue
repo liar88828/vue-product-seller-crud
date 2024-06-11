@@ -6,6 +6,6 @@
 </template>
 
 <script lang="ts" setup>
-import { dataOrders } from "~/assets/example/transaction/dataOrder"
+// import { dataOrders } from "~/assets/example/transaction/dataOrder"
 const { data } = await useFetch("/api/market/confirm/")
 </script>

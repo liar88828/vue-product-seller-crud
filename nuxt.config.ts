@@ -1,3 +1,4 @@
+/* v8 ignore next 3 */
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   // devtools: { enabled: true },
@@ -7,7 +8,7 @@ export default defineNuxtConfig({
     typeCheck: true,
   },
 
-  modules: ["@nuxtjs/tailwindcss", "@nuxt/image"],
+  modules: ["@nuxtjs/tailwindcss", "@nuxt/image", "@nuxt/test-utils/module"],
 
   postcss: {
     plugins: {

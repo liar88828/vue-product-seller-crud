@@ -8,6 +8,7 @@
     <Total :total-pay="99.98" :total-product="4" :total-send="5.99" />
     <PageProductModelSideTotal />
   </CardParentSide>
+  hello
 </template>
 
 <script lang="ts" setup>

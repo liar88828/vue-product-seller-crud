@@ -1,8 +1,19 @@
 import type { User } from "@prisma/client"
 import { prisma } from "~/server/config/prisma"
+import { SignUpProps } from "~/types/auth/user"
 import type { ControlCreateUser } from "~/types/user/ControlCreateUser"
 
 class UserMutation {
+  async signUp({ name, email, password }: Omit<SignUpProps, "confPass">) {
+    return prisma.user.create({
+      data: { name, email, password },
+      select: {
+        name: true,
+        email: true,
+      },
+    })
+  }
+
   async create(data: ControlCreateUser) {
     return prisma.user.create({
       data,
@@ -37,5 +48,17 @@ export class UserDB extends UserMutation {
       },
     })
     return res as User
+  }
+
+  async findEmail(email: string) {
+    return prisma.user.findUnique({
+      where: {
+        email,
+      },
+      select: {
+        password: true,
+        email: true,
+      },
+    })
   }
 }

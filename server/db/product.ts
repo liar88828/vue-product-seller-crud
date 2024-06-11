@@ -34,10 +34,10 @@ export class ProductDB extends ProductMutation {
   }
 
   async findTest() {
-    const product = await prisma.product.findMany({
+    const product: Product[] = await prisma.product.findMany({
       take: 100,
     })
-    return product as Product[]
+    return product
   }
 
   async findId(id: number) {

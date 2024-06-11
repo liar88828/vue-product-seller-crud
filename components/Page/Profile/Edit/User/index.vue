@@ -39,7 +39,7 @@
       </div>
       <!-- <EleDivider /> -->
       <div class="card-actions justify-end">
-        <button @click="handleSave" class="btn btn-Info">Save</button>
+        <button @click="handleSave" class="btn btn-info">Save</button>
       </div>
     </CardBody>
   </Card>

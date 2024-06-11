@@ -1,7 +1,7 @@
 import { userProfile, userProfile2 } from "../user/dataUser"
 import { dataCompany } from "../user/dataCompany"
 import { dataProducts } from "../product/dataProduct"
-import type { OrderProps } from "~/types/product/order"
+import type { OrderProps } from "~/types/market/order"
 import type { DataCompany } from "~/types/market/confirm"
 
 const dataHistory: DataCompany = {
@@ -50,4 +50,9 @@ const dataOrder2: OrderProps = {
   expired: new Date(),
   promoCode: "FASDFSD5756",
 }
-export const dataOrders = [dataOrder, dataOrder2, dataHistory, dataHistory2]
+export const dataOrders: OrderProps[] = [
+  dataOrder,
+  dataOrder2,
+  // dataHistory,
+  dataHistory2,
+]

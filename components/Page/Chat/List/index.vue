@@ -22,7 +22,7 @@ import Box from "./Box.vue"
 import Search from "./Search.vue"
 import Filter from "./Filter.vue"
 import { useList } from "~/composables/message/useList"
-const { filter, page, keys } = useList()
+const { filter, keys } = useList()
 const newData = computed(() => filter(props.data))
 const props = defineProps<{
   data: NotifyMessage[]

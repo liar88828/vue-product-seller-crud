@@ -1,13 +1,5 @@
 <template>
-  <div>
-    table
-  </div>
+  <div>table</div>
 </template>
 
-<script lang="ts" setup>
-
-</script>
-
-<style>
-
-</style>
+<script lang="ts" setup></script>

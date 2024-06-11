@@ -66,12 +66,7 @@ export const dataChat1: MessageList[] = [
 export const dataMessage1: MessageContact = {
   name: "Alex",
   time: new Date(),
-  msg: {
-    id: "1",
-    msg: "clean flies pull too cross spell butter ruler read immediately like very camp perfect scientific fine attached station captured happened troops depend wild result",
-    name: "Alex",
-    time: new Date(),
-  },
+  msg: dataChat1[0].msg,
   id: "1",
   read: true,
   message: [],
@@ -81,7 +76,7 @@ export const dataMessage1: MessageContact = {
 export const dataMessage2: MessageContact = {
   name: "John",
   time: new Date(),
-  msg: dataChat1[1],
+  msg: dataChat1[1].msg,
   img: "https://picsum.photos/240",
   id: "1",
   message: dataChat1,

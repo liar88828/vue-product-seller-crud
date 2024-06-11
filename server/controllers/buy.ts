@@ -10,17 +10,19 @@ export class BuyController {
     return data.map((d) => ({
       amount: d.amount,
       price: d.price,
-      productId: d.productId,
+      id_product: d.id_product,
       trollyId: id_trolly,
+      id_trolly: id_trolly,
     }))
   }
-
   getPackage(id_trans: string, data: GetPackageProps[]): GetPackageReturn[] {
+    //@ts-expect-error
     return data.map((d) => ({
       amount: d.amount,
       price: d.price,
       transactionId: id_trans,
-      productId: d.productId,
+      id_product: d.id_product,
+      // id_trolly: id_trolly,
     }))
   }
 }

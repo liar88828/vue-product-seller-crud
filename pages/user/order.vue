@@ -1,6 +1,6 @@
 <template>
   <NuxtLayout name="profile">
-    <PageTransactionOrder :data-orders="dataOrders" />
+    <PageTransactionOrder :data="dataOrders" />
   </NuxtLayout>
 </template>
 

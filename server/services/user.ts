@@ -1,9 +1,8 @@
-import { SignInProps, SignUpProps } from "~/types/auth/user"
-import { prisma } from "../config/prisma"
+import type { SignInProps, SignUpProps } from "~/types/auth/user"
 
 export class UserServices {
   async signIn({ email, password }: SignInProps) {
-    const findUser = await prisma.user.findUnique({ where: { email } })
+    const findUser = await db.user.findEmail(email)
     if (!findUser) {
       throw createError({ statusCode: 404, statusMessage: "User not found" })
     }
@@ -14,8 +13,9 @@ export class UserServices {
     }
     return findUser
   }
+
   async signUp({ email, name, password }: SignUpProps) {
-    const foundEmail = await prisma.user.findUnique({ where: { email } })
+    const foundEmail = await db.user.findEmail(email)
 
     if (foundEmail) {
       throw createError({
@@ -26,13 +26,14 @@ export class UserServices {
 
     const hashPassword = lib.cryptr.encrypted(password)
 
-    const user = prisma.user.create({
-      data: {
-        name,
-        email,
-        password: hashPassword,
-      },
-    })
+    const user = await db.user.signUp({ email, name, password: hashPassword })
+    // prisma.user.create({
+    //   data: {
+    //     name,
+    //     email,
+    //     password: hashPassword,
+    //   },
+    // })
     return user
   }
 }

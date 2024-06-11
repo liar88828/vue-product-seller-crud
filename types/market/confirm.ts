@@ -20,3 +20,5 @@ export type DataMarket = Order & {
   trolly: Product[]
   userBuy: User
 }
+
+export type Status = "Accepted" | "Pending" | "Delivered" | "Cancelled"

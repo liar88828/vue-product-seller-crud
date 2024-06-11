@@ -22,12 +22,12 @@
 
 <script setup lang="ts">
 import type { ProfileCompany } from "~/types/profile/profile"
-import type { OrderProps } from "~/types/product/order"
 import Table from "./Table.vue"
 import Total from "./Total.vue"
 import Customer from "./Customer.vue"
 import Market from "./Market.vue"
 import Dates from "./Dates.vue"
+import type { OrderProps } from "~/types/market/order"
 defineProps<{
   company: ProfileCompany
   data: OrderProps

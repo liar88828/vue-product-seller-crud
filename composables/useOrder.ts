@@ -1,5 +1,5 @@
 import { storeFilter, type FilterData } from "~/assets/filter"
-import type { OrderProps } from "~/types/product/order"
+import type { OrderProps } from "~/types/market/order"
 
 export const useOrder = () => {
   const store = reactive<FilterData>(storeFilter)
