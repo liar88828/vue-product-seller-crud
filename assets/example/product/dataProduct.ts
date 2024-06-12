@@ -3,6 +3,7 @@ import type { ProductItem } from "~/types/product/item"
 import { dataDesc, dataDesc2, dataDesc3 } from "./desc"
 import { dataTech, dataTech2, dataTech3 } from "./tech"
 import { dataSpec, dataSpec2, dataSpec3 } from "./spec"
+import { dataImage } from "./image"
 
 const dataProduct2: Product = {
   image: "https://picsum.photos/220",
@@ -71,6 +72,8 @@ const dataProduct5: Product = {
   id_order: 1,
 }
 const dataProductDetail: ProductItem = {
+  dataImage: dataImage,
+
   name: "High-Quality Noise-Cancelling Headphones",
   description:
     "Experience the ultimate in audio immersion with our premium noise-cancelling headphones. Crafted with the finest materials and advanced technology, these headphones deliver unparalleled sound quality and comfort for the discerning listener.",
@@ -89,6 +92,8 @@ const dataProductDetail: ProductItem = {
 }
 
 const dataProductDetail2: ProductItem = {
+  dataImage: dataImage,
+
   brand: "Hart Hagerty",
   description:
     "The Nagasaki Lander is the trademarked name of several series of Nagasaki sport bikes, that started with the 1984 ABC800J",
@@ -108,6 +113,7 @@ const dataProductDetail2: ProductItem = {
 }
 
 const dataProductDetail3: ProductItem = {
+  dataImage: dataImage,
   brand: "Hart Hagerty",
   description:
     "The Nagasaki Lander is the trademarked name of several series of Nagasaki sport bikes, that started with the 1984 ABC800J",

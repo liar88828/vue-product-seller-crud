@@ -1,6 +1,6 @@
 import type { User } from "@prisma/client"
 import { prisma } from "~/server/config/prisma"
-import { SignUpProps } from "~/types/auth/user"
+import type { SignUpProps } from "~/types/auth/user"
 import type { ControlCreateUser } from "~/types/user/ControlCreateUser"
 
 class UserMutation {

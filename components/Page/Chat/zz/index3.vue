@@ -47,10 +47,12 @@ const onSend = (): void => {
   if (message.value.trim() !== "") {
     props.data.push({
       id: (props.data.length + 1).toString(),
-      left: false,
       msg: message.value,
       name: "Alex",
-      time: new Date().toLocaleTimeString(),
+      time: new Date(),
+      img: "https://i.pravatar.cc/300",
+      read: false,
+      message: [],
     })
     message.value = ""
     nextTick(() => {

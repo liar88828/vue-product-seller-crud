@@ -14,7 +14,7 @@
 </template>
 
 <script setup lang="ts">
-import type { OrderProps } from "~/types/product/order"
+import type { OrderProps } from "~/types/market/order"
 
 const props = defineProps<{
   data: OrderProps

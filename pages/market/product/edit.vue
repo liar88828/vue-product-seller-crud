@@ -20,16 +20,24 @@ import type { Product } from "@prisma/client"
 const state = reactive<Product>({
   brand: "",
   description: "",
-  id: "",
+  id: 0,
   image: "",
   name: "",
   price: 0,
   stock: 0,
-  typeId: "",
-  userId: "",
+  id_company: 0,
+  id_order: 0,
+  id_type: "",
+  id_user: "",
 })
 
 async function onSubmit() {
   console.log(state)
+  const dataValid = getZod.createProductSchema.parse(state)
+  const res = await useFetch("/api/market/product/", {
+    method: "PUT",
+    body: dataValid,
+  })
+  console.log(res)
 }
 </script>

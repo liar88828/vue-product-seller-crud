@@ -1,19 +1,17 @@
 <script setup lang="ts">
-import type { ProductDetail } from "~/types/product/detail"
+import type { ProductDetail } from "~/types/product/item"
 
 const { id } = useRoute().params
 const { data, error } = await useFetch<ProductDetail>(`/api/shop/${id}`)
+watch(data, () => {
+  console.log(data.value)
+})
 if (!data.value) {
-  throw createError({ statusCode: 404, statusMessage: "Page Not Found" })
+  throw new Error("data not found")
 }
 </script>
 
 <template>
   <!-- @vue-expect-error -->
-  <PageProductDetail
-    :dataDetail="data?.dataDetail"
-    :static="data?.static"
-    :dataRelated="data?.dataRelated"
-    :data-previews="data?.dataPreviews"
-  />
+  <PageProductDetail :data="data" />
 </template>

@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { ProductItem } from "~/types/product/item"
+import type { ProductDetail, ProductItem } from "~/types/product/item"
 
 defineProps<{
-  data: ProductItem["desc_spec"]
+  data: ProductDetail["detail"]["Spec"]
 }>()
 </script>
 
@@ -22,8 +22,12 @@ defineProps<{
       <div v-for="item in data" :key="item.title">
         <h3 class="text-md sm:text-lg font-bold">{{ item.title }}</h3>
         <ul class="flex flex-wrap sm:flex-none gap-2 list-inside list-disc">
-          <li v-for="d in item.list" class="text-sm sm:text-md">
-            {{ d }}
+          <li
+            v-for="list in item.list"
+            :key="list.text"
+            class="text-sm sm:text-md"
+          >
+            {{ list.text }}
           </li>
         </ul>
       </div>

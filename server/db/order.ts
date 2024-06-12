@@ -1,6 +1,6 @@
-import { Status } from "~/types/market/confirm"
+import type { Status } from "~/types/market/confirm"
 import { prisma } from "../config/prisma"
-import { Order } from "@prisma/client"
+import type { Order } from "@prisma/client"
 
 class OrderMutation {
   async confirm(id: string, status: Status) {

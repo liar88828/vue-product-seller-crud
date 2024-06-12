@@ -23,7 +23,7 @@ const { data, pending, error, refresh, status } = await useFetch(
   "/api/home",
   {}
 )
-console.log(status)
+// console.log(status)
 
 watch(data, () => {
   console.log(data.value)

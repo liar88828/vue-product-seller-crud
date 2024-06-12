@@ -1,8 +1,5 @@
-export type DataImage = {
-  title: string
-  img: string
-  link: string
-}
+import type { DataImage } from "~/types/product/item"
+
 export const dataImage: DataImage[] = [
   {
     title: "Headphone",

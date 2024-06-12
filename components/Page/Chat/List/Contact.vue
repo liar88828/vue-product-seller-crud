@@ -13,7 +13,7 @@
       </CardHead>
       <CardActionBetween class="flex-nowrap">
         <div class="">
-          <p class="text-xs sm:text-sm">{{ getTextSplit(data.msg.msg, 40) }}</p>
+          <p class="text-xs sm:text-sm">{{ getTextSplit(data.msg, 40) }}</p>
           <span class="text-xs sm:text-sm">{{ getDate(data.time) }}</span>
         </div>
         <NuxtLink

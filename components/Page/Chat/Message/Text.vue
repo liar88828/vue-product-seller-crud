@@ -19,10 +19,10 @@
 </template>
 
 <script lang="ts" setup>
-import type { MessageContact } from "~/types/message/message"
+import type { MessageContact, MessageList } from "~/types/message/message"
 
 const { data, user } = defineProps<{
-  data: MessageContact
+  data: MessageList
   user: { name: string }
 }>()
 

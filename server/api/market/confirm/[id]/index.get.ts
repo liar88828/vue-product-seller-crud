@@ -1,5 +1,5 @@
 import { prisma } from "~/server/config/prisma"
-import { DataCompany, DataMarket } from "~/types/market/confirm"
+import type { DataCompany, DataMarket } from "~/types/market/confirm"
 
 export default defineEventHandler(async (event) => {
   const { id } = getRouterParams(event)

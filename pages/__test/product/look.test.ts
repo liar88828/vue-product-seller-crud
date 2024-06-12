@@ -17,7 +17,7 @@ describe("test product look", () => {
     const component = mount(PayIndex, {
       props: {
         company: dataCompany,
-        data: dataOrders[0],
+        data: { order: dataOrders[0] },
       },
     })
 

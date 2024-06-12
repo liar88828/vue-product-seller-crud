@@ -2,8 +2,8 @@ import { prisma } from "~/server/config/prisma"
 import type { Pagination } from "~/types/globals/Pagination"
 import type { DeleteDataDB } from "../../types/product/findId"
 import type { ControlCreateProduct } from "~/types/user/ReturnCreateProduct"
-import { Product } from "@prisma/client"
-import { DataProduct } from "~/types/product/detail"
+import type { Product } from "@prisma/client"
+import type { ProductItemServer } from "~/types/product/item"
 
 class ProductMutation {
   async delete({ id, id_user }: DeleteDataDB) {
@@ -14,9 +14,10 @@ class ProductMutation {
       },
     })
   }
-  async create(data: ControlCreateProduct) {
-    return prisma.product.create({ data: data })
+  async create(data: Product) {
+    return prisma.product.create({ data })
   }
+
   async update(data: ControlCreateProduct, id: number) {
     return prisma.product.update({ where: { id }, data: data })
   }
@@ -56,7 +57,7 @@ export class ProductDB extends ProductMutation {
       where: { id: Number(id) },
       include: { Spec: true, Tech: true, Desc: true, Img: true },
     })
-    return product as DataProduct
+    return product as ProductItemServer
   }
   async myProduct({ id_user, page, search }: Pagination) {
     return prisma.product.findMany({

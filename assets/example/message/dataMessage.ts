@@ -66,21 +66,21 @@ export const dataChat1: MessageList[] = [
 export const dataMessage1: MessageContact = {
   name: "Alex",
   time: new Date(),
-  msg: dataChat1[0].msg,
   id: "1",
   read: true,
   message: [],
   img: "https://picsum.photos/200",
+  msg: "clean flies pull too cross spell butter ruler read immediately like very camp perfect scientific fine attached station captured happened troops depend wild result",
 }
 
 export const dataMessage2: MessageContact = {
   name: "John",
   time: new Date(),
-  msg: dataChat1[1].msg,
   img: "https://picsum.photos/240",
   id: "1",
   message: dataChat1,
   read: false,
+  msg: "clean flies pull too cross spell butter ruler read immediately like very camp perfect scientific fine attached station captured happened troops depend wild result",
 }
 export const dataMessages: MessageContact[] = [dataMessage1, dataMessage2]
 

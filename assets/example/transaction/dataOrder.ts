@@ -6,6 +6,7 @@ import type { DataCompany } from "~/types/market/confirm"
 
 const dataHistory: DataCompany = {
   id: 3,
+  //@ts-ignore
   trolly: dataProducts,
   userBuy: userProfile2,
   Market: dataCompany,

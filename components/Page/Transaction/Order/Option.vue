@@ -41,7 +41,7 @@
 
 <script lang="ts" setup>
 import { staticLink } from "~/assets/link/shopLink"
-import type { OrderProps } from "~/types/product/order"
+import type { OrderProps } from "~/types/market/order"
 const { store } = useOrder()
 
 const props = defineProps({

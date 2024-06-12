@@ -25,12 +25,19 @@ const state = reactive<Product>({
   name: "",
   price: 0,
   stock: 0,
-  id_order: "",
+  id_company: 0,
+  id_order: 0,
   id_type: "",
   id_user: "",
 })
 
 async function onSubmit() {
   console.log(state)
+  const dataValid = getZod.createProductSchema.parse(state)
+  const res = await useFetch("/api/market/product/", {
+    method: "POST",
+    body: dataValid,
+  })
+  console.log(res)
 }
 </script>

@@ -52,10 +52,12 @@ model Product {
   // 
   Package     Package[]
   Box         Box[]
-  Tech        Tech[]
+  // 
   Spec        Spec[]
+  Tech        Tech[]
   Desc        Desc[]
   Img         Image[]
+  // 
   Order       Order?    @relation(fields: [id_order], references: [id])
   id_order    Int?
   Preview     Preview[]
@@ -64,58 +66,56 @@ model Product {
 }
 
 model Image {
-  id String @id
-
+  title      String   @id
+  img        String
+  link       String
   Product    Product? @relation(fields: [id_product], references: [id])
   id_product Int?
 }
 
 model Desc {
-  id String @id
-
+  text       String   @id
   Product    Product? @relation(fields: [id_product], references: [id])
   id_product Int?
 }
 
 model Tech {
-  id    Int    @id @default(autoincrement())
-  title String
-  text  String
-
-  Product    Product?    @relation(fields: [id_product], references: [id])
+  title      String   @id
+  text       String
+  // List       List_Tech[]
+  Product    Product? @relation(fields: [id_product], references: [id])
   id_product Int?
-  List       List_Tech[]
 }
 
-model List_Tech {
-  id     String @id
-  Tech   Tech?  @relation(fields: [techId], references: [id])
-  techId Int?
-}
+// model List_Tech {
+//   id        String  @id
+//   Tech      Tech?   @relation(fields: [techTitle], references: [title])
+//   techTitle String?
+// }
 
 model Spec {
-  id         String      @id
-  title      String
+  title      String      @id
   list       List_Spec[]
   Product    Product?    @relation(fields: [id_product], references: [id])
   id_product Int?
 }
 
 model List_Spec {
-  id String @id
-
-  Spec    Spec?   @relation(fields: [id_spec], references: [id])
-  id_spec String?
+  text      String  @id
+  Spec      Spec?   @relation(fields: [specTitle], references: [title])
+  specTitle String?
 }
 
 model Preview {
   id         Int      @id @default(autoincrement())
-  user       User     @relation(fields: [id_user], references: [id])
-  time       DateTime @default(now())
   text       String
+  time       DateTime @default(now())
+  // 
   id_user    String
-  Product    Product? @relation(fields: [id_product], references: [id])
+  user       User     @relation(fields: [id_user], references: [id])
+  // 
   id_product Int?
+  Product    Product? @relation(fields: [id_product], references: [id])
 }
 
 model Trolly {
@@ -184,28 +184,29 @@ model Role {
 }
 
 model Company {
-  id          Int    @id @default(autoincrement())
-  name        String
-  industry    String
-  address     String
-  description String
-  mission     String
-  vision      String
-  history     String
-
-  email          String
-  phone          String
-  website        String
-  since          DateTime     @default(now())
-  Contact        Contact?     @relation(fields: [id_contact], references: [id])
-  id_contact     Int?         @unique
-  SocialMedia    SocialMedia? @relation(fields: [id_socialMedia], references: [id])
-  id_socialMedia Int?         @unique
+  id             Int          @id @default(autoincrement())
+  name           String
+  industry       String
+  address        String
+  description    String
+  mission        String
+  vision         String
+  history        String
+  // 
   Additional     Additional[]
   Order          Order[]
   product        Product[]
+  since          DateTime     @default(now())
+  // 
+  Contact        Contact?     @relation(fields: [id_contact], references: [id])
+  id_contact     Int?         @unique
+  // 
+  SocialMedia    SocialMedia? @relation(fields: [id_socialMedia], references: [id])
+  id_socialMedia Int?         @unique
+  // 
   User           User?        @relation(fields: [id_user], references: [id])
   id_user        String?      @unique
+  // 
   Follow         Follow?      @relation(fields: [id_follow], references: [id])
   id_follow      Int?
 }
@@ -253,6 +254,7 @@ model Order {
   id_company Int
 }
 
+// ------------- Message
 model MessageContact {
   id      Int           @id @default(autoincrement())
   name    String
@@ -264,10 +266,10 @@ model MessageContact {
 
 model MessageList {
   id                Int             @id @default(autoincrement())
-  name              User?           @relation(fields: [id_user], references: [id])
+  user              User?           @relation(fields: [id_user], references: [id])
+  id_user           String?
   time              DateTime
   msg               String
   MessageContact    MessageContact? @relation(fields: [id_messageContact], references: [id])
   id_messageContact Int?
-  id_user           String?
 }

@@ -23,3 +23,6 @@ logs
 .env.*
 !.env.example
 coverage/
+dev.db
+prisma/dev.db
+prisma/dev.db

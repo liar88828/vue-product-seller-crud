@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { OrderProps } from "~/types/product/order"
+import type { OrderProps } from "~/types/market/order"
 
 defineProps<{
   dataPurchase: OrderProps[]

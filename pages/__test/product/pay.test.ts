@@ -16,8 +16,10 @@ describe("test product pay", () => {
   test("it can be tested product pay", async () => {
     const component = mount(PayIndex, {
       props: {
-        company: dataCompany,
-        data: dataOrders[0],
+        data: {
+          company: dataCompany,
+          order: dataOrders[0],
+        },
       },
     })
 

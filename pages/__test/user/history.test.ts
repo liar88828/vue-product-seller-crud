@@ -1,4 +1,3 @@
-// @vitest-environment nuxt
 import { mountSuspended } from "@nuxt/test-utils/runtime"
 import { expect, test } from "vitest"
 import { dataOrders } from "~/assets/example/transaction/dataOrder"

@@ -15,34 +15,8 @@
     </div>
 
     <div class="flex justify-between">
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-1">
-        <dl class="flex items-center gap-2 justify-between">
-          <dt class="text-xs sm:text-lg">Follow</dt>
-          <dd class="font-bold text-xs sm:text-sm md:text-lg">
-            {{ getNumber(static.follow) }}
-          </dd>
-        </dl>
-        <dl class="flex items-center gap-2 justify-between">
-          <dt class="text-xs sm:text-lg">Product</dt>
-          <dd class="font-bold text-xs sm:text-sm md:text-lg">
-            {{ getNumber(static.product) }}
-          </dd>
-        </dl>
+      <slot />
 
-        <dl class="flex items-center gap-2 justify-between">
-          <dt class="text-xs sm:text-lg">Since</dt>
-          <dd class="font-bold text-xs sm:text-sm md:text-lg">
-            {{ static.since }}
-          </dd>
-        </dl>
-
-        <dl class="flex items-center gap-2 justify-between">
-          <dt class="text-xs sm:text-lg">Response</dt>
-          <dd class="font-bold text-xs sm:text-sm md:text-lg">
-            {{ static.response }}
-          </dd>
-        </dl>
-      </div>
       <div class="flex items-end">
         <NuxtLink
           :to="`/market/${data.id}`"
@@ -58,9 +32,11 @@
 <script setup lang="ts">
 import type { MarketStatic } from "~/types/profile/profile"
 import type { DataPreviewProps } from "~/types/product/review"
+import type { Company } from "@prisma/client"
+import Static from "./Static.vue"
 
 defineProps<{
-  data: DataPreviewProps
-  static: MarketStatic
+  data: Company
+  // static: MarketStatic
 }>()
 </script>

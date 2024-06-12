@@ -1,7 +1,12 @@
 import { prisma } from "~/server/config/prisma"
-import { DataProduct } from "~/types/product/DataProduct"
+import type { ProductItemServer } from "~/types/product/item"
 
+import { dataProductDetails } from "~/assets/example/product/dataProduct"
+import type { Product } from "@prisma/client"
 export default defineEventHandler(async (event) => {
-  const product: DataProduct[] = await prisma.product.findMany({ take: 100 })
-  return { product }
+  const product: Product[] = await prisma.product.findMany({
+    take: 100,
+  })
+
+  return { product: dataProductDetails }
 })

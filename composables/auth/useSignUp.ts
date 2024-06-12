@@ -19,7 +19,7 @@ export const useSignUp = () => {
   })
 
   const handleSubmit = async () => {
-    const valid = getTry<SignUpProps>(() => getZod().signUpSchema.parse(store))
+    const valid = getTry<SignUpProps>(() => getZod.signUpSchema.parse(store))
     // to="/auth/verify"
     console.log(valid)
     if (valid.success) {

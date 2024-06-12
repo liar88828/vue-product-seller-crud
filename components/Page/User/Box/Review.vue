@@ -1,10 +1,10 @@
 <template>
   <CardSide :class="' card-compact '" :bg="true">
     <figure>
-      <img :src="data.img" :alt="data.name" />
+      <img src="https://picsum.photos/300" :alt="data.id_user" />
     </figure>
     <CardBody :class="'w-4/5 '">
-      <CardHead :title="data.name">
+      <CardHead :title="data.user.name ?? ''">
         <ElRating :rating="3" />
       </CardHead>
       <p class="text-xs sm:text-sm line-clamp-2">{{ data.text }}</p>
@@ -16,9 +16,11 @@
 </template>
 
 <script lang="ts" setup>
+import type { Preview } from "@prisma/client"
+import type { DataPreview, ProductDetail } from "~/types/product/item"
 import type { DataPreviewProps } from "~/types/product/review"
 defineProps<{
-  data: DataPreviewProps
+  data: DataPreview
 }>()
 </script>
 

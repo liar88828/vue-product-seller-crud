@@ -9,4 +9,12 @@
   </NuxtLayout>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+const { data } = await useFetch("/api/market/static")
+watch(data, () => {
+  console.log(data.value)
+})
+if (!data.value) {
+  throw new Error("data not found")
+}
+</script>

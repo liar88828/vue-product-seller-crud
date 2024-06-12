@@ -28,8 +28,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { DataImage } from "~/assets/example/product/image"
-
-const props = defineProps<{ data: DataImage[] }>()
+import type { ProductItem } from "~/types/product/item"
+const props = defineProps<{ data: ProductItem["dataImage"] }>()
 const { imageRender, selectImage } = useImageSelect(props.data)
 </script>
