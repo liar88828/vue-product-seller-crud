@@ -1,7 +1,18 @@
 <template>
-  <div>market</div>
-</template>
+  <NuxtLayout name="market">
+    <div v-if="pending">Loading ...</div>
+    <Error v-else-if="error || !data" :error="error" />
 
+    <PageProfileMarket :data="data" />
+  </NuxtLayout>
+</template>
 <script lang="ts" setup>
-await navigateTo("/market/profile")
+// import { dataCompany } from "~/assets/example/user/dataCompany"
+const { data, error, pending } = await useFetch("/api/market/profile")
+watch(data, () => {
+  console.log(data.value)
+})
+if (!data.value) {
+  throw new Error("data not found")
+}
 </script>

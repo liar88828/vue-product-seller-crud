@@ -1,5 +1,11 @@
 export default defineEventHandler(async (event) => {
-  const sessionId = "2"
-  const user = await db.user.findId(sessionId)
-  return { user }
+  const session = await db.user.first()
+
+  const data = {
+    user: await db.user.findAll(),
+    toJson() {
+      return this.user
+    },
+  }
+  return data
 })

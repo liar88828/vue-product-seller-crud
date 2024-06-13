@@ -1,14 +1,14 @@
 import { prisma } from "~/server/config/prisma"
-import type { DataMarket } from "~/types/market/confirm"
 
 export default defineEventHandler(async (event) => {
-  const market: DataMarket[] = await prisma.order.findMany({
-    include: {
-      market: true,
-      trolly: true,
-      userBuy: true,
-    },
-  })
+  const data = {
+    confirm: await db.order.findConfirmFull(),
 
-  return { market }
+    toJSON() {
+      return {
+        market: this.confirm,
+      }
+    },
+  }
+  return data
 })

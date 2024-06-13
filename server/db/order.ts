@@ -19,4 +19,15 @@ class OrderMutation {
   }
 }
 
-export class OrderDB extends OrderMutation {}
+export class OrderDB extends OrderMutation {
+  async findConfirmFull() {
+    console.log("db confirm")
+    prisma.order.findMany({
+      include: {
+        market: true,
+        trolly: true,
+        userBuy: true,
+      },
+    })
+  }
+}

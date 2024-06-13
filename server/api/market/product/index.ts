@@ -1,10 +1,16 @@
-import { dataProductDetails } from "~/assets/example/product/dataProduct"
-import { prisma } from "~/server/config/prisma"
-import type { ProductItemServer } from "~/types/product/item"
-
+// find product all from market
+// get di from session
+//
 export default defineEventHandler(async (event) => {
-  // const product: ProductItemServer[] = await prisma.product.findMany({
-  //   take: 100,
-  // })
-  return dataProductDetails //{ product }
+  const session = await db.user.first()
+  const data = {
+    product: await db.product.findAllId(session.id),
+
+    toJSON() {
+      return {
+        product: this.product,
+      }
+    },
+  }
+  return data
 })

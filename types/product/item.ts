@@ -11,7 +11,7 @@ import {
 } from "@prisma/client"
 // import type { DataImage } from "~/assets/example/product/image"
 import type { MarketStatic } from "../profile/profile"
-import type { IfEquals } from "../globals/equal"
+import type { IfEquals } from "../globals/generic"
 import { dataPreview } from "~/assets/example/product/dataPreview"
 // id: string
 // name: string | null

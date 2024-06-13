@@ -1,7 +1,7 @@
 <template>
   <NuxtLayout name="market">
-    <!-- @vue-expect-error -->
-    <PageProfileMarket :data="data" />
+    {{ data }}
+    <!-- <PageProfileMarket :data="data" /> -->
   </NuxtLayout>
 </template>
 <script lang="ts" setup>

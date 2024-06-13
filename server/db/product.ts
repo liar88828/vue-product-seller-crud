@@ -4,22 +4,34 @@ import type { DeleteDataDB } from "../../types/product/findId"
 import type { ControlCreateProduct } from "~/types/user/ReturnCreateProduct"
 import type { Product } from "@prisma/client"
 import type { ProductItemServer } from "~/types/product/item"
+import type {
+  ProductCreateUser,
+  ProductUpdateUser,
+} from "~/types/product/data.db"
+import { MarketIdProductId } from "~/types/market/ProfileCompany"
 
 class ProductMutation {
   async delete({ id, id_user }: DeleteDataDB) {
-    return prisma.product.delete({
+    const data = await prisma.product.delete({
       where: {
         id,
         id_user,
       },
     })
+    if (!data) {
+      throw createError({
+        statusCode: 404,
+        statusMessage: "Product not found",
+      })
+    }
+    return data
   }
-  async create(data: Product) {
+  async create(data: ProductCreateUser) {
     return prisma.product.create({ data })
   }
 
-  async update(data: ControlCreateProduct, id: number) {
-    return prisma.product.update({ where: { id }, data: data })
+  async update(data: ProductUpdateUser, id: number, id_user: string) {
+    return prisma.product.update({ where: { id, id_user }, data: data })
   }
 }
 
@@ -34,6 +46,13 @@ export class ProductDB extends ProductMutation {
     })
   }
 
+  async findAllId(id_user: string) {
+    return prisma.product.findMany({
+      where: { id_user },
+      take: 100,
+    })
+  }
+
   async findTest() {
     const product: Product[] = await prisma.product.findMany({
       take: 100,
@@ -42,9 +61,41 @@ export class ProductDB extends ProductMutation {
   }
 
   async findId(id: number) {
-    return prisma.product.findUnique({
+    const data = await prisma.product.findUnique({
       where: { id },
     })
+    if (!data) {
+      throw createError({
+        statusCode: 404,
+        statusMessage: "Product not found",
+      })
+    }
+    return data
+  }
+  async findMarketProductId({ id_company, id_product }: MarketIdProductId) {
+    const data = await prisma.product.findUnique({
+      where: { id_company, id: id_product },
+    })
+    if (!data) {
+      throw createError({
+        statusCode: 404,
+        statusMessage: "Product not found",
+      })
+    }
+    return data
+  }
+
+  async findMarketProductAll(id_company: number) {
+    const data = await prisma.product.findMany({
+      where: { id_company: id_company },
+    })
+    if (!data) {
+      throw createError({
+        statusCode: 404,
+        statusMessage: "Product not found",
+      })
+    }
+    return data
   }
   async counts(id: number) {
     return prisma.product.count({
@@ -68,5 +119,19 @@ export class ProductDB extends ProductMutation {
       take: 100,
       skip: page * 100,
     })
+  }
+
+  async findCompany(id: number) {
+    const data = await prisma.product
+      .findUnique({ where: { id }, select: { Company: true } })
+      .then((data) => data?.Company)
+    console.log(data, "data")
+    if (!data) {
+      throw createError({
+        statusCode: 404,
+        statusMessage: "Company not found",
+      })
+    }
+    return data
   }
 }

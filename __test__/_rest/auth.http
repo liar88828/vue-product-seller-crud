@@ -1,0 +1,25 @@
+@url=http://localhost:3000/
+
+### Register
+POST {{url}}api/auth/sign-up/
+Content-Type: application/json
+
+{
+   "name":"user2",
+   "email":"user2@gmail.com",
+   "password":"user11231232",
+   "confPass":"user11231232"
+}
+
+### Login
+POST {{url}}api/auth/sign-in/
+Content-Type: application/json
+
+{
+   "email":"user1@gmail.com",
+   "password":"user1123123"
+}
+
+### 
+GET {{url}}api/test/
+  

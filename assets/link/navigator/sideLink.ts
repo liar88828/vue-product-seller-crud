@@ -52,16 +52,16 @@ export const dataLink = [
       },
     ],
   },
-  {
-    title: "Info",
-    link: "/#",
-    icon: IconsInfo,
-    sub: [
-      {
-        title: "Index",
-        link: "/info",
-        sub: [],
-      },
-    ],
-  },
+  // {
+  //   title: "Info",
+  //   link: "/#",
+  //   icon: IconsInfo,
+  //   sub: [
+  //     {
+  //       title: "Index",
+  //       link: "/info",
+  //       sub: [],
+  //     },
+  //   ],
+  // },
 ]

@@ -1,34 +1,33 @@
 <template>
-  <div v-if="pending">Loading comments...</div>
-  <div v-else-if="error">Error: {{ error.message }}</div>
-  <!-- @vue-skip -->
-  <PageHome
-    :data-adv="dataAdv"
-    :data-adv2="dataAdv2"
-    :data-category="dataCategory"
-    :data-trending="data?.trending"
-    :data-best-sellers="data?.bestProduct"
-    :data-new-products="data?.newProduct"
-  />
+  <Suspense>
+    <template #fallback>Loading.....</template>
+    <template #default>
+      <div v-if="pending">Loading ...</div>
+      <div v-else-if="error">Error: {{ error.message }}</div>
+      <PageHome v-show="!pending && !error" v-else :data="sendData" />
+    </template>
+  </Suspense>
 </template>
 
 <script lang="ts" setup>
-// const Count = resolveComponent("DiscountCount")
-
 import { dataCategory } from "~/assets/link/shopLink"
 import { dataAdv, dataAdv2 } from "~/assets/example/home/dataAdv"
-import { dataProducts } from "~/assets/example/product/dataProduct"
+import type { HomeApi, HomeProps } from "~/types/home/props"
 
-const { data, pending, error, refresh, status } = await useFetch(
-  "/api/home",
-  {}
-)
-// console.log(status)
-
+const { data, pending, error } = await useFetch<{ data: HomeApi }>("/api/home")
 watch(data, () => {
   console.log(data.value)
 })
 if (!data.value) {
   throw new Error("data not found")
 }
+const sendData: HomeProps = {
+  category: dataCategory,
+  adv: dataAdv,
+  adv2: dataAdv2,
+  newProducts: data.value.data.newProduct,
+  trending: data.value.data.trending,
+  bestSellers: data.value.data.bestProduct,
+}
+// console.log(sendData)
 </script>

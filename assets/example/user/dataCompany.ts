@@ -1,5 +1,6 @@
 import type { DataCompany } from "~/types/market/confirm"
-import type { MarketStatic, ProfileCompany } from "~/types/profile/profile"
+import type { MarketStatic } from "~/types/profile/profile"
+import type { ProfileCompany } from "~/types/market/ProfileCompany"
 export const marketStatic: MarketStatic = {
   follow: 44_234_234_223_429,
   product: 44_234_234_223_429,

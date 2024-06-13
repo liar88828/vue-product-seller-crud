@@ -1,5 +1,5 @@
 import type { Product, User } from "@prisma/client"
-import type { ProfileCompany } from "../profile/profile"
+import type { ProfileCompany } from "./ProfileCompany"
 import type { DataCompany } from "./confirm"
 
 export type OrderProps = {

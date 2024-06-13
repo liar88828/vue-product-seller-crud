@@ -1,0 +1,14 @@
+@url=http://localhost:3000/
+@path=api/market/confirm/
+
+### find All confirm
+GET {{url}}{{path}}
+Content-Type: application/json
+
+ 
+ 
+### find All confirm
+GET {{url}}{{path}}/1
+Content-Type: application/json
+
+ 

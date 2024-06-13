@@ -1,6 +1,6 @@
 <template>
   <!-- {{ search }} -->
-  {{ store }}
+  <!-- {{ store }} -->
   <PageShop :dataProducts="newData" />
 
   <ElButtonScroll />

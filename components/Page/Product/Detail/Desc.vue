@@ -16,7 +16,7 @@ defineProps<{ data: ProductDetail["detail"] }>()
     </CardHeadTitle>
 
     <ul class="product-desc-li-p" v-for="item in data.Desc" :key="item.text">
-      <li>{{ item }}</li>
+      <li>{{ item.text }}</li>
     </ul>
 
     <div class="flex flex-col sm:flex-row gap-4 justify-end mt-5">

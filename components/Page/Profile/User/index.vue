@@ -58,7 +58,6 @@
           </div>
         </dl>
       </div>
-      <!-- <EleDivider /> -->
       <div class="card-actions justify-end">
         <NuxtLink to="/user/profile/edit" class="btn btn-outline"
           >Edit</NuxtLink

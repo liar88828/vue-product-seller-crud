@@ -1,0 +1,7 @@
+@url=http://localhost:3000/
+
+### Register
+GET {{url}}api/home
+Content-Type: application/json
+
+ 

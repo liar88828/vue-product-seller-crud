@@ -33,7 +33,7 @@ const state = reactive<Product>({
 
 async function onSubmit() {
   console.log(state)
-  const dataValid = getZod.createProductSchema.parse(state)
+  const dataValid = getZod.productCreateSchema.parse(state)
   const res = await useFetch("/api/market/product/", {
     method: "POST",
     body: dataValid,

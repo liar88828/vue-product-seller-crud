@@ -1,5 +1,5 @@
 <template>
-  <div class="grid grid-cols-1 sm:grid-cols-2 gap-1">
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-1 flex-auto">
     <dl class="flex items-center gap-2 justify-between">
       <dt class="text-xs sm:text-lg">Follow</dt>
       <dd class="font-bold text-xs sm:text-sm md:text-lg">
@@ -16,7 +16,7 @@
     <dl class="flex items-center gap-2 justify-between">
       <dt class="text-xs sm:text-lg">Since</dt>
       <dd class="font-bold text-xs sm:text-sm md:text-lg">
-        {{ static.since }}
+        {{ getDate(static.since) }}
       </dd>
     </dl>
 

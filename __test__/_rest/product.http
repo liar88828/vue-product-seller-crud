@@ -1,0 +1,59 @@
+@url=http://localhost:3000/
+@path=api/product
+
+### find All Product
+GET {{url}}{{path}}
+Content-Type: application/json
+
+### Find Id new Product 
+GET {{url}}{{path}}/1
+Content-Type: application/json
+
+ 
+### Create new Product
+POST {{url}}{{path}}
+Content-Type: application/json
+
+{
+  "image": "https://picsum.photos/220",
+  "name": "new  sepatu ya" ,
+  "price": 443,
+  "stock": 64,
+  "brand": "Adidass",
+  "id_type": "Sepatu",
+  "description": "i dont know"
+}
+ 
+ 
+### Create new Product FALSE
+POST {{url}}{{path}}
+Content-Type: application/json
+
+{
+  "image": "https://picsum.photos/220",
+  "name": "sepatu ya#",
+  "price": 443,
+  "stock": 64,
+  "brand": "Adida#s's",
+  "id_type": "Sepat#u",
+  "description": "i dont k#now"
+}
+ 
+### Update new Product 
+PUT {{url}}{{path}}/1
+Content-Type: application/json
+
+{
+  "image": "https://picsum.photos/220",
+  "name": "sepatu ya update 2x",
+  "price": 443,
+  "stock": 64,
+  "brand": "Adidass",
+  "id_type": "Sepatu",
+  "description": "i dont know"
+}
+ 
+ 
+### Delete Product
+DELETE {{url}}{{path}}/1
+Content-Type: application/json

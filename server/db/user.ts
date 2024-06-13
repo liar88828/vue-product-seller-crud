@@ -40,25 +40,23 @@ export class UserDB extends UserMutation {
   async findAll() {
     return prisma.user.findMany()
   }
+  async first() {
+    const data = await prisma.user.findFirst()
+    if (!data) {
+      throw createError({ statusCode: 404, statusMessage: "User not found" })
+    }
+    return data
+  }
 
   async findId(id: string) {
-    const res = await prisma.user.findUnique({
-      where: {
-        id,
-      },
-    })
-    return res as User
+    const data = await prisma.user.findUnique({ where: { id } })
+    if (!data) {
+      throw createError({ statusCode: 404, statusMessage: "User not found" })
+    }
+    return data
   }
 
   async findEmail(email: string) {
-    return prisma.user.findUnique({
-      where: {
-        email,
-      },
-      select: {
-        password: true,
-        email: true,
-      },
-    })
+    return prisma.user.findUnique({ where: { email } })
   }
 }

@@ -1,14 +1,22 @@
 <template>
   <div class="grid md:grid-cols-2 gap-8 mb-5">
-    <ImageDetail :data="data.detail.Img" />
-    <Desc :data="data.detail" />
+    <!-- <ImageDetail v-show="data.detail.Img" :data="data.detail.Img" /> -->
+    <Desc v-show="data.detail" :data="data.detail" />
   </div>
   <div class="space-y-5">
-    <Spec :data="data.detail.Spec" />
-    <Tech :data="data.detail.Tech" />
-    <PageUserBox :data="data.previews" />
-    <PageMarketBox :data="data.market" :static="data.static" />
-    <PageProductGridDetail :title="'Related Products'" :data="data.related" />
+    <Spec v-show="data.detail.Spec" :data="data.detail.Spec" />
+    <Tech v-show="data.detail.Tech" :data="data.detail.Tech" />
+    <PageUserBox v-show="data.previews" :data="data.previews" />
+    <PageMarketBox
+      v-show="data.market"
+      :data="data.market"
+      :static="data.static"
+    />
+    <PageProductGridDetail
+      v-show="data.related"
+      :title="'Related Products'"
+      :data="data.related"
+    />
   </div>
 </template>
 

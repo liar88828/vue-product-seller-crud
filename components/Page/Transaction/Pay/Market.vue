@@ -30,7 +30,7 @@
 </template>
 
 <script setup lang="ts">
-import type { ProfileCompany } from "~/types/profile/profile"
+import type { ProfileCompany } from "~/types/market/ProfileCompany"
 // const { $downloadQRCode } = useNuxtApp()
 
 defineProps<{

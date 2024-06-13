@@ -1,21 +1,13 @@
-import { prisma } from "~/server/config/prisma"
-import type { ProductItemServer } from "~/types/product/item"
-
 export default defineEventHandler(async (event) => {
   const { id } = getRouterParams(event)
+  const data = {
+    product: await control.product.findId(Number(id)),
 
-  const product: ProductItemServer | null = await prisma.product.findUnique({
-    include: {
-      Spec: {
-        include: {
-          list: true,
-        },
-      },
-      Tech: true,
-      Desc: true,
-      Img: true,
+    toJSON() {
+      return {
+        product: this.product,
+      }
     },
-    where: { id: Number(id) },
-  })
-  return { product }
+  }
+  return data
 })

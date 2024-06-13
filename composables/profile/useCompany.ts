@@ -1,4 +1,4 @@
-import type { ProfileCompany } from "~/types/profile/profile"
+import type { ProfileCompany } from "~/types/market/ProfileCompany"
 
 export const useCompany = (data: ProfileCompany) => {
   const store = reactive(data)

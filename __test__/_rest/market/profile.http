@@ -1,0 +1,34 @@
+@url=http://localhost:3000/
+@path=api/market/
+
+### find All confirm
+GET {{url}}{{path}}
+Content-Type: application/json
+
+ 
+ 
+### find All confirm
+GET {{url}}{{path}}/1
+Content-Type: application/json
+
+ 
+### find All confirm
+POST {{url}}{{path}}/
+Content-Type: application/json
+Date: {{ $datetime iso8601 }}
+
+{
+  "id": 2,
+  "name": "Company Name",
+  "industry": "Technology",
+  "address": "123 Main St",
+  "description": "A description of the company",
+  "mission": "The company's mission",
+  "vision": "The company's vision",
+  "history": "Company history",
+  "id_contact": null,
+  "id_socialMedia": null,
+  "id_user": "6bb3b698-081f-4287-bdff-f085c7e1c85a",
+  "since":"{{$localDatetime 'YYYY-MM-DD'}}",
+  "id_follow": null
+}

@@ -1,4 +1,6 @@
+import { dataProducts } from "~/assets/example/product/dataProduct"
+
 export default defineEventHandler(async (event) => {
-  const product = await db.product.findTest()
-  return { product }
+  const products = await db.product.findTest()
+  return { product: dataProducts }
 })

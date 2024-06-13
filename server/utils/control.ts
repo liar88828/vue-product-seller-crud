@@ -1,6 +1,7 @@
+import { AuthController } from "../controllers/auth"
 import { BuyController } from "../controllers/buy"
+import { MarketController } from "../controllers/market"
 import { ProductController } from "../controllers/product"
-import { Sanitize } from "../controllers/sanitize"
 import { UserController } from "../controllers/user"
 import { CheckDB } from "../db/check"
 
@@ -9,7 +10,8 @@ class Control {
   check = new CheckDB()
   product = new ProductController()
   user = new UserController()
-  sanitize = new Sanitize()
+  auth = new AuthController()
+  market = new MarketController()
 }
 
 export const control = new Control()
