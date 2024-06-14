@@ -1,6 +1,4 @@
-import { Company } from "@prisma/client"
-import { prisma } from "../config/prisma"
-import { CompanyServer } from "~/types/market/ProfileCompany"
+import type { CompanyServer, CompanyUser } from "~/types/market/ProfileCompany"
 
 export class CompanyDB {
   async findUser(id_user: string) {
@@ -16,6 +14,13 @@ export class CompanyDB {
         statusMessage: "Company not found",
       })
     }
+    if (!data.User) {
+      throw createError({
+        statusCode: 404,
+        statusMessage: "User not found",
+      })
+    }
+    data.User.password = ""
     return data
   }
 

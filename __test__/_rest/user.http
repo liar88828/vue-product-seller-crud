@@ -1,11 +1,23 @@
 @url=http://localhost:3000/
 @path=api/user
 
-GET {{url}}{{path}}
+### test index 
+GET {{url}}{{path}}/
+Content-Type: application/json
+
+
+### test index 
+GET {{url}}{{path}}/40bea48d-65a7-485c-bf73-ec9e140021dd
 Content-Type: application/json
 
 ### 
 GET {{url}}{{path}}/6bb3b698-081f-4287-bdff-f085c7e1c85a
 Content-Type: application/json
 
- 
+### test index 
+DELETE {{url}}{{path}}/
+Content-Type: application/json
+
+### GET ALL ORDER 
+GET {{url}}{{path}}/order
+Content-Type: application/json

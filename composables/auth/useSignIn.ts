@@ -12,7 +12,7 @@ export const useSignIn = () => {
   const handleSubmit = async () => {
     // console.log(store)
 
-    const valid = getTry<SignInProps>(() => getZod.signInSchema.parse(store))
+    const valid = getTry<SignInProps>(() => zods.signIn.parse(store))
     // console.log(valid)
 
     // send to database

@@ -4,7 +4,7 @@ import type { GetPackageProps } from "~/types/transaction/GetBox"
 
 export class TransactionDB {
   async wantBuy({ data: { pack, trans }, id_user }: WantBuyProps) {
-    await control.check.transaction(id_user)
+    await db.check.transaction(id_user)
     const transaction = await prisma.transaction.create({
       data: {
         drop_address: trans.drop_address,

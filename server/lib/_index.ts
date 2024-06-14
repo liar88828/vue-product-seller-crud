@@ -1,7 +1,5 @@
 /* v8 ignore next 3 */
 
-import { CryptrService } from "../lib/cryptr"
-
 const config = useRuntimeConfig()
 
 class Libs {

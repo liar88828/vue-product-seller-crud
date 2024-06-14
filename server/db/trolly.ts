@@ -4,7 +4,7 @@ import { prisma } from "~/server/config/prisma"
 
 export class TrollyMutation {
   async createTrolly(id: string, box: GetBoxProps[]) {
-    await control.check.trolly(id)
+    await db.check.trolly(id)
 
     const trolly = await prisma.trolly.create({
       data: { User: { connect: { id } } },

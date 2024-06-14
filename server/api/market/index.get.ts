@@ -3,6 +3,8 @@
 // and find market from session user
 // return market profile
 
+import type { CompanyServerFull } from "~/types/market/ProfileCompany"
+
 export default defineEventHandler(async (event) => {
   const session = await db.user.first()
   const data = {

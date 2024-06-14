@@ -13,7 +13,7 @@ export class ShopServices {
       detail: product,
       previews: userPreview,
       related: productRelated,
-      market: market as Company,
+      market: market,
       static: statics,
       //   static: marketStatic,
     } as ProductDetail

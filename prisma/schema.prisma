@@ -50,8 +50,9 @@ model Product {
   id_type     String?
   type        Type?     @relation(fields: [id_type], references: [id])
   // 
-  Package     Package[]
-  Box         Box[]
+  Package     Package[] // will order
+  Box         Box[] // only save on trolly
+  Preview     Preview[] // user comment after buy
   // 
   Spec        Spec[]
   Tech        Tech[]
@@ -60,7 +61,7 @@ model Product {
   // 
   Order       Order?    @relation(fields: [id_order], references: [id])
   id_order    Int?
-  Preview     Preview[]
+  // 
   Company     Company?  @relation(fields: [id_company], references: [id])
   id_company  Int?
 }
@@ -127,12 +128,12 @@ model Trolly {
 
 model Box {
   id         String   @id @default(uuid())
-  amount     Int
-  price      Int
-  // 
+  qty        Int // how many buy @map("amount") 
+  price      Int // may be discount
+  // save a product
   Product    Product? @relation(fields: [id_product], references: [id])
   id_product Int?
-  // 
+  // as label 
   Trolly     Trolly?  @relation(fields: [id_trolly], references: [id])
   id_trolly  String?
   // 
@@ -140,7 +141,7 @@ model Box {
 
 model Package {
   id             String       @id @default(uuid())
-  amount         Int
+  qty            Int
   price          Int
   // 
   Product        Product?     @relation(fields: [id_product], references: [id])

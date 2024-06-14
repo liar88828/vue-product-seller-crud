@@ -1,17 +1,13 @@
 import { prisma } from "~/server/config/prisma"
 import type { Pagination } from "~/types/globals/Pagination"
-import type { DeleteDataDB } from "../../types/product/findId"
-import type { ControlCreateProduct } from "~/types/user/ReturnCreateProduct"
+import type { IdValid } from "../../types/product/findId"
 import type { Product } from "@prisma/client"
 import type { ProductItemServer } from "~/types/product/item"
-import type {
-  ProductCreateUser,
-  ProductUpdateUser,
-} from "~/types/product/data.db"
-import { MarketIdProductId } from "~/types/market/ProfileCompany"
+import type { ProductUser } from "~/types/product/data.db"
+import type { MarketIdProductId } from "~/types/market/ProfileCompany"
 
 class ProductMutation {
-  async delete({ id, id_user }: DeleteDataDB) {
+  async delete({ id, id_user }: IdValid) {
     const data = await prisma.product.delete({
       where: {
         id,
@@ -26,11 +22,11 @@ class ProductMutation {
     }
     return data
   }
-  async create(data: ProductCreateUser) {
+  async create(data: ProductUser) {
     return prisma.product.create({ data })
   }
 
-  async update(data: ProductUpdateUser, id: number, id_user: string) {
+  async update({ id, id_user }: IdValid, data: ProductUser): Promise<Product> {
     return prisma.product.update({ where: { id, id_user }, data: data })
   }
 }
@@ -130,6 +126,19 @@ export class ProductDB extends ProductMutation {
       throw createError({
         statusCode: 404,
         statusMessage: "Company not found",
+      })
+    }
+    return data
+  }
+
+  async findCheckOut(id: number) {
+    const data = await prisma.product.findUnique({
+      where: { id, id_order: null },
+    })
+    if (!data) {
+      throw createError({
+        statusCode: 404,
+        statusMessage: "Product not found",
       })
     }
     return data

@@ -1,7 +1,7 @@
-<template>index</template>
+<template>index {{ data?.user }}</template>
 
 <script lang="ts" setup>
-import { navigateTo } from "nuxt/app"
-
 await navigateTo("/home")
+
+const { data, pending, error, refresh } = await useFetch("/api/user")
 </script>

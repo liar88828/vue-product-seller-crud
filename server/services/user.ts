@@ -1,23 +1,30 @@
-import type { SignInProps } from "~/types/auth/user"
+import type { User } from "@prisma/client"
+import type { UserCreate, UserUpdate } from "~/types/user/ControlCreateUser"
 
 export class UserServices {
-  async foundExist({ email }: SignInProps) {
-    const findUser = await db.user.findEmail(email)
-    if (!findUser) {
-      throw createError({ statusCode: 404, statusMessage: "User not found" })
-    }
-    return findUser
+  async id(id: string): Promise<User> {
+    id = zods.idString.parse(id)
+    const data = await db.user.findId(id)
+    data.password = ""
+    return data
   }
-
-  async emailExists(email: string) {
-    const foundEmail = await db.user.findEmail(email)
-
-    if (foundEmail) {
-      throw createError({
-        statusCode: 400,
-        statusMessage: "Email Already Exists",
-      })
-    }
-    return foundEmail
+  async create(data: UserCreate): Promise<User> {
+    data = zods.user.parse(data)
+    const res = await db.user.create(data)
+    res.password = ""
+    return res
+  }
+  async update(id: string, data: UserCreate): Promise<User> {
+    data = zods.user.parse(data)
+    id = zods.idString.parse(id)
+    const res = await db.user.update(id, data)
+    res.password = ""
+    return res
+  }
+  async delete(id: string): Promise<User> {
+    id = zods.idString.parse(id)
+    const res = await db.user.delete(id)
+    res.password = ""
+    return res
   }
 }

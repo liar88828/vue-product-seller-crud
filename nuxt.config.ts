@@ -4,6 +4,25 @@ export default defineNuxtConfig({
   // devtools: { enabled: true },
   css: ["@/assets/main/style.css"],
 
+  // 4. Integrate with Nitro
+  nitro: {
+    imports: {
+      dirs: [
+        "./server/services",
+        "./server/controllers",
+        "./server/db",
+        "./server/lib",
+        "./server/config",
+        "./utils",
+      ],
+      // presets: [
+      //   {
+      //     // from: "date-fns/addDays",
+      //     // imports: [{ name: "default", as: "addDays" }],
+      //   },
+      // ],
+    },
+  },
   typescript: {
     typeCheck: true,
   },

@@ -34,52 +34,56 @@
       <IconsGlobe />
       <div>
         <h3 class="font-medium">Website</h3>
-        <a class="text-blue-600 underline" href="#">
-          {{ data.contact.website }}
-        </a>
+        <div v-if="data.Contact">
+          <a class="text-blue-600 underline" href="#">
+            {{ data.Contact.website }}
+          </a>
+        </div>
+        <p>Not Available</p>
       </div>
     </div>
     <div class="flex items-start gap-4">
       <IconsShare />
       <div class="grid gap-2">
         <h3 class="font-medium">Social Media</h3>
-        <div class="flex flex-col gap-3">
+        <div class="flex flex-col gap-3" v-if="data.SocialMedia">
+          >
           <a
             class="flex flex-nowrap items-center gap-2"
-            :href="data.socialMedia.facebook"
+            :href="data.SocialMedia.facebook"
           >
             <IconsFacebook class="h-8 w-8" />
             <span class="text-xs sm:text-lg">
-              {{ getUrl(data.socialMedia.facebook) }}</span
+              {{ getUrl(data.SocialMedia.facebook) }}</span
             >
           </a>
           <a
             class="flex flex-nowrap items-center gap-2"
-            :href="data.socialMedia.instagram"
+            :href="data.SocialMedia.instagram"
           >
             <IconsInstagram class="h-8 w-8" />
             <span class="text-xs sm:text-lg">
               <!-- Instagram  -->
-              {{ getUrl(data.socialMedia.instagram) }}
+              {{ getUrl(data.SocialMedia.instagram) }}
             </span>
           </a>
           <a
             class="flex flex-nowrap items-center gap-2"
-            :href="data.socialMedia.twitter"
+            :href="data.SocialMedia.twitter"
           >
             <IconsTwitter class="h-8 w-8" />
             <span class="text-xs sm:text-lg">
               <!-- Twitter -->
-              {{ getUrl(data.socialMedia.twitter) }}
+              {{ getUrl(data.SocialMedia.twitter) }}
             </span>
           </a>
           <a
             class="flex flex-nowrap items-center gap-2"
-            :href="data.socialMedia.whatsapp"
+            :href="data.SocialMedia.whatsapp"
             ><IconsWhatsapp class="h-8 w-8" />
             <span class="text-xs sm:text-lg">
               <!-- Whatsapp -->
-              {{ getUrl(data.socialMedia.whatsapp) }}
+              {{ getUrl(data.SocialMedia.whatsapp) }}
             </span>
           </a>
         </div>
@@ -89,9 +93,9 @@
 </template>
 
 <script setup lang="ts">
-import type { ProfileCompany } from "~/types/market/ProfileCompany"
+import type { CompanyServerFull } from "~/types/market/ProfileCompany"
 
 defineProps<{
-  data: ProfileCompany
+  data: CompanyServerFull
 }>()
 </script>

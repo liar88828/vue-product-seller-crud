@@ -26,9 +26,12 @@
 </template>
 
 <script setup lang="ts">
-import type { ProfileCompany } from "~/types/market/ProfileCompany"
+import type {
+  CompanyServerFull,
+  ProfileCompany,
+} from "~/types/market/ProfileCompany"
 
 defineProps<{
-  data: ProfileCompany
+  data: CompanyServerFull
 }>()
 </script>

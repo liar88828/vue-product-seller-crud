@@ -17,6 +17,7 @@ logs
 .DS_Store
 .fleet
 .idea
+.sqlite
 
 # Local env files
 .env
@@ -25,4 +26,6 @@ logs
 coverage/
 *.db*
 *dev.db*
+prisma/dev.db
+identifier.sqlite
 prisma/dev.db

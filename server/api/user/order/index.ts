@@ -8,5 +8,5 @@ export default defineEventHandler(async (event) => {
       id_user: session,
     },
   })
-  return { order: dataOrders }
+  return { order: res }
 })

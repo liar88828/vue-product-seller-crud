@@ -1,15 +1,13 @@
-import type { Company } from "@prisma/client"
+import type { Company, User } from "@prisma/client"
 import { ZodType, z } from "zod"
 import type { SignInProps, SignUpProps } from "~/types/auth/user"
 import type {
   CompanyServer,
   MarketIdProductId,
 } from "~/types/market/ProfileCompany"
-import type {
-  ProductCreateUser,
-  ProductUpdateUser,
-} from "~/types/product/data.db"
-import type { DeleteDataDB } from "~/types/product/findId"
+import type { ProductUser } from "~/types/product/data.db"
+import type { IdValid } from "~/types/product/findId"
+import type { UserCreate } from "~/types/user/ControlCreateUser"
 const noSymbolString = z
   .string()
   .min(1)
@@ -20,17 +18,17 @@ export default {
   idNumber: z.number().min(1),
   idString: z.string().uuid(),
 
-  deleteSchema: z.object({
+  idValid: z.object({
     id: z.number().min(1),
     id_user: z.string().uuid(),
-  }) satisfies ZodType<DeleteDataDB>,
+  }) satisfies ZodType<IdValid>,
 
-  MarketProductSchema: z.object({
+  MarketProduct: z.object({
     id_company: z.number().min(1),
     id_product: z.number().min(1),
   }) satisfies ZodType<MarketIdProductId>,
 
-  companyCreateSchema: z.object({
+  companyCreate: z.object({
     name: z.string(),
     industry: z.string(),
     address: z.string(),
@@ -42,7 +40,7 @@ export default {
     id_user: z.string(),
   }) satisfies ZodType<CompanyServer>,
 
-  productCreateSchema: z.object({
+  productCreate: z.object({
     // id: z.number(),
     name: noSymbolString.min(3).max(50),
     description: noSymbolString.min(3).max(250),
@@ -54,9 +52,9 @@ export default {
     id_user: z.string().uuid(),
     // id_order: z.number(),
     // id_company: z.number(),
-  }) satisfies ZodType<ProductCreateUser>,
+  }) satisfies ZodType<ProductUser>,
 
-  productUpdateSchema: z.object({
+  productUpdate: z.object({
     id: z.number(),
     name: noSymbolString.min(3).max(50),
     description: noSymbolString.min(3).max(250),
@@ -66,9 +64,9 @@ export default {
     image: z.string(),
     stock: z.number(),
     id_user: z.string().uuid(),
-  }) satisfies ZodType<ProductUpdateUser>,
+  }) satisfies ZodType<ProductUser>,
 
-  signUpSchema: z
+  signUp: z
     .object({
       name: z.string(),
       email: z.string().email(),
@@ -80,8 +78,31 @@ export default {
       path: ["confirm"],
     }) satisfies ZodType<SignUpProps>,
 
-  signInSchema: z.object({
+  signIn: z.object({
     email: z.string().email().min(10),
     password: z.string().min(8),
   }) satisfies ZodType<SignInProps>,
+
+  user: z.object({
+    email: z.string(),
+    name: z.string().nullable(),
+    phone: z.string().nullable(),
+    address: z.string().nullable(),
+    password: z.string(),
+    id_trolly: z.string().nullable(),
+    id_role: z.string().nullable(),
+    id_follow: z.number().nullable(),
+  }) satisfies ZodType<UserCreate>,
+
+  // userUpdate: z.object({
+  //   email: z.string(),
+  //   name: z.string().nullable(),
+  //   phone: z.string().nullable(),
+  //   address: z.string().nullable(),
+  //   password: z.string(),
+  //   id_trolly: z.string().nullable(),
+  //   id_role: z.string().nullable(),
+  //   id_follow: z.number().nullable(),
+  //   id: z.string(),
+  // }) satisfies ZodType<UserUpdate>,
 }

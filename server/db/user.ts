@@ -1,7 +1,11 @@
 import type { User } from "@prisma/client"
 import { prisma } from "~/server/config/prisma"
 import type { SignUpProps } from "~/types/auth/user"
-import type { ControlCreateUser } from "~/types/user/ControlCreateUser"
+import type { Remove } from "~/types/transaction/GetBox"
+import type {
+  ControlCreateUser,
+  UserCreate,
+} from "~/types/user/ControlCreateUser"
 
 class UserMutation {
   async signUp({ name, email, password }: Omit<SignUpProps, "confPass">) {
@@ -14,7 +18,7 @@ class UserMutation {
     })
   }
 
-  async create(data: ControlCreateUser) {
+  async create(data: UserCreate): Promise<User> {
     return prisma.user.create({
       data,
     })
@@ -28,7 +32,7 @@ class UserMutation {
     })
   }
 
-  async update(id: string, data: ControlCreateUser) {
+  async update(id: string, data: UserCreate) {
     return prisma.user.update({
       where: { id },
       data,
@@ -38,7 +42,43 @@ class UserMutation {
 
 export class UserDB extends UserMutation {
   async findAll() {
-    return prisma.user.findMany()
+    return prisma.user.findMany({
+      select: {
+        address: true,
+        email: true,
+        id_follow: true,
+        id_role: true,
+        name: true,
+        id: true,
+        id_trolly: true,
+        phone: true,
+        _count: true,
+      },
+    })
+  }
+  async findAllFull() {
+    return prisma.user.findMany({
+      select: {
+        address: true,
+        Company: true,
+        email: true,
+        Follow: true,
+        id_follow: true,
+        id_role: true,
+        name: true,
+        id: true,
+        _count: true,
+        id_trolly: true,
+        MessageList: true,
+        Order: true,
+        phone: true,
+        Preview: true,
+        Product: true,
+        Role: true,
+        Transaction: true,
+        Trolly: true,
+      },
+    })
   }
   async first() {
     const data = await prisma.user.findFirst()
