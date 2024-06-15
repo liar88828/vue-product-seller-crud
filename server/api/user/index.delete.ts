@@ -1,4 +1,4 @@
-import { UserCreate } from "~/types/user/ControlCreateUser"
+import type { UserCreate } from "~/types/user/ControlCreateUser"
 
 export default defineEventHandler<{ body: UserCreate }>(async (event) => {
   const role = "ADMIN"

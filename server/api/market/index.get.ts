@@ -3,12 +3,12 @@
 // and find market from session user
 // return market profile
 
-import type { CompanyServerFull } from "~/types/market/ProfileCompany"
+import type { MarketServerFull } from "~/types/market/ProfileCompany"
 
 export default defineEventHandler(async (event) => {
   const session = await db.user.first()
   const data = {
-    market: await control.market.profileUser(session.id),
+    market: await control.market.findFull(session.id),
     toJson() {
       return this.market
     },

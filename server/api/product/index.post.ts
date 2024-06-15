@@ -1,12 +1,12 @@
 export default defineEventHandler(async (event) => {
   const session = await db.user.first()
-
+  const { id } = getRouterParams(event)
   const data = {
     // product: dataProductDetails,
-    product: await control.product.createUser(
-      await readBody(event),
-      session.id
-    ),
+    product: await control.product.createUser(await readBody(event), {
+      id_user: session.id,
+      id_market: Number(id),
+    }),
 
     toJSON() {
       return {

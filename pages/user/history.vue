@@ -6,7 +6,6 @@
 </template>
 
 <script lang="ts" setup>
-import { dataOrders } from "~/assets/example/transaction/dataOrder"
 const { data } = await useFetch("/api/user/history")
 watch(data, () => {
   console.log(data.value)

@@ -11,7 +11,29 @@ import IconsMilk from "~/components/Icons/Milk.vue"
 
 import type { StaticLink } from "~/types/globals/StaticLink"
 import type { ItemIcons } from "~/types/globals/icon"
+import type { Status } from "~/types/globals/Status"
 
+export const linkStatus: {
+  title: Status
+  link: string
+}[] = [
+  {
+    title: "Pending",
+    link: "/pending",
+  },
+  {
+    title: "Accepted",
+    link: "/Accepted",
+  },
+  {
+    title: "Delivered",
+    link: "/delivered",
+  },
+  {
+    title: "Cancelled",
+    link: "/canceled",
+  },
+]
 export const staticLink = {
   color: {
     icon: IconsColor,
@@ -63,24 +85,7 @@ export const staticLink = {
   status: {
     title: "Status",
     icon: IconsInfo,
-    list: [
-      {
-        title: "Pending",
-        link: "/pending",
-      },
-      {
-        title: "Waiting",
-        link: "/waiting",
-      },
-      {
-        title: "Delivered",
-        link: "/delivered",
-      },
-      {
-        title: "Canceled",
-        link: "/canceled",
-      },
-    ],
+    list: linkStatus,
   },
 }
 

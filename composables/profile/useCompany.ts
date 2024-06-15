@@ -1,6 +1,6 @@
-import type { ProfileCompany } from "~/types/market/ProfileCompany"
+import type { ProfileMarket } from "~/types/market/ProfileCompany"
 
-export const useCompany = (data: ProfileCompany) => {
+export const useCompany = (data: ProfileMarket) => {
   const store = reactive(data)
   const handleSave = async () => {
     console.log(store)

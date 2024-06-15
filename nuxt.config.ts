@@ -1,6 +1,15 @@
 /* v8 ignore next 3 */
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  vite: {
+    // esbuild: {
+    //   tsconfigRaw: {
+    //     compilerOptions: {
+    //       useDefineForClassFields: false,
+    //     },
+    //   },
+    // },
+  },
   // devtools: { enabled: true },
   css: ["@/assets/main/style.css"],
 

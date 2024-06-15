@@ -68,9 +68,9 @@ export class ProductDB extends ProductMutation {
     }
     return data
   }
-  async findMarketProductId({ id_company, id_product }: MarketIdProductId) {
+  async findMarketProductId({ id_market, id_product }: MarketIdProductId) {
     const data = await prisma.product.findUnique({
-      where: { id_company, id: id_product },
+      where: { id_market, id: id_product },
     })
     if (!data) {
       throw createError({
@@ -81,9 +81,9 @@ export class ProductDB extends ProductMutation {
     return data
   }
 
-  async findMarketProductAll(id_company: number) {
+  async findMarketProductAll(id_market: number) {
     const data = await prisma.product.findMany({
-      where: { id_company: id_company },
+      where: { id_market },
     })
     if (!data) {
       throw createError({
@@ -119,8 +119,8 @@ export class ProductDB extends ProductMutation {
 
   async findCompany(id: number) {
     const data = await prisma.product
-      .findUnique({ where: { id }, select: { Company: true } })
-      .then((data) => data?.Company)
+      .findUnique({ where: { id }, select: { Market: true } })
+      .then((data) => data?.Market)
     console.log(data, "data")
     if (!data) {
       throw createError({

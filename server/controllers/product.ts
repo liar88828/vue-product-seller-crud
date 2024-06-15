@@ -2,72 +2,73 @@ import zods from "~/utils/zods"
 import { tryCatch } from "../lib/tryCatch"
 import type { ProductUser } from "~/types/product/data.db"
 import type { IdValid } from "~/types/product/findId"
-import type { MarketIdProductId } from "~/types/market/ProfileCompany"
+import type {
+  IdProduct,
+  MarketIdProductId,
+} from "~/types/market/ProfileCompany"
+import { ProductServices } from "../services/product"
 
 export class ProductController {
+  constructor(private service: ProductServices) {}
+
   async detail(id: number) {
     return tryCatch(async () => {
       const valid = zods.idNumber.parse(id)
-      console.log(valid, "valid")
       const market = await db.product.findCompany(valid)
-      console.log(market, "market")
+      // console.log(valid, "valid")
+      // console.log(market, "market")
       return {
         product: await db.product.findFull(valid),
         productRelated: await db.product.findTest(),
         userPreview: await db.preview.findUser(valid),
         market,
-        statics: await service.market.statics(valid, market),
+        statics: await this.service.statics(valid, market),
       }
     })
   }
 
-  async createUser(data: ProductUser, id_user: string) {
+  async createUser(data: ProductUser, id: IdProduct) {
     return tryCatch(async () => {
       const id_type = await db.type.create(data.id_type ?? "unKnown")
-      data = service.sanitize.productCreate(data, id_user, id_type)
-      data = await service.product.create(data)
-      return data
+      data = this.service.sanitizeCreate(data, id, id_type)
+      return this.service.create(data)
     })
   }
 
   async updateUser(data: ProductUser, id: number, id_user: string) {
-    // console.log(data, id, id_user)
     return tryCatch(async () => {
-      const idValid = zods.idValid.parse({ id, id_user })
       const id_type = await db.type.create(data.id_type ?? "unKnown")
-      data = service.sanitize.productUpdate(data, id_type)
-      return service.product.update(idValid, data)
+      data = this.service.sanitizeUpdate(data, id_type)
+      return this.service.update({ id, id_user }, data)
     })
   }
 
   async findId(id: number) {
     return tryCatch(async () => {
-      const valid = zods.idNumber.parse(id)
-      const dataDb = await db.product.findId(valid)
-      return dataDb
+      return this.service.findId(id)
+    })
+  }
+
+  async findDetail(id: number) {
+    return tryCatch(async () => {
+      return this.service.detail(id)
     })
   }
 
   async findMarketIdProductId(id: MarketIdProductId) {
     return tryCatch(async () => {
-      const valid = zods.MarketProduct.parse(id)
-      const dataDb = await db.product.findMarketProductId(valid)
-      return dataDb
+      return this.service.MarketIdProductId(id)
     })
   }
-  async findMarketProductAll(id: number) {
+  async findMarketProductAll(id_company: number) {
     return tryCatch(async () => {
-      const valid = zods.idNumber.parse(id)
-      const dataDb = await db.product.findMarketProductAll(valid)
-      return dataDb
+      return this.service.MarketProductAll(id_company)
     })
   }
 
-  async deleteId(data: IdValid) {
+  async deleteId(id: IdValid) {
     return tryCatch(async () => {
-      const valid = zods.idValid.parse(data)
-      const dataDb = await db.product.delete(valid)
-      return dataDb
+      return this.service.delete(id)
     })
   }
 }

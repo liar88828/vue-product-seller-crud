@@ -1,17 +1,18 @@
 import type { SignInProps, SignUpProps } from "~/types/auth/user"
 
 export class AuthServices {
-  async foundExist({ email }: SignInProps) {
-    const findUser = await db.user.findEmail(email)
+  async foundExist(data: SignInProps) {
+    data = zods.signIn.parse(data)
+    const findUser = await db.user.findEmail(data.email)
     if (!findUser) {
       throw createError({ statusCode: 404, statusMessage: "User not found" })
     }
     return findUser
   }
 
-  async emailExists(email: string) {
-    const foundEmail = await db.user.findEmail(email)
-
+  async emailExists(data: SignUpProps) {
+    data = zods.signUp.parse(data)
+    const foundEmail = await db.user.findEmail(data.email)
     if (foundEmail) {
       throw createError({
         statusCode: 400,

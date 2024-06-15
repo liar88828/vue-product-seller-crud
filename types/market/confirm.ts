@@ -1,24 +1,7 @@
-import type {
-  Additional,
-  Company,
-  Contact,
-  Order,
-  Product,
-  SocialMedia,
-  User,
-} from "@prisma/client"
-
-export type DataCompany = Company & {
-  Contact: Contact | null
-  SocialMedia: SocialMedia | null
-  Additional: Additional[]
-  Order: Order[]
-}
+import type { Market, Order, Product, User } from "@prisma/client"
 
 export type DataMarket = Order & {
-  market: Company
+  market: Market
   trolly: Product[]
   userBuy: User
 }
-
-export type Status = "Accepted" | "Pending" | "Delivered" | "Cancelled"

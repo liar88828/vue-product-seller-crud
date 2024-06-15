@@ -1,6 +1,6 @@
 import type { Transaction } from "@prisma/client"
-import { prisma } from "~/server/config/prisma"
 import type { GetPackageProps } from "~/types/transaction/GetBox"
+import { prisma } from "~/server/config/prisma"
 
 export class TransactionDB {
   async wantBuy({ data: { pack, trans }, id_user }: WantBuyProps) {
@@ -23,7 +23,7 @@ export class TransactionDB {
     })
 
     const packages = await prisma.package.createMany({
-      data: control.buy.getPackage(transaction.id, pack),
+      data: service.transaction.getPackage(transaction.id, pack),
     })
     return {
       packages,

@@ -1,7 +1,7 @@
 import type { OrderProps } from "../market/order"
-import type { ProfileCompany } from "../market/ProfileCompany"
+import type { ProfileMarket } from "../market/ProfileCompany"
 
 export type PayProps = {
-  company: ProfileCompany
+  company: ProfileMarket
   order: OrderProps
 }

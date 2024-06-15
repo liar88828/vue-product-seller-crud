@@ -231,7 +231,7 @@ export const dataProductDetailServer: ProductDetail = {
         phone: "+1234567890",
         address: "123 Main St, City",
         password: "password123",
-        id_trolly: "trolly001",
+        id_trolly: 1,
         id_role: "role001",
         id_follow: 123,
       },

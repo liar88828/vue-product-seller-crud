@@ -1,3 +1,6 @@
+import { MarketDB } from "./company"
+import { PackageDB } from "./package"
+
 class DB {
   check = new CheckDB()
 
@@ -7,7 +10,9 @@ class DB {
   preview = new PreviewDB()
   follow = new FollowDB()
   type = new TypeDB()
-  company = new CompanyDB()
+  market = new MarketDB()
+  trolly = new TrollyDB()
+  package = new PackageDB()
 }
 
 export const db = new DB()

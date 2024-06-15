@@ -1,23 +1,11 @@
 export default defineEventHandler(async (event) => {
   const session = await db.user.first()
-  const trolly = await prisma.user
-    .findUnique({
-      where: { id: session.id },
-      select: {
-        Trolly: true,
-      },
-    })
-    .then((data) => data?.Trolly?.id)
-  const boxTrolly = await prisma.box.findMany({
-    where: {
-      id_trolly: trolly,
+  const data = {
+    trolly: await control.trolly.findTrolly(session.id),
+    toJson() {
+      return this.trolly
     },
-    include: {
-      Product: true,
-    },
-  })
-  return {
-    trolly,
-    boxTrolly,
   }
+
+  return data
 })

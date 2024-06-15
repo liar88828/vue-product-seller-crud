@@ -1,18 +1,18 @@
-import {
-  type Company,
-  type Desc,
-  type Image,
-  type List_Spec,
-  type Preview,
-  type Product,
-  type Spec,
-  type Tech,
-  type User,
+import type {
+  Desc,
+  Image,
+  List_Spec,
+  Market,
+  Preview,
+  Product,
+  Spec,
+  Tech,
+  User,
 } from "@prisma/client"
 // import type { DataImage } from "~/assets/example/product/image"
-import type { MarketStatic } from "../profile/profile"
 import type { IfEquals } from "../globals/generic"
 import { dataPreview } from "~/assets/example/product/dataPreview"
+import type { MarketStatic } from "../market/ProfileCompany"
 // id: string
 // name: string | null
 // description: string | null
@@ -53,7 +53,7 @@ export type ProductDetail = {
   detail: ProductItemServer
   related: Product[]
   previews: DataPreview[]
-  market: Company
+  market: Market
   // dataProduct: ProductItem
   // dataPreviews: DataPreviewProps[]
 }

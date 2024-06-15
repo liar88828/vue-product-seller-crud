@@ -1,34 +1,37 @@
-import zods from "~/utils/zods"
-import { tryCatch } from "../lib/tryCatch"
 import type {
-  CompanyServer,
-  CompanyServerFull,
-  CompanyUser,
+  MarketServer,
+  MarketServerFull,
+  ProfileMarket,
 } from "~/types/market/ProfileCompany"
+import { tryCatch } from "../lib/tryCatch"
+import { MarketServices } from "../services/market"
 
 export class MarketController {
-  async profileUser(id_user: string): Promise<CompanyServerFull> {
+  constructor(private service: MarketServices) {}
+
+  async findFull(id_user: string): Promise<MarketServerFull> {
     return tryCatch(async () => {
-      id_user = zods.idString.parse(id_user)
-      const company = await db.company.findUser(id_user)
-      return company
+      return this.service.findFull(id_user)
     })
   }
-  async profileId(id: number) {
+  async profileId(id: string) {
     return tryCatch(async () => {
-      id = zods.idNumber.parse(id)
-      const company = await db.company.findId(id)
-      return company
+      return this.service.findId(Number(id))
     })
   }
 
-  async create(id_user: string, data: CompanyServer) {
+  async create(id_user: string, data: MarketServer) {
     return tryCatch(async () => {
-      id_user = zods.idString.parse(id_user)
-      const sanitize = service.sanitize.companyCreate(data, id_user)
-      const dataValid = zods.companyCreate.parse(sanitize)
-      const company = await db.company.create(dataValid)
-      return company
+      data = this.service.marketCreate(data, id_user)
+      return this.service.create(data)
+    })
+  }
+  async updateProfile(
+    id: string,
+    data: MarketServer
+  ): Promise<MarketServerFull> {
+    return tryCatch(async () => {
+      return this.service.updateProfile(Number(id), data)
     })
   }
 }

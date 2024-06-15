@@ -22,7 +22,7 @@ model User {
 
   // 
   Trolly    Trolly? @relation(fields: [id_trolly], references: [id])
-  id_trolly String? @unique
+  id_trolly Int?    @unique
 
   // 
   Role        Role?         @relation(fields: [id_role], references: [id])
@@ -30,7 +30,7 @@ model User {
   Order       Order[]
   MessageList MessageList[]
   Preview     Preview[]
-  Company     Company?
+  Market      Market?
   Follow      Follow?       @relation(fields: [id_follow], references: [id])
   id_follow   Int?
 }
@@ -62,8 +62,8 @@ model Product {
   Order       Order?    @relation(fields: [id_order], references: [id])
   id_order    Int?
   // 
-  Company     Company?  @relation(fields: [id_company], references: [id])
-  id_company  Int?
+  Market      Market?   @relation(fields: [id_market], references: [id])
+  id_market   Int?
 }
 
 model Image {
@@ -120,14 +120,14 @@ model Preview {
 }
 
 model Trolly {
-  id   String @id @default(uuid())
+  id   Int   @id @default(autoincrement())
   // 
   User User?
   Box  Box[]
 }
 
 model Box {
-  id         String   @id @default(uuid())
+  id         Int      @id @default(autoincrement())
   qty        Int // how many buy @map("amount") 
   price      Int // may be discount
   // save a product
@@ -135,12 +135,12 @@ model Box {
   id_product Int?
   // as label 
   Trolly     Trolly?  @relation(fields: [id_trolly], references: [id])
-  id_trolly  String?
+  id_trolly  Int?
   // 
 }
 
 model Package {
-  id             String       @id @default(uuid())
+  id             Int          @id @default(autoincrement())
   qty            Int
   price          Int
   // 
@@ -148,12 +148,12 @@ model Package {
   id_product     Int?
   // 
   Transaction    Transaction? @relation(fields: [id_transaction], references: [id])
-  id_transaction String?
+  id_transaction Int?
   //
 }
 
 model Transaction {
-  id           String    @id @default(uuid())
+  id           Int       @id @default(autoincrement())
   drop_address String?
   // who's buy 
   User         User?     @relation(fields: [id_user], references: [id])
@@ -184,7 +184,7 @@ model Role {
   User User[]
 }
 
-model Company {
+model Market {
   id             Int          @id @default(autoincrement())
   name           String
   industry       String
@@ -213,46 +213,48 @@ model Company {
 }
 
 model Follow {
-  id      Int       @id @default(autoincrement())
-  User    User[]
-  Company Company[]
+  id     Int      @id @default(autoincrement())
+  User   User[]
+  Market Market[]
 }
 
 model Contact {
-  id      Int      @id @default(autoincrement())
+  id      Int     @id @default(autoincrement())
   email   String
   phone   String
   website String
-  Company Company?
+  Market  Market?
 }
 
 model SocialMedia {
-  id        Int      @id @default(autoincrement())
+  id        Int     @id @default(autoincrement())
   instagram String
   facebook  String
   twitter   String
   whatsapp  String
-  Company   Company?
+  Market    Market?
 }
 
 model Additional {
-  id         String   @id
-  Company    Company? @relation(fields: [id_company], references: [id])
-  id_company Int?
+  id        String  @id
+  Market    Market? @relation(fields: [id_market], references: [id])
+  id_market Int?
 }
 
 model Order {
   id         Int       @id @default(autoincrement())
-  trolly     Product[]
-  userBuy    User      @relation(fields: [id_user], references: [id])
-  market     Company   @relation(fields: [id_company], references: [id])
   discount   String
   status     String
   promoCode  String
   dateBuy    DateTime
   expired    DateTime
-  id_user    String
-  id_company Int
+  trolly     Product[]
+  // 
+  id_userBuy String
+  userBuy    User      @relation(fields: [id_userBuy], references: [id])
+  // 
+  id_market  Int
+  market     Market    @relation(fields: [id_market], references: [id])
 }
 
 // ------------- Message

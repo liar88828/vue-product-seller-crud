@@ -25,13 +25,13 @@
 </template>
 
 <script lang="ts" setup>
-import type { ProfileCompany } from "~/types/market/ProfileCompany"
+import type { ProfileMarket } from "~/types/market/ProfileCompany"
 import Information from "./Information.vue"
 import Describe from "./Describe.vue"
 import { useCompany } from "~/composables/profile/useCompany"
 
 const props = defineProps<{
-  data: ProfileCompany
+  data: ProfileMarket
 }>()
 
 const { handleSave, store } = useCompany(props.data)

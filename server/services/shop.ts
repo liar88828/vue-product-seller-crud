@@ -1,4 +1,3 @@
-import type { Company } from "@prisma/client"
 import type { ProductDetail } from "~/types/product/item"
 
 export class ShopServices {
@@ -7,7 +6,7 @@ export class ShopServices {
     const productRelated = await db.product.findTest()
     const userPreview = await db.preview.findUser(id)
     const market = await db.product.findCompany(id)
-    const statics = await service.market.statics(id, market as Company)
+    const statics = await service.market.statics(id, market)
 
     return {
       detail: product,

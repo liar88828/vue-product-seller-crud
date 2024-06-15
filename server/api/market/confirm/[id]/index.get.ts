@@ -1,5 +1,6 @@
 import { prisma } from "~/server/config/prisma"
-import type { DataCompany, DataMarket } from "~/types/market/confirm"
+import { DataMarketDesc } from "~/types/market/ProfileCompany"
+import type { DataMarket } from "~/types/market/confirm"
 
 export default defineEventHandler(async (event) => {
   const { id } = getRouterParams(event)
@@ -15,7 +16,7 @@ export default defineEventHandler(async (event) => {
     },
   })
 
-  const company: DataCompany | null = await prisma.company.findUnique({
+  const company: DataMarketDesc | null = await prisma.market.findUnique({
     where: {
       id: market?.market.id,
     },

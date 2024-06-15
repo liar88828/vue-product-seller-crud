@@ -1,12 +1,48 @@
-import type { Company } from "@prisma/client"
-import type { Status } from "~/types/market/confirm"
-import type { MarketStatic } from "~/types/profile/profile"
+import type { Market } from "@prisma/client"
+import type { RequiredProperty } from "~/types/globals/generic"
+import type { Status } from "~/types/globals/Status"
+import type {
+  MarketServer,
+  MarketServerFull,
+  MarketStatic,
+  ProfileMarket,
+} from "~/types/market/ProfileCompany"
 
-export class MarketServices {
-  async confirm(id: string, status: Status) {
-    return db.order.confirm(id, status)
+class MarketSanitize {
+  marketCreate(
+    data: MarketServer,
+    id_user: string
+  ): RequiredProperty<MarketServer> {
+    id_user = zods.idString.parse(id_user)
+    return {
+      address: data.address,
+      name: data.name,
+      description: data.description,
+      history: data.history,
+      industry: data.industry,
+      mission: data.mission,
+      since: new Date(data.since),
+      vision: data.vision,
+      id_user: id_user,
+    }
   }
-  async statics(id_product: number, market: Company): Promise<MarketStatic> {
+  updateMarketProfile(data: MarketServer): MarketServer {
+    return {
+      address: data.address,
+      name: data.name,
+      description: data.description,
+      history: data.history,
+      industry: data.industry,
+      mission: data.mission,
+      since: new Date(data.since),
+      vision: data.vision,
+      id_user: data.id_user,
+    }
+  }
+}
+
+export class MarketStaticService extends MarketSanitize {
+  async statics(id_product: number, market: Market): Promise<MarketStatic> {
     const productCount = await db.product.counts(id_product)
     // const market = await db.product.findCompany(id_product)
     const follow = await db.follow.findMarket(market.id_follow as number)
@@ -17,5 +53,35 @@ export class MarketServices {
       since: market?.since || new Date(),
       response: "100%",
     }
+  }
+}
+
+export class MarketServices extends MarketStaticService {
+  async confirm(id: string, status: Status) {
+    return db.order.confirm(id, status)
+  }
+
+  async create(data: MarketServer) {
+    data = zods.companyCreate.parse(data)
+    return db.market.create(data)
+  }
+
+  async findId(id: number) {
+    id = zods.idNumber.parse(id)
+    return db.market.findId(id)
+  }
+
+  async findFull(id: string): Promise<MarketServerFull> {
+    id = zods.idString.parse(id)
+    return db.market.findFull(id)
+  }
+
+  async updateProfile(
+    id_market: number,
+    data: MarketServer
+  ): Promise<MarketServerFull> {
+    id_market = zods.idNumber.parse(id_market)
+    data = this.updateMarketProfile(data)
+    return db.market.updateProfile(id_market, data)
   }
 }

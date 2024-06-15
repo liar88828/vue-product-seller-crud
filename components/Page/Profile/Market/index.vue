@@ -28,7 +28,7 @@
 import type {
   CompanyServer,
   CompanyServerFull,
-  ProfileCompany,
+  ProfileMarket,
 } from "~/types/market/ProfileCompany"
 import Information from "./Information.vue"
 import Describe from "./Describe.vue"

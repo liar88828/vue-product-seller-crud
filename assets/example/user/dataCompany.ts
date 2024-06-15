@@ -1,6 +1,4 @@
-import type { DataCompany } from "~/types/market/confirm"
-import type { MarketStatic } from "~/types/profile/profile"
-import type { ProfileCompany } from "~/types/market/ProfileCompany"
+import type { MarketStatic, ProfileMarket } from "~/types/market/ProfileCompany"
 export const marketStatic: MarketStatic = {
   follow: 44_234_234_223_429,
   product: 44_234_234_223_429,
@@ -8,7 +6,15 @@ export const marketStatic: MarketStatic = {
   response: "100%",
 }
 
-export const dataCompany: ProfileCompany = {
+export const marketStaticServer: MarketStatic = {
+  follow: 44_234_234_223_429,
+  product: 44_234_234_223_429,
+  since: new Date(),
+  response: "100%",
+}
+
+export const dataCompany: ProfileMarket = {
+  since: new Date(),
   name: "PT. Orak Genah",
   industry: "Sustainable Clothing Manufacturing",
   address: "Semarang, Central Java, Indonesia",
@@ -20,34 +26,49 @@ export const dataCompany: ProfileCompany = {
     "Our vision is to be a leading sustainable clothing manufacturer, setting new standards for ethical and environmentally conscious production. We aim to inspire and empower our customers to make more sustainable choices in their fashion purchases.",
   history:
     "PT. Orak Genah was founded in 2020 with a passion for sustainable fashion. We are a team of dedicated individuals who believe in creating beautiful clothing that is good for the planet and the people who make it. We partner with local artisans and use traditional techniques whenever possible to preserve cultural heritage.",
-  contact: {
+  Contact: {
+    id: 1,
     email: "johndoe@example.com",
     phone: "081234567890",
     website: "www.orakgenah.com",
   },
-  socialMedia: {
+  SocialMedia: {
+    id: 1,
     instagram: "https://www.instagram.com/orakgenah",
     facebook: "https://www.facebook.com/orakgenah",
     twitter: "https://twitter.com/orakgenah",
     whatsapp: "https://wa.me/6281234567890",
   },
-  additional: [
-    "We are committed to producing high-quality, eco-friendly clothes that are",
-    "PT. Orak Genah was founded in 2020 with a passion for sustainable fashion.",
-    "We are a team of dedicated individuals who believe in creating beautiful clothing that is good for the planet and the people who make it.",
-    "We partner with local artisans and use traditional techniques whenever possible to preserve cultural heritage.",
+  Additional: [
+    {
+      id_market: 1,
+      id: "We are committed to producing high-quality, eco-friendly clothes that are",
+    },
+    {
+      id_market: 1,
+
+      id: "PT. Orak Genah was founded in 2020 with a passion for sustainable fashion.",
+    },
+    {
+      id_market: 1,
+
+      id: "We are a team of dedicated individuals who believe in creating beautiful clothing that is good for the planet and the people who make it.",
+    },
+    {
+      id_market: 1,
+      id: "We partner with local artisans and use traditional techniques whenever possible to preserve cultural heritage.",
+    },
   ],
   marketStatic: marketStatic,
+  id: 1,
+  id_contact: 1,
+  id_socialMedia: 1,
+  id_user: "1",
+  id_follow: 1,
 }
 
-export const marketStaticServer: MarketStatic = {
-  follow: 44_234_234_223_429,
-  product: 44_234_234_223_429,
-  since: new Date(),
-  response: "100%",
-}
 //@ts-ignore
-export const dataCompanyServer: DataCompany = {
+export const dataCompanyServer: DataMarketStatus = {
   name: "PT. Orak Genah",
 
   industry: "Sustainable Clothing Manufacturing",
@@ -76,19 +97,20 @@ export const dataCompanyServer: DataCompany = {
   },
   Additional: [
     {
-      id_company: 1,
+      id_market: 1,
       id: "We are committed to producing high-quality, eco-friendly clothes that are",
     },
     {
-      id_company: 1,
+      id_market: 1,
       id: "PT. Orak Genah was founded in 2020 with a passion for sustainable fashion.",
     },
     {
-      id_company: 1,
+      id_market: 1,
       id: "We are a team of dedicated individuals who believe in creating beautiful clothing that is good for the planet and the people who make it.",
     },
     {
-      id_company: 1,
+      id_market: 1,
+
       id: "We partner with local artisans and use traditional techniques whenever possible to preserve cultural heritage.",
     },
   ],

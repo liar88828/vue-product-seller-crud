@@ -1,4 +1,4 @@
-import type { Status } from "~/types/market/confirm"
+import type { Status } from "~/types/globals/Status"
 import { prisma } from "../config/prisma"
 import type { Order } from "@prisma/client"
 

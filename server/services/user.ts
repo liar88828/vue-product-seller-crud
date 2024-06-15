@@ -1,7 +1,22 @@
 import type { User } from "@prisma/client"
-import type { UserCreate, UserUpdate } from "~/types/user/ControlCreateUser"
+import type { UserCreate } from "~/types/user/ControlCreateUser"
 
-export class UserServices {
+class UserSanitize {
+  sanitize(data: UserCreate): UserCreate {
+    return {
+      email: data.email,
+      name: data.name,
+      address: data.address,
+      phone: data.phone,
+      id_follow: data.id_follow,
+      id_role: data.id_role,
+      id_trolly: data.id_trolly,
+      password: data.password,
+    }
+  }
+}
+
+export class UserServices extends UserSanitize {
   async id(id: string): Promise<User> {
     id = zods.idString.parse(id)
     const data = await db.user.findId(id)

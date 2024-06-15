@@ -1,12 +1,13 @@
-import type { Company, User } from "@prisma/client"
 import { ZodType, z } from "zod"
 import type { SignInProps, SignUpProps } from "~/types/auth/user"
 import type {
-  CompanyServer,
+  IdProduct,
   MarketIdProductId,
+  MarketServer,
 } from "~/types/market/ProfileCompany"
 import type { ProductUser } from "~/types/product/data.db"
 import type { IdValid } from "~/types/product/findId"
+import type { BoxCreate } from "~/types/transaction/trolly"
 import type { UserCreate } from "~/types/user/ControlCreateUser"
 const noSymbolString = z
   .string()
@@ -23,10 +24,15 @@ export default {
     id_user: z.string().uuid(),
   }) satisfies ZodType<IdValid>,
 
-  MarketProduct: z.object({
-    id_company: z.number().min(1),
+  idMarketProduct: z.object({
+    id_market: z.number().min(1),
     id_product: z.number().min(1),
   }) satisfies ZodType<MarketIdProductId>,
+
+  idProduct: z.object({
+    id_user: z.string().uuid(),
+    id_market: z.number().min(1),
+  }) satisfies ZodType<IdProduct>,
 
   companyCreate: z.object({
     name: z.string(),
@@ -38,7 +44,7 @@ export default {
     history: z.string(),
     since: z.date(),
     id_user: z.string(),
-  }) satisfies ZodType<CompanyServer>,
+  }) satisfies ZodType<MarketServer>,
 
   productCreate: z.object({
     // id: z.number(),
@@ -50,6 +56,8 @@ export default {
     image: z.string(),
     stock: z.number(),
     id_user: z.string().uuid(),
+    id_market: z.number().nullable(),
+
     // id_order: z.number(),
     // id_company: z.number(),
   }) satisfies ZodType<ProductUser>,
@@ -64,6 +72,7 @@ export default {
     image: z.string(),
     stock: z.number(),
     id_user: z.string().uuid(),
+    id_market: z.number().nullable(),
   }) satisfies ZodType<ProductUser>,
 
   signUp: z
@@ -89,10 +98,17 @@ export default {
     phone: z.string().nullable(),
     address: z.string().nullable(),
     password: z.string(),
-    id_trolly: z.string().nullable(),
+    id_trolly: z.number().nullable(),
     id_role: z.string().nullable(),
     id_follow: z.number().nullable(),
   }) satisfies ZodType<UserCreate>,
+
+  boxCreate: z.object({
+    price: z.number(),
+    id_trolly: z.number(),
+    qty: z.number(),
+    id_product: z.number(),
+  }) satisfies ZodType<BoxCreate>,
 
   // userUpdate: z.object({
   //   email: z.string(),

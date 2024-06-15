@@ -1,21 +1,22 @@
 import type { SignInProps, SignUpProps } from "~/types/auth/user"
 import { tryCatch } from "../lib/tryCatch"
+import { AuthServices } from "../services/auth"
 
 export class AuthController {
+  // private service: AuthServices
+  constructor(private service: AuthServices) {}
   async signIn(data: SignInProps) {
     return tryCatch(async () => {
-      data = zods.signIn.parse(data)
-      const { password, ...user } = await service.auth.foundExist(data)
-      const validPass = service.auth.validPass(data.password, password)
+      const { password, ...user } = await this.service.foundExist(data)
+      this.service.validPass(data.password, password)
       return user
     })
   }
 
   async signUp(data: SignUpProps) {
     return tryCatch(async () => {
-      data = zods.signUp.parse(data)
-      await service.auth.emailExists(data.email)
-      const hashPassword = await service.auth.hashPass(data)
+      await this.service.emailExists(data)
+      const hashPassword = await this.service.hashPass(data)
       return hashPassword
     })
   }

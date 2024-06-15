@@ -5,8 +5,8 @@ POST {{url}}api/auth/sign-up/
 Content-Type: application/json
 
 {
-   "name":"user2",
-   "email":"user2@gmail.com",
+   "name":"user3",
+   "email":"user3@gmail.com",
    "password":"user11231232",
    "confPass":"user11231232"
 }

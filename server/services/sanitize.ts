@@ -10,41 +10,6 @@ import type {
   UserUpdate,
 } from "~/types/user/ControlCreateUser"
 export class SanitizeService {
-  productCreate(
-    data: Omit<ProductUser, "id_user" | "id_type">,
-    id_user: string,
-    id_type: string
-  ): RequiredProperty<ProductUser> {
-    return {
-      brand: data.brand ?? "",
-      description: data.description ?? "",
-      image: data.image ?? "https://picsum.photos/220",
-      name: data.name,
-      price: data.price,
-      stock: data.stock,
-      id_type,
-      id_user,
-    }
-  }
-
-  productUpdate(
-    data: Omit<ProductUser, "id_type">,
-    // id: number,
-    // id_user: string,
-    id_type: string
-  ): ProductUser {
-    return {
-      brand: data.brand ?? "",
-      description: data.description ?? "",
-      image: data.image ?? "https://picsum.photos/220",
-      name: data.name,
-      price: data.price,
-      stock: data.stock,
-      id_type,
-      id_user: data.id_user,
-      // id: id,
-    }
-  }
   user(data: UserCreate): UserCreate {
     return {
       email: data.email,
@@ -80,23 +45,6 @@ export class SanitizeService {
       id_role: data.id_role,
       id_trolly: data.id_trolly,
       password: data.password,
-    }
-  }
-
-  companyCreate(
-    data: CompanyServer,
-    id_user: string
-  ): RequiredProperty<CompanyServer> {
-    return {
-      address: data.address,
-      name: data.name,
-      description: data.description,
-      history: data.history,
-      industry: data.industry,
-      mission: data.mission,
-      since: new Date(data.since),
-      vision: data.vision,
-      id_user: id_user,
     }
   }
 }

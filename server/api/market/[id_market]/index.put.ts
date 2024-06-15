@@ -4,13 +4,18 @@
 // return market profile
 //
 import { dataCompany } from "~/assets/example/user/dataCompany"
-import { prisma } from "~/server/config/prisma"
+import { Role } from "~/types/globals/Status"
 export default defineEventHandler(async (event) => {
-  const session = 1
-  const data = await prisma.company.update({
-    where: { id: session },
-    data: { name: "test" },
-  })
+  const role: Role = "ADMIN"
+  const id = getRouterParams(event).id
+  const body = await readBody(event)
 
-  return { profile: dataCompany }
+  const data = {
+    profile: control.market.updateProfile(id, body),
+
+    toJson() {
+      return this.profile
+    },
+  }
+  return data
 })
