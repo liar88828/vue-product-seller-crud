@@ -7,11 +7,9 @@
       >
         <IconsTrash />
       </button>
-      <button
-        v-if="$route.path.includes('like')"
-        @click="handlerAddTrolly"
-        class="btn btn-sm btn-square btn-info"
-      >
+      <!-- remove because test -->
+      <!-- v-if="$route.path.includes('like')" -->
+      <button @click="handlerAddTrolly" class="btn btn-sm btn-square btn-info">
         <IconsTrolley />
       </button>
     </div>
@@ -67,9 +65,7 @@ const props = defineProps<{
 }>()
 // const detail = defineModel("detail", { required: true })
 
-const titleStyle = props.side
-  ? "text-sm sm:text-md md:text-lg font-bold"
-  : "text-sm sm:text-md md:text-lg font-bold"
+const titleStyle = "text-sm sm:text-md md:text-lg font-bold"
 
 const priceStyle = props.side
   ? "text-md sm:text-lg md:text-xl font-bold"

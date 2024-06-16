@@ -18,21 +18,21 @@
       <IconsPhone />
       <div>
         <h3 class="font-medium">Phone</h3>
-        <input type="text" v-model="data.contact.phone" />
+        <input type="text" v-model="data.Contact.phone" />
       </div>
     </div>
     <div class="flex items-start gap-4">
       <IconsMail />
       <div>
         <h3 class="font-medium">Email</h3>
-        <input type="text" v-model="data.contact.email" />
+        <input type="text" v-model="data.Contact.email" />
       </div>
     </div>
     <div class="flex items-start gap-4">
       <IconsGlobe />
       <div>
         <h3 class="font-medium">Website</h3>
-        <input type="text" v-model="data.contact.website" />
+        <input type="text" v-model="data.Contact.website" />
       </div>
     </div>
     <div class="flex items-start gap-4">
@@ -42,25 +42,25 @@
         <div class="flex flex-col gap-3">
           <div class="flex flex-nowrap items-center gap-2">
             <IconsFacebook class="h-8 w-8" />
-            <input type="text" v-model="data.socialMedia.facebook" />
+            <input type="text" v-model="data.SocialMedia.facebook" />
           </div>
           <div class="flex flex-nowrap items-center gap-2">
             <IconsInstagram class="h-8 w-8" />
-            <input type="text" v-model="data.socialMedia.instagram" />
+            <input type="text" v-model="data.SocialMedia.instagram" />
           </div>
           <div
             class="flex flex-nowrap items-center gap-2"
-            :href="data.socialMedia.twitter"
+            :href="data.SocialMedia.twitter"
           >
             <IconsTwitter class="h-8 w-8" />
-            <input type="text" v-model="data.socialMedia.twitter" />
+            <input type="text" v-model="data.SocialMedia.twitter" />
           </div>
           <div
             class="flex flex-nowrap items-center gap-2"
-            :href="data.socialMedia.whatsapp"
+            :href="data.SocialMedia.whatsapp"
           >
             <IconsWhatsapp class="h-8 w-8" />
-            <input type="text" v-model="data.socialMedia.whatsapp" />
+            <input type="text" v-model="data.SocialMedia.whatsapp" />
           </div>
         </div>
       </div>

@@ -6,7 +6,7 @@ export default defineEventHandler<{ body: UserCreate }>(async (event) => {
   const session = await db.user.first()
   const data = {
     data: await control.user.delete(session.id),
-    async toJson() {
+    toJson() {
       return this.data
     },
   }

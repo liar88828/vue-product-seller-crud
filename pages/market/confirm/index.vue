@@ -2,17 +2,19 @@
   <NuxtLayout name="market">
     <div v-if="pending">Loading ...</div>
     <div v-else-if="!data">Data Is Not Found ...</div>
-    <PageMarketConfirm v-else :data="data" />
+    <PageMarketConfirm v-else :data="data.market" />
   </NuxtLayout>
 </template>
 
 <script lang="ts" setup>
 // import { dataOrders } from "~/assets/example/transaction/dataOrder"
-import type { DataMarket } from "~/types/market/confirm"
-const { data, pending } = await useFetch("/api/market/confirm/", {
+const { data, pending } = await useFetch(
+  "/api/market/confirm/"
+  // {
   // pick: ["market"],
-  transform: (data) => data.market,
-})
+  // transform: (data) => data.market,
+  // }
+)
 // .then((res) => {
 //   return {
 //     data: res.data,

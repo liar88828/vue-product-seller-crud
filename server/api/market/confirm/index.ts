@@ -1,8 +1,8 @@
-import { prisma } from "~/server/config/prisma"
-
 export default defineEventHandler(async (event) => {
+  const session = await db.user.first()
+  const market = await db.market.findUser(session.id)
   const data = {
-    confirm: await db.order.findConfirmFull(),
+    confirm: await control.transaction.order.allDetail(market.id),
 
     toJSON() {
       return {

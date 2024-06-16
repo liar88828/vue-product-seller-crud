@@ -1,9 +1,7 @@
 import type { Box } from "@prisma/client"
 
 export type PackageCreate = {
-  boxTrolly: {
-    box: Box[]
-  }
+  box: Box[]
   // user:User
 }
 

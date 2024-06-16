@@ -16,21 +16,23 @@ model User {
   name        String?
   phone       String?
   address     String?
-  Transaction Transaction[]
-  Product     Product[]
   password    String
-
   // 
-  Trolly    Trolly? @relation(fields: [id_trolly], references: [id])
-  id_trolly Int?    @unique
-
-  // 
-  Role        Role?         @relation(fields: [id_role], references: [id])
-  id_role     String?
+  Product     Product[]
+  Transaction Transaction[]
   Order       Order[]
   MessageList MessageList[]
   Preview     Preview[]
   Market      Market?
+  Like        Like?         @relation(fields: [id_like], references: [id])
+  id_like     Int?          @unique
+  // 
+  Trolly      Trolly?       @relation(fields: [id_trolly], references: [id])
+  id_trolly   Int?          @unique
+  // 
+  Role        Role?         @relation(fields: [id_role], references: [id])
+  id_role     String?
+  //
   Follow      Follow?       @relation(fields: [id_follow], references: [id])
   id_follow   Int?
 }
@@ -64,6 +66,8 @@ model Product {
   // 
   Market      Market?   @relation(fields: [id_market], references: [id])
   id_market   Int?
+  // 
+  Like        Like[]
 }
 
 model Image {
@@ -96,7 +100,7 @@ model Tech {
 
 model Spec {
   title      String      @id
-  list       List_Spec[]
+  List       List_Spec[]
   Product    Product?    @relation(fields: [id_product], references: [id])
   id_product Int?
 }
@@ -113,7 +117,7 @@ model Preview {
   time       DateTime @default(now())
   // 
   id_user    String
-  user       User     @relation(fields: [id_user], references: [id])
+  User       User     @relation(fields: [id_user], references: [id])
   // 
   id_product Int?
   Product    Product? @relation(fields: [id_product], references: [id])
@@ -196,7 +200,7 @@ model Market {
   // 
   Additional     Additional[]
   Order          Order[]
-  product        Product[]
+  Product        Product[]
   since          DateTime     @default(now())
   // 
   Contact        Contact?     @relation(fields: [id_contact], references: [id])
@@ -243,36 +247,45 @@ model Additional {
 
 model Order {
   id         Int       @id @default(autoincrement())
-  discount   String
+  discount   Int
   status     String
   promoCode  String
   dateBuy    DateTime
   expired    DateTime
-  trolly     Product[]
+  Product    Product[]
+  // trolly    Product[]
   // 
   id_userBuy String
   userBuy    User      @relation(fields: [id_userBuy], references: [id])
   // 
   id_market  Int
-  market     Market    @relation(fields: [id_market], references: [id])
+  Market     Market    @relation(fields: [id_market], references: [id])
 }
 
 // ------------- Message
 model MessageContact {
-  id      Int           @id @default(autoincrement())
-  name    String
-  time    DateTime
-  img     String
-  message MessageList[]
-  read    Boolean
+  id          Int           @id @default(autoincrement())
+  name        String
+  time        DateTime
+  img         String
+  MessageList MessageList[]
+  read        Boolean
 }
 
 model MessageList {
   id                Int             @id @default(autoincrement())
-  user              User?           @relation(fields: [id_user], references: [id])
+  User              User?           @relation(fields: [id_user], references: [id])
   id_user           String?
   time              DateTime
   msg               String
   MessageContact    MessageContact? @relation(fields: [id_messageContact], references: [id])
   id_messageContact Int?
+}
+
+model Like {
+  id         Int      @id @default(autoincrement())
+  id_user    String
+  User       User?
+  Product    Product? @relation(fields: [id_product], references: [id])
+  id_product Int
 }

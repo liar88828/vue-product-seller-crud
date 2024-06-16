@@ -3,7 +3,7 @@ export default defineEventHandler(async (event) => {
   const { id } = getRouterParams(event)
   const body = await readBody(event)
   const data = {
-    product: await control.product.updateUser(body, Number(id), session.id),
+    product: await control.product.market.update(body, id, session.id),
 
     toJSON() {
       return {

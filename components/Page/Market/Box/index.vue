@@ -13,13 +13,13 @@
 </template>
 
 <script lang="ts" setup>
-import type { MarketStatic } from "~/types/profile/profile"
-import type { Company } from "@prisma/client"
 import Desc from "./Desc.vue"
 import Static from "./Static.vue"
 import Image from "./Image.vue"
+import type { Market } from "@prisma/client"
+import type { MarketStatic } from "~/types/market/ProfileCompany"
 defineProps<{
-  data: Company
+  data: Market
   static: MarketStatic
 }>()
 </script>

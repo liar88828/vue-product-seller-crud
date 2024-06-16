@@ -11,10 +11,10 @@ import IconsMilk from "~/components/Icons/Milk.vue"
 
 import type { StaticLink } from "~/types/globals/StaticLink"
 import type { ItemIcons } from "~/types/globals/icon"
-import type { Status } from "~/types/globals/Status"
+import type { TStatus } from "~/types/globals/Status"
 
 export const linkStatus: {
-  title: Status
+  title: TStatus
   link: string
 }[] = [
   {

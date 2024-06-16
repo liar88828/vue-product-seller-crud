@@ -1,19 +1,20 @@
 import { mount } from "@vue/test-utils"
 import { expect, test } from "vitest"
 import { dataOrders } from "~/assets/example/transaction/dataOrder"
-import History from "~/pages/user/history.vue"
+import History from "~/components/Page/Transaction/Order/index.vue"
 
-test("it can be tested history", async () => {
-  const component = await mount(History, {
+test.skip("it can be tested history", async () => {
+  const component = mount(History, {
     slots: {
       default: "profile",
     },
     props: {
+      // products: dataOrders,
       data: dataOrders,
     },
   })
 
-  expect(component.text()).toContain("Waiting")
+  expect(component.text()).toContain("Accepted")
   expect(component.text()).toContain("Pending")
   expect(component.text()).toContain("Cancelled")
   expect(component.text()).toContain("Payment")

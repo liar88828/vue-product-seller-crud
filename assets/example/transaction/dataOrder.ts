@@ -2,11 +2,9 @@ import { userProfile, userProfile2 } from "../user/dataUser"
 import { dataCompany } from "../user/dataCompany"
 import { dataProducts } from "../product/dataProduct"
 import type { OrderProps } from "~/types/market/order"
-import type { DataMarketStatus } from "~/types/market/confirm"
 
-const dataHistory: DataMarketStatus = {
+const dataHistory: OrderProps = {
   id: 3,
-  //@ts-ignore
   trolly: dataProducts,
   userBuy: userProfile2,
   Market: dataCompany,
@@ -15,10 +13,12 @@ const dataHistory: DataMarketStatus = {
   promoCode: "FASDFSD5756",
   dateBuy: new Date(),
   expired: new Date(),
+  id_market: 1,
+  id_userBuy: "2",
 }
 
 const dataHistory2: OrderProps = {
-  id: "3",
+  id: 3,
   trolly: dataProducts,
   userBuy: userProfile2,
   Market: dataCompany,
@@ -27,11 +27,11 @@ const dataHistory2: OrderProps = {
   discount: 20,
   expired: new Date(),
   promoCode: "FASDFSD5756",
-  id_company: "1",
+  id_market: 1,
   id_userBuy: "2",
 }
 const dataOrder: OrderProps = {
-  id: "1",
+  id: 1,
   status: "Pending",
   trolly: dataProducts,
   userBuy: userProfile,
@@ -40,12 +40,12 @@ const dataOrder: OrderProps = {
   discount: 20,
   expired: new Date(),
   promoCode: "FASDFSD5756",
-  id_company: "1",
+  id_market: 1,
   id_userBuy: "2",
 }
 
 const dataOrder2: OrderProps = {
-  id: "3",
+  id: 3,
   trolly: dataProducts,
   userBuy: userProfile2,
   Market: dataCompany,
@@ -54,7 +54,7 @@ const dataOrder2: OrderProps = {
   discount: 20,
   expired: new Date(),
   promoCode: "FASDFSD5756",
-  id_company: "1",
+  id_market: 1,
   id_userBuy: "2",
 }
 export const dataOrders: OrderProps[] = [

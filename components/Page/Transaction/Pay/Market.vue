@@ -12,11 +12,11 @@
         </div>
         <div class="flex flex-col">
           <div class="font-medium">Email</div>
-          <div>{{ company.contact.email }}</div>
+          <div>{{ company.Contact.email }}</div>
         </div>
         <div class="flex flex-col">
           <div class="font-medium">Phone</div>
-          <div>{{ getPhone(company.contact.phone) }}</div>
+          <div>{{ getPhone(company.Contact.phone) }}</div>
         </div>
       </div>
     </div>

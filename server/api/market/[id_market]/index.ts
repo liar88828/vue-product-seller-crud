@@ -6,7 +6,7 @@
 export default defineEventHandler(async (event) => {
   const { id } = getRouterParams(event)
   const data = {
-    market: await control.market.profileId(Number(id)),
+    market: await control.market.id(id),
     toJson() {
       return this.market
     },

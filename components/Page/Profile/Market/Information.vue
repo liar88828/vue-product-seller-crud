@@ -93,9 +93,9 @@
 </template>
 
 <script setup lang="ts">
-import type { CompanyServerFull } from "~/types/market/ProfileCompany"
+import type { MarketServerFull } from "~/types/market/ProfileCompany"
 
 defineProps<{
-  data: CompanyServerFull
+  data: MarketServerFull
 }>()
 </script>

@@ -22,7 +22,7 @@
       <td>
         <div
           class="flex gap-2 space-y-2"
-          v-for="trolly in data.trolly"
+          v-for="trolly in data.Product"
           :key="trolly.id"
 
         >
@@ -69,10 +69,11 @@
 </template>
 
 <script lang="ts" setup>
-import type { DataMarket } from '~/types/market/confirm'
+import type { DataMarket } from '~/types/market/order'
+
 
 const props=defineProps<{
   dataProduct: DataMarket[]
 }>()
-const totalProduct=computed(()=> props.dataProduct.flatMap((t)=>t.trolly).map((t)=>t.price).reduce((a,b)=>a+b,0))
+const totalProduct=computed(()=> props.dataProduct.flatMap((t)=>t.Product).map((t)=>t.price).reduce((a,b)=>a+b,0))
 </script>

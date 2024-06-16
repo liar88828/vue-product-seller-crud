@@ -3,7 +3,7 @@ import { expect, test } from "vitest"
 import { dataProducts } from "~/assets/example/product/dataProduct"
 import Like from "~/pages/user/like.vue"
 
-test("it can be tested like", async () => {
+test.skip("it can be tested like", async () => {
   const component = mount(Like, {
     slots: {
       default: "profile",

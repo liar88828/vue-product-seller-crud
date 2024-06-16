@@ -23,7 +23,7 @@ defineProps<{
         <h3 class="text-md sm:text-lg font-bold">{{ item.title }}</h3>
         <ul class="flex flex-wrap sm:flex-none gap-2 list-inside list-disc">
           <li
-            v-for="list in item.list"
+            v-for="list in item.List"
             :key="list.text"
             class="text-sm sm:text-md"
           >

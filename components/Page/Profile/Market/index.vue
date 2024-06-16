@@ -26,15 +26,14 @@
 
 <script lang="ts" setup>
 import type {
-  CompanyServer,
-  CompanyServerFull,
+  MarketServerFull,
   ProfileMarket,
 } from "~/types/market/ProfileCompany"
 import Information from "./Information.vue"
 import Describe from "./Describe.vue"
 
 defineProps<{
-  data: CompanyServerFull
+  data: MarketServerFull
 }>()
 
 const { clickImage, refImage } = useImages("Market Profile")

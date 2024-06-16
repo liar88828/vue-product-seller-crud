@@ -7,7 +7,7 @@ import { prisma } from "~/server/config/prisma"
 //
 export default defineEventHandler(async (event) => {
   const id = getRouterParams(event).id
-  const data = await prisma.company.findUnique({ where: { id: Number(id) } })
+  const data = await prisma.market.findUnique({ where: { id: Number(id) } })
 
   return { profile: dataCompany }
 })

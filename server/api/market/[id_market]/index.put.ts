@@ -4,14 +4,14 @@
 // return market profile
 //
 import { dataCompany } from "~/assets/example/user/dataCompany"
-import { Role } from "~/types/globals/Status"
+import type { TRole } from "~/types/globals/Status"
 export default defineEventHandler(async (event) => {
-  const role: Role = "ADMIN"
+  const role: TRole = "ADMIN"
   const id = getRouterParams(event).id
   const body = await readBody(event)
 
   const data = {
-    profile: control.market.updateProfile(id, body),
+    profile: control.market.update(id, body),
 
     toJson() {
       return this.profile

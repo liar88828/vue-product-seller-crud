@@ -29,7 +29,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-import type { MarketStatic } from "~/types/profile/profile"
+import type { MarketStatic } from "~/types/market/ProfileCompany"
 
 defineProps<{
   static: MarketStatic

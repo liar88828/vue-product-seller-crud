@@ -3,10 +3,10 @@
 // return market product
 //
 export default defineEventHandler(async (event) => {
-  const { id, id_product } = getRouterParams(event)
-  console.log(id, id_product)
+  const { id_product, id_market } = getRouterParams(event)
+  console.log(id_market, id_product)
   const data = {
-    product: await control.product.findId(Number(id)),
+    product: await control.product.market.id(id_market, id_product),
 
     toJSON() {
       return {

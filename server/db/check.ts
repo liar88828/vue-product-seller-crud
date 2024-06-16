@@ -13,21 +13,6 @@ export class CheckDB {
     })
   }
 
-  async transaction(id_user: string) {
-    const found = await prisma.transaction.findMany({
-      where: { id_user },
-      select: { id: true },
-    })
-    if (!found) {
-      const create = await prisma.transaction.create({
-        data: {
-          id_user,
-        },
-      })
-      return create
-    }
-  }
-
   async trolly(id_user: string) {
     const found = await prisma.trolly.findMany({
       select: {

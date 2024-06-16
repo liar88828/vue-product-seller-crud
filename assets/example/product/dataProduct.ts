@@ -15,7 +15,7 @@ const dataProduct2: Product = {
   id: 123,
   description: "i dont know",
   id_user: "112",
-  id_company: 1,
+  id_market: 1,
   id_order: 1,
 }
 const dataProduct3: Product = {
@@ -28,7 +28,7 @@ const dataProduct3: Product = {
   id: 213,
   description: "i dont know",
   id_user: "112",
-  id_company: 1,
+  id_market: 1,
   id_order: 1,
 }
 const dataProduct1: Product = {
@@ -41,7 +41,7 @@ const dataProduct1: Product = {
   id: 1001,
   description: "Comfortable running shoes",
   id_user: "110",
-  id_company: 1,
+  id_market: 1,
   id_order: 1,
 }
 const dataProduct4: Product = {
@@ -54,7 +54,7 @@ const dataProduct4: Product = {
   id: 1003,
   description: "Soft cotton t-shirt",
   id_user: "113",
-  id_company: 1,
+  id_market: 1,
   id_order: 1,
 }
 const dataProduct5: Product = {
@@ -67,7 +67,7 @@ const dataProduct5: Product = {
   id: 1004,
   description: "Latest model with GPS",
   id_user: "114",
-  id_company: 1,
+  id_market: 1,
   id_order: 1,
 }
 
@@ -87,7 +87,7 @@ const dataProductDetail: ProductItem = {
   desc: dataDesc,
   desc_tech: dataTech,
   desc_spec: dataSpec,
-  id_company: 1,
+  id_market: 1,
   id_order: 1,
 }
 
@@ -108,7 +108,7 @@ const dataProductDetail2: ProductItem = {
   desc: dataDesc2,
   desc_tech: dataTech2,
   desc_spec: dataSpec2,
-  id_company: 1,
+  id_market: 1,
   id_order: 1,
 }
 
@@ -127,7 +127,7 @@ const dataProductDetail3: ProductItem = {
   desc: dataDesc3,
   desc_tech: dataTech3,
   desc_spec: dataSpec3,
-  id_company: 1,
+  id_market: 1,
   id_order: 1,
 }
 export const dataProductDetails: ProductItem[] = [
@@ -162,7 +162,7 @@ export const dataProductDetailServer: ProductDetail = {
   // desc: dataDesc,
   // desc_tech: dataTech,
   // desc_spec: dataSpec,
-  // id_company: 1,
+  // id_market: 1,
   // id_order: 1,
 
   detail: {
@@ -176,7 +176,7 @@ export const dataProductDetailServer: ProductDetail = {
     id_user: "Gene",
     id_type: "Maude",
     id_order: 98,
-    id_company: 94,
+    id_market: 94,
     Desc: [{ id_product: 1, text: "Wesley" }],
     Img: [
       {
@@ -196,7 +196,7 @@ export const dataProductDetailServer: ProductDetail = {
       {
         id_product: 1,
         title: "Devin",
-        list: [{ specTitle: "Wesley", text: "Devin" }],
+        List: [{ specTitle: "Wesley", text: "Devin" }],
       },
     ],
     Tech: [{ id_product: 1, title: "Dorothy", text: "Travis" }],
@@ -224,7 +224,7 @@ export const dataProductDetailServer: ProductDetail = {
       id_user: "Wesley",
       text: "Devin",
       time: new Date(),
-      user: {
+      User: {
         id: "001",
         email: "john@example.com",
         name: "John Doe",
@@ -234,6 +234,7 @@ export const dataProductDetailServer: ProductDetail = {
         id_trolly: 1,
         id_role: "role001",
         id_follow: 123,
+        id_like: 123,
       },
     },
   ],
@@ -249,7 +250,7 @@ export const dataProductDetailServer: ProductDetail = {
       id_user: "2",
       id_type: "type002",
       id_order: 12345,
-      id_company: 3,
+      id_market: 3,
     },
   ],
   static: {

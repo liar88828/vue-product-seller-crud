@@ -46,7 +46,7 @@ export type ProductItem = Product & {
 
 // server
 
-export type DataPreview = Preview & { user: User }
+export type DataPreview = Preview & { User: User }
 
 export type ProductDetail = {
   static: MarketStatic
@@ -59,8 +59,9 @@ export type ProductDetail = {
 }
 export type ProductItemServer = Product & {
   Spec: (Spec & {
-    list: List_Spec[]
+    List: List_Spec[]
   })[]
+
   Tech: Tech[]
   Desc: Desc[]
   Img: Image[]

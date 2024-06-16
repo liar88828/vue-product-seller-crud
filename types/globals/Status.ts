@@ -1,2 +1,2 @@
-export type Status = "Accepted" | "Pending" | "Delivered" | "Cancelled"
-export type Role = "ADMIN" | "USER" | "MARKET"
+export type TStatus = "Pending" | "Accepted" | "Delivered" | "Cancelled"
+export type TRole = "ADMIN" | "USER" | "MARKET"

@@ -1,35 +1,12 @@
-import { prisma } from "~/server/config/prisma"
-import { DataMarketDesc } from "~/types/market/ProfileCompany"
-import type { DataMarket } from "~/types/market/confirm"
-
 export default defineEventHandler(async (event) => {
   const { id } = getRouterParams(event)
 
-  const market: DataMarket | null = await prisma.order.findUnique({
-    where: {
-      id: Number(id),
+  const data = {
+    // product: dataProducts,
+    confirm: await db.order.confirmId(Number(id)),
+    toJson() {
+      return this.confirm
     },
-    include: {
-      market: true,
-      trolly: true,
-      userBuy: true,
-    },
-  })
-
-  const company: DataMarketDesc | null = await prisma.market.findUnique({
-    where: {
-      id: market?.market.id,
-    },
-    include: {
-      Contact: true,
-      SocialMedia: true,
-      Additional: true,
-      Order: true,
-    },
-  })
-
-  return {
-    market,
-    company,
   }
+  return data
 })

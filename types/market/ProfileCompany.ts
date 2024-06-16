@@ -42,9 +42,9 @@ export type ProfileMarket = {
   marketStatic: MarketStatic
 }
 
-type MarketValid = RequiredProperty<MarketServerFull>
-type test = IfEquals<MarketValid, ProfileMarket, "save", "different">
-// const Test: tesst = "different"
+export type MarketServerValid = RequiredProperty<MarketServerFull>
+type test = IfEquals<MarketServerValid, ProfileMarket, "save", "different">
+// const Test: test = "different"
 
 export type MarketServer = Omit<
   Market,

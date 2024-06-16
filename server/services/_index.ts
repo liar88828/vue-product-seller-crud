@@ -1,12 +1,13 @@
 import { AuthServices } from "./auth"
 import { HomeServices } from "./home"
-import { MarketServices } from "./market"
-import { PackageService } from "./package"
+import { MarketServices } from "./user/market"
+import { PackageService } from "./transaction/package"
 import { ProductServices } from "./product"
 import { SanitizeService } from "./sanitize"
-import { TransactionServices } from "./transaction"
-import { TrollyService } from "./trolly"
+import { TrollyService } from "./user/trolly"
 import { UserServices } from "./user"
+import { OrderServices } from "./transaction/order"
+import { TransactionServices } from "./transaction"
 
 export class Services {
   auth = new AuthServices()
@@ -19,6 +20,7 @@ export class Services {
   transaction = new TransactionServices()
   trolly = new TrollyService()
   package = new PackageService()
+  order = new OrderServices()
 }
 
 export const service = new Services()

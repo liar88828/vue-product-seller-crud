@@ -3,7 +3,7 @@ export default defineEventHandler(async (event) => {
   const { id } = getRouterParams(event)
   const data = {
     // product: dataProductDetails,
-    product: await control.product.createUser(await readBody(event), {
+    product: await control.product.market.create(await readBody(event), {
       id_user: session.id,
       id_market: Number(id),
     }),

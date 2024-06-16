@@ -5,7 +5,9 @@
 </template>
 
 <script lang="ts" setup>
-import type { DataMarket } from "~/types/market/confirm"
+import type { DataMarket } from "~/types/market/order"
+
+// import type { DataMarket } from "~/types/market/confirm"
 // import type { OrderProps } from "~/types/product/order"
 
 defineProps<{

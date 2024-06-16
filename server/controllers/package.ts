@@ -1,18 +1,15 @@
 import type { Transaction, User } from "@prisma/client"
-import { PackageService } from "../services/package"
-import { PackageCreate } from "~/types/transaction/package"
+import type { PackageService } from "../services/transaction/package"
+import type { PackageCreate } from "~/types/transaction/package"
 
 export class PackageController {
   constructor(protected service: PackageService) {}
   async push(id_transaction: number, packages: PackageCreate) {
-    const data = service.package.sanitizePackage(
-      id_transaction,
-      packages.boxTrolly.box
-    )
+    const data = service.package.sanitize({ id_transaction, box: packages.box })
     return service.package.pushPackage(data)
   }
-  async checkTransaction(data: User): Promise<Transaction> {
-    const sanitize = service.package.sanitizeTransaction(data)
-    return service.package.checkTransaction(sanitize)
+  async create(data: User): Promise<Transaction> {
+    const sanitize = service.transaction.sanitize(data)
+    return service.transaction.create(sanitize)
   }
 }

@@ -1,16 +1,16 @@
 export default defineEventHandler(async (event) => {
-  const session = await db.user.first()
+  // const session = await db.user.first()
 
-  const data = {
-    product: await control.product.createUser(
-      await readBody(event),
-      session.id
-    ),
-    toJSON() {
-      return {
-        product: this.product,
-      }
-    },
-  }
-  return data
+  // const data = {
+  //   product: await control.product.create(await readBody(event), {
+  //     id_user: session.id,
+  //   }),
+  //   toJSON() {
+  //     return {
+  //       product: this.product,
+  //     }
+  //   },
+  // }
+  // return data
+  return "development"
 })

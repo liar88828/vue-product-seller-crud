@@ -1,11 +1,16 @@
 import { Services } from "../services/_index"
 import { PackageController } from "./package"
+import { ProductController } from "./product"
 import { TransactionController } from "./transaction"
-import { TrollyController } from "./trolly"
+import { UserController } from "./user"
+import { TrollyController } from "./user/trolly"
 
 class Control {
   private readonly service = new Services()
-  transaction = new TransactionController(this.service.transaction)
+  transaction = new TransactionController(
+    this.service.transaction,
+    this.service.order
+  )
   product = new ProductController(this.service.product)
   user = new UserController(this.service.user)
   market = new MarketController(this.service.market)

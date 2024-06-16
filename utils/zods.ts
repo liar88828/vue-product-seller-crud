@@ -101,6 +101,7 @@ export default {
     id_trolly: z.number().nullable(),
     id_role: z.string().nullable(),
     id_follow: z.number().nullable(),
+    id_like: z.number().nullable(),
   }) satisfies ZodType<UserCreate>,
 
   boxCreate: z.object({
