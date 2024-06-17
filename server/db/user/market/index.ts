@@ -1,4 +1,3 @@
-import type { Market } from "@prisma/client"
 import type {
   MarketServer,
   MarketServerFull,
@@ -6,7 +5,9 @@ import type {
 import { MarketTestDB } from "./MarketTestDB"
 import { prisma } from "~/server/config/prisma"
 
-class MarketOwnerDB extends MarketTestDB {
+class MarketUserDB extends MarketTestDB {}
+
+class MarketOwnerDB extends MarketUserDB {
   async updateProfile(
     id_market: number,
     data: MarketServer
@@ -55,8 +56,8 @@ class MarketOwnerDB extends MarketTestDB {
 
 export class MarketDB extends MarketOwnerDB {
   async findUser(id_user: string) {
-    const data = await prisma.market.findUnique({
-      where: { id_user },
+    const data = await prisma.market.findMany({
+      where: { User: { id: id_user } },
       include: {
         User: true,
       },
@@ -68,34 +69,13 @@ export class MarketDB extends MarketOwnerDB {
         statusMessage: "Market not found",
       })
     }
-    if (!data.User) {
+    if (!data) {
       throw createError({
         statusCode: 404,
         statusMessage: "User not found",
       })
     }
-    data.User.password = ""
-    return data
-  }
-
-  async findFull(id_user: string): Promise<MarketServerFull> {
-    const data = await prisma.market.findUnique({
-      where: { id_user },
-      include: {
-        User: true,
-        Contact: true,
-        SocialMedia: true,
-        Additional: true,
-      },
-    })
-
-    if (!data) {
-      throw createError({
-        statusCode: 404,
-        statusMessage: "Market not found",
-      })
-    }
-
+    // data.User.password = ""
     return data
   }
 
@@ -112,6 +92,27 @@ export class MarketDB extends MarketOwnerDB {
         statusMessage: "Market not found",
       })
     }
+    return data
+  }
+
+  async findFull(id: number): Promise<MarketServerFull> {
+    const data = await prisma.market.findUnique({
+      where: { id },
+      include: {
+        User: true,
+        Contact: true,
+        SocialMedia: true,
+        Additional: true,
+      },
+    })
+
+    if (!data) {
+      throw createError({
+        statusCode: 404,
+        statusMessage: "Market not found",
+      })
+    }
+
     return data
   }
 }

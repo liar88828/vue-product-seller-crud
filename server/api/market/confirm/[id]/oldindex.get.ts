@@ -4,31 +4,30 @@ import type { DataMarketDesc } from "~/types/market/ProfileCompany"
 export default defineEventHandler(async (event) => {
   const { id } = getRouterParams(event)
 
-  const market = await prisma.order.findUnique({
+  const transaction = await prisma.transaction.findUnique({
     where: {
       id: Number(id),
     },
     include: {
       Market: true,
-      Product: true,
       userBuy: true,
+      Box: true,
     },
   })
 
-  const company: DataMarketDesc | null = await prisma.market.findUnique({
+  const market: DataMarketDesc | null = await prisma.market.findUnique({
     where: {
-      id: market?.Market.id,
+      id: transaction?.Market.id,
     },
     include: {
       Contact: true,
       SocialMedia: true,
       Additional: true,
-      Order: true,
+      Transaction: true,
     },
   })
 
   return {
     market,
-    company,
   }
 })

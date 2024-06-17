@@ -41,12 +41,12 @@
 
 <script lang="ts" setup>
 import { staticLink } from "~/assets/link/shopLink"
-import type { OrderProps } from "~/types/market/order"
+import type { TransProps } from "~/types/market/order"
 const { store } = useOrder()
 
 const props = defineProps({
   data: {
-    type: Object as PropType<OrderProps[]>,
+    type: Object as PropType<TransProps[]>,
     required: true,
   },
   market: {

@@ -1,13 +1,9 @@
 export default defineEventHandler(async (event) => {
-  const session = await db.user.first()
-  const market = await db.market.findUser(session.id)
+  const { id } = getRouterParams(event)
   const data = {
-    confirm: await control.transaction.order.allDetail(market.id),
-
-    toJSON() {
-      return {
-        market: this.confirm,
-      }
+    confirm: await db.trans.market.allDetail(Number(id)),
+    toJson() {
+      return this.confirm
     },
   }
   return data

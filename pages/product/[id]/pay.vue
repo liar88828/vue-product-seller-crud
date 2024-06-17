@@ -1,7 +1,4 @@
 <script setup lang="ts">
-import { dataOrders } from "~/assets/example/transaction/dataOrder"
-import { dataCompany } from "~/assets/example/user/dataCompany"
-import type { PayProps } from "~/types/transaction/page"
 const route = useRoute()
 const onPay = () => {
   console.log(`Pay id :${route.params.id} send`)
@@ -13,7 +10,7 @@ const onPay = () => {
 }
 
 const { id } = useRoute().params
-const { data, error } = await useFetch<PayProps>(`/api/${id}/pay`)
+const { data, error, pending } = await useFetch(`/api/user/pay/${id}`)
 watch(data, () => {
   console.log(data.value)
 })
@@ -26,8 +23,16 @@ if (error) {
 </script>
 
 <template>
+  <div v-if="pending">Loading ...</div>
+  <div v-else-if="error || !data?.pay">Error</div>
   <!-- @vue-expect-error -->
-  <PageTransactionPay :data="data">
+  <PageTransactionPay
+    v-else
+    :data="{
+      market: data.pay.market,
+      order: data.pay.order,
+    }"
+  >
     <button @click="onPay" class="btn btn-primary w-full">Pay</button>
   </PageTransactionPay>
 </template>

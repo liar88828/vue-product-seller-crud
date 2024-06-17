@@ -1,7 +1,7 @@
 <template>
   <div ref="refImage">
     <CardInit :class="'sm:card-normal'">
-      <Market :company="data.company">
+      <Market :market="data.market">
         <ElQRBarcode :qrValue="fullUrl" class="bg-white rounded-3xl" />
       </Market>
       <ElDivider class="my-0" />
@@ -26,7 +26,7 @@ import Total from "./Total.vue"
 import Customer from "./Customer.vue"
 import Market from "./Market.vue"
 import Dates from "./Dates.vue"
-import type { PayProps } from "~/types/transaction/page"
+import type { PayProps } from "~/types/market/order"
 defineProps<{ data: PayProps }>()
 const route = useRoute()
 let url = ""

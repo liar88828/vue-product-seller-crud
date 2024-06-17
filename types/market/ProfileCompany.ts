@@ -1,13 +1,13 @@
 import type {
   Additional,
+  Box,
   Contact,
   Market,
-  Order,
   SocialMedia,
+  Transaction,
   User,
 } from "@prisma/client"
 import type { IfEquals, RequiredProperty } from "../globals/generic"
-
 export type ProfileMarket = {
   id: number
   name: string
@@ -57,14 +57,13 @@ export type MarketServerFull = Market & {
   // marketStatic: MarketStatic
 }
 
-export type MarketIdProductId = {
-  id_market: number
-  id_product: number
+export type MarketProps = Market & {
+  Contact: Contact | null
+  SocialMedia: SocialMedia | null
+  Additional: Additional[]
+  marketStatic: MarketStatic
 }
-export type IdProduct = {
-  id_user: string
-  id_market: number
-}
+
 export type MarketUser = Market & {
   User: User
 }
@@ -78,5 +77,7 @@ export type DataMarketDesc = Market & {
   Contact: Contact | null
   SocialMedia: SocialMedia | null
   Additional: Additional[]
-  Order: Order[]
+  Transaction: Transaction[]
 }
+
+export type Remove<T> = Omit<T, "id">

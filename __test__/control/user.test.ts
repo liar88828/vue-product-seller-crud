@@ -23,6 +23,7 @@ testUserController.skip(
       phone: "default phone",
       id_role: "default id_role",
       password: "default password",
+      id_market: 1,
       // id_follow: 1,
       // id_like: 2,
       // id_trolly: 1,

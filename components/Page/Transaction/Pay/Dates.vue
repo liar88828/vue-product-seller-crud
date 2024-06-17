@@ -8,11 +8,11 @@
       <div class="gap-2 flex flex-col">
         <div class="flex items-center justify-between">
           <div class="font-medium">Order Date</div>
-          <div>{{ getDate(data.dateBuy) }}</div>
+          <div>{{ getDate(data.createdAt) }}</div>
         </div>
         <div class="flex items-center justify-between">
           <div class="font-medium">Expire Delivery Date</div>
-          <div>{{ getDate(data.dateBuy) }}</div>
+          <div>{{ getDate(data.createdAt) }}</div>
         </div>
         <div class="flex items-center justify-between">
           <div class="font-medium">Promo Code</div>
@@ -28,9 +28,9 @@
 </template>
 
 <script setup lang="ts">
-import type { OrderProps } from "~/types/market/order"
+import type { PayProps, TransProps } from "~/types/market/order"
 
 defineProps<{
-  data: OrderProps
+  data: PayProps["order"]
 }>()
 </script>

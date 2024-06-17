@@ -1,7 +1,6 @@
 import { tryCatch } from "../../lib/tryCatch"
 import type { ProductUser } from "~/types/product/data.db"
-import type { IdValid } from "~/types/product/findId"
-import type { IdProduct } from "~/types/market/ProfileCompany"
+import type { IdProduct, IdValid } from "~/types/product/findId"
 import { ProductServices } from "../../services/product"
 import { ProductUserController } from "./ProductUserController"
 

@@ -14,14 +14,15 @@
 </template>
 
 <script setup lang="ts">
-import type { OrderProps } from "~/types/market/order"
+import type { PayProps, TransProps } from "~/types/market/order"
 
 const props = defineProps<{
-  data: OrderProps
+  data: PayProps["order"]
 }>()
-const total = props.data.trolly
-  .map((t) => t.price * t.stock)
-  .reduce((a, b) => a + b, 0)
+const total = props.data.Box.map((t) => t.price * t.qty).reduce(
+  (a, b) => a + b,
+  0
+)
 
 const withDiscount = getDiscount(total, props.data.discount)
 </script>

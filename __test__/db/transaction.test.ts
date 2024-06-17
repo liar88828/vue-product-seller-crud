@@ -74,7 +74,12 @@ testTransactionDb.skipIf(!findTransaction)(
     console.log("will execute ")
 
     const test = await transaction.create({
-      id_user: testTransaction.id_user,
+      dateExp: new Date(),
+      discount: 0,
+      id_buyer: testTransaction.id_user,
+      id_market: 1,
+      promoCode: "FASDFSD5756",
+      status: checkStatus[0].id,
       drop_address: testTransaction.drop_address,
       id_status: testTransaction.id_status,
       //@ts-expect-error
@@ -106,7 +111,12 @@ testTransactionDb.skip(
   "transaction can be update ",
   async ({ transaction }) => {
     const test = await transaction.update(0, {
-      id_user: testTransaction.id_user,
+      dateExp: new Date(),
+      discount: 0,
+      id_buyer: testTransaction.id_user,
+      id_market: 1,
+      promoCode: "FASDFSD5756",
+      status: "Pending",
       drop_address: testTransaction.drop_address,
       id_status: "Pending update",
     })
@@ -141,7 +151,7 @@ testTransactionDb.skip(
 testTransactionDb.skip(
   "transaction can be delete ",
   async ({ transaction }) => {
-    const test = await transaction.delete({ id: 0, id_user: "test" })
+    const test = await transaction.delete(9)
 
     console.log(test, " is found")
     expect(test).toBeDefined()

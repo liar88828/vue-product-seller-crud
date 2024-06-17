@@ -10,6 +10,7 @@ class UserSanitize {
       phone: data.phone,
       id_role: data.id_role,
       password: data.password,
+      id_market: data.id_market,
       // id_trolly: data.id_trolly,
       // id_like: data.id_like,
       // id_follow: data.id_follow,

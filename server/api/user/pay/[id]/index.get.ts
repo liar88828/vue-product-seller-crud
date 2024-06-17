@@ -1,14 +1,11 @@
-// can see
-// get by session user
-//
 export default defineEventHandler(async (event) => {
   const session = await db.user.first()
   const { id } = getRouterParams(event)
 
   const data = {
-    order: await control.transaction.pay(id, session.id),
+    pay: await control.trans.user.payDetail(id, session.id),
     toJson() {
-      return this.order
+      return this.pay
     },
   }
   return data

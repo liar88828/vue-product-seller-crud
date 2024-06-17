@@ -23,9 +23,9 @@ export class MarketController extends MarketOwnerController {
     super(service)
   }
 
-  async full(id_user: string): Promise<MarketServerFull> {
+  async full(id_market: string): Promise<MarketServerFull> {
     return tryCatch(async () => {
-      return this.service.findFull(id_user)
+      return this.service.findFull(Number(id_market))
     })
   }
   async id(id: string) {

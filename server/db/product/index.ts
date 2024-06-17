@@ -1,13 +1,10 @@
 import { prisma } from "~/server/config/prisma"
 import type { Pagination } from "~/types/globals/Pagination"
-import type { IdValid } from "../../../types/product/findId"
+import type { IdValid, MarketIdProductId } from "../../../types/product/findId"
 import type { Market, Product } from "@prisma/client"
 import type { ProductItemServer } from "~/types/product/item"
 import type { ProductUser } from "~/types/product/data.db"
-import type {
-  MarketIdProductId,
-  MarketStatic,
-} from "~/types/market/ProfileCompany"
+import type { MarketStatic } from "~/types/market/ProfileCompany"
 import { FollowDB } from "../user/follow"
 
 class ProductStatic extends FollowDB {
@@ -151,18 +148,6 @@ export class ProductDB extends ProductMutationDB {
     return data
   }
 
-  async findCheckOut(id: number) {
-    const data = await prisma.product.findUnique({
-      where: { id, id_order: null },
-    })
-    if (!data) {
-      throw createError({
-        statusCode: 404,
-        statusMessage: "Product not found",
-      })
-    }
-    return data
-  }
   async detail(id: number): Promise<ProductItemServer> {
     const data = await prisma.product.findUnique({
       include: {

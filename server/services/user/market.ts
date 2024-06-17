@@ -6,6 +6,7 @@ import type {
   MarketServerFull,
   MarketStatic,
 } from "~/types/market/ProfileCompany"
+import type { IdMarketTrans } from "~/types/product/findId"
 
 class MarketSanitize {
   marketCreate(
@@ -22,7 +23,7 @@ class MarketSanitize {
       mission: data.mission,
       since: new Date(data.since),
       vision: data.vision,
-      id_user: id_user,
+      // id_user: id_user,
     }
   }
   updateMarketProfile(data: MarketServer): MarketServer {
@@ -35,7 +36,7 @@ class MarketSanitize {
       mission: data.mission,
       since: new Date(data.since),
       vision: data.vision,
-      id_user: data.id_user,
+      // id_user: data.id_user,
     }
   }
 }
@@ -55,8 +56,8 @@ export class MarketStaticService extends MarketSanitize {
 }
 
 class MarketOwner extends MarketStaticService {
-  protected async confirm(id: string, status: TStatus) {
-    return db.order.confirm(id, status)
+  protected async confirm(id: IdMarketTrans, status: TStatus) {
+    return db.trans.market.confirm.add(id, status)
   }
 }
 class MarketUser extends MarketOwner {}
@@ -71,9 +72,9 @@ export class MarketServices extends MarketUser {
     return db.market.findId(id)
   }
 
-  async findFull(id: string): Promise<MarketServerFull> {
-    id = zods.idString.parse(id)
-    return db.market.findFull(id)
+  async findFull(id_market: number): Promise<MarketServerFull> {
+    id_market = zods.idNumber.parse(id_market)
+    return db.market.findFull(id_market)
   }
 
   async updateProfile(

@@ -11,14 +11,17 @@
 
     <tbody>
       <tr v-for="item in data">
-        <td class="border border-slate-600">
-          {{ item.name }}
+        <ElError v-if="!item.Product" text="error" />
+        <td v-else class="border border-slate-600">
+          {{ item.Product.name }}
         </td>
-        <td class="border border-slate-600">
+        <ElError v-if="!item.Product" text="error" />
+        <td v-else class="border border-slate-600">
           {{ getRupiah(item.price) }}
         </td>
-        <td class="border border-slate-600">
-          {{ item.stock }}
+        <ElError v-if="!item.Product" text="error" />
+        <td v-else class="border border-slate-600">
+          {{ item.Product.stock }}
         </td>
         <td class="border border-slate-600"></td>
       </tr>
@@ -27,9 +30,9 @@
 </template>
 
 <script lang="ts" setup>
-import type { OrderProps } from "~/types/market/order"
+import type { TransProps } from "~/types/market/order"
 
 defineProps<{
-  data: OrderProps["trolly"]
+  data: TransProps["Box"]
 }>()
 </script>

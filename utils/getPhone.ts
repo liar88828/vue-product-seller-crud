@@ -1,4 +1,5 @@
-export default (number: string) => {
+export default (number: string | null | undefined) => {
+  if (!number) return "is null"
   const countryCode = "+64"
   const part1 = number.slice(0, 4)
   const part2 = number.slice(4, 8)

@@ -1,12 +1,12 @@
 import type { Product } from "@prisma/client"
 import type { ProductUser } from "~/types/product/data.db"
-import type { IdValid } from "~/types/product/findId"
-import { MarketStaticService } from "../user/market"
-import type { RequiredProperty } from "~/types/globals/generic"
 import type {
   IdProduct,
+  IdValid,
   MarketIdProductId,
-} from "~/types/market/ProfileCompany"
+} from "~/types/product/findId"
+import { MarketStaticService } from "../user/market"
+import type { RequiredProperty } from "~/types/globals/generic"
 
 class ProductSanitized extends MarketStaticService {
   sanitizeCreate(

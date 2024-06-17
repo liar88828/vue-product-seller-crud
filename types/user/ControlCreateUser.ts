@@ -1,5 +1,4 @@
 import type { User } from "@prisma/client"
-import type { Remove } from "../transaction/GetBox"
 
 export type CreateUserBasic = Omit<
   User,

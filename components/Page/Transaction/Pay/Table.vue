@@ -14,22 +14,34 @@
       </thead>
 
       <tbody>
-        <tr v-for="item in data.trolly">
-          <td class="border border-slate-600">
+        <tr v-for="item in data.Box">
+          <ElError v-if="!item.Product" text="error" />
+          <td v-else class="border border-slate-600">
             <div class="flex items-center gap-3">
               <IconsCardBoardClose />
-              <div class="font-bold">{{ getTextSplit(item.name, 20) }}</div>
+              <div class="font-bold">
+                {{ getTextSplit(item.Product.name, 20) }}
+              </div>
             </div>
           </td>
-          <td class="border border-slate-600">
-            {{ item.brand }}
+          <ElError v-if="!item.Product" text="error" />
+
+          <td v-else class="border border-slate-600">
+            {{ item.Product.brand }}
           </td>
-          <td class="border border-slate-600">{{ item.stock }}</td>
-          <td class="border border-slate-600">
+
+          <ElError v-if="!item.Product" text="error" />
+          <td v-else class="border border-slate-600">
+            {{ item.Product.stock }}
+          </td>
+          <ElError v-if="!item.Product" text="error" />
+          <td v-else class="border border-slate-600">
             {{ formatRupiah(item.price) }}
           </td>
-          <td class="border border-slate-600">
-            {{ totalNumber(item.price, item.stock) }}
+          <ElError v-if="!item.Product" text="error" />
+
+          <td v-else class="border border-slate-600">
+            {{ totalNumber(item.price, item.qty) }}
           </td>
         </tr>
       </tbody>
@@ -38,10 +50,10 @@
 </template>
 
 <script setup lang="ts">
-import type { OrderProps } from "~/types/market/order"
+import type { PayProps, TransProps } from "~/types/market/order"
 
 defineProps<{
-  data: OrderProps
+  data: PayProps["order"]
 }>()
 const { formatRupiah, totalNumber } = useFormat()
 </script>

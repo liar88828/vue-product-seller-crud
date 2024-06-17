@@ -1,8 +1,6 @@
 import { dataOrders } from "~/assets/example/transaction/dataOrder"
-import { prisma } from "~/server/config/prisma"
 export default defineEventHandler(async (event) => {
-  const res = prisma.order.findMany({
-    take: 100,
-  })
+  const session = await db.user.first()
+  control.trans.market.all(session.id_market as number)
   return { history: dataOrders }
 })

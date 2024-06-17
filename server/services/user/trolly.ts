@@ -1,4 +1,4 @@
-import type { BoxCreate } from "~/types/transaction/trolly"
+import type { BoxCreate, IdBox } from "~/types/transaction/trolly"
 class SanitizeTrolly {
   sanitize(data: BoxCreate): BoxCreate {
     return {
@@ -6,16 +6,21 @@ class SanitizeTrolly {
       qty: data.qty,
       id_trolly: data.id_trolly,
       id_product: data.id_product,
+      id_transaction: data.id_transaction,
     }
   }
 }
 
 export class TrollyService extends SanitizeTrolly {
-  async pushTrolly(data: BoxCreate) {
+  async push(data: BoxCreate) {
     data = zods.boxCreate.parse(data)
     return db.trolly.push(data)
   }
-  async checkTrolly(id_trolly: number) {
+  async check(id_trolly: number) {
     return db.trolly.check(id_trolly)
+  }
+  async delete(id: IdBox) {
+    id = zods.idBox.parse(id)
+    return db.trolly.delete(id)
   }
 }

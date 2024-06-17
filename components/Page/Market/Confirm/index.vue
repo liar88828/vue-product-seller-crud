@@ -1,6 +1,6 @@
 <template>
   <CardInit :title="'Confirm'">
-    <PageMarketConfirmTable :data-product="data" />
+    <PageMarketConfirmTable :data="data" />
   </CardInit>
 </template>
 

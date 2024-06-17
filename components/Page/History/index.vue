@@ -1,13 +1,13 @@
 <template>
   <PageHistoryWrap :dataPurchase="dataPurchase">
-    <PageHistoryBody :data="dataPurchase[0].trolly" />
+    <PageHistoryBody :data="dataPurchase[0].Box" />
   </PageHistoryWrap>
 </template>
 
 <script lang="ts" setup>
-import type { OrderProps } from "~/types/market/order"
+import type { TransProps } from "~/types/market/order"
 
 defineProps<{
-  dataPurchase: OrderProps[]
+  dataPurchase: TransProps[]
 }>()
 </script>

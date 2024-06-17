@@ -11,6 +11,7 @@ export const userProfile: User = {
   id_follow: 1,
   password: "12345678",
   id_like: 1,
+  id_market: 1,
 }
 
 export const userProfile2: User = {
@@ -24,4 +25,5 @@ export const userProfile2: User = {
   id_follow: 1,
   password: "12345678",
   id_like: 1,
+  id_market: 1,
 }

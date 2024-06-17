@@ -1,6 +1,11 @@
 import type { Box, Product, Trolly, User } from "@prisma/client"
-import type { GetBoxReturn } from "~/types/transaction/GetBox"
-import type { BoxCreate } from "~/types/transaction/trolly"
+import type {
+  BoxCreate,
+  BoxProduct,
+  GetBoxReturn,
+  IdBox,
+  MyTrollyReturn,
+} from "~/types/transaction/trolly"
 import { prisma } from "~/server/config/prisma"
 
 export class TrollyMutation extends CheckDB {
@@ -22,6 +27,16 @@ export class TrollyMutation extends CheckDB {
       where: { id: id_trolly },
       update: {},
       create: {},
+    })
+  }
+
+  async delete({ id_trolly, id_product, id_box }: IdBox) {
+    return prisma.box.delete({
+      where: {
+        id_trolly,
+        id_product,
+        id: id_box,
+      },
     })
   }
 }
@@ -82,13 +97,17 @@ export class TrollyDB extends TrollyMutation {
     }
     return data
   }
-}
 
-export type MyTrollyReturn = (Trolly & {
-  User: User | null
-  Box: Box[]
-})[]
-
-export type BoxProduct = Box & {
-  Product: Product | null
+  async findCheckOut(id: number) {
+    const data = await prisma.trolly.findUnique({
+      where: { id },
+    })
+    if (!data) {
+      throw createError({
+        statusCode: 404,
+        statusMessage: "Trolly not found",
+      })
+    }
+    return data
+  }
 }

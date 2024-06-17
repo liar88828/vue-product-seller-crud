@@ -1,22 +1,23 @@
 <template>
   <h3 class="nota-title">
     <IconsCardBoardClose />
-    <spam>{{ company.name }}</spam>
+    <spam>{{ market.name }}</spam>
   </h3>
   <div class="flex justify-between">
     <div class="w-2/3">
       <div class="gap-2 flex flex-col">
         <div class="flex flex-col">
           <div class="font-medium">Name</div>
-          <div>{{ company.address }}</div>
+          <div>{{ market.address }}</div>
         </div>
+        <ElError v-if="!market.address" text="error" />
         <div class="flex flex-col">
           <div class="font-medium">Email</div>
-          <div>{{ company.Contact.email }}</div>
+          <div>{{ market.Contact?.email ?? "" }}</div>
         </div>
         <div class="flex flex-col">
           <div class="font-medium">Phone</div>
-          <div>{{ getPhone(company.Contact.phone) }}</div>
+          <div>{{ getPhone(market.Contact?.phone) }}</div>
         </div>
       </div>
     </div>
@@ -30,11 +31,10 @@
 </template>
 
 <script setup lang="ts">
-import type { ProfileMarket } from "~/types/market/ProfileCompany"
-// const { $downloadQRCode } = useNuxtApp()
+import type { PayProps } from "~/types/market/order"
 
 defineProps<{
-  company: ProfileMarket
+  market: PayProps["market"]
 }>()
 
 // // Function to download the QR Code

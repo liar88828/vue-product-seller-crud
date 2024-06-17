@@ -24,9 +24,9 @@
 </template>
 
 <script setup lang="ts">
-import type { OrderProps } from "~/types/market/order"
+import type { PayProps, TransProps } from "~/types/market/order"
 
 defineProps<{
-  data: OrderProps
+  data: PayProps["order"]
 }>()
 </script>

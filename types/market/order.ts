@@ -1,7 +1,7 @@
-import type { Box, Market, Order, Product, Trolly, User } from "@prisma/client"
-import type { MarketServerValid, ProfileMarket } from "./ProfileCompany"
-import type { TStatus } from "../globals/Status"
-import type { IfEqual, IfEquals } from "../globals/generic"
+import type { Box, Market, Product, Transaction, User } from "@prisma/client"
+import type { MarketServerFull, MarketServerValid } from "./ProfileCompany"
+import type { CreateTransaction } from "../transaction"
+import type { GetBoxProps } from "../transaction/trolly"
 
 // export type OrderProps = {
 //   id: number
@@ -18,22 +18,33 @@ import type { IfEqual, IfEquals } from "../globals/generic"
 //   // Market: DataCompany
 // }
 
-export type DataMarket = Order & {
+export type DataMarket = Transaction & {
   userBuy: User
   Market: Market
-  Product: Product[]
+  Box: (Box & {
+    Product: Product | null
+  })[]
 }
-
-export type OrderConfirm = Order & {
-  userBuy: User
-  Market: Market
-}
-
-export type OrderProps = Order & {
+// export type DataMarketProps = Transaction & {
+//   userBuy: User
+//   Market: Market
+//   Box: (Box & {
+//     Product: Product //| null
+//   })[]
+// }
+export type TransProps = Transaction & {
   userBuy: User
   Market: MarketServerValid
-  trolly: Product[]
+  Box: (Box & {
+    Product: Product | null
+  })[]
 }
+
+export type OrderConfirm = Transaction & {
+  userBuy: User
+  Market: Market
+}
+
 // export type OrderDetail = Order & {
 //   userBuy: User | null
 //   market: Market
@@ -42,7 +53,31 @@ export type OrderProps = Order & {
 // type test = IfEqual<OrderProps, Order>
 // const Test: test = "different"
 
-export type SanitizePackage = {
+export type CreateBox = {
   id_transaction: number
   box: Box[]
+}
+
+export type WantBuyProps = {
+  id_user: User["id"]
+  id_trolly: number
+  data: {
+    box: GetBoxProps[]
+    data: CreateTransaction
+  }
+}
+
+export type PackageCreate = {
+  box: Box[]
+  // user:User
+}
+
+export type CheckTransaction = {
+  id_buyer: string
+  drop_address: string | null
+  id_status: string
+}
+export type PayProps = {
+  market: MarketServerFull
+  order: DataMarket
 }

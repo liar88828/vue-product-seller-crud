@@ -26,7 +26,6 @@ const state = reactive<Product>({
   price: 0,
   stock: 0,
   id_market: 0,
-  id_order: 0,
   id_type: "",
   id_user: "",
 })

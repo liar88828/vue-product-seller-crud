@@ -1,43 +1,39 @@
-import { OrderServices } from "~/server/services/transaction/order"
+import type { Transaction } from "@prisma/client"
 import { TransactionServices } from "../../services/transaction"
-import { OrderController } from "./order"
+import { TransactionUserCon } from "./TransactionUserCon"
+import { TransactionMarketCon } from "./TransactionMarketCon"
 
-export class TransactionController extends OrderController {
-  constructor(
-    public service: TransactionServices,
-    public orderService: OrderServices
-  ) {
-    super(orderService)
+export class TransactionController extends TransactionUserCon {
+  service = new TransactionServices()
+  user = new TransactionUserCon(this.service)
+  market = new TransactionMarketCon(this.service)
+
+  order = {
+    // confirm: super.confirmTransaction,
+    // create: super.createTransaction,
+    // detail: super.detailTransaction,
+    // all: super.allTransaction,
+    // allDetail: super.allTransactionDetail,
   }
-  async detail(id: string, id_user: string) {
-    return this.service.detail({ id_user, id: Number(id) })
-  }
-  async delete(id: string, id_user: string) {
-    return this.service.delete({ id_user, id: Number(id) })
-  }
-  async all(id_user: string) {
-    return this.service.all(id_user)
-  }
+
   async id(id: number) {
     return this.service.id(id)
   }
 
-  async pay(id: string, id_user: string) {
-    return this.service.pay({ id_user, id: Number(id) })
+  async createTrans(data: Transaction) {
+    return db.trans.create(data)
   }
-
-  history = {
-    detail: this.detail,
-    delete: this.delete,
-    all: this.all,
-    id: this.id,
+  // change in class MarketOwner
+  // async confirmTrans(data: Transaction) {
+  //   return db.transaction.confirm(data)
+  // }
+  async allTrans() {
+    return db.trans.all()
   }
-
-  order = {
-    confirm: super.confirmOrder,
-    create: super.createOrder,
-    detail: super.detailOrder,
-    all: super.allOrder,
-    allDetail: super.allOrderDetail,
+  async allTransDetail(id_market: number) {
+    return db.trans.id(id_market)
+  }
+  async detailTrans(id: number) {
+    return db.trans.id(id)
   }
 }

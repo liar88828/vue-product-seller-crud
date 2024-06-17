@@ -10,7 +10,7 @@
       <div class="">
         <h1 class="">transaction</h1>
         <p>
-          {{ getDate(data.dateBuy) }}
+          {{ getDate(data.createdAt) }}
         </p>
 
         <div class="">
@@ -23,9 +23,9 @@
 </template>
 
 <script setup lang="ts">
-import type { OrderProps } from "~/types/market/order"
+import type { TransProps } from "~/types/market/order"
 
 defineProps<{
-  dataPurchase: OrderProps[]
+  dataPurchase: TransProps[]
 }>()
 </script>

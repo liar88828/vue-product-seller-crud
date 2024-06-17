@@ -16,7 +16,6 @@ const dataProduct2: Product = {
   description: "i dont know",
   id_user: "112",
   id_market: 1,
-  id_order: 1,
 }
 const dataProduct3: Product = {
   image: "https://picsum.photos/220",
@@ -29,7 +28,6 @@ const dataProduct3: Product = {
   description: "i dont know",
   id_user: "112",
   id_market: 1,
-  id_order: 1,
 }
 const dataProduct1: Product = {
   image: "https://picsum.photos/200",
@@ -42,7 +40,6 @@ const dataProduct1: Product = {
   description: "Comfortable running shoes",
   id_user: "110",
   id_market: 1,
-  id_order: 1,
 }
 const dataProduct4: Product = {
   image: "https://picsum.photos/230",
@@ -55,7 +52,6 @@ const dataProduct4: Product = {
   description: "Soft cotton t-shirt",
   id_user: "113",
   id_market: 1,
-  id_order: 1,
 }
 const dataProduct5: Product = {
   image: "https://picsum.photos/240",
@@ -68,7 +64,6 @@ const dataProduct5: Product = {
   description: "Latest model with GPS",
   id_user: "114",
   id_market: 1,
-  id_order: 1,
 }
 
 const dataProductDetail: ProductItem = {
@@ -88,7 +83,6 @@ const dataProductDetail: ProductItem = {
   desc_tech: dataTech,
   desc_spec: dataSpec,
   id_market: 1,
-  id_order: 1,
 }
 
 const dataProductDetail2: ProductItem = {
@@ -109,7 +103,6 @@ const dataProductDetail2: ProductItem = {
   desc_tech: dataTech2,
   desc_spec: dataSpec2,
   id_market: 1,
-  id_order: 1,
 }
 
 const dataProductDetail3: ProductItem = {
@@ -128,7 +121,6 @@ const dataProductDetail3: ProductItem = {
   desc_tech: dataTech3,
   desc_spec: dataSpec3,
   id_market: 1,
-  id_order: 1,
 }
 export const dataProductDetails: ProductItem[] = [
   dataProductDetail,
@@ -163,7 +155,7 @@ export const dataProductDetailServer: ProductDetail = {
   // desc_tech: dataTech,
   // desc_spec: dataSpec,
   // id_market: 1,
-  // id_order: 1,
+  //
 
   detail: {
     id: 22,
@@ -175,7 +167,6 @@ export const dataProductDetailServer: ProductDetail = {
     price: 37,
     id_user: "Gene",
     id_type: "Maude",
-    id_order: 98,
     id_market: 94,
     Desc: [{ id_product: 1, text: "Wesley" }],
     Img: [
@@ -214,7 +205,6 @@ export const dataProductDetailServer: ProductDetail = {
     since: new Date(),
     id_contact: 94,
     id_socialMedia: 74,
-    id_user: "Brent",
     id_follow: 57,
   },
   previews: [
@@ -224,6 +214,7 @@ export const dataProductDetailServer: ProductDetail = {
       id_user: "Wesley",
       text: "Devin",
       time: new Date(),
+
       User: {
         id: "001",
         email: "john@example.com",
@@ -235,6 +226,7 @@ export const dataProductDetailServer: ProductDetail = {
         id_role: "role001",
         id_follow: 123,
         id_like: 123,
+        id_market: 1,
       },
     },
   ],
@@ -249,7 +241,6 @@ export const dataProductDetailServer: ProductDetail = {
       price: 49.99,
       id_user: "2",
       id_type: "type002",
-      id_order: 12345,
       id_market: 3,
     },
   ],

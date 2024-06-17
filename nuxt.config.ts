@@ -54,8 +54,8 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      apiBase: process.env.API_BASE || "http://localhost:3000",
-      test: process.env.TEST || false,
+      apiBase: process.env.API_BASE ?? "http://localhost:3000",
+      test: process.env.TEST ?? "false",
     },
     cryptrKey: process.env.CRYPTR_KEY,
   },

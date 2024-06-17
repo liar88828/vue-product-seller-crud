@@ -1,9 +1,9 @@
 import { storeFilter, type FilterData } from "~/assets/filter"
-import type { OrderProps } from "~/types/market/order"
+import type { TransProps } from "~/types/market/order"
 
 export const useOrder = () => {
   const store = reactive<FilterData>(storeFilter)
-  const filter = (data: OrderProps[]) =>
+  const filter = (data: TransProps[]) =>
     data.filter((d) => {
       if (store.status === "Status") {
         return d

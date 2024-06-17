@@ -1,13 +1,13 @@
 import { ZodType, z } from "zod"
 import type { SignInProps, SignUpProps } from "~/types/auth/user"
+import type { MarketServer } from "~/types/market/ProfileCompany"
+import type { ProductUser } from "~/types/product/data.db"
 import type {
   IdProduct,
+  IdValid,
   MarketIdProductId,
-  MarketServer,
-} from "~/types/market/ProfileCompany"
-import type { ProductUser } from "~/types/product/data.db"
-import type { IdValid } from "~/types/product/findId"
-import type { BoxCreate } from "~/types/transaction/trolly"
+} from "~/types/product/findId"
+import type { BoxCreate, IdBox } from "~/types/transaction/trolly"
 import type { UserCreate } from "~/types/user/ControlCreateUser"
 const noSymbolString = z
   .string()
@@ -33,6 +33,12 @@ export default {
     id_user: z.string().uuid(),
     id_market: z.number().min(1),
   }) satisfies ZodType<IdProduct>,
+
+  idBox: z.object({
+    id_trolly: z.number().min(1),
+    id_product: z.number().min(1),
+    id_box: z.number().min(1),
+  }) satisfies ZodType<IdBox>,
 
   companyCreate: z.object({
     name: z.string(),
@@ -93,15 +99,16 @@ export default {
   }) satisfies ZodType<SignInProps>,
 
   user: z.object({
-    email: z.string(),
+    id_market: z.number(),
     name: z.string().nullable(),
     phone: z.string().nullable(),
-    address: z.string().nullable(),
+    email: z.string(),
     password: z.string(),
-    id_trolly: z.number().nullable(),
+    address: z.string().nullable(),
     id_role: z.string().nullable(),
-    id_follow: z.number().nullable(),
-    id_like: z.number().nullable(),
+    // id_trolly: z.number().nullable(),
+    // id_follow: z.number().nullable(),
+    // id_like: z.number().nullable(),
   }) satisfies ZodType<UserCreate>,
 
   boxCreate: z.object({
@@ -109,6 +116,7 @@ export default {
     id_trolly: z.number(),
     qty: z.number(),
     id_product: z.number(),
+    id_transaction: z.number(),
   }) satisfies ZodType<BoxCreate>,
 
   // userUpdate: z.object({

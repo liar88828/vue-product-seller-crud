@@ -68,7 +68,6 @@ export class UserDB extends UserMutation {
         _count: true,
         id_trolly: true,
         MessageList: true,
-        Order: true,
         phone: true,
         Preview: true,
         Product: true,
@@ -89,9 +88,9 @@ export class UserDB extends UserMutation {
   async findId(id: string) {
     const data = await prisma.user.findUnique({ where: { id } })
 
-    // if (!data) {
-    //   throw createError({ statusCode: 404, statusMessage: "User not found" })
-    // }
+    if (!data) {
+      throw createError({ statusCode: 404, statusMessage: "User not found" })
+    }
     return data
   }
 

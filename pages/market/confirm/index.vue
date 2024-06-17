@@ -1,8 +1,9 @@
 <template>
   <NuxtLayout name="market">
     <div v-if="pending">Loading ...</div>
-    <div v-else-if="!data">Data Is Not Found ...</div>
-    <PageMarketConfirm v-else :data="data.market" />
+    <div v-else-if="!data?.confirm">Data Is Not Found ...</div>
+    <!-- @vue-expect-error -->
+    <PageMarketConfirm v-else :data="data.confirm" />
   </NuxtLayout>
 </template>
 

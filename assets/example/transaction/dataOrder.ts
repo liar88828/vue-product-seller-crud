@@ -1,63 +1,115 @@
 import { userProfile, userProfile2 } from "../user/dataUser"
 import { dataCompany } from "../user/dataCompany"
 import { dataProducts } from "../product/dataProduct"
-import type { OrderProps } from "~/types/market/order"
+import type { TransProps } from "~/types/market/order"
 
-const dataHistory: OrderProps = {
+const dataHistory: TransProps = {
   id: 3,
-  trolly: dataProducts,
+  Box: [
+    {
+      id: 1,
+      id_product: dataProducts[1].id,
+      id_transaction: 1,
+      id_trolly: 1,
+      price: 100,
+      qty: 1,
+      Product: dataProducts[1],
+    },
+  ],
   userBuy: userProfile2,
   Market: dataCompany,
   discount: 20,
   status: "Delivered",
   promoCode: "FASDFSD5756",
-  dateBuy: new Date(),
-  expired: new Date(),
   id_market: 1,
-  id_userBuy: "2",
+  createdAt: new Date(),
+  dateExp: new Date(),
+  drop_address: "semarang",
+  id_buyer: "1",
+  id_status: "Pending",
+  updatedAt: new Date(),
 }
 
-const dataHistory2: OrderProps = {
+const dataHistory2: TransProps = {
+  status: "Cancelled",
   id: 3,
-  trolly: dataProducts,
+  Box: [
+    {
+      id: 1,
+      id_product: dataProducts[1].id,
+      id_transaction: 1,
+      id_trolly: 1,
+      price: 100,
+      qty: 1,
+      Product: dataProducts[1],
+    },
+  ],
   userBuy: userProfile2,
   Market: dataCompany,
-  dateBuy: new Date(),
-  status: "Cancelled",
   discount: 20,
-  expired: new Date(),
   promoCode: "FASDFSD5756",
   id_market: 1,
-  id_userBuy: "2",
+  createdAt: new Date(),
+  dateExp: new Date(),
+  drop_address: "semarang",
+  id_buyer: "1",
+  id_status: "Cancelled",
+  updatedAt: new Date(),
 }
-const dataOrder: OrderProps = {
+const dataOrder: TransProps = {
   id: 1,
-  status: "Pending",
-  trolly: dataProducts,
+  Box: [
+    {
+      id: 1,
+      id_product: dataProducts[1].id,
+      id_transaction: 1,
+      id_trolly: 1,
+      price: 100,
+      qty: 1,
+      Product: dataProducts[1],
+    },
+  ],
   userBuy: userProfile,
   Market: dataCompany,
-  dateBuy: new Date(),
   discount: 20,
-  expired: new Date(),
   promoCode: "FASDFSD5756",
   id_market: 1,
-  id_userBuy: "2",
+  createdAt: new Date(),
+  dateExp: new Date(),
+  drop_address: "semarang",
+  id_buyer: "1",
+  id_status: "Pending",
+  updatedAt: new Date(),
+  status: "Pending",
 }
 
-const dataOrder2: OrderProps = {
+const dataOrder2: TransProps = {
   id: 3,
-  trolly: dataProducts,
   userBuy: userProfile2,
   Market: dataCompany,
-  dateBuy: new Date(),
   status: "Accepted",
   discount: 20,
-  expired: new Date(),
   promoCode: "FASDFSD5756",
   id_market: 1,
-  id_userBuy: "2",
+  dateExp: new Date(),
+  drop_address: "semarang",
+  id_buyer: "1",
+  id_status: "Pending",
+  updatedAt: new Date(),
+  createdAt: new Date(),
+  Box: [
+    {
+      id: 1,
+      id_product: dataProducts[0].id,
+      id_transaction: 1,
+      id_trolly: 1,
+      price: 100,
+      qty: 1,
+      Product: dataProducts[0],
+    },
+  ],
 }
-export const dataOrders: OrderProps[] = [
+export const dataOrders: TransProps[] = [
   dataOrder,
   dataOrder2,
   // dataHistory,

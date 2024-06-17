@@ -9,37 +9,40 @@
   </thead>
 
   <tbody>
-    <tr v-for="data in dataProduct" :key="data.id">
+    <tr v-for="item in data" :key="item.id">
       <td>
         <div class="space-y-2">
-          <div class="font-bold">{{ data.userBuy.name }}</div>
+          <div class="font-bold">{{ item.userBuy.name }}</div>
           <div class="text-sm opacity-50">
-            {{ data.userBuy.address }}
+            {{ item.userBuy.address }}
           </div>
-          <div>{{ getPhone(data.userBuy.phone ?? "") }}</div>
+          <div>{{ getPhone(item.userBuy.phone ?? "") }}</div>
         </div>
       </td>
       <td>
         <div
           class="flex gap-2 space-y-2"
-          v-for="trolly in data.Product"
-          :key="trolly.id"
-
+          v-for="box in item.Box"
+          :key="box.id"
         >
-          <div class="flex items-center gap-3 ">
+        <ElError v-if="!box.Product" text="error"/>
+          <div 
+          v-else
+          class="flex items-center gap-3 ">
             <div class="avatar">
               <div class="mask mask-squircle w-12 h-12">
                 <img
-                  :src="trolly.image ?? ''"
-                  :alt="trolly.name ?? ''"
+                  :src="box.Product.image ?? ''"
+                  :alt="box.Product.name ?? ''"
                 />
               </div>
             </div>
           </div>
-          <div class="space-y-1">
-            <div class="font-bold">{{ trolly.name }}</div>
-            <div class="text-sm opacity-50">{{ trolly.brand }}</div>
-            <div class="">{{ getRupiah(trolly.price) }}</div>
+        <ElError v-if="!box.Product" text="error"/>
+          <div v-else class="space-y-1">
+            <div class="font-bold">{{ box.Product.name }}</div>
+            <div class="text-sm opacity-50">{{ box.Product.brand }}</div>
+            <div class="">{{ getRupiah(box.price) }}</div>
           </div>
         </div>
       </td>
@@ -55,7 +58,7 @@
       <td>
         <NuxtLink
           class="btn btn-outline btn-xs"
-          :to="`/market/confirm/${data.id}`"
+          :to="`/market/confirm/${item.id}`"
         >
           details</NuxtLink
         >
@@ -69,11 +72,11 @@
 </template>
 
 <script lang="ts" setup>
-import type { DataMarket } from '~/types/market/order'
+import type {  DataMarket } from '~/types/market/order'
 
 
 const props=defineProps<{
-  dataProduct: DataMarket[]
+  data: DataMarket[]
 }>()
-const totalProduct=computed(()=> props.dataProduct.flatMap((t)=>t.Product).map((t)=>t.price).reduce((a,b)=>a+b,0))
+const totalProduct=computed(()=> props.data.flatMap((t)=>t.Box).map((t)=>t.price).reduce((a,b)=>a+b,0))
 </script>

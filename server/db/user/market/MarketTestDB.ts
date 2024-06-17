@@ -6,7 +6,7 @@ export class MarketTestDB {
   }
 
   async testUserId(id_user: string) {
-    return prisma.market.findUnique({ where: { id_user } })
+    return prisma.market.findMany({ where: { User: { id: id_user } } })
   }
 
   async testId(id: number) {
