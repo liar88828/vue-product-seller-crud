@@ -20,7 +20,7 @@
                 Select which account(s) should be reset your password
               </p>
             </div>
-            <div class="w-full">
+            <div class="w-full space-y-2 my-2">
               <Card class="card-bordered hover:border-primary w-full">
                 <CardBody>
                   <div class="flex gap-5">

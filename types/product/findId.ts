@@ -9,7 +9,7 @@ export type IdUserTrans = Pick<Transaction, "id" | "id_buyer">
 export type IdMarketTrans = Pick<Transaction, "id" | "id_market">
 export type StatusTrans = Pick<Transaction, "id" | "id_status">
 
-export type MarketIdProductId = {
+export type ProductMarketId = {
   id_market: number
   id_product: number
 }

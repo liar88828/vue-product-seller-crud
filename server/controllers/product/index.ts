@@ -1,29 +1,17 @@
-import zods from "~/utils/zods"
 import { tryCatch } from "../../lib/tryCatch"
 import { ProductServices } from "../../services/product"
 import { ProductMarketController } from "./ProductMarketController"
+import { ProductUserController } from "./ProductUserController"
+import { ProductShopController } from "./ProductShopController"
 
-export class ProductController extends ProductMarketController {
-  constructor(public service: ProductServices) {
-    super(service)
-  }
+export class ProductController {
+  protected service = new ProductServices()
+  market = new ProductMarketController(this.service)
+  user = new ProductUserController(this.service)
+  shop = new ProductShopController(this.service)
+
   test(text: string): string {
     return text
-  }
-  async detail(id: number) {
-    return tryCatch(async () => {
-      const valid = zods.idNumber.parse(id)
-      const market = await db.product.findCompany(valid)
-      // console.log(valid, "valid")
-      // console.log(market, "market")
-      return {
-        product: await db.product.findFull(valid),
-        productRelated: await db.product.findTest(),
-        userPreview: await db.preview.findUser(valid),
-        market,
-        statics: await db.product.statics(valid, market),
-      }
-    })
   }
 
   async id(id: number) {
@@ -35,21 +23,5 @@ export class ProductController extends ProductMarketController {
     return tryCatch(async () => {
       return this.service.detail(id)
     })
-  }
-
-  user = {
-    // id: this.id,
-    // findDetail: this.findDetail,
-    // detail: this.detail,
-    comment: super.comment,
-    rating: super.rating,
-  }
-
-  market = {
-    id: super.marketId,
-    update: super.marketUpdate,
-    all: super.marketAll,
-    delete: super.marketDelete,
-    create: super.marketCreate,
   }
 }

@@ -11,7 +11,7 @@ export default defineEventHandler(async (event) => {
   const body = await readBody(event)
 
   const data = {
-    profile: control.market.update(id, body),
+    profile: control.market.owner.update(id, body),
 
     toJson() {
       return this.profile

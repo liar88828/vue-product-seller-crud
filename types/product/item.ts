@@ -49,11 +49,11 @@ export type ProductItem = Product & {
 export type DataPreview = Preview & { User: User }
 
 export type ProductDetail = {
-  static: MarketStatic
   detail: ProductItemServer
-  related: Product[]
-  previews: DataPreview[]
   market: Market
+  previews: DataPreview[]
+  relateds: Product[]
+  static: MarketStatic
   // dataProduct: ProductItem
   // dataPreviews: DataPreviewProps[]
 }

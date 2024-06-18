@@ -1,9 +1,8 @@
-import { dataProducts } from "~/assets/example/product/dataProduct"
-
 export default defineEventHandler(async (event) => {
   const { id } = getRouterParams(event)
+  const session = await db.user.first()
   const data = {
-    product: await control.product.detail(Number(id)),
+    product: await control.product.user.all(session.id, Number(id)),
 
     toJSON() {
       return {

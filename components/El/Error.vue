@@ -1,9 +1,10 @@
 <template>
   <div>
-    {{ text }}
+    {{ title }}
+    Error...
   </div>
 </template>
 
 <script lang="ts" setup>
-defineProps<{ text: string }>()
+defineProps<{ title?: string }>()
 </script>

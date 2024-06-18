@@ -1,21 +1,34 @@
 import type { ProductDetail } from "~/types/product/item"
 
 export class ShopServices {
-  async detail(id: number) {
-    const product: ProductDetail["detail"] = await db.product.findFull(id)
-    const productRelated = await db.product.findTest()
-    const userPreview = await db.preview.findUser(id)
+  async detail(id: number): Promise<ProductDetail> {
+    const product = await db.product.findFull(id)
+    const relateds = await db.product.findTest()
+    const previews = await db.preview.findUser(id)
     const market = await db.product.findCompany(id)
     const statics = await db.product.statics(id, market)
 
     return {
-      detail: product,
-      previews: userPreview,
-      related: productRelated,
-      market: market,
-      static: statics,
       //   static: marketStatic,
-    } as ProductDetail
+      detail: product,
+      market,
+      previews,
+      relateds,
+      static: statics,
+    }
+  }
+  async oldDetail(id: number): Promise<ProductDetail> {
+    const valid = zods.idNumber.parse(id)
+    const market = await db.product.findCompany(valid)
+    // console.log(valid, "valid")
+    // console.log(market, "market")
+    return {
+      market,
+      detail: await db.product.findFull(valid),
+      relateds: await db.product.findTest(),
+      static: await db.product.statics(valid, market),
+      previews: await db.preview.findUser(valid),
+    }
   }
 }
 // const productCount = await db.product.counts(id)

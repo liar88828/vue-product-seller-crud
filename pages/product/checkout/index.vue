@@ -1,4 +1,5 @@
 <template>
+  <!-- i wrong is must be detail not many -->
   <PageTransactionTrolly :data="dataProducts" />
 </template>
 

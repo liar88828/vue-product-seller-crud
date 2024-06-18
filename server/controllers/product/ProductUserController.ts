@@ -1,8 +1,11 @@
+import { CheckOutDB } from "~/server/db/transaction/CheckOutDB"
 import { ProductServices } from "../../services/product"
 
-export class ProductUserController {
-  constructor(public service: ProductServices) {}
+export class ProductUserController extends CheckOutDB {
+  constructor(protected service: ProductServices) {
+    super()
+  }
 
-  protected async comment() {}
-  protected async rating() {}
+  async comment() {}
+  async rating() {}
 }

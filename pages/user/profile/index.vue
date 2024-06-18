@@ -6,7 +6,11 @@
   </NuxtLayout>
 </template>
 <script lang="ts" setup>
-const { data, pending, error } = await useFetch("/api/user/")
+const { data, pending, error } = await useFetch("/api/user/", {
+  onResponseError: async ({ error, response }) => {
+    await navigateTo("/auth/sign-in")
+  },
+})
 if (!data.value) {
   throw createError({ statusCode: 404, statusMessage: "Page Not Found" })
 }

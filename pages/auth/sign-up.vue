@@ -38,17 +38,18 @@
               :title="'Conf Password'"
               :err="errStore.data.confPass"
             />
+
+            <div class="flex flex-nowrap gap-2 my-2">
+              have a account?
+              <NuxtLink to="/auth/sign-in" class="link link-primary">
+                Sign In
+              </NuxtLink>
+            </div>
+
             <div class="flex flex-col gap-2 mt-4">
               <button type="submit" class="btn btn-primary">Sign Up</button>
             </div>
           </form>
-
-          <div class="flex flex-nowrap gap-2">
-            have a account?
-            <NuxtLink to="/auth/sign-in" class="link link-primary">
-              Sign In
-            </NuxtLink>
-          </div>
         </div>
       </div>
     </CardBody>

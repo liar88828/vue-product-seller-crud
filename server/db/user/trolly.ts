@@ -7,8 +7,10 @@ import type {
   MyTrollyReturn,
 } from "~/types/transaction/trolly"
 import { prisma } from "~/server/config/prisma"
+import { CheckOutDB } from "../transaction/CheckOutDB"
 
 export class TrollyMutation extends CheckDB {
+  checkout = new CheckOutDB()
   async createTrolly(id: string, box: GetBoxReturn[]) {
     await this.trolly(id)
 
@@ -93,19 +95,6 @@ export class TrollyDB extends TrollyMutation {
       throw createError({
         statusCode: 404,
         statusMessage: "Box not found",
-      })
-    }
-    return data
-  }
-
-  async findCheckOut(id: number) {
-    const data = await prisma.trolly.findUnique({
-      where: { id },
-    })
-    if (!data) {
-      throw createError({
-        statusCode: 404,
-        statusMessage: "Trolly not found",
       })
     }
     return data

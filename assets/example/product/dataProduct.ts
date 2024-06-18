@@ -230,7 +230,7 @@ export const dataProductDetailServer: ProductDetail = {
       },
     },
   ],
-  related: [
+  relateds: [
     {
       id: 2,
       name: "Product C",

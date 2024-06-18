@@ -1,12 +1,13 @@
+import type { Product } from "@prisma/client"
 import { dataProducts } from "~/assets/example/product/dataProduct"
 
 export default defineEventHandler(async (event) => {
   const data = {
-    product: await db.product.findTest(),
+    product: await control.product.shop.all("search something ?"),
 
-    toJSON() {
+    toJSON(): { products: Product[] } {
       return {
-        product: this.product,
+        products: this.product,
       }
     },
   }

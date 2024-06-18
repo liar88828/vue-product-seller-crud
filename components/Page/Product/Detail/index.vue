@@ -13,9 +13,9 @@
       :static="data.static"
     />
     <PageProductGridDetail
-      v-show="data.related"
+      v-show="data.relateds"
       :title="'Related Products'"
-      :data="data.related"
+      :data="data.relateds"
     />
   </div>
 </template>

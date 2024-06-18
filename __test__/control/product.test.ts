@@ -2,7 +2,7 @@ import { beforeAll, describe, expect, it, test } from "vitest"
 import { ProductController } from "~/server/controllers/product/index"
 import { ProductServices } from "~/server/services/product/index"
 
-const product = new ProductController(new ProductServices())
+const product = new ProductController()
 export const testProductController = test.extend({
   product,
 })

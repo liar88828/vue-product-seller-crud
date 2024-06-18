@@ -16,8 +16,18 @@ if (!data.value) {
   <Suspense>
     <template #fallback>Loading.....</template>
     <template #default>
-      {{ data?.product }}
-      <!-- <PageProductDetail v-show="!pending && !error" :data="data?.product" /> -->
+      <!-- {{ data?.product }} -->
+
+      <div v-if="pending">Loading...</div>
+      <ElError v-else-if="error || !data" text="error" />
+      <!-- v-show="!pending && !error" -->
+      <PageProductDetail v-else :data="data.product" />
     </template>
   </Suspense>
 </template>
+
+<!-- detail: data?.detail, -->
+<!-- previews: data?.previews, -->
+<!-- relateds: data?.relateds, -->
+<!-- market: data?.market, -->
+<!-- static: data?.static, -->

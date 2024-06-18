@@ -5,7 +5,7 @@ import type { ProductUser } from "~/types/product/data.db"
 import type {
   IdProduct,
   IdValid,
-  MarketIdProductId,
+  ProductMarketId,
 } from "~/types/product/findId"
 import type { BoxCreate, IdBox } from "~/types/transaction/trolly"
 import type { UserCreate } from "~/types/user/ControlCreateUser"
@@ -27,7 +27,7 @@ export default {
   idMarketProduct: z.object({
     id_market: z.number().min(1),
     id_product: z.number().min(1),
-  }) satisfies ZodType<MarketIdProductId>,
+  }) satisfies ZodType<ProductMarketId>,
 
   idProduct: z.object({
     id_user: z.string().uuid(),

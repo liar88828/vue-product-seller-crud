@@ -26,22 +26,25 @@
               :title="'Password'"
               :err="errStore.data.password"
             />
-            <div class="flex flex-nowrap gap-2">
-              <NuxtLink to="/auth/forgot" class="link link-primary">
-                Forgot Password?
-              </NuxtLink>
+            <div class="flex md:flex-row flex-col my-1 gap-1">
+              <p>
+                <span> Don't have an account? </span>
+                <NuxtLink to="/auth/sign-up" class="link link-primary">
+                  Sign Up
+                </NuxtLink>
+              </p>
+              <p class="md:text-end">
+                <NuxtLink to="/auth/forgot" class="link link-primary">
+                  Forgot Password?
+                </NuxtLink>
+              </p>
             </div>
+
             <div class="flex flex-col gap-2 mt-4">
-              <button type="submit" class="btn btn-primary">Sign Up</button>
+              <button type="submit" class="btn btn-primary">Sign In</button>
             </div>
           </form>
 
-          <p>
-            Don't have an account?
-            <NuxtLink to="/auth/sign-up" class="link link-primary">
-              Sign Up
-            </NuxtLink>
-          </p>
           <ElDivider title="Or With" />
           <div class="flex flex-col gap-2">
             <NuxtLink to="/auth/verify" class="btn btn-primary btn-outline"

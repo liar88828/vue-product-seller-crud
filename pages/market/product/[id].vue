@@ -1,13 +1,15 @@
 <template>
   <!-- :dataImage="dataImage"  -->
-  <PageProductEdit :data="data?.product" />
+  <ElLoading v-if="pending" />
+  <ElError v-else-if="error || !data" />
+  <PageProductEdit v-else :data="data.product" />
 </template>
 
 <script lang="ts" setup>
 // import { dataProductDetails } from "~/assets/example/product/dataProduct"
 // import { dataImage } from "~/assets/example/product/image"
 const { id } = useRoute().params
-const { data } = await useFetch(`/api/product/${id}`)
+const { data, error, pending } = await useFetch(`/api/product/${id}/detail`)
 watch(data, () => {
   console.log(data.value)
 })

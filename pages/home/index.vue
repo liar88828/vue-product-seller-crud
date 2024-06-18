@@ -14,8 +14,10 @@ import { dataCategory } from "~/assets/link/shopLink"
 import { dataAdv, dataAdv2 } from "~/assets/example/home/dataAdv"
 import type { HomeApi, HomeProps } from "~/types/home/props"
 
-const { data, pending, error } = await useFetch<{ data: HomeApi }>("/api/home")
+const { data, pending, error } = await useFetch("/api/home")
+const session = useCookie("sessionUser")
 watch(data, () => {
+  console.log(session.value, "is session user")
   console.log(data.value)
 })
 if (!data.value) {

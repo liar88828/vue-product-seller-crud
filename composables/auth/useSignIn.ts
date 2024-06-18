@@ -31,6 +31,7 @@ export const useSignIn = () => {
       } else if (error.value) {
         throw createError({ statusCode: 404, statusMessage: "Error Sign In" })
       } else {
+        // console.log(data.value)
         await navigateTo("/home")
       }
     } else {
