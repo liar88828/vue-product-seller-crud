@@ -1,4 +1,9 @@
-import type { BoxCreate, IdBox } from "~/types/transaction/trolly"
+import type { IdTrolly } from "~/server/db/user/trolly"
+import type {
+  BoxCreate,
+  IdBox,
+  TrollyAllService,
+} from "~/types/transaction/trolly"
 class SanitizeTrolly {
   sanitize(data: BoxCreate): BoxCreate {
     return {
@@ -22,5 +27,20 @@ export class TrollyService extends SanitizeTrolly {
   async delete(id: IdBox) {
     id = zods.idBox.parse(id)
     return db.trolly.delete(id)
+  }
+  async all(id: IdTrolly): Promise<TrollyAllService> {
+    const trolleys = await db.trolly.all(id)
+    const boxs = trolleys.map((trolly) => trolly.Box.map((box) => box))
+    const products = boxs.flatMap((box) =>
+      box.map((d) => {
+        return d.Product
+      })
+    )
+
+    return {
+      trolleys,
+      boxs,
+      products,
+    }
   }
 }

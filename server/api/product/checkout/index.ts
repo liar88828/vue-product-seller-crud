@@ -1,14 +1,17 @@
+import type { Product } from "@prisma/client"
+import type { TrollyAllService } from "~/types/transaction/trolly"
+
 export default defineEventHandler(async (event) => {
   const { id } = getRouterParams(event)
   const session = await db.user.first()
   const data = {
-    product: await control.product.user.all(session.id, Number(id)),
-
-    toJSON() {
+    trolly: await control.trolly.all(id, session.id),
+    toJson(): { trolleys: TrollyAllService } {
       return {
-        product: this.product,
+        trolleys: this.trolly,
       }
     },
   }
+
   return data
 })

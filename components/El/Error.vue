@@ -1,7 +1,6 @@
 <template>
   <div>
-    {{ title }}
-    Error...
+    {{ title ? title : "Error..." }}
   </div>
 </template>
 

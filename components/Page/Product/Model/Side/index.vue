@@ -1,5 +1,6 @@
 <template>
-  <CardSide :class="'card-bordered '">
+  <ElError v-if="!data" />
+  <CardSide v-else :class="'card-bordered '">
     <figure class="w-1/3">
       <img
         alt="Related product"
@@ -16,7 +17,8 @@
 <script lang="ts" setup>
 import type { Product } from "@prisma/client"
 import Desc from "../Desc.vue"
+import type { ProductTrolly } from "~/types/transaction/trolly"
 
-defineProps<{ data: Product }>()
+defineProps<{ data: ProductTrolly }>()
 const detail = ref<boolean>(false)
 </script>

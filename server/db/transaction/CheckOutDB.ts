@@ -1,3 +1,4 @@
+import type { Trolly } from "@prisma/client"
 import { prisma } from "~/server/config/prisma"
 
 export class CheckOutDB {
@@ -14,10 +15,11 @@ export class CheckOutDB {
     return data
   }
 
-  async all(id_user: string, id_checkout: number) {
+  async all(id_user: string, id_checkout: number): Promise<Trolly[]> {
     const data = await prisma.trolly.findMany({
       where: { User: { id: id_user } },
     })
+    return data
   }
   async detail(id_user: string, id_checkout: number) {
     return db.product.findTest()

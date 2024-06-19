@@ -47,10 +47,10 @@
 
           <ElDivider title="Or With" />
           <div class="flex flex-col gap-2">
-            <NuxtLink to="/auth/verify" class="btn btn-primary btn-outline"
+            <NuxtLink to="/api/auth/google" class="btn btn-primary btn-outline"
               ><IconsGoogle /> Sign in with Google</NuxtLink
             >
-            <NuxtLink to="/auth/verify" class="btn btn-primary btn-outline"
+            <NuxtLink to="/api/auth/github" class="btn btn-primary btn-outline"
               ><IconsGithub />Sign in with GitHub</NuxtLink
             >
           </div>

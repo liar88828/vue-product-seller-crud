@@ -9,7 +9,7 @@
 
     <div class="flex-none">
       <ElDropDownTrolly />
-      <ElTheme />
+
       <!-- if has login -->
       <!-- <ElDropDownNotify v-if="!hidden" /> -->
       <!-- <ElDropDownAccount v-if="!hidden" /> -->
@@ -19,6 +19,7 @@
 </template>
 
 <script lang="ts" setup>
+import Auths from "./Auths.vue"
 import Search from "./Search.vue"
 const search = ref()
 const route = useRoute()

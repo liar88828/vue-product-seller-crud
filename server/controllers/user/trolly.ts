@@ -1,5 +1,6 @@
 import { TrollyService } from "../../services/user/trolly"
-import type { BoxCreate } from "~/types/transaction/trolly"
+import type { Product } from "@prisma/client"
+import type { BoxCreate, TrollyAllService } from "~/types/transaction/trolly"
 
 export class TrollyController {
   constructor(protected service: TrollyService) {}
@@ -9,9 +10,12 @@ export class TrollyController {
     return service.trolly.push(data)
   }
 
-  async find(id_user: string) {
-    const id_trolly = await db.trolly.findTrolly(id_user)
+  async id(id_user: string, id_trolly: number, id_product: number) {
+    const trolly = await db.trolly.id(id_user)
     return db.trolly.findBox(id_trolly)
+  }
+  async all(id_trolly: string, id_user: string): Promise<TrollyAllService> {
+    return this.service.all({ id_trolly: Number(id_trolly), id_user })
   }
 
   async delete(id_box: number, id_product: number, id_trolly: number) {

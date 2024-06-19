@@ -5,10 +5,16 @@
         <NuxtImg src="/img/logo_white.png" width="46" height="46" />
       </NuxtLink>
     </div>
-
     <div class="flex-none">
-      <ElDropDownSetting />
-      <ElTheme />
+      <div v-if="loggedIn">
+        <ElDropDownSetting />
+        <ElTheme />
+      </div>
+      <Auths v-else />
     </div>
   </section>
 </template>
+<script lang="ts" setup>
+import Auths from "./Auths.vue"
+const { loggedIn } = useUserSession()
+</script>

@@ -1,9 +1,11 @@
 <template>
   <CardParentSide :title="'Trolly'" :right="Trash">
+    <ElError v-if="!data" text="error" />
     <PageProductModelSide
-      v-for="dataProduct in data"
-      :data="dataProduct"
-      :key="dataProduct.id"
+      v-else
+      v-for="item in data"
+      :data="item"
+      :key="item?.id"
     />
     <Total :total-pay="99.98" :total-product="4" :total-send="5.99" />
     <PageProductModelSideTotal />
@@ -14,6 +16,7 @@
 import type { Product } from "@prisma/client"
 import Total from "./Total.vue"
 import Trash from "~/components/Icons/Trash.vue"
+import type { TrollyAllService } from "~/types/transaction/trolly"
 
-defineProps<{ data: Product[] }>()
+defineProps<{ data: TrollyAllService["products"] }>()
 </script>

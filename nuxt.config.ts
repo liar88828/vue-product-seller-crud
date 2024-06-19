@@ -36,7 +36,12 @@ export default defineNuxtConfig({
     typeCheck: true,
   },
 
-  modules: ["@nuxtjs/tailwindcss", "@nuxt/image", "@nuxt/test-utils/module"],
+  modules: [
+    "@nuxtjs/tailwindcss",
+    "@nuxt/image",
+    "@nuxt/test-utils/module",
+    "nuxt-auth-utils",
+  ],
 
   postcss: {
     plugins: {
@@ -53,6 +58,17 @@ export default defineNuxtConfig({
     enabled: false,
   },
   runtimeConfig: {
+    oauth: {
+      google: {
+        clientId: process.env.GOOGLE_CLIENT_ID,
+        clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      },
+      github: {
+        clientId: process.env.GITHUB_CLIENT_ID,
+        clientSecret: process.env.GITHUB_CLIENT_SECRET,
+      },
+    },
+
     public: {
       apiBase: process.env.API_BASE ?? "http://localhost:3000",
       test: process.env.TEST ?? "false",

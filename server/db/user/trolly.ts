@@ -5,14 +5,39 @@ import type {
   GetBoxReturn,
   IdBox,
   MyTrollyReturn,
+  TollyProps,
 } from "~/types/transaction/trolly"
 import { prisma } from "~/server/config/prisma"
 import { CheckOutDB } from "../transaction/CheckOutDB"
 
 export class TrollyMutation extends CheckDB {
   checkout = new CheckOutDB()
+
+  async checkTrolly(id_user: string) {
+    const found = await prisma.trolly.findMany({
+      select: {
+        id: true,
+      },
+      where: {
+        User: { id: id_user },
+      },
+    })
+    if (!found) {
+      const create = await prisma.trolly.create({
+        data: {
+          User: {
+            connect: {
+              id: id_user,
+            },
+          },
+        },
+      })
+      return create
+    }
+  }
+
   async createTrolly(id: string, box: GetBoxReturn[]) {
-    await this.trolly(id)
+    await this.checkTrolly(id)
 
     const trolly = await prisma.trolly.create({
       data: { User: { connect: { id } } },
@@ -54,20 +79,21 @@ export class TrollyDB extends TrollyMutation {
     })
   }
 
-  async myTrolly(id: string, page: number): Promise<MyTrollyReturn> {
+  async all({ id_trolly, id_user }: IdTrolly): Promise<TollyProps[]> {
     return prisma.trolly.findMany({
-      include: { User: true, Box: true },
-      where: {
-        User: {
-          id,
+      where: { id: id_trolly, User: { id: id_user } },
+      include: {
+        Box: {
+          include: {
+            Product: true,
+          },
         },
       },
       take: 100,
-      skip: page * 100,
     })
   }
 
-  async findTrolly(id: string): Promise<number> {
+  async id(id: string): Promise<number> {
     const data = await prisma.user
       .findUnique({
         where: { id },
@@ -99,4 +125,8 @@ export class TrollyDB extends TrollyMutation {
     }
     return data
   }
+}
+export type IdTrolly = {
+  id_user: string
+  id_trolly: number
 }

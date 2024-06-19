@@ -6,7 +6,7 @@ export default defineEventHandler(async (event) => {
   const session = await db.user.first()
   const data = {
     // is must checkout not detail product
-    product: await control.product.user.delete(session.id, Number(id)), //detail(Number(id)),
+    product: await control.product.user.checkOut.delete(session.id, Number(id)), //detail(Number(id)),
 
     toJSON(): { product: Product } {
       return {

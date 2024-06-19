@@ -1,66 +1,19 @@
 import { prisma } from "~/server/config/prisma"
 import type { Pagination } from "~/types/globals/Pagination"
-import type { IdValid, ProductMarketId } from "../../../types/product/findId"
-import type { Market, Product } from "@prisma/client"
+import type { ProductMarketId } from "../../../types/product/findId"
+import type { Product } from "@prisma/client"
 import type { ProductDetail, ProductItemServer } from "~/types/product/item"
-import type { ProductUser } from "~/types/product/data.db"
 import type { MarketStatic } from "~/types/market/ProfileCompany"
-import { FollowDB } from "../user/follow"
 import { ProductUserDB } from "./ProductUserDB"
 import { ProductMarketDB } from "./ProductMarketDB"
+import { ProductStatic } from "./ProductStatic"
 
-class ProductStatic extends FollowDB {
-  async counts(id: number) {
-    return prisma.product.count({
-      where: { id },
-    })
-  }
-
-  async statics(
-    id_product: number,
-    market: Market
-  ): Promise<ProductDetail["static"]> {
-    return {
-      product: await this.counts(id_product),
-      follow: await this.findSelf(Number(market.id_follow)),
-      since: market?.since || new Date(),
-      response: "100%",
-    }
-  }
-}
-
-class ProductMutationDB extends ProductStatic {
-  async delete({ id, id_user }: IdValid) {
-    const data = await prisma.product.delete({
-      where: {
-        id,
-        id_user,
-      },
-    })
-    if (!data) {
-      throw createError({
-        statusCode: 404,
-        statusMessage: "Product not found",
-      })
-    }
-    return data
-  }
-  async create(data: ProductUser) {
-    return prisma.product.create({ data })
-  }
-
-  async update({ id, id_user }: IdValid, data: ProductUser): Promise<Product> {
-    return prisma.product.update({ where: { id, id_user }, data: data })
-  }
-}
+class ProductMutationDB extends ProductStatic {}
 
 export class ProductDB extends ProductMutationDB {
   user = new ProductUserDB()
   market = new ProductMarketDB()
 
-  test(test: string) {
-    return test
-  }
   async findAll({ page, search }: Pagination) {
     return prisma.product.findMany({
       where: {
@@ -85,7 +38,7 @@ export class ProductDB extends ProductMutationDB {
     return product
   }
 
-  async findId(id: number) {
+  async findId(id: number): Promise<Product> {
     const data = await prisma.product.findUnique({
       where: { id },
     })

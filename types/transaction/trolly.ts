@@ -22,3 +22,16 @@ export type IdBox = {
   id_product: number
   id_box: number
 }
+
+export type ProductTrolly = Product | null
+
+export type TollyProps = Trolly & {
+  Box: (Box & {
+    Product: ProductTrolly
+  })[]
+}
+export type TrollyAllService = {
+  trolleys: Trolly[]
+  boxs: TollyProps["Box"][]
+  products: ProductTrolly[]
+}
