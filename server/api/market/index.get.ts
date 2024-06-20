@@ -7,18 +7,20 @@ import type { MarketServerFull } from "~/types/market/ProfileCompany"
 
 export default defineEventHandler(async (event) => {
   // try {
-  const session = await db.user.first()
+  const { session } = await getUserSession(event)
   const data = {
-    market: await control.market.full(session.id),
-    toJson(): { market: MarketServerFull } {
-      return { market: this.market }
-    },
+	market: await control.market.full(session.id),
+	toJson(): { market: MarketServerFull } {
+	  return {
+		market: this.market
+	  }
+	},
   }
   return data
   // } catch (e) {
   //   createError({
   //     statusCode: 404,
-  //     statusMessage: "Market is not found you must be create new market first",
+  //     statusMessage: "Market is not found you must create new market first",
   //   })
   // }
 })

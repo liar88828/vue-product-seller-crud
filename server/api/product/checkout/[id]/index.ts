@@ -3,7 +3,7 @@ import type { Product } from "@prisma/client"
 
 export default defineEventHandler(async (event) => {
   const { id } = getRouterParams(event)
-  const session = await db.user.first()
+  const { session } =  await getUserSession(event)
   const data = {
     // Number(id)
     product: await control.product.user.checkOut.detail(session.id, Number(id)),

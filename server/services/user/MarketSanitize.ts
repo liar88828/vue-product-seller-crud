@@ -6,7 +6,7 @@ export class MarketSanitize {
     data: MarketServer,
     id_user: string
   ): RequiredProperty<MarketServer> {
-    id_user = zods.idString.parse(id_user)
+    // id_user = zods.idString.parse(id_user)
     return {
       address: data.address,
       name: data.name,

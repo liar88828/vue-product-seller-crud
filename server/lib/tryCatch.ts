@@ -1,3 +1,5 @@
+// noinspection ExceptionCaughtLocallyJS
+
 import { Prisma } from "@prisma/client"
 import { ZodError } from "zod"
 

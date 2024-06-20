@@ -1,4 +1,4 @@
-import { dataCompany } from "~/assets/example/user/dataCompany"
+import { dataCompany } from "assets/example/user/dataCompany"
 import { prisma } from "~/server/config/prisma"
 
 // find market profile

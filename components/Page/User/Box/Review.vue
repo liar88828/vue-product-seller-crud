@@ -16,9 +16,9 @@
 </template>
 
 <script lang="ts" setup>
-import type { Preview } from "@prisma/client"
-import type { DataPreview, ProductDetail } from "~/types/product/item"
-import type { DataPreviewProps } from "~/types/product/review"
+// import type { Preview } from "@prisma/client"
+import type { DataPreview,  } from "~/types/product/item"
+// import type { DataPreviewProps } from "~/types/product/review"
 defineProps<{
   data: DataPreview
 }>()

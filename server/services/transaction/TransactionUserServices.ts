@@ -1,9 +1,9 @@
 import type { IdUserTrans } from "~/types/product/findId"
 
 export class TransactionUserServices {
-  async all(id_user: string) {
-    return db.trans.user.all(id_user)
-  }
+  // async all(id_user: string) {
+  //   return db.trans.user.all(id_user)
+  // }
   // async (id_user: string) {
   //   return db.transaction.(id_user)
   // }
@@ -17,7 +17,7 @@ export class TransactionUserServices {
   async delete(id: IdUserTrans) {
     return db.trans.user.delete(id)
   }
-  async pay(id: IdUserTrans) {
-    return db.trans.user.pay(id)
-  }
+  // async pay(id: IdUserTrans) {
+  //   return db.trans.user.pay(id)
+  // }
 }

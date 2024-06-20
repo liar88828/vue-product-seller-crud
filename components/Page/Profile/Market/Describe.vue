@@ -26,9 +26,9 @@
 </template>
 
 <script setup lang="ts">
-import type { MarketServerFull } from "~/types/market/ProfileCompany"
+import type { MarketServerFullNull } from "~/types/market/ProfileCompany"
 
 defineProps<{
-  data: MarketServerFull
+  data: MarketServerFullNull
 }>()
 </script>

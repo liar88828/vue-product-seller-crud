@@ -21,7 +21,7 @@ export class Services {
   box = new BoxService()
 }
 
-export const service = new Services()
+// export const service = new Services()
 
 export interface IService {
   auth: AuthServices

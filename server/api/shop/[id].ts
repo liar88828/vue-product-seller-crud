@@ -1,4 +1,3 @@
-import { dataProductDetailServer } from "~/assets/example/product/dataProduct"
 import type { ProductDetail } from "~/types/product/item"
 
 export default defineEventHandler(async (event) => {

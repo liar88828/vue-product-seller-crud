@@ -1,20 +1,23 @@
 import type { IdLike } from "~/types/user/like"
+import type { Like } from "@prisma/client";
 
 export class UserLikeController {
-  async get(id: number) {
-    return db.like.get(id)
-  }
-  async add(id: IdLike) {
-    return db.like.add(id)
+  async all(id: number): Promise<Like[]> {
+	return db.like.all(id)
   }
 
-  async unLike(id: number) {
-    return db.like.unLike(id)
+  async id(id: number,id_product:number): Promise<Like[]> {
+	return db.like.id(id,id_product)
   }
 
-  like = {
-    unLike: this.unLike,
-    add: this.add,
-    get: this.get,
+
+  async add(id: IdLike): Promise<Like> {
+	return db.like.add(id)
   }
+
+  async unLike(id: number,id_product:number): Promise<Like> {
+	return db.like.unLike(id,id_product)
+  }
+
+
 }

@@ -1,5 +1,4 @@
 import type { Product } from "@prisma/client"
-import type { ProductDetail } from "~/types/product/item"
 
 export default defineEventHandler(async (event) => {
   const data = {

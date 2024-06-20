@@ -1,5 +1,5 @@
 export default defineEventHandler(async (event) => {
-  const session = await db.user.first()
+  const { session } =  await getUserSession(event)
   const data = {
     order: control.trans.user.all(session.id),
     toJson() {

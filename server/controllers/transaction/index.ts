@@ -2,12 +2,12 @@ import type { Transaction } from "@prisma/client"
 import { TransactionServices } from "../../services/transaction"
 import { TransactionUserCon } from "./TransactionUserCon"
 import { TransactionMarketCon } from "./TransactionMarketCon"
+import { HistoryController } from "~/server/controllers/transaction/historyController";
 
 export class TransactionController extends TransactionUserCon {
   service = new TransactionServices()
   user = new TransactionUserCon(this.service)
   market = new TransactionMarketCon(this.service)
-
   order = {
     // confirm: super.confirmTransaction,
     // create: super.createTransaction,

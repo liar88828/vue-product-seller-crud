@@ -3,5 +3,5 @@
 <script lang="ts" setup>
 await navigateTo("/home")
 
-const { data, pending, error, refresh } = await useFetch("/api/user")
+const { data, pending, error,   } = await useFetch("/api/user")
 </script>

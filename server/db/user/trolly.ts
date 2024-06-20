@@ -1,10 +1,9 @@
-import type { Box, Product, Trolly, User } from "@prisma/client"
+import type { Box } from "@prisma/client"
 import type {
   BoxCreate,
   BoxProduct,
   GetBoxReturn,
   IdBox,
-  MyTrollyReturn,
   TollyProps,
 } from "~/types/transaction/trolly"
 import { prisma } from "~/server/config/prisma"
@@ -46,7 +45,7 @@ export class TrollyMutation extends CheckDB {
     const boxs = await prisma.box.createMany({ data: box })
     return { trolly, boxs }
   }
-  async push(data: BoxCreate) {
+  async push(data: BoxCreate): Promise<Box> {
     return prisma.box.create({ data })
   }
   async check(id_trolly: number) {
@@ -57,7 +56,7 @@ export class TrollyMutation extends CheckDB {
     })
   }
 
-  async delete({ id_trolly, id_product, id_box }: IdBox) {
+  async delete({ id_trolly, id_product, id_box }: IdBox): Promise<Box> {
     return prisma.box.delete({
       where: {
         id_trolly,
@@ -115,6 +114,29 @@ export class TrollyDB extends TrollyMutation {
   async findBox(id_trolly: number): Promise<BoxProduct[]> {
     const data = await prisma.box.findMany({
       where: { id_trolly },
+      include: { Product: true },
+    })
+    if (!data) {
+      throw createError({
+        statusCode: 404,
+        statusMessage: "Box not found",
+      })
+    }
+    return data
+  }
+  async productId(
+    id_trolly: number,
+    id_product: number,
+    id_user: string
+  ): Promise<BoxProduct[]> {
+    const data = await prisma.box.findMany({
+      where: {
+        id_trolly,
+        id_product,
+        Trolly: {
+          User: { id: id_user },
+        },
+      },
       include: { Product: true },
     })
     if (!data) {

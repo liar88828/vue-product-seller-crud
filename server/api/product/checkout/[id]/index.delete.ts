@@ -1,9 +1,8 @@
 import type { Product } from "@prisma/client"
-import { dataProducts } from "~/assets/example/product/dataProduct"
 
 export default defineEventHandler(async (event) => {
   const { id } = getRouterParams(event)
-  const session = await db.user.first()
+  const { session } =  await getUserSession(event)
   const data = {
     // is must checkout not detail product
     product: await control.product.user.checkOut.delete(session.id, Number(id)), //detail(Number(id)),

@@ -10,22 +10,26 @@ export default <T>(fn: () => any): GetTry<T> => {
   // }
 
   try {
-    return {
-      success: true,
-      data: fn() as T,
-    }
-    // const data = fn()
-    // if (data) return data
-    // throw fn()
+	return {
+	  success: true,
+	  pending: true,
+	  msg: "",
+	  data: fn() as T,
+	}
+	// const data = fn()
+	// if (data) return data
+	// throw fn()
   } catch (e) {
-    //  return zod(e)
-    if (e instanceof ZodError) {
-      // console.log(e)
-      return {
-        success: false,
-        data: e.flatten().fieldErrors as T,
-      }
-    }
-    return e as any
+	//  return zod(e)
+	if (e instanceof ZodError) {
+	  console.log(e,' from zod ')
+	  return {
+		msg: "",
+		success: false,
+		pending: false,
+		data: e.flatten().fieldErrors as T,
+	  }
+	}
+	return e as any
   }
 }

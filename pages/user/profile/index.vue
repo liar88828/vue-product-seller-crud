@@ -2,13 +2,22 @@
   <NuxtLayout name="profile">
     <div v-if="pending">Loading ...</div>
     <div v-else-if="error || !data?.user">Error</div>
-    <PageProfileUser v-else :data="data?.user" />
+    <PageProfileUser v-else :data="data?.user"/>
   </NuxtLayout>
 </template>
 <script lang="ts" setup>
+
+
+const { loggedIn } = useUserSession()
+if (loggedIn) {
+  // await navigateTo('/sign-in')
+}
 const { data, pending, error } = await useFetch("/api/user/", {
   onResponseError: async ({ error, response }) => {
-    await navigateTo("/auth/sign-in")
+    if (error) {
+      console.error(error.message)
+      // await navigateTo("/auth/sign-in")
+    }
   },
 })
 if (!data.value) {

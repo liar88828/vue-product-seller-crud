@@ -21,7 +21,7 @@
 </template>
 
 <script setup lang="ts">
-import ImageDetail from "./Images.vue"
+// import ImageDetail from "./Images.vue"
 import Desc from "./Desc.vue"
 import Spec from "./Spec.vue"
 import Tech from "./Tech.vue"

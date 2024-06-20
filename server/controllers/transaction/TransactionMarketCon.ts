@@ -24,11 +24,11 @@ export class TransactionMarketCon {
   }
 
   async all(id_market: number) {
-    return this.service.market.all(id_market)
+    return db.trans.market.allDetail(id_market)
   }
 
   async detail(id: string, id_market: string) {
-    return this.service.market.detail({
+    return db.trans.market.idDetail({
       id_market: Number(id_market),
       id: Number(id),
     })

@@ -64,9 +64,9 @@
               </button>
             </div>
           </Titles>
-          <li v-for="data in item.list" class="text-sm sm:text-md">
+          <div v-for="data in item.list" class="text-sm sm:text-md">
             {{ data }}
-          </li>
+          </div>
         </div>
       </div>
     </div>

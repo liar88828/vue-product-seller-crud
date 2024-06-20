@@ -1,3 +1,4 @@
+import type { Box } from "@prisma/client"
 import type { IdTrolly } from "~/server/db/user/trolly"
 import type {
   BoxCreate,
@@ -17,14 +18,14 @@ class SanitizeTrolly {
 }
 
 export class TrollyService extends SanitizeTrolly {
-  async push(data: BoxCreate) {
+  async push(data: BoxCreate): Promise<Box> {
     data = zods.boxCreate.parse(data)
     return db.trolly.push(data)
   }
   async check(id_trolly: number) {
     return db.trolly.check(id_trolly)
   }
-  async delete(id: IdBox) {
+  async delete(id: IdBox): Promise<Box> {
     id = zods.idBox.parse(id)
     return db.trolly.delete(id)
   }

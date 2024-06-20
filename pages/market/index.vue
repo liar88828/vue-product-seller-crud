@@ -13,7 +13,7 @@
 <script lang="ts" setup>
 // import { dataCompany } from "~/assets/example/user/dataCompany"
 const { data, error, pending } = await useFetch("/api/market", {
-  key: "market_id",
+  // key: "market_id",
   onResponseError: async ({ error, response }) => {
     if (error || !response.ok) {
       console.log("error bos")

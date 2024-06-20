@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { dataOrders } from "~/assets/example/transaction/dataOrder"
-import { dataCompany } from "~/assets/example/user/dataCompany"
+// import { dataOrders } from "~/assets/example/transaction/dataOrder"
+// import { dataCompany } from "~/assets/example/user/dataCompany"
 const id = useRoute().params
 const onPay = () => {
   console.log(`Pay id :${id} send`)

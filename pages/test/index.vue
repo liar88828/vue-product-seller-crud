@@ -3,6 +3,8 @@
 </template>
 
 <script lang="ts" setup>
+import Chat from "~/components/El/Nav/Chat.vue";
+
 definePageMeta({
   layout: "chat",
 })

@@ -1,3 +1,4 @@
+<!--suppress JSUnresolvedReference -->
 <template>
   <button onclick="my_modal_1.showModal()">
     <IconsFilter class="h-5 w-5" /> Filter

@@ -4,8 +4,7 @@ router.get(
   "/",
   defineEventHandler(async (event) => {
     console.log("test")
-    const session = await db.user.first()
-
+    const { session } =  await getUserSession(event)
     const data = {
       user: await db.user.findId(session.id),
       toJson() {
@@ -20,7 +19,7 @@ let num: number = 1
 router.get(
   "/:id",
   defineEventHandler(async (event) => {
-    const session = await db.user.first()
+    const { session } =  await getUserSession(event)
 
     const data = {
       user: await db.user.findId(session.id),

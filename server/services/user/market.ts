@@ -1,33 +1,79 @@
-import type {
-  MarketServer,
-  MarketServerFull,
-} from "~/types/market/ProfileCompany"
+import type { MarketServer, MarketServerFull, MarketServerFullNull, MarketUser, } from "~/types/market/ProfileCompany"
 import { MarketOwner } from "./MarketOwner"
 import { MarketStaticService } from "./MarketStaticService"
 
+
 export class MarketServices extends MarketStaticService {
   owner = new MarketOwner()
-  async create(data: MarketServer) {
-    data = zods.companyCreate.parse(data)
-    return db.market.create(data)
+
+  async create(data: MarketServer): Promise<MarketUser> {
+	data = zods.companyCreate.parse(data)
+	const dataDB = await db.market.create(data)
+	const { User } = dataDB
+	if (!User) {
+	  throw createError({
+		statusCode: 404,
+		statusMessage: "Market not found",
+	  })
+	}
+	return { ...dataDB, User }
+
   }
 
-  async findId(id: number) {
-    id = zods.idNumber.parse(id)
-    return db.market.findId(id)
+  async id(id: number): Promise<MarketUser> {
+	id = zods.idNumber.parse(id)
+	const data = await db.market.id(id)
+	if (!data) {
+	  throw createError({
+		statusCode: 404,
+		statusMessage: "Market not found",
+	  })
+	}
+	const { User } = data
+	if (!User) {
+	  throw createError({
+		statusCode: 404,
+		statusMessage: "Market not found",
+	  })
+	}
+	return { ...data, User }
   }
 
   async findFull(id_market: number): Promise<MarketServerFull> {
-    id_market = zods.idNumber.parse(id_market)
-    return db.market.findFull(id_market)
+	id_market = zods.idNumber.parse(id_market)
+	const data = await db.market.findFull(id_market)
+	if (!data) {
+	  throw createError({
+		statusCode: 404,
+		statusMessage: "Market not found",
+	  })
+	}
+	const { Contact, SocialMedia, } = data
+	if (!Contact) {
+	  throw createError({
+		statusCode: 404,
+		statusMessage: "Contact not found",
+	  })
+	}
+	if (!SocialMedia) {
+	  throw createError({
+		statusCode: 404,
+		statusMessage: "SocialMedia not found",
+	  })
+	}
+	return {
+	  ...data,
+	  SocialMedia,
+	  Contact
+	}
   }
 
   async updateProfile(
-    id_market: number,
-    data: MarketServer
-  ): Promise<MarketServerFull> {
-    id_market = zods.idNumber.parse(id_market)
-    data = this.updateMarketProfile(data)
-    return db.market.updateProfile(id_market, data)
+	id_market: number,
+	data: MarketServer
+  ): Promise<MarketServerFullNull> {
+	id_market = zods.idNumber.parse(id_market)
+	data = this.updateMarketProfile(data)
+	return db.market.updateProfile(id_market, data)
   }
 }

@@ -11,12 +11,13 @@
       </div>
 
       <div class="grid gap-6 md:grid-cols-2 mt-5">
-        <Information :data="data" />
-        <Describe :data="data" />
+        <Information :data="data"/>
+        <Describe :data="data"/>
       </div>
       <div class="flex gap-2">
         <NuxtLink to="/market/profile/edit" class="btn btn-primary"
-          >Edit</NuxtLink
+        >Edit
+        </NuxtLink
         >
         <button @click="() => clickImage" class="btn btn-info">Save</button>
       </div>
@@ -25,16 +26,11 @@
 </template>
 
 <script lang="ts" setup>
-import type {
-  MarketServerFull,
-  ProfileMarket,
-} from "~/types/market/ProfileCompany"
-import Information from "./Information.vue"
+import type { MarketServerFull, MarketServerFullNull, } from "~/types/market/ProfileCompany"
+import Information from "./Information/index.vue"
 import Describe from "./Describe.vue"
 
-defineProps<{
-  data: MarketServerFull
-}>()
+defineProps<{ data: MarketServerFull }>()
 
 const { clickImage, refImage } = useImages("Market Profile")
 </script>

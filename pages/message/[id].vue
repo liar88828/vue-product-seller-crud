@@ -13,7 +13,7 @@ definePageMeta({
   layout: "chat",
 })
 
-import { dataChat1 } from "~/assets/example/message/dataMessage"
+// import { dataChat1 } from "~/assets/example/message/dataMessage"
 import Search from "~/components/Page/Chat/Message/Search.vue"
 const { id } = useRoute().params
 const { data } = await useFetch(`/api/message/${id}`)

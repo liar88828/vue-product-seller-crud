@@ -1,10 +1,19 @@
 <template>
+
+  <AuthState>
+    <template #default="{ session }">
+      <pre>{{ session }}</pre>
+    </template>
+    <template #placeholder>
+      ...
+    </template>
+  </AuthState>
   <Suspense>
     <template #fallback>Loading.....</template>
     <template #default>
       <div v-if="pending">Loading ...</div>
       <div v-else-if="error">Error: {{ error.message }}</div>
-      <PageHome v-show="!pending && !error" v-else :data="sendData" />
+      <PageHome v-else v-show="!pending && !error" :data="sendData"/>
     </template>
   </Suspense>
 </template>
@@ -12,12 +21,13 @@
 <script lang="ts" setup>
 import { dataCategory } from "~/assets/link/shopLink"
 import { dataAdv, dataAdv2 } from "~/assets/example/home/dataAdv"
-import type { HomeApi, HomeProps } from "~/types/home/props"
+import type { HomeProps } from "~/types/home/props"
 
+// const { session } = useUserSession()
 const { data, pending, error } = await useFetch("/api/home")
-const session = useCookie("sessionUser")
+// const session = useCookie("sessionUser")
 watch(data, () => {
-  console.log(session.value, "is session user")
+  // console.log(session.value, "is session user")
   console.log(data.value)
 })
 if (!data.value) {
@@ -27,9 +37,9 @@ const sendData: HomeProps = {
   category: dataCategory,
   adv: dataAdv,
   adv2: dataAdv2,
-  newProducts: data.value.data.newProduct,
-  trending: data.value.data.trending,
-  bestSellers: data.value.data.bestProduct,
+  newProducts: data.value.trending,
+  trending: data.value.trending,
+  bestSellers: data.value.bestProduct,
 }
 // console.log(sendData)
 </script>

@@ -3,7 +3,6 @@
 // use session user
 // return market profile
 //
-import { dataCompany } from "~/assets/example/user/dataCompany"
 import type { TRole } from "~/types/globals/Status"
 export default defineEventHandler(async (event) => {
   const role: TRole = "ADMIN"

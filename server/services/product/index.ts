@@ -3,7 +3,6 @@ import type { ProductUser } from "~/types/product/data.db"
 import type { IdValid } from "~/types/product/findId"
 import { ProductMarketServices } from "./ProductMarketServices"
 import { ProductSanitized } from "./ProductSanitized"
-import { ProductShopController } from "~/server/controllers/product/ProductShopController"
 import { ShopServices } from "./shop"
 
 export class ProductServices extends ProductSanitized {

@@ -1,4 +1,4 @@
-import type { ProductDetail, ProductItem } from "~/types/product/item"
+import type { ProductItem } from "~/types/product/item"
 
 export default defineEventHandler(async (event) => {
   const { id } = getRouterParams(event)

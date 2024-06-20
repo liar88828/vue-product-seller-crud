@@ -1,4 +1,4 @@
-import type { DataPreview, ProductDetail } from "~/types/product/item"
+import type { ProductDetail } from "~/types/product/item"
 import { prisma } from "../../config/prisma"
 
 export class PreviewDB {

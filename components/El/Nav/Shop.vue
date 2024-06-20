@@ -19,7 +19,7 @@
 </template>
 
 <script lang="ts" setup>
-import Auths from "./Auths.vue"
+// import Auths from "./Auths.vue"
 import Search from "./Search.vue"
 const search = ref()
 const route = useRoute()

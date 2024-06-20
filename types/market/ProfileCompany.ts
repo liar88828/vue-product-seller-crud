@@ -1,13 +1,6 @@
-import type {
-  Additional,
-  Box,
-  Contact,
-  Market,
-  SocialMedia,
-  Transaction,
-  User,
-} from "@prisma/client"
+import type { Additional, Contact, Market, SocialMedia, Transaction, User, } from "@prisma/client"
 import type { IfEquals, RequiredProperty } from "../globals/generic"
+
 export type ProfileMarket = {
   id: number
   name: string
@@ -23,26 +16,26 @@ export type ProfileMarket = {
   id_user: string
   id_follow: number
   Contact: {
-    id: number
-    email: string
-    phone: string
-    website: string
+	id: number
+	email: string
+	phone: string
+	website: string
   }
   SocialMedia: {
-    id: number
-    instagram: string
-    facebook: string
-    twitter: string
-    whatsapp: string
+	id: number
+	instagram: string
+	facebook: string
+	twitter: string
+	whatsapp: string
   }
   Additional: {
-    id: string
-    id_market: number | null
+	id: string
+	id_market: number | null
   }[]
   marketStatic: MarketStatic
 }
 
-export type MarketServerValid = RequiredProperty<MarketServerFull>
+export type MarketServerValid = RequiredProperty<MarketServerFullNull>
 type test = IfEquals<MarketServerValid, ProfileMarket, "save", "different">
 // const Test: test = "different"
 
@@ -50,13 +43,19 @@ export type MarketServer = Omit<
   Market,
   "id" | "id_contact" | "id_socialMedia" | "id_follow"
 >
-export type MarketServerFull = Market & {
+export type MarketServerFullNull = Market & {
   Contact: Contact | null
   SocialMedia: SocialMedia | null
   Additional: Additional[]
   // marketStatic: MarketStatic
 }
 
+export type MarketServerFull = Market & {
+  Contact: Contact
+  SocialMedia: SocialMedia
+  Additional: Additional[]
+  // marketStatic: MarketStatic
+}
 export type MarketProps = Market & {
   Contact: Contact | null
   SocialMedia: SocialMedia | null
@@ -64,9 +63,7 @@ export type MarketProps = Market & {
   marketStatic: MarketStatic
 }
 
-export type MarketUser = Market & {
-  User: User
-}
+
 export type MarketStatic = {
   follow: number
   product: number
@@ -81,3 +78,7 @@ export type DataMarketDesc = Market & {
 }
 
 export type Remove<T> = Omit<T, "id">
+
+export type MarketUser = Market & {
+  User: User
+};

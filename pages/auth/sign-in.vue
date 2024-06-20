@@ -1,10 +1,10 @@
 <template>
   <Card :compact="false">
     <CardBody>
-      <PageAuthBack link="/auth" />
+      <PageAuthBack link="/auth"/>
       <div class="lg:flex lg:gap-10">
         <figure class="lg:w-1/2">
-          <NuxtImg src="/img/sign_in.svg" class="hidden lg:block" />
+          <NuxtImg src="/img/sign_in.svg" class="hidden lg:block"/>
         </figure>
 
         <div class="lg:w-1/2">
@@ -15,21 +15,25 @@
 
           <form @submit.prevent="handleSubmit">
             <ElInput
-              v-model:input="store.email"
-              types="email"
-              :title="'Email'"
-              :err="errStore.data.email"
+                v-model:input="store.email"
+                types="email"
+                :title="'Email'"
+                :err="errStore.data.email"
             />
             <ElInput
-              v-model:input="store.password"
-              types="password"
-              :title="'Password'"
-              :err="errStore.data.password"
+                v-model:input="store.password"
+                types="password"
+                :title="'Password'"
+                :err="errStore.data.password"
             />
+            <!--            Link-->
             <div class="flex md:flex-row flex-col my-1 gap-1">
               <p>
                 <span> Don't have an account? </span>
-                <NuxtLink to="/auth/sign-up" class="link link-primary">
+                <NuxtLink
+                    to="/auth/sign-up"
+                    :class="['link link-primary', ]">
+
                   Sign Up
                 </NuxtLink>
               </p>
@@ -40,22 +44,43 @@
               </p>
             </div>
 
+            <!--button-->
             <div class="flex flex-col gap-2 mt-4">
-              <button type="submit" class="btn btn-primary">Sign In</button>
+
+              <button
+                  type="submit"
+                  :class="[ 'btn btn-primary' ,
+                   errStore.pending && 'btn-disabled'
+              ]">
+                <ElLoading v-if="errStore.pending"/>
+                <span v-else>Sign Up</span>
+              </button>
+
+              <p class="text-error text-lg text-center">
+                {{ errStore.msg }}
+              </p>
+
             </div>
           </form>
 
-          <ElDivider title="Or With" />
+          <ElDivider title="Or With"/>
           <div class="flex flex-col gap-2">
             <NuxtLink to="/api/auth/google" class="btn btn-primary btn-outline"
-              ><IconsGoogle /> Sign in with Google</NuxtLink
+            >
+              <IconsGoogle/>
+              Sign in with Google
+            </NuxtLink
             >
             <NuxtLink to="/api/auth/github" class="btn btn-primary btn-outline"
-              ><IconsGithub />Sign in with GitHub</NuxtLink
+            >
+              <IconsGithub/>
+              Sign in with GitHub
+            </NuxtLink
             >
           </div>
         </div>
       </div>
+
     </CardBody>
   </Card>
 </template>

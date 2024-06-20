@@ -8,7 +8,7 @@
 
 <script lang="ts" setup>
 // import { dataProducts } from "~/assets/example/product/dataProduct"
-import { dataProducts } from "~/assets/example/product/dataProduct"
+// import { dataProducts } from "~/assets/example/product/dataProduct"
 const { id } = useRoute().params
 const { data, pending, error } = await useFetch(`/api/user/trolly`)
 watch(data, () => {

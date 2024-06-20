@@ -11,7 +11,9 @@ export type SignInProps = {
 }
 
 export type ErrZod<T> = {
-  success: boolean
+  success: boolean,
+  pending: boolean,
+  msg: string
   data: T
 }
 

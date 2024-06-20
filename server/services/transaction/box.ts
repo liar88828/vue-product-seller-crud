@@ -1,6 +1,5 @@
 import type { Box } from "@prisma/client"
 import type { CreateBox } from "~/types/market/order"
-import type { GetBoxProps, GetBoxReturn } from "~/types/transaction/trolly"
 
 class BoxTrolly {
   sanitize(data: Box, id_transaction: number): Box {

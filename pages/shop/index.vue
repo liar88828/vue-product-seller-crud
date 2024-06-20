@@ -7,8 +7,8 @@
 </template>
 
 <script lang="ts" setup>
-import type { Product } from "@prisma/client"
-import { dataProducts } from "~/assets/example/product/dataProduct"
+// import type { Product } from "@prisma/client"
+// import { dataProducts } from "~/assets/example/product/dataProduct"
 // const { search } = useSearch()
 // console.log(search.value, "from shop")
 

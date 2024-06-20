@@ -15,11 +15,7 @@ import { ref, onMounted, onUnmounted } from "vue"
 const isVisible = ref(false)
 
 const handleScroll = () => {
-  if (window.scrollY > 500) {
-    isVisible.value = true
-  } else {
-    isVisible.value = false
-  }
+  isVisible.value = window.scrollY > 500;
 }
 
 onMounted(() => {
@@ -32,6 +28,7 @@ onUnmounted(() => {
 })
 </script>
 
+<!--suppress CssUnusedSymbol, CssUnusedSymbol -->sUnusedSymbol -->sUnusedSymbol -->
 <style scoped>
 .v-enter-active,
 .v-leave-active {

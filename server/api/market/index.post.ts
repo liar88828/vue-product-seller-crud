@@ -1,12 +1,12 @@
 // can create market
 // find by session user
 // then validate in database
-// if user dont have a market
+// if user don't have a market
 // will redirect create to make market or not
 // and will send market from api
 // return market profile
 export default defineEventHandler(async (event) => {
-  const session = await db.user.first()
+  const { session } =  await getUserSession(event)
   const body = await readBody(event)
   console.log(body)
   const data = {

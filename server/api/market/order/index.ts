@@ -2,7 +2,7 @@
 
 // find by market id from session id
 export default defineEventHandler(async (event) => {
-  const session = await db.user.first()
+  const { session } =  await getUserSession(event)
   const data = {
     // product: dataProducts,
     data: await control.trans.market.allProduct(

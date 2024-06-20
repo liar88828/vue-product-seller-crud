@@ -1,15 +1,16 @@
 import type { BaseClass } from "~/types/globals/controller"
 import type { CreateTransaction } from "~/types/transaction"
 import { TransactionSanitize } from "./TransactionSanitize"
-import { TransactionUserServices } from "./TransactionUserServices"
+// import { TransactionUserServices } from "./TransactionUserServices"
 import { TransactionMarketServices } from "./TransactionMarketServices"
+import { TransactionUserServices } from "~/server/services/transaction/TransactionUserServices";
 
 export class TransactionServices
   extends TransactionSanitize
   implements BaseClass
 {
-  user = new TransactionUserServices()
-  market = new TransactionMarketServices()
+  // user = new TransactionUserServices()
+  // market = new TransactionMarketServices()
 
   async id(id: number) {
     return db.trans.id(id)

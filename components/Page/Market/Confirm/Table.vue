@@ -1,14 +1,14 @@
 <template>
-<ElTables >
-  <thead>
+  <ElTables>
+    <thead>
     <tr>
       <th>Buyer</th>
       <th>Product Name</th>
       <th>Total</th>
     </tr>
-  </thead>
+    </thead>
 
-  <tbody>
+    <tbody>
     <tr v-for="item in data" :key="item.id">
       <td>
         <div class="space-y-2">
@@ -21,24 +21,24 @@
       </td>
       <td>
         <div
-          class="flex gap-2 space-y-2"
-          v-for="box in item.Box"
-          :key="box.id"
+            class="flex gap-2 space-y-2"
+            v-for="box in item.Box"
+            :key="box.id"
         >
-        <ElError v-if="!box.Product" text="error"/>
-          <div 
-          v-else
-          class="flex items-center gap-3 ">
+          <ElError v-if="!box.Product" text="error"/>
+          <div
+              v-else
+              class="flex items-center gap-3 ">
             <div class="avatar">
               <div class="mask mask-squircle w-12 h-12">
                 <img
-                  :src="box.Product.image ?? ''"
-                  :alt="box.Product.name ?? ''"
+                    :src="box.Product.image ?? ''"
+                    :alt="box.Product.name ?? ''"
                 />
               </div>
             </div>
           </div>
-        <ElError v-if="!box.Product" text="error"/>
+          <ElError v-if="!box.Product" text="error"/>
           <div v-else class="space-y-1">
             <div class="font-bold">{{ box.Product.name }}</div>
             <div class="text-sm opacity-50">{{ box.Product.brand }}</div>
@@ -48,35 +48,35 @@
       </td>
       <td class='space-y-2'>
         <p>
-
           <!-- get total price and qty -->
           {{
-          getRupiah( totalProduct )
-        }}
-              </p>
-        
+            getRupiah(totalProduct)
+          }}
+        </p>
+      </td>
+
       <td>
         <NuxtLink
-          class="btn btn-outline btn-xs"
-          :to="`/market/confirm/${item.id}`"
+            class="btn btn-outline btn-xs"
+            :to="`/market/confirm/${item.id}`"
         >
-          details</NuxtLink
+          details
+        </NuxtLink
         >
-      </td>
       </td>
 
     </tr>
-  </tbody>
+    </tbody>
 
-</ElTables>  
+  </ElTables>
 </template>
 
 <script lang="ts" setup>
-import type {  DataMarket } from '~/types/market/order'
+import type { DataMarket } from '~/types/market/order'
 
 
-const props=defineProps<{
+const props = defineProps<{
   data: DataMarket[]
 }>()
-const totalProduct=computed(()=> props.data.flatMap((t)=>t.Box).map((t)=>t.price).reduce((a,b)=>a+b,0))
+const totalProduct = computed(() => props.data.flatMap((t) => t.Box).map((t) => t.price).reduce((a, b) => a + b, 0))
 </script>

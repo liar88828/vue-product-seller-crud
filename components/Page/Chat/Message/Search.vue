@@ -1,5 +1,6 @@
 <template>
-  <button onclick="my_modal_chat.showModal()" class="btn btn-outline">
+  <button onclick="// noinspection JSUnresolvedReference
+my_modal_chat.showModal()" class="btn btn-outline">
     <IconsPersonGroup class="icons" /> Chat
   </button>
   <dialog id="my_modal_chat" class="modal">

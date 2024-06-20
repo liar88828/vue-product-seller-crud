@@ -32,7 +32,7 @@
 <script lang="ts" setup>
 import { ref, watch, nextTick } from "vue"
 import Minimize from "./Message/Minimize.vue"
-import type { MessageContact, MessageList } from "~/types/message/message"
+import type { MessageList } from "~/types/message/message"
 import Send from "./Message/Send.vue"
 import Text from "./Message/Text.vue"
 const props = defineProps<{

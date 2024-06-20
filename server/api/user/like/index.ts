@@ -1,11 +1,13 @@
-export default defineEventHandler(async (event) => {
-  const session = await db.user.first()
-  const data = {
-    like: await db.like.get(session.id_like as number),
+import type { Like } from "@prisma/client";
 
-    toJson() {
-      return this.like
-    },
+export default defineEventHandler(async (event) => {
+  const { session } = await getUserSession(event)
+  const data = {
+	like: await db.like.all(session.id_like as number),
+
+	toJson(): { likes: Like[] } {
+	  return { likes: this.like }
+	},
   }
   return data
 })

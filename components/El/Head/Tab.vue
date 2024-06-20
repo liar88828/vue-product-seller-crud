@@ -1,6 +1,6 @@
 <template>
   <div
-    role="tablist "
+    role="tablist"
     class="tabs tabs-lifted px-3 tabs-sm sm:tabs-md lg:tabs-lg"
   >
     <NuxtLink

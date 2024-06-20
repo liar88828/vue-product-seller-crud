@@ -1,5 +1,5 @@
 import { prisma } from "~/server/config/prisma"
-import type { IdValid } from "../../../types/product/findId"
+import type { IdValid } from "~/types/product/findId"
 import type { Product } from "@prisma/client"
 import type { ProductUser } from "~/types/product/data.db"
 import { FollowDB } from "../user/follow"

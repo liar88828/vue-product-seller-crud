@@ -1,6 +1,6 @@
 <script setup lang="ts">
 // import { dataProductDetailServer } from "~/assets/example/product/dataProduct"
-import type { ProductDetail } from "~/types/product/item"
+// import type { ProductDetail } from "~/types/product/item"
 
 const { id } = useRoute().params
 const { data, error, pending } = await useFetch(`/api/shop/${id}`)

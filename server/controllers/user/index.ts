@@ -3,29 +3,35 @@ import type { UserCreate } from "~/types/user/ControlCreateUser"
 import { UserServices } from "../../services/user"
 import { UserLikeController } from "./like"
 
-export class UserController extends UserLikeController {
+export class UserController {
   constructor(private service: UserServices) {
-    super()
   }
 
+  like = new UserLikeController()
+
   test(text: string): string {
-    return text
+	return text
   }
+
   async all() {
-    return db.user.findAll()
+	return db.user.findAll()
   }
-  async id(id: string) {
-    return this.service.id(id)
+
+  async id(id: string): Promise<User>  {
+	return this.service.id(id)
   }
+
   async create(data: UserCreate): Promise<User> {
-    data = this.service.sanitize(data)
-    return this.service.create(data)
+	data = this.service.sanitize(data)
+	return this.service.create(data)
   }
+
   async update(id: string, data: UserCreate): Promise<User> {
-    data = this.service.sanitize(data)
-    return this.service.update(id, data)
+	data = this.service.sanitize(data)
+	return this.service.update(id, data)
   }
+
   async delete(id: string): Promise<User> {
-    return this.service.delete(id)
+	return this.service.delete(id)
   }
 }
