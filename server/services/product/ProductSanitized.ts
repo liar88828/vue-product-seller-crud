@@ -1,14 +1,14 @@
-import type { ProductUser } from "~/types/product/data.db"
+import type { ProductMarketCreate } from "~/types/product/data.db"
 import type { IdProduct } from "~/types/product/findId"
 import { MarketStaticService } from "../user/MarketStaticService"
 import type { RequiredProperty } from "~/types/globals/generic"
 
 export class ProductSanitized extends MarketStaticService {
   sanitizeCreate(
-    data: Omit<ProductUser, "id_user" | "id_type">,
+    data: Omit<ProductMarketCreate, "id_user" | "id_type">,
     { id_user, id_market }: IdProduct,
     id_type: string
-  ): RequiredProperty<ProductUser> {
+  ): RequiredProperty<ProductMarketCreate> {
     return {
       brand: data.brand ?? "",
       description: data.description ?? "",
@@ -22,11 +22,11 @@ export class ProductSanitized extends MarketStaticService {
     }
   }
   sanitizeUpdate(
-    data: Omit<ProductUser, "id_type">,
+    data: Omit<ProductMarketCreate, "id_type">,
     // id: number,
     // id_user: string,
     id_type: string
-  ): ProductUser {
+  ): ProductMarketCreate {
     return {
       brand: data.brand ?? "",
       description: data.description ?? "",

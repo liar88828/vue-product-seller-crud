@@ -41,7 +41,7 @@ testStatusDB("Describe can be tested status controller", async ({ status }) => {
 testStatusDB.skipIf(testAll)(
   "Describe can be test status db Pending",
   async ({ status }) => {
-    const test = await status.createOne("Pending")
+    const test = await status.createOne("PENDING")
     expect(test.id).toBe("Pending")
   }
 )
@@ -49,7 +49,7 @@ testStatusDB.skipIf(testAll)(
 testStatusDB.skipIf(testAll)(
   "Describe can be test status db Accepted",
   async ({ status }) => {
-    const test = await status.createOne("Accepted")
+    const test = await status.createOne("ACCEPTED")
     expect(test.id).toBe("Accepted")
   }
 )
@@ -57,7 +57,7 @@ testStatusDB.skipIf(testAll)(
 testStatusDB.skipIf(testAll)(
   "Describe can be test status db Delivered",
   async ({ status }) => {
-    const test = await status.createOne("Delivered")
+    const test = await status.createOne("DELIVERED")
     expect(test.id).toBe("Delivered")
   }
 )
@@ -65,7 +65,7 @@ testStatusDB.skipIf(testAll)(
 testStatusDB.skipIf(testAll)(
   "Describe can be test status db Cancelled",
   async ({ status }) => {
-    const test = await status.createOne("Cancelled")
+    const test = await status.createOne("CANCELED")
     expect(test.id).toBe("Cancelled")
   }
 )

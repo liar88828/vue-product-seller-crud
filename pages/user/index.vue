@@ -3,5 +3,10 @@
 </template>
 
 <script lang="ts" setup>
-await navigateTo("/user/profile")
+const { loggedIn } = useUserSession()
+if (loggedIn.value) {
+  await navigateTo("/user/profile")
+} else {
+  await navigateTo("/auth/sign-in")
+}
 </script>

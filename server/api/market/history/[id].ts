@@ -1,5 +1,11 @@
+import type { DataMarket } from "~/types/market/order"
 export default defineEventHandler(async (event) => {
-  const { id } = getRouterParams(event)
-  const { session } =  await getUserSession(event)
-  return control.trans.market.detail(id, session.id)
+  const data = {
+    history: await control.trans.market.detail(event),
+
+    toJson(): { history: DataMarket } {
+      return { history: this.history }
+    },
+  }
+  return data
 })

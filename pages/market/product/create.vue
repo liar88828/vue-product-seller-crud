@@ -2,11 +2,31 @@
   <CardWrap title="Create Product">
     <p>create product page will be here</p>
     <form action="" class="space-y-2 w-full">
-      <ElInput types="text" title="Name" v-model:input="state.name" />
-      <ElInput types="text" title="Brand" v-model:input="state.brand" />
-      <ElInput types="number" title="Price" v-model:input="state.price" />
-      <ElInput types="text" title="Stock" v-model:input="state.stock" />
-      <ElTextarea title="Stock" v-model:textarea="state.description" />
+      <ElInput
+        types="text"
+        title="Name"
+        v-model:input="state.data.name"
+        :err="state.error.name"
+      />
+      <ElInput
+        types="text"
+        title="Brand"
+        v-model:input="state.data.brand"
+        :err="state.error.brand"
+      />
+      <ElInput
+        types="number"
+        title="Price"
+        v-model:input="state.data.price"
+        :err="state.error.price"
+      />
+      <ElInput
+        types="text"
+        title="Stock"
+        v-model:input="state.data.stock"
+        :err="state.error.stock"
+      />
+      <ElTextarea title="Stock" v-model:textarea="state.data.description" />
     </form>
     <button type="submit" @click="onSubmit" class="btn btn-info btn-outline">
       Submit
@@ -16,27 +36,43 @@
 </template>
 
 <script lang="ts" setup>
-import type { Product } from "@prisma/client"
-const state = reactive<Product>({
-  brand: "",
-  description: "",
-  id: 0,
-  image: "",
-  name: "",
-  price: 0,
-  stock: 0,
-  id_market: 0,
-  id_type: "",
-  id_user: "",
+import type { StoreBase } from "~/types/globals/store"
+import type { ProductMarketCreate } from "~/types/product/data.db"
+
+const state = reactive<StoreBase<ProductMarketCreate>>({
+  pending: false,
+  error: {
+    brand: [],
+    description: [],
+    image: [],
+    name: [],
+    price: [],
+    stock: [],
+    id_market: [],
+    id_type: [],
+    id_user: [],
+  },
+  data: {
+    brand: "",
+    description: "",
+    image: "",
+    name: "",
+    price: 0,
+    stock: 0,
+    id_market: 0,
+    id_type: "",
+    id_user: "",
+  },
 })
 
 async function onSubmit() {
   console.log(state)
-  const dataValid = zods.productCreate.parse(state)
+  const body = zods.productCreate.parse(state)
   const res = await useFetch("/api/market/product/", {
     method: "POST",
-    body: dataValid,
+    body,
   })
+
   console.log(res)
 }
 </script>

@@ -1,7 +1,8 @@
+import type { Product } from "@prisma/client"
 import { ZodType, z } from "zod"
 import type { SignInProps, SignUpProps } from "~/types/auth/user"
 import type { MarketServer } from "~/types/market/ProfileCompany"
-import type { ProductUser } from "~/types/product/data.db"
+import type { ProductMarketCreate } from "~/types/product/data.db"
 import type {
   IdProduct,
   IdValid,
@@ -62,11 +63,9 @@ export default {
     image: z.string(),
     stock: z.number(),
     id_user: z.string().uuid(),
-    id_market: z.number().nullable(),
-
-    // id_order: z.number(),
-    // id_company: z.number(),
-  }) satisfies ZodType<ProductUser>,
+    id_market: z.number(),
+    id_company: z.number(),
+  }) satisfies ZodType<ProductMarketCreate>,
 
   productUpdate: z.object({
     id: z.number(),
@@ -79,7 +78,7 @@ export default {
     stock: z.number(),
     id_user: z.string().uuid(),
     id_market: z.number().nullable(),
-  }) satisfies ZodType<ProductUser>,
+  }) satisfies ZodType<ProductMarketCreate>,
 
   signUp: z
     .object({
@@ -105,10 +104,10 @@ export default {
     email: z.string(),
     password: z.string(),
     address: z.string().nullable(),
-    id_role: z.string().nullable(),
-    // id_trolly: z.number().nullable(),
-    // id_follow: z.number().nullable(),
-    // id_like: z.number().nullable(),
+    id_role: z.string(),
+    id_trolly: z.number(),
+    id_follow: z.number(),
+    id_like: z.number(),
   }) satisfies ZodType<UserCreate>,
 
   boxCreate: z.object({

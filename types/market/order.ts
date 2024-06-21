@@ -1,7 +1,11 @@
 import type { Box, Market, Product, Transaction, User } from "@prisma/client"
-import type { MarketServerFullNull, MarketServerValid } from "./ProfileCompany"
+import type {
+  MarketServerFull,
+  MarketServerFullNull,
+  MarketServerValid,
+} from "./ProfileCompany"
 import type { CreateTransaction } from "../transaction"
-import type { GetBoxProps } from "../transaction/trolly"
+import type { BoxProduct, GetBoxProps } from "../transaction/trolly"
 
 // export type OrderProps = {
 //   id: number
@@ -21,9 +25,7 @@ import type { GetBoxProps } from "../transaction/trolly"
 export type DataMarket = Transaction & {
   userBuy: User
   Market: Market
-  Box: (Box & {
-    Product: Product | null
-  })[]
+  Box: BoxProduct[]
 }
 // export type DataMarketProps = Transaction & {
 //   userBuy: User
@@ -78,6 +80,6 @@ export type CheckTransaction = {
   id_status: string
 }
 export type PayProps = {
-  market: MarketServerFullNull
+  market: MarketServerFull
   order: DataMarket
 }

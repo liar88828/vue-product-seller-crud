@@ -11,3 +11,7 @@ export type IfEqual<T, U> = (<G>() => G extends T ? 1 : 2) extends <
 >() => G extends U ? 1 : 2
   ? "same"
   : "different"
+
+export type KeyObject<T> = {
+  [K in keyof T]: string[]
+}

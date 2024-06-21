@@ -36,7 +36,9 @@ const { loggedIn, clear, user, ready, session } = useUserSession()
         <button @click="() => clear()" class="btn btn-info">Logout</button>
       </div>
       <div class="card-body" v-else>
-        <Auths />
+        <div class="flex justify-center items-center">
+          <Auths />
+        </div>
       </div>
     </div>
   </div>

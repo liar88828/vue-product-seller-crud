@@ -5,8 +5,7 @@ export default oauth.googleEventHandler({
     await setUserSession(event, {
       user,
       session: rest,
-      loggedInAt: new Date().toISOString(),
-
+      loggedInAt: new Date(),
     })
     return sendRedirect(event, "/")
   },

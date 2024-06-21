@@ -1,30 +1,43 @@
-import type { MarketServer, MarketServerFull, MarketServerFullNull, MarketUser, } from "~/types/market/ProfileCompany"
+import type {
+  MarketServer,
+  MarketServerFull,
+  MarketUser,
+} from "~/types/market/ProfileCompany"
 import { tryCatch } from "../../lib/tryCatch"
 import { MarketServices } from "../../services/user/market"
 import { MarketUserController } from "./MarketUserController"
 import { MarketOwnerController } from "./MarketOwnerController"
+import type { H3Event } from "h3"
 
 export class MarketController {
   protected service = new MarketServices()
   owner = new MarketOwnerController(this.service)
-  user = new MarketUserController()
+  user = new MarketUserController(this.service)
 
-  async full(id_market: string): Promise<MarketServerFull> {
-	return tryCatch(async () => {
-	  return this.service.findFull(Number(id_market))
-	})
+  async full(event: H3Event): Promise<MarketServerFull> {
+    return tryCatch(async () => {
+      const { session } = await getUserSession(event)
+      return this.service.findFull(Number(session.id_market))
+    })
   }
 
-  async id(id: string):Promise<MarketUser> {
-	return tryCatch(async () => {
-	  return this.service.id(Number(id))
-	})
+  async id(event: H3Event): Promise<MarketUser> {
+    return tryCatch(async () => {
+      const { session } = await getUserSession(event)
+
+      return this.service.id(Number(session.id))
+    })
   }
 
-  async create(id_user: string, data: MarketServer) {
-	return tryCatch(async () => {
-	  data = this.service.marketCreate(data, id_user)
-	  return this.service.create(data)
-	})
+  async create(
+    event: H3Event
+    // id_user: string, data: MarketServer
+  ) {
+    return tryCatch(async () => {
+      const { session } = await getUserSession(event)
+      let data = await readBody(event)
+      data = this.service.marketCreate(data, session.id)
+      return this.service.create(data)
+    })
   }
 }

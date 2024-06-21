@@ -1,60 +1,93 @@
-import type { ErrZod, SignUpProps } from "~/types/auth/user"
+import type { ErrZod, GetTry, SignUpProps } from "~/types/auth/user"
+import type { StoreBase } from "~/types/globals/store"
 
 export const useSignUp = () => {
-  const store = reactive<SignUpProps>({
-	confPass: "",
-	name: "",
-	email: "",
-	password: "",
+  const store = reactive<StoreBase<SignUpProps>>({
+    pending: false,
+    success: false,
+    msg: "",
+    error: {
+      name: [],
+      email: [],
+      password: [],
+      confPass: [],
+    },
+    data: {
+      confPass: "",
+      name: "",
+      email: "",
+      password: "",
+    },
   })
 
-  const errStore = reactive<ErrZod<SignUpProps>>({
-	success: false,
-	pending: false,
-	msg:'',
-	data: {
-	  email: "",
-	  password: "",
-	  confPass: "",
-	  name: "",
-	},
-  })
-
-  const handleSubmit = async () => {
-	const valid = getTry<SignUpProps>(() => zods.signUp.parse(store))
-	// to="/auth/verify"
-	console.log(valid)
-	if (valid.success) {
-	  const { data, error } = useFetch("/api/auth/sign-up", {
-		method: "POST",
-		body: valid.data,
-	  })
-	  if (!data.value) {
-		console.log(error.value)
-	  } else if (error.value) {
-		throw createError({ statusCode: 404, statusMessage: "Error Sign up" })
-	  } else {
-		await navigateTo("/home")
-	  }
-	  await navigateTo("/auth/verify")
-	} else {
-	  console.error(" is error from use sign up")
-	  console.error(" is error ")
-
-	  errStore.success = false
-	  // errStore.msg
-
-	  errStore.data = {
-		email: valid.data.email,
-		password: valid.data.password,
-		confPass: valid.data.confPass,
-		name: valid.data.name,
-	  }
-	}
+  const validData = (data: SignUpProps) => {
+    const valid = zods.signUp.safeParse(data)
+    if (!valid.success) {
+      valid.error.errors.map((err) => {
+        store.error[err.path[0] as keyof SignUpProps] = [err.message]
+      })
+      throw new Error("Form Error Sign In")
+    }
+    if (valid.success) {
+      Object.keys(store.error).map(
+        (key) =>
+          //@ts-expect-error
+          (store.error[key] = [])
+      )
+    }
+    return valid.data
   }
+
+  const signUp = async (body: SignUpProps) => {
+    const { data, error, pending } = await useFetch("/api/auth/sign-up", {
+      method: "POST",
+      body,
+    })
+
+    console.log(data, error, pending)
+    if (error.value) {
+      throw new Error(`Server Error Sign In ${error.value?.statusMessage}`)
+    }
+    store.pending = pending.value
+    return data
+  }
+  const handleSubmit = async () => {
+    try {
+      const valid = validData(store.data)
+      await signUp(valid)
+      await navigateTo("/auth/verify")
+    } catch (e) {
+      if (e instanceof Error) {
+        store.msg = e.message
+      }
+    } finally {
+      store.pending = false
+    }
+  }
+
   return {
-	store,
-	errStore,
-	handleSubmit,
+    store,
+    handleSubmit,
   }
 }
+// const store.error = reactive<ErrZod<SignUpProps>>({
+//   success: false,
+//   pending: false,
+//   msg: "",
+//   data: {
+//     email: "",
+//     password: "",
+//     confPass: "",
+//     name: "",
+//   },
+// })
+
+// const restore = (valid: GetTry<SignUpProps>) => {
+//   store.success = false
+//   store.error = {
+//     email: [valid.data.email],
+//     password: [valid.data.password],
+//     confPass: [valid.data.confPass],
+//     name: [valid.data.name],
+//   }
+// }

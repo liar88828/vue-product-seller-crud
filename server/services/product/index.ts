@@ -1,5 +1,5 @@
 import type { Product } from "@prisma/client"
-import type { ProductUser } from "~/types/product/data.db"
+import type { ProductMarketCreate } from "~/types/product/data.db"
 import type { IdValid } from "~/types/product/findId"
 import { ProductMarketServices } from "./ProductMarketServices"
 import { ProductSanitized } from "./ProductSanitized"
@@ -17,12 +17,12 @@ export class ProductServices extends ProductSanitized {
     return db.product.findFull(Number(id))
   }
 
-  async create(data: ProductUser): Promise<Product> {
+  async create(data: ProductMarketCreate): Promise<Product> {
     data = zods.productCreate.parse(data)
     return db.product.create(data)
   }
 
-  async update(id: IdValid, data: ProductUser): Promise<Product> {
+  async update(id: IdValid, data: ProductMarketCreate): Promise<Product> {
     id = zods.idValid.parse(id)
     data = zods.productUpdate.parse(data)
     return db.product.update(id, data)

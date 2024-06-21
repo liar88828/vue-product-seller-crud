@@ -14,7 +14,7 @@ model User {
   id          String        @id @default(uuid())
   email       String        @unique
   name        String?
-  phone       String?
+  phone       String?       @unique
   address     String?
   password    String
   // 
@@ -24,20 +24,20 @@ model User {
   MessageList MessageList[]
   Preview     Preview[]
   // 
-  id_market   Int?          @unique
-  Market      Market?       @relation(fields: [id_market], references: [id])
+  id_market   Int           @unique
+  Market      Market        @relation(fields: [id_market], references: [id])
   // 
-  Like        Like?         @relation(fields: [id_like], references: [id])
-  id_like     Int?          @unique
+  Like        Like          @relation(fields: [id_like], references: [id])
+  id_like     Int           @unique
   // 
-  Trolly      Trolly?       @relation(fields: [id_trolly], references: [id])
-  id_trolly   Int?          @unique
+  Trolly      Trolly        @relation(fields: [id_trolly], references: [id])
+  id_trolly   Int           @unique
   // 
-  Role        Role?         @relation(fields: [id_role], references: [id])
-  id_role     String?
+  Role        Role          @relation(fields: [id_role], references: [id])
+  id_role     String
   //
-  Follow      Follow?       @relation(fields: [id_follow], references: [id])
-  id_follow   Int?
+  Follow      Follow        @relation(fields: [id_follow], references: [id])
+  id_follow   Int
 }
 
 model Product {
@@ -70,7 +70,7 @@ model Product {
   Market      Market?   @relation(fields: [id_market], references: [id])
   id_market   Int?
   // 
-  Like        Like[]
+  Like        LikeBox[]
 }
 
 model Image {
@@ -134,18 +134,18 @@ model Trolly {
 }
 
 model Box {
-  id             Int          @id @default(autoincrement())
+  id             Int         @id @default(autoincrement())
   qty            Int // how many buy @map("amount") 
   price          Int // may be discount
   // save a product
-  Product        Product?     @relation(fields: [id_product], references: [id])
+  Product        Product?    @relation(fields: [id_product], references: [id])
   id_product     Int?
   // as label 
-  Trolly         Trolly?      @relation(fields: [id_trolly], references: [id])
-  id_trolly      Int?
+  Trolly         Trolly      @relation(fields: [id_trolly], references: [id])
+  id_trolly      Int         @unique
   // 
-  Transaction    Transaction? @relation(fields: [id_transaction], references: [id])
-  id_transaction Int?
+  Transaction    Transaction @relation(fields: [id_transaction], references: [id])
+  id_transaction Int         @unique
 }
 
 // model Package {
@@ -178,8 +178,8 @@ model Transaction {
   id_market Int
   Market    Market   @relation(fields: [id_market], references: [id])
   // that status transaction is []
-  id_status String?
-  Status    Status?  @relation(fields: [id_status], references: [id])
+  id_status String
+  Status    Status   @relation(fields: [id_status], references: [id])
   // 
   dateExp   DateTime
   createdAt DateTime @default(now())
@@ -190,7 +190,7 @@ model Transaction {
 }
 
 model Status {
-  id          String        @id @default("SIMPAN")
+  id          String        @id @default("PENDING")
   Transaction Transaction[]
 }
 
@@ -206,18 +206,18 @@ model Role {
 
 model Market {
   id             Int          @id @default(autoincrement())
-  name           String
-  industry       String
-  address        String
-  description    String
-  mission        String
-  vision         String
-  history        String
-  // 
-  Additional     Additional[]
-  // Order          Order[]
-  Product        Product[]
+  name           String?
+  industry       String?
+  address        String?
+  description    String?
+  mission        String?
+  vision         String?
+  history        String?
   since          DateTime     @default(now())
+  // 
+  // Order          Order[]
+  Additional     Additional[]
+  Product        Product[]
   // 
   Contact        Contact?     @relation(fields: [id_contact], references: [id])
   id_contact     Int?         @unique
@@ -301,9 +301,15 @@ model MessageList {
 }
 
 model Like {
-  id         Int      @id @default(autoincrement())
-  id_user    String
-  User       User?
-  Product    Product? @relation(fields: [id_product], references: [id])
-  id_product Int
+  id      Int       @id @default(autoincrement())
+  User    User?
+  LikeBox LikeBox[]
+}
+
+model LikeBox {
+  id        Int      @id @default(autoincrement())
+  Product   Product? @relation(fields: [productId], references: [id])
+  productId Int?
+  Like      Like?    @relation(fields: [likeId], references: [id])
+  likeId    Int?
 }

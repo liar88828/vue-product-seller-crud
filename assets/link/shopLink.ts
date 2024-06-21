@@ -18,19 +18,19 @@ export const linkStatus: {
   link: string
 }[] = [
   {
-    title: "Pending",
+    title: "PENDING",
     link: "/pending",
   },
   {
-    title: "Accepted",
+    title: "ACCEPTED",
     link: "/Accepted",
   },
   {
-    title: "Delivered",
+    title: "DELIVERED",
     link: "/delivered",
   },
   {
-    title: "Cancelled",
+    title: "CANCELED",
     link: "/canceled",
   },
 ]

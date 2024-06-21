@@ -1,8 +1,6 @@
 export default defineEventHandler(async (event) => {
-  const { id } = getRouterParams(event)
-
   const data = {
-    user: await control.user.id(id),
+    user: await control.user.id(event),
     toJson() {
       return this.user
     },

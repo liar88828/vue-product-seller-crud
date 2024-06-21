@@ -1,8 +1,10 @@
-export interface BaseClass {
-  // findAll(): Promise<Object[]>
-  // findId(id: number): Promise<Object>
-  // create(data: Object): Promise<Object>
-  // delete(id: number): Promise<Object>
-  // update(id: number, data: Object): Promise<Object>
-  sanitize(data: Object): Object
+import type { H3Event } from "h3"
+
+export interface ClassBase {
+  id(event: H3Event): Promise<any>
+  all(event: H3Event): Promise<any[]>
+  delete(event: H3Event): Promise<any>
+  create(event: H3Event): Promise<any>
+  update(event: H3Event): Promise<any>
+  detail(event: H3Event): Promise<any>
 }

@@ -1,9 +1,9 @@
-/* v8 ignore next 3 */
+// /* v8 ignore next 3 */
 
-const config = useRuntimeConfig()
+// const config = useRuntimeConfig()
 
-class Libs {
-  cryptr = new CryptrService(config.cryptrKey || "secret-key")
-  // tryCatch = TryCatch
-}
-export const lib = new Libs()
+// class Libs {
+//   cryptr = new CryptrService(config.cryptrKey || "secret-key")
+//   // tryCatch = TryCatch
+// }
+// export const lib = new Libs()

@@ -6,11 +6,8 @@
 // and will send market from api
 // return market profile
 export default defineEventHandler(async (event) => {
-  const { session } =  await getUserSession(event)
-  const body = await readBody(event)
-  console.log(body)
   const data = {
-    market: await control.market.create(session.id, body),
+    market: await control.market.create(event),
     toJson() {
       return this.market
     },

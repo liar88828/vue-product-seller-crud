@@ -15,28 +15,28 @@
 
           <form @submit.prevent="handleSubmit">
             <ElInput
-              v-model:input="store.name"
+              v-model:input="store.data.name"
               types="text"
               :title="'Name'"
-              :err="errStore.data.name"
+              :err="store.error.name"
             />
             <ElInput
-              v-model:input="store.email"
+              v-model:input="store.data.email"
               types="email"
               :title="'Email'"
-              :err="errStore.data.email"
+              :err="store.error.email"
             />
             <ElInput
-              v-model:input="store.password"
+              v-model:input="store.data.password"
               types="password"
               :title="'Password'"
-              :err="errStore.data.password"
+              :err="store.error.password"
             />
             <ElInput
-              v-model:input="store.confPass"
+              v-model:input="store.data.confPass"
               types="password"
               :title="'Conf Password'"
-              :err="errStore.data.confPass"
+              :err="store.error.confPass"
             />
 
             <div class="flex flex-nowrap gap-2 my-2">
@@ -63,5 +63,5 @@ import { useSignUp } from "~/composables/auth/useSignUp"
 definePageMeta({
   layout: "auth",
 })
-const { errStore, store, handleSubmit } = useSignUp()
+const { store, handleSubmit } = useSignUp()
 </script>

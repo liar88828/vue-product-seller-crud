@@ -2,12 +2,13 @@ import type { Transaction } from "@prisma/client"
 import { TransactionServices } from "../../services/transaction"
 import { TransactionUserCon } from "./TransactionUserCon"
 import { TransactionMarketCon } from "./TransactionMarketCon"
-import { HistoryController } from "~/server/controllers/transaction/historyController";
+import { MarketServices } from "~/server/services/user/market"
 
 export class TransactionController extends TransactionUserCon {
-  service = new TransactionServices()
-  user = new TransactionUserCon(this.service)
-  market = new TransactionMarketCon(this.service)
+  serviceTrans = new TransactionServices()
+  serviceMarket = new MarketServices()
+  user = new TransactionUserCon(this.serviceTrans, this.serviceMarket)
+  market = new TransactionMarketCon(this.serviceTrans)
   order = {
     // confirm: super.confirmTransaction,
     // create: super.createTransaction,
@@ -17,7 +18,7 @@ export class TransactionController extends TransactionUserCon {
   }
 
   async id(id: number) {
-    return this.service.id(id)
+    return this.serviceTrans.id(id)
   }
 
   async createTrans(data: Transaction) {

@@ -1,48 +1,52 @@
 import type { Transaction } from "@prisma/client"
-import { prisma } from "~/server/config/prisma"
 import type { TransactionServices } from "~/server/services/transaction"
 import type { PayProps } from "~/types/market/order"
-import { HistoryController } from "~/server/controllers/transaction/historyController";
+import type { H3Event } from "h3"
+import { HistoryController } from "~/server/controllers/transaction/historyController"
+import { TransactionMarketCon } from "./TransactionMarketCon"
+import { MarketServices } from "~/server/services/user/market"
+import { prisma } from "~/server/config/prisma"
 
 export class TransactionUserCon {
-  constructor(public service: TransactionServices) {
-  }
+  constructor(
+    protected serviceTrans: TransactionServices,
+    protected serviceMarket: MarketServices
+  ) {}
 
   history = new HistoryController()
 
   async allProduct(id_user: string) {
-	const transaction = await prisma.user.findUnique({
-	  where: { id: id_user },
-	  select: {
-		Transaction: {
-		  include: {
-			Box: {
-			  include: {
-				Product: true,
-			  },
-			},
-		  },
-		},
-	  },
-	})
-	return transaction
+    const transaction = await prisma.user.findUnique({
+      where: { id: id_user },
+      select: {
+        Transaction: {
+          include: {
+            Box: {
+              include: {
+                Product: true,
+              },
+            },
+          },
+        },
+      },
+    })
+    return transaction
   }
 
   async detail(id: string, id_buyer: string) {
-	return db.trans.user.id({ id_buyer, id: Number(id) })
+    return db.trans.user.id({ id_buyer, id: Number(id) })
   }
 
   async all(id_buyer: string): Promise<Transaction[]> {
-	return db.trans.user.all(id_buyer)
+    return db.trans.user.all(id_buyer)
   }
 
-
   async delete(id: string, id_buyer: string) {
-	return db.trans.user.delete({ id_buyer, id: Number(id) })
+    return db.trans.user.delete({ id_buyer, id: Number(id) })
   }
 
   async pay(id: string, id_buyer: string) {
-	return db.trans.user.pay({ id_buyer, id: Number(id) })
+    return db.trans.user.pay({ id_buyer, id: Number(id) })
   }
 
   // async create(data: CreateTransaction): Promise<Transaction> {
@@ -50,10 +54,15 @@ export class TransactionUserCon {
   // return service.transaction.create(sanitize)
   // }
 
-  async payDetail(id: string, id_buyer: string): Promise<PayProps> {
-	return {
-	  market: await control.market.full(id),
-	  order: await db.trans.user.idDetail({ id: Number(id), id_buyer }),
-	}
+  async payDetail(event: H3Event): Promise<PayProps> {
+    const { session } = await getUserSession(event)
+    const { id } = getRouterParams(event)
+    return {
+      market: await this.serviceMarket.findFull(Number(session.id_market)),
+      order: await db.trans.user.idDetail({
+        id: Number(id),
+        id_buyer: session.id,
+      }),
+    }
   }
 }

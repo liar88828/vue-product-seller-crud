@@ -3,14 +3,9 @@
 // use session user
 // return market profile
 //
-import type { TRole } from "~/types/globals/Status"
 export default defineEventHandler(async (event) => {
-  const role: TRole = "ADMIN"
-  const id = getRouterParams(event).id
-  const body = await readBody(event)
-
   const data = {
-    profile: control.market.owner.update(id, body),
+    profile: control.market.owner.update(event),
 
     toJson() {
       return this.profile

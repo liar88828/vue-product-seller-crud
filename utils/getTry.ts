@@ -1,35 +1,15 @@
 import { ZodError } from "zod"
 import type { GetTry } from "~/types/auth/user"
+import type { StoreBase } from "~/types/globals/store"
 
-export default <T>(fn: () => any): GetTry<T> => {
-  // const zod = (e: unknown) => {
-  //   if (e instanceof ZodError) {
-  //     // console.log(e)
-  //     return e.flatten().fieldErrors
-  //   }
-  // }
-
+export default <T>(store: StoreBase<T>, fn: () => any) => {
   try {
-	return {
-	  success: true,
-	  pending: true,
-	  msg: "",
-	  data: fn() as T,
-	}
-	// const data = fn()
-	// if (data) return data
-	// throw fn()
+    return fn() as T
   } catch (e) {
-	//  return zod(e)
-	if (e instanceof ZodError) {
-	  console.log(e,' from zod ')
-	  return {
-		msg: "",
-		success: false,
-		pending: false,
-		data: e.flatten().fieldErrors as T,
-	  }
-	}
-	return e as any
+    if (e instanceof ZodError) {
+      console.log(e, " from zod ")
+      return e.flatten().fieldErrors as T
+    }
+    return e as any
   }
 }

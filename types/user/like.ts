@@ -1,3 +1,3 @@
 import type { Like } from "@prisma/client"
 
-export type IdLike = Omit<Like, "id">
+export type IdLike = { id: number; id_product: number }

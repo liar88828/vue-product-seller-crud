@@ -1,6 +1,14 @@
 import { dataOrders } from "~/assets/example/transaction/dataOrder"
+import type { DataMarket, TransProps } from "~/types/market/order"
 export default defineEventHandler(async (event) => {
-  const { session } =  await getUserSession(event)
-  await control.trans.market.all(session.id_market as number)
-  return { history: dataOrders }
+  const data = {
+    histories: await control.trans.market.all(event),
+
+    toJson(): {
+      histories: DataMarket[] // TransProps
+    } {
+      return { histories: this.histories }
+    },
+  }
+  return data
 })

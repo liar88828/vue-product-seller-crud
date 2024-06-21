@@ -5,13 +5,13 @@ export default defineEventHandler<{ body: Product }>(async (event) => {
   const body = await readBody(event)
 
   const data = {
-	like: await control.user.like.add({
-	  id_user: session.id,
-	  id_product: body.id,
-	}),
-	toJson(): { like: Like } {
-	  return { like: this.like }
-	},
+    like: await control.user.like.add({
+      id: session.id_like,
+      id_product: body.id,
+    }),
+    toJson(): { like: Like } {
+      return { like: this.like }
+    },
   }
   return data
 })

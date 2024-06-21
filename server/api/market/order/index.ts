@@ -2,13 +2,8 @@
 
 // find by market id from session id
 export default defineEventHandler(async (event) => {
-  const { session } =  await getUserSession(event)
   const data = {
-    // product: dataProducts,
-    data: await control.trans.market.allProduct(
-      session.id_market as number,
-      session.id
-    ),
+    data: await control.trans.market.allProduct(event),
     toJson() {
       return this.data
     },

@@ -1,19 +1,10 @@
 <template>
-
-  <AuthState>
-    <template #default="{ session }">
-      <pre>{{ session }}</pre>
-    </template>
-    <template #placeholder>
-      ...
-    </template>
-  </AuthState>
   <Suspense>
     <template #fallback>Loading.....</template>
     <template #default>
       <div v-if="pending">Loading ...</div>
       <div v-else-if="error">Error: {{ error.message }}</div>
-      <PageHome v-else v-show="!pending && !error" :data="sendData"/>
+      <PageHome v-else v-show="!pending && !error" :data="sendData" />
     </template>
   </Suspense>
 </template>
@@ -23,7 +14,7 @@ import { dataCategory } from "~/assets/link/shopLink"
 import { dataAdv, dataAdv2 } from "~/assets/example/home/dataAdv"
 import type { HomeProps } from "~/types/home/props"
 
-// const { session } = useUserSession()
+const { session, fetch } = useUserSession()
 const { data, pending, error } = await useFetch("/api/home")
 // const session = useCookie("sessionUser")
 watch(data, () => {

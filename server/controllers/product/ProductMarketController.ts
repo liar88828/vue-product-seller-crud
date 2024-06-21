@@ -1,5 +1,5 @@
 import { tryCatch } from "../../lib/tryCatch"
-import type { ProductUser } from "~/types/product/data.db"
+import type { ProductMarketCreate } from "~/types/product/data.db"
 import type { IdProduct, IdValid } from "~/types/product/findId"
 import { ProductServices } from "../../services/product"
 
@@ -24,7 +24,7 @@ export class ProductMarketController {
       return this.service.delete(id)
     })
   }
-  async create(data: ProductUser, id: IdProduct) {
+  async create(data: ProductMarketCreate, id: IdProduct) {
     return tryCatch(async () => {
       const id_type = await db.type.create(data.id_type ?? "unKnown")
       data = this.service.sanitizeCreate(data, id, id_type)
@@ -32,7 +32,7 @@ export class ProductMarketController {
     })
   }
 
-  async update(data: ProductUser, id: string, id_user: string) {
+  async update(data: ProductMarketCreate, id: string, id_user: string) {
     return tryCatch(async () => {
       const id_type = await db.type.create(data.id_type ?? "unKnown")
       data = this.service.sanitizeUpdate(data, id_type)

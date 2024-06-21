@@ -10,8 +10,10 @@ export default defineEventHandler(async (event) => {
     const r = protectedRoutes[i]
     // if the pathname is in the list of protected routes
     if (pathname === r) {
+      console.log("protected route", pathname)
       // ensure user is logged in before getting a response
       await requireUserSession(event)
+      // console.log("will guard")
     }
   }
 })

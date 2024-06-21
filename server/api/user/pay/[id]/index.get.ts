@@ -1,9 +1,6 @@
 export default defineEventHandler(async (event) => {
-  const { session } =  await getUserSession(event)
-  const { id } = getRouterParams(event)
-
   const data = {
-    pay: await control.trans.user.payDetail(id, session.id),
+    pay: await control.trans.user.payDetail(event),
     toJson() {
       return this.pay
     },

@@ -1,7 +1,7 @@
 import { prisma } from "~/server/config/prisma"
 import type { IdValid } from "~/types/product/findId"
 import type { Product } from "@prisma/client"
-import type { ProductUser } from "~/types/product/data.db"
+import type { ProductMarketCreate } from "~/types/product/data.db"
 import { FollowDB } from "../user/follow"
 
 export class ProductTestDB extends FollowDB {
@@ -23,11 +23,14 @@ export class ProductTestDB extends FollowDB {
     }
     return data
   }
-  async create(data: ProductUser) {
+  async create(data: ProductMarketCreate) {
     return prisma.product.create({ data })
   }
 
-  async update({ id, id_user }: IdValid, data: ProductUser): Promise<Product> {
+  async update(
+    { id, id_user }: IdValid,
+    data: ProductMarketCreate
+  ): Promise<Product> {
     return prisma.product.update({ where: { id, id_user }, data: data })
   }
 }

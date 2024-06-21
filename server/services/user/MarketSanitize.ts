@@ -3,7 +3,7 @@ import type { MarketServer } from "~/types/market/ProfileCompany"
 
 export class MarketSanitize {
   marketCreate(
-    data: MarketServer,
+    data: RequiredProperty<MarketServer>,
     id_user: string
   ): RequiredProperty<MarketServer> {
     // id_user = zods.idString.parse(id_user)

@@ -1,4 +1,4 @@
-import type { Box, Product, Trolly, User } from "@prisma/client"
+import type { Box, Product, Transaction, Trolly, User } from "@prisma/client"
 import type { Remove } from "../market/ProfileCompany"
 
 export type BoxCreate = Omit<Box, "id">
@@ -17,6 +17,10 @@ export type MyTrollyReturn = (Trolly & {
 export type BoxProduct = Box & {
   Product: Product | null
 }
+export type TransactionId = Transaction & {
+  Box: BoxProduct[]
+}
+
 export type IdBox = {
   id_trolly: number
   id_product: number

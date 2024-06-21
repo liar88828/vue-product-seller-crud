@@ -1,35 +1,24 @@
+import type { DataMarket } from "~/types/market/order"
 import { TransactionServices } from "../../services/transaction"
-import { prisma } from "~/server/config/prisma"
+import type { H3Event } from "h3"
 
 export class TransactionMarketCon {
   constructor(public service: TransactionServices) {}
-  async allProduct(id_market: number, id_user: string) {
-    const market = await prisma.market.findUnique({
-      where: { id: id_market, User: { id: id_user } },
-    })
-    if (!market) {
-      throw new Error("Market not found")
-    }
-    const transaction = await prisma.transaction.findMany({
-      where: { id_market: market.id },
-      include: {
-        Box: {
-          include: {
-            Product: true,
-          },
-        },
-      },
-    })
-    return transaction
+  async allProduct(event: H3Event) {
+    const { session } = await getUserSession(event)
+    return this.service.allProduct(session.id_market as number, session.id)
   }
 
-  async all(id_market: number) {
-    return db.trans.market.allDetail(id_market)
+  async all(event: H3Event): Promise<DataMarket[]> {
+    const { session } = await getUserSession(event)
+    return db.trans.market.allDetail(session.id_market)
   }
 
-  async detail(id: string, id_market: string) {
+  async detail(event: H3Event): Promise<DataMarket> {
+    const { id } = getRouterParams(event)
+    const { session } = await getUserSession(event)
     return db.trans.market.idDetail({
-      id_market: Number(id_market),
+      id_market: session.id_market,
       id: Number(id),
     })
   }
