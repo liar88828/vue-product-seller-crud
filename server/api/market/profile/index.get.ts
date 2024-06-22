@@ -3,12 +3,10 @@
 // and find market from session user
 // return market profile
 
-import type { MarketServerFullNull } from "~/types/market/ProfileCompany"
-
 export default defineEventHandler(async (event) => {
   const data = {
-    market: await control.market.owner.full(event),
-    toJson(): { market: MarketServerFullNull } {
+    market: await control.market.owner.fullSingle(event),
+    toJson(): { market: MarketServiceSingle } {
       return {
         market: this.market,
       }

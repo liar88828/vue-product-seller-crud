@@ -10,6 +10,7 @@ export class UserController implements ClassBase {
   private service = new UserServices()
   like = new UserLikeController()
   profile = new UserProfileController(this.service)
+
   detail(event: H3Event<EventHandlerRequest>): Promise<any> {
     throw new Error("Method not implemented.")
   }

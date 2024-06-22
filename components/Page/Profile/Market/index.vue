@@ -2,23 +2,26 @@
   <div ref="refImage">
     <CardInit>
       <div class="flex justify-between items-center">
-        <div class="space-y-2">
-          <h1 class="text-3xl font-bold">{{ data.name }}</h1>
-          <p class="text-gray-500 dark:text-gray-400">
-            {{ data.industry }}
-          </p>
-        </div>
+        <ElError v-if="!data.Market" />
+        <Title v-else :data="data.Market" />
       </div>
 
       <div class="grid gap-6 md:grid-cols-2 mt-5">
-        <Information :data="data"/>
-        <Describe :data="data"/>
+        <div class="space-y-5">
+          <ElError v-if="!data.Market" />
+          <Basics v-else :data="data.Market" />
+          <ElError v-if="!data.Contact" />
+          <Contact v-else :data="data.Contact" />
+          <ElError v-if="!data.SocialMedia" />
+          <Social v-else :data="data.SocialMedia" />
+        </div>
+        <ElError v-if="!data.Market" />
+        <Describe v-else :data="data.Market" />
       </div>
       <div class="flex gap-2">
         <NuxtLink to="/market/profile/edit" class="btn btn-primary"
-        >Edit
-        </NuxtLink
-        >
+          >Edit
+        </NuxtLink>
         <button @click="() => clickImage" class="btn btn-info">Save</button>
       </div>
     </CardInit>
@@ -26,11 +29,13 @@
 </template>
 
 <script lang="ts" setup>
-import type { MarketServerFull, MarketServerFullNull, } from "~/types/market/ProfileCompany"
-import Information from "./Information/index.vue"
 import Describe from "./Describe.vue"
+import Basics from "./Information/Basics.vue"
+import Contact from "./Information/Contact.vue"
+import Social from "./Information/Social.vue"
+import Title from "./Information/Title.vue"
 
-defineProps<{ data: MarketServerFull }>()
+defineProps<{ data: MarketServiceSingle }>()
 
 const { clickImage, refImage } = useImages("Market Profile")
 </script>

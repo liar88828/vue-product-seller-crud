@@ -14,16 +14,20 @@ export default defineNuxtConfig({
   css: ["@/assets/main/style.css"],
 
   // 4. Integrate with Nitro
+  imports: {
+    dirs: ["composables/**", "utils/**", "types/**"],
+  },
   nitro: {
     imports: {
       dirs: [
-        "./server/services",
-        "./server/controllers",
-        "./server/db",
-        "./server/lib",
-        "./server/utils",
+        "./server/services/**",
+        "./server/controllers/**",
+        "./server/db/**",
+        "./server/lib/**",
+        "./server/utils/**",
         // "./server/config",
-        "./utils",
+        "utils/**",
+        "types/**",
       ],
       // presets: [
       //   {

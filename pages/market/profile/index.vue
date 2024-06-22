@@ -1,16 +1,21 @@
 <template>
   <NuxtLayout name="market">
-    {{ data }}
-    <!-- <PageProfileMarket :data="data" /> -->
+    <ElLoading v-if="pending" />
+    <ElError v-else-if="error || !data" />
+    <!-- @vue-expect-error -->
+    <PageProfileMarket v-else :data="data?.market" />
   </NuxtLayout>
 </template>
 <script lang="ts" setup>
-// import { dataCompany } from "~/assets/example/user/dataCompany"
-const { data } = await useFetch("/api/market/profile")
-watch(data, () => {
-  console.log(data.value)
-})
-if (!data.value) {
-  throw new Error("data not found")
-}
+const { data, pending, error } = await useFetch("/api/market/profile")
+
+// const { data: check } = await useFetch("/api/market/profile/check")
+// console.log(data.value, "market profile check")
+// if (check.value) {
+//   if (check.value.market.create) {
+//     await navigateTo("/market/profile")
+//   } else {
+//     await navigateTo("/market/create")
+//   }
+// }
 </script>

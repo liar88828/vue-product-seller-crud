@@ -213,10 +213,11 @@ model Market {
   mission        String?
   vision         String?
   history        String?
+  create         Boolean      @default(false)
   since          DateTime     @default(now())
   // 
   // Order          Order[]
-  Additional     Additional[]
+  // Additional     Additional[]
   Product        Product[]
   // 
   Contact        Contact?     @relation(fields: [id_contact], references: [id])
@@ -231,6 +232,7 @@ model Market {
   id_follow   Int?
   Transaction Transaction[]
   User        User?
+  Additional  Additional[]
 }
 
 model Follow {
@@ -257,7 +259,8 @@ model SocialMedia {
 }
 
 model Additional {
-  id        String  @id
+  id        Int     @id @default(autoincrement())
+  text      String
   Market    Market? @relation(fields: [id_market], references: [id])
   id_market Int?
 }

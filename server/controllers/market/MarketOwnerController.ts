@@ -1,38 +1,53 @@
-import type {
-  MarketServerFull,
-  MarketServerFullNull,
-} from "~/types/market/ProfileCompany"
-import { tryCatch } from "../../lib/tryCatch"
 import { MarketServices } from "../../services/user/market"
-import type { TRole, TStatus } from "~/types/globals/Status"
 import type { H3Event } from "h3"
+import type { Market } from "@prisma/client"
 
 export class MarketOwnerController {
   constructor(protected service: MarketServices) {}
 
-  async full(event: H3Event): Promise<MarketServerFull> {
+  async create(event: H3Event): Promise<Market> {
     return tryCatch(async () => {
       const { session } = await getUserSession(event)
-      return this.service.findFull(Number(session.id_market))
+      let body = await readBody(event)
+
+      body = this.service.marketCreate(body)
+      body = zods.market.create.parse(body)
+      return this.service.owner.create(body, session)
     })
   }
 
-  async update(event: H3Event): Promise<MarketServerFullNull> {
-    const role: TRole = "ADMIN"
-    const id = getRouterParams(event).id
-    const body = await readBody(event)
+  async full(event: H3Event): Promise<MarketServerFull> {
     return tryCatch(async () => {
-      return this.service.updateProfile(Number(id), body)
+      const { session } = await getUserSession(event)
+      console.log(session, "test")
+      return this.service.findFull(Number(session.id_market))
+    })
+  }
+  async fullSingle(event: H3Event): Promise<MarketServiceSingle> {
+    return tryCatch(async () => {
+      const { session } = await getUserSession(event)
+      console.log(session, "test")
+      return this.service.owner.findSingle(session.id_market)
+    })
+  }
+
+  async update(event: H3Event): Promise<MarketServerFull> {
+    return tryCatch(async () => {
+      const { session } = await getUserSession(event)
+      const body = await readBody(event)
+      // const role: TRole = "MARKET"
+      return this.service.owner.updateProfile(session.id_market, body)
     })
   }
 
   async confirm(event: H3Event, status: TStatus) {
     const { id } = getRouterParams(event)
     const { session } = await getUserSession(event)
+
     await db.trans.market.confirm.add(
       {
         id: Number(id),
-        id_market: session.id_market as number,
+        id_market: session.id_market,
       },
       status
     )
@@ -42,7 +57,11 @@ export class MarketOwnerController {
     const { session } = await getUserSession(event)
     await db.trans.market.confirm.id({
       id: Number(id),
-      id_market: session.id_market as number,
+      id_market: session.id_market,
     })
+  }
+  async idMarketFind(event: H3Event): Promise<idMarketFind> {
+    const { session } = await getUserSession(event)
+    return db.trans.market.confirm.idMarketFind(session.id_market)
   }
 }

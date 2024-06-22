@@ -1,7 +1,10 @@
 import { mount } from "@vue/test-utils"
 import { describe, expect, test } from "vitest"
 import { dataOrders } from "~/assets/example/transaction/dataOrder"
-import { dataCompany } from "~/assets/example/user/dataCompany"
+import {
+  dataCompany,
+  marketServerFull,
+} from "~/assets/example/user/dataCompany"
 import PayIndex from "~/components/Page/Transaction/Pay/index.vue"
 import PayMarket from "~/components/Page/Transaction/Pay/Market.vue"
 import PayCustomer from "~/components/Page/Transaction/Pay/Customer.vue"
@@ -15,7 +18,7 @@ describe("test product look", () => {
   test("it can be tested product look", async () => {
     const component = mount(PayIndex, {
       props: {
-        data: { order: dataOrders[0], market: dataCompany },
+        data: { order: dataOrders[0], market: marketServerFull },
       },
     })
 

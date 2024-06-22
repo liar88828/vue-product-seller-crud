@@ -1,11 +1,13 @@
 <template>
+  <ElLoading v-if="pending" />
+  <ElError v-else-if="error || !data" />
   <!-- @vue-expect-error -->
-  <PageProfileEditMarket :data="data?.profile" />
+  <PageProfileEditMarket v-else :data="data?.market" />
 </template>
 
 <script lang="ts" setup>
 // import { dataCompany } from "~/assets/example/user/dataCompany"
-const { data } = await useFetch("/api/market/profile")
+const { data, error, pending } = await useFetch("/api/market/profile/old")
 watch(data, () => {
   console.log(data.value)
 })

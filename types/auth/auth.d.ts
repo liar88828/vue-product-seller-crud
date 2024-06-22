@@ -4,17 +4,21 @@ import type { SessionUser } from "../globals/session"
 // auth.d.ts
 declare module "#auth-utils" {
   interface User {
-    // Add your own fields
-    //   data: SessionUser
-    //   loggedInAt: string
+    // id: string
+    // id_market: number
+    // id_like: number
+    // id_trolly: number
+    // id_role: string
+    // id_follow: number
   }
 
   interface UserSession {
     // Add your own fields
-    // user: SessionUser
     session: SessionUser
+
     loggedInAt: Date
     // role: TRole
+    user: SessionUser
   }
 }
 

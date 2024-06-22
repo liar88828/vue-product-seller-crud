@@ -36,9 +36,6 @@
 </template>
 
 <script lang="ts" setup>
-import type { StoreBase } from "~/types/globals/store"
-import type { ProductMarketCreate } from "~/types/product/data.db"
-
 const state = reactive<StoreBase<ProductMarketCreate>>({
   pending: false,
   error: {
@@ -67,7 +64,7 @@ const state = reactive<StoreBase<ProductMarketCreate>>({
 
 async function onSubmit() {
   console.log(state)
-  const body = zods.productCreate.parse(state)
+  const body = zods.product.create.parse(state)
   const res = await useFetch("/api/market/product/", {
     method: "POST",
     body,

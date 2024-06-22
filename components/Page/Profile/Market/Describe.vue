@@ -26,9 +26,9 @@
 </template>
 
 <script setup lang="ts">
-import type { MarketServerFullNull } from "~/types/market/ProfileCompany"
+import type { Market } from "@prisma/client"
 
 defineProps<{
-  data: MarketServerFullNull
+  data: Market
 }>()
 </script>

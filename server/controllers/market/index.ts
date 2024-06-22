@@ -36,7 +36,7 @@ export class MarketController {
     return tryCatch(async () => {
       const { session } = await getUserSession(event)
       let data = await readBody(event)
-      data = this.service.marketCreate(data, session.id)
+      data = this.service.marketCreate(data)
       return this.service.create(data)
     })
   }

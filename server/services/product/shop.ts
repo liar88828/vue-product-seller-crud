@@ -18,7 +18,7 @@ export class ShopServices {
     }
   }
   async oldDetail(id: number): Promise<ProductDetail> {
-    const valid = zods.idNumber.parse(id)
+    const valid = zods.id.number.parse(id)
     const market = await db.product.findCompany(valid)
     // console.log(valid, "valid")
     // console.log(market, "market")

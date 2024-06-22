@@ -61,7 +61,7 @@ testMarketDb.skipIf(findMarket)("market can be find", async ({ market }) => {
 })
 
 testMarketDb.skipIf(findMarket)("market can be update ", async ({ market }) => {
-  const test = await market.updateProfile(0, {
+  const test = await market.update(0, {
     name: "test1 update",
     address: "test1.address",
     description: "test1.description",

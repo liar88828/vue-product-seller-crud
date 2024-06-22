@@ -23,7 +23,7 @@ export const useSignIn = () => {
   })
 
   const validData = (data: SignInProps) => {
-    const valid = zods.signIn.safeParse(data)
+    const valid = zods.user.signIn.safeParse(data)
     if (!valid.success) {
       valid.error.errors.map((err) => {
         store.error[err.path[0] as keyof SignInProps] = [err.message]

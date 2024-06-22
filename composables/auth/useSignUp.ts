@@ -1,4 +1,4 @@
-import type { ErrZod, GetTry, SignUpProps } from "~/types/auth/user"
+import type { SignUpProps } from "~/types/auth/user"
 import type { StoreBase } from "~/types/globals/store"
 
 export const useSignUp = () => {
@@ -21,7 +21,7 @@ export const useSignUp = () => {
   })
 
   const validData = (data: SignUpProps) => {
-    const valid = zods.signUp.safeParse(data)
+    const valid = zods.user.signUp.safeParse(data)
     if (!valid.success) {
       valid.error.errors.map((err) => {
         store.error[err.path[0] as keyof SignUpProps] = [err.message]

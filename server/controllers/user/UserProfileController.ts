@@ -1,4 +1,4 @@
-import { User } from "@prisma/client"
+import type { User } from "@prisma/client"
 import type { EventHandlerRequest, H3Event } from "h3"
 import { UserServices } from "~/server/services/user"
 

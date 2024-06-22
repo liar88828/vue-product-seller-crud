@@ -1,6 +1,6 @@
 <template>
   <div class="flex items-start gap-4">
-    <IconsLocation/>
+    <IconsLocation />
     <div>
       <h3 class="font-medium">Address</h3>
       <p>
@@ -9,7 +9,7 @@
     </div>
   </div>
   <div class="flex items-start gap-4">
-    <IconsIndustry/>
+    <IconsIndustry />
     <div>
       <h3 class="font-medium">Industry</h3>
       <p>{{ data.industry }}</p>
@@ -17,6 +17,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import type { MarketServerFullNull } from "~/types/market/ProfileCompany";
-defineProps<{ data: MarketServerFullNull }>()
+import type { Market } from "@prisma/client"
+
+defineProps<{ data: Market }>()
 </script>

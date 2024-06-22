@@ -32,7 +32,7 @@ const state = reactive<Product>({
 
 async function onSubmit() {
   console.log(state)
-  const dataValid = zods.productCreate.parse(state)
+  const dataValid = zods.product.create.parse(state)
   const res = await useFetch("/api/market/product/", {
     method: "PUT",
     body: dataValid,

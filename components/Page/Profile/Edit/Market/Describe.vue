@@ -20,9 +20,7 @@
 </template>
 
 <script setup lang="ts">
-import type { ProfileMarket } from "~/types/market/ProfileCompany"
-
 defineProps<{
-  data: ProfileMarket
+  data: MarketServerFull
 }>()
 </script>

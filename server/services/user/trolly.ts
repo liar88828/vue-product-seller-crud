@@ -19,14 +19,14 @@ class SanitizeTrolly {
 
 export class TrollyService extends SanitizeTrolly {
   async push(data: BoxCreate): Promise<Box> {
-    data = zods.boxCreate.parse(data)
+    data = zods.box.create.parse(data)
     return db.trolly.push(data)
   }
   async check(id_trolly: number) {
     return db.trolly.check(id_trolly)
   }
   async delete(id: IdBox): Promise<Box> {
-    id = zods.idBox.parse(id)
+    id = zods.box.id.parse(id)
     return db.trolly.delete(id)
   }
   async all(id: IdTrolly): Promise<TrollyAllService> {

@@ -111,7 +111,7 @@ export class ProductDB extends ProductMutationDB {
   }
   async detailFull(id: number) {
     return tryCatch(async () => {
-      const valid = zods.idNumber.parse(id)
+      const valid = zods.id.number.parse(id)
       const market = await db.product.findCompany(valid)
       // console.log(valid, "valid")
       // console.log(market, "market")

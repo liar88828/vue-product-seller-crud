@@ -194,6 +194,7 @@ export const dataProductDetailServer: ProductDetail = {
   },
 
   market: {
+    create: true,
     id: 31,
     name: "Adam",
     industry: "Eugenia",

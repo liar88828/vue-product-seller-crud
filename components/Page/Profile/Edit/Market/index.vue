@@ -1,22 +1,11 @@
 <template>
   <div ref="refImage" class="profile-edit">
     <CardInit>
-      <div class="flex justify-between items-center">
-        <div class="space-y-2">
-          <input
-            class="text-3xl font-bold bg-transparent"
-            v-model="store.name"
-          />
-
-          <input
-            class="text-gray-500 dark:text-gray-400"
-            v-model="store.industry"
-          />
-        </div>
-      </div>
-
+      <Title :data="data" />
       <div class="grid gap-6 md:grid-cols-2 mt-5 w-full">
-        <Information :data="data" />
+        <Information :data="data">
+          <Social :data="data" />
+        </Information>
         <Describe :data="data" />
       </div>
       <button @click="handleSave" class="btn btn-info">Save</button>
@@ -25,14 +14,14 @@
 </template>
 
 <script lang="ts" setup>
-import type { ProfileMarket } from "~/types/market/ProfileCompany"
 import Information from "./Information.vue"
 import Describe from "./Describe.vue"
-import { useCompany } from "~/composables/profile/useCompany"
+import Social from "./Social.vue"
+import Title from "./Title.vue"
 
 const props = defineProps<{
-  data: ProfileMarket
+  data: MarketServerFull
 }>()
 
-const { handleSave, store } = useCompany(props.data)
+const { handleSave, store } = useProfile(props.data)
 </script>

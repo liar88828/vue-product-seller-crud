@@ -36,7 +36,7 @@ export type DataMarket = Transaction & {
 // }
 export type TransProps = Transaction & {
   userBuy: User
-  Market: MarketServerValid
+  Market: MarketServerFull
   Box: (Box & {
     Product: Product | null
   })[]

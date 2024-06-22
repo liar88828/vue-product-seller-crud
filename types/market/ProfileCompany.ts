@@ -1,4 +1,11 @@
-import type { Additional, Contact, Market, SocialMedia, Transaction, User, } from "@prisma/client"
+import type {
+  Additional,
+  Contact,
+  Market,
+  SocialMedia,
+  Transaction,
+  User,
+} from "@prisma/client"
 import type { IfEquals, RequiredProperty } from "../globals/generic"
 
 export type ProfileMarket = {
@@ -16,22 +23,22 @@ export type ProfileMarket = {
   id_user: string
   id_follow: number
   Contact: {
-	id: number
-	email: string
-	phone: string
-	website: string
+    id: number
+    email: string
+    phone: string
+    website: string
   }
   SocialMedia: {
-	id: number
-	instagram: string
-	facebook: string
-	twitter: string
-	whatsapp: string
+    id: number
+    instagram: string
+    facebook: string
+    twitter: string
+    whatsapp: string
   }
-  Additional: {
-	id: string
-	id_market: number | null
-  }[]
+  // Additional: {
+  //   id: string
+  //   id_market: number | null
+  // }[]
   marketStatic: MarketStatic
 }
 
@@ -41,28 +48,28 @@ type test = IfEquals<MarketServerValid, ProfileMarket, "save", "different">
 
 export type MarketServer = Omit<
   Market,
-  "id" | "id_contact" | "id_socialMedia" | "id_follow"
+  "id" | "id_contact" | "id_socialMedia" | "id_follow" | "id_user" | "create"
 >
 export type MarketServerFullNull = Market & {
   Contact: Contact | null
   SocialMedia: SocialMedia | null
-  Additional: Additional[]
+  // Additional: Additional[]
   // marketStatic: MarketStatic
 }
 
 export type MarketServerFull = Market & {
   Contact: Contact
   SocialMedia: SocialMedia
-  Additional: Additional[]
+  // Additional: Additional[]
   // marketStatic: MarketStatic
 }
+
 export type MarketProps = Market & {
   Contact: Contact | null
   SocialMedia: SocialMedia | null
-  Additional: Additional[]
+  // Additional: Additional[]
   marketStatic: MarketStatic
 }
-
 
 export type MarketStatic = {
   follow: number
@@ -73,7 +80,7 @@ export type MarketStatic = {
 export type DataMarketDesc = Market & {
   Contact: Contact | null
   SocialMedia: SocialMedia | null
-  Additional: Additional[]
+  // Additional: Additional[]
   Transaction: Transaction[]
 }
 
@@ -81,4 +88,22 @@ export type Remove<T> = Omit<T, "id">
 
 export type MarketUser = Market & {
   User: User
-};
+}
+
+export type MarketServiceSingleNull = {
+  Market: Market | null
+  Contact: Contact | null
+  SocialMedia: SocialMedia | null
+  // Additional: Additional[]
+}
+export type MarketServiceSingle = {
+  Market: Market
+  Contact: Contact
+  SocialMedia: SocialMedia
+  // Additional: Additional[]
+}
+
+export type idMarketFind = {
+  id: number
+  create: boolean
+}

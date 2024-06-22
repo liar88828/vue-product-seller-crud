@@ -1,9 +1,9 @@
+import type { keyPage } from "~/types/globals/Pagination"
 import type {
   FilterMessage,
   NotifyMessage,
   TypeMessage,
 } from "~/types/message/notify"
-import type { keyPage } from "~/types/globals/pagenation"
 const exData: FilterMessage = { value: "Select", name: "" }
 export const useList = () => {
   const keys: keyPage = "message_page"

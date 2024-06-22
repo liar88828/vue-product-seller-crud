@@ -9,8 +9,6 @@
 </template>
 
 <script lang="ts" setup>
-import type { keyPage } from "~/types/globals/pagenation"
-
 const props = defineProps<{ keys: keyPage; total: number }>()
 const pageNation = useState(props.keys, () => 0)
 

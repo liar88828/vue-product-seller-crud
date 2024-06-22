@@ -3,7 +3,7 @@ import { prisma } from "../config/prisma"
 
 export class AuthServices {
   async foundExist(data: SignInProps) {
-    data = zods.signIn.parse(data)
+    data = zods.user.signIn.parse(data)
     const findUser = await prisma.user.findUnique({
       where: { email: data.email },
     })
@@ -17,7 +17,7 @@ export class AuthServices {
   }
 
   async emailExists(data: SignUpProps) {
-    data = zods.signUp.parse(data)
+    data = zods.user.signUp.parse(data)
     const foundEmail = await prisma.user.findUnique({
       where: { email: data.email },
     })

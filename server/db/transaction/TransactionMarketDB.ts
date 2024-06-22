@@ -10,6 +10,24 @@ class TransactionMarketConfirmDB {
       data: { status },
     })
   }
+
+  async idMarketFind(id_market: number) {
+    return prisma.market
+      .findUnique({
+        where: { id: id_market },
+        select: { id: true, create: true },
+      })
+      .then((data) => {
+        if (!data) {
+          throw createError({
+            statusCode: 404,
+            statusMessage: "Market not found",
+          })
+        }
+        return data
+      })
+  }
+
   async id({ id, id_market }: IdMarketTrans) {
     return prisma.transaction.findUnique({
       where: { id, id_market },

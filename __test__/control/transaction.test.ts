@@ -2,7 +2,7 @@ import { expect, test } from "vitest"
 import { UserController } from "~/server/controllers/user"
 import { UserServices } from "~/server/services/user"
 
-const user = new UserController(new UserServices())
+const user = new UserController()
 
 export const testUserController = test.extend({ user })
 

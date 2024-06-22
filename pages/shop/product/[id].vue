@@ -1,9 +1,10 @@
 <script setup lang="ts">
+// defineMid
 // import { dataProductDetailServer } from "~/assets/example/product/dataProduct"
 // import type { ProductDetail } from "~/types/product/item"
 
 const { id } = useRoute().params
-const { data, error, pending } = await useFetch(`/api/shop/${id}`)
+const { data, error, pending } = await useFetch(`/api/shop/product/${id}`)
 watch(data, () => {
   console.log(data.value)
 })

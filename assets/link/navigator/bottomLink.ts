@@ -8,7 +8,7 @@ import type { ItemIcons } from "~/types/globals/icon"
 export const linkMenu: ItemIcons[] = [
   { link: "/home", icon: IconsHome, title: "Home" },
   { link: "/user", icon: IconsUser, title: "User" },
-  { link: "/shop", icon: IconsShop, title: "Shop" },
+  { link: "/shop/product", icon: IconsShop, title: "Shop" },
   { link: "/market", icon: IconsMarket, title: "Market" },
   { link: "/message", icon: Mail, title: "Message" },
 ]

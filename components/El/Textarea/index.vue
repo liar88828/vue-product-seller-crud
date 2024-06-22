@@ -12,12 +12,16 @@
   {{ state }}
     
     </textarea>
-    <!-- v-model="state" -->
+    <div v-if="err">
+      <span class="text-red-500 text-xs" v-for="msg in err">
+        {{ msg }}
+      </span>
+    </div>
   </label>
 </template>
 
 <script setup lang="ts">
-defineProps<{ title: string }>()
+defineProps<{ title: string; err?: string[] }>()
 
 const state = defineModel("textarea", { required: true })
 </script>

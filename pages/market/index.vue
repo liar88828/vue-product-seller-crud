@@ -1,38 +1,12 @@
-<template>
-  <NuxtLayout name="market">
-    <ElLoading v-if="pending" />
-    <ElError v-else-if="error || !data" />
-    <!-- @vue-expect-error -->
-    <PageProfileMarket
-      v-else
-      v-show="!pending && !error && data?.market"
-      :data="data?.market"
-    />
-  </NuxtLayout>
-</template>
+<template><ElLoading v-show="pending" /></template>
 <script lang="ts" setup>
-// import { dataCompany } from "~/assets/example/user/dataCompany"
-const { data, error, pending } = await useFetch("/api/market", {
-  // key: "market_id",
-  onResponseError: async ({ error, response }) => {
-    if (error || !response.ok) {
-      console.log("error bos")
-      console.log(response)
-      throw createError({
-        statusCode: 404,
-        statusMessage:
-          "Market is not found you must be create new market first",
-      })
-    }
-  },
-})
-watch(data, () => {
-  console.log(data.value)
-})
-if (!data.value?.market || error.value) {
-  throw createError({
-    statusCode: 404,
-    statusMessage: "Market is not found you must be create new market first",
-  })
+const { data, pending } = await useFetch("/api/market/profile/check")
+console.log(data.value, "market profile check")
+if (data.value) {
+  if (data.value.market.create) {
+    await navigateTo("/market/profile")
+  } else {
+    await navigateTo("/market/create")
+  }
 }
 </script>
