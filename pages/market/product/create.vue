@@ -3,73 +3,53 @@
     <p>create product page will be here</p>
     <form action="" class="space-y-2 w-full">
       <ElInput
-        types="text"
-        title="Name"
-        v-model:input="state.data.name"
-        :err="state.error.name"
+          types="text"
+          title="Name"
+          v-model:input="store.data.name"
+          :err="store.error.name"
       />
       <ElInput
-        types="text"
-        title="Brand"
-        v-model:input="state.data.brand"
-        :err="state.error.brand"
+          types="text"
+          title="Brand"
+          v-model:input="store.data.brand"
+          :err="store.error.brand"
       />
       <ElInput
-        types="number"
-        title="Price"
-        v-model:input="state.data.price"
-        :err="state.error.price"
+          types="number"
+          title="Price"
+          v-model:input="store.data.price"
+          :err="store.error.price"
       />
       <ElInput
-        types="text"
-        title="Stock"
-        v-model:input="state.data.stock"
-        :err="state.error.stock"
+          types="number"
+          title="Stock"
+          v-model:input="store.data.stock"
+          :err="store.error.stock"
       />
-      <ElTextarea title="Stock" v-model:textarea="state.data.description" />
+      <ElInput
+          types="type"
+          title="Type"
+          v-model:input="store.data.id_type"
+          :err="store.error.id_type"
+      />
+
     </form>
-    <button type="submit" @click="onSubmit" class="btn btn-info btn-outline">
+    <p class="text-error text-lg text-center">
+      {{ store.msg }}
+    </p>
+
+    <button
+        @click="handleSubmit"
+        class="btn btn-info btn-outline">
       Submit
     </button>
-    <NuxtLink to="/market/product" class="btn btn-outline"> Back </NuxtLink>
+
+
+    <NuxtLink to="/market/product" class="btn btn-outline"> Back</NuxtLink>
   </CardWrap>
 </template>
 
 <script lang="ts" setup>
-const state = reactive<StoreBase<ProductMarketCreate>>({
-  pending: false,
-  error: {
-    brand: [],
-    description: [],
-    image: [],
-    name: [],
-    price: [],
-    stock: [],
-    id_market: [],
-    id_type: [],
-    id_user: [],
-  },
-  data: {
-    brand: "",
-    description: "",
-    image: "",
-    name: "",
-    price: 0,
-    stock: 0,
-    id_market: 0,
-    id_type: "",
-    id_user: "",
-  },
-})
+const { store, handleSubmit } = useProductCreate()
 
-async function onSubmit() {
-  console.log(state)
-  const body = zods.product.create.parse(state)
-  const res = await useFetch("/api/market/product/", {
-    method: "POST",
-    body,
-  })
-
-  console.log(res)
-}
 </script>

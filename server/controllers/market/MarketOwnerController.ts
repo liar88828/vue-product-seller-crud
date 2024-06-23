@@ -1,6 +1,8 @@
 import { MarketServices } from "../../services/user/market"
 import type { H3Event } from "h3"
 import type { Market } from "@prisma/client"
+import type { idMarketFind, MarketServerFull, MarketServiceSingle } from "~/types/market/ProfileCompany";
+import type { TStatus } from "~/types/globals/Status";
 
 export class MarketOwnerController {
   constructor(protected service: MarketServices) {}

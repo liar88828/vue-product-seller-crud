@@ -1,6 +1,5 @@
-import { beforeAll, describe, expect, it, test } from "vitest"
-import { ProductController } from "~/server/controllers/product/index"
-import { ProductServices } from "~/server/services/product/index"
+import { expect, test } from "vitest"
+import { ProductController } from "~/server/controllers/product"
 
 const product = new ProductController()
 export const testProductController = test.extend({
@@ -10,8 +9,8 @@ export const testProductController = test.extend({
 testProductController(
   "Describe can be tested product controller",
   async ({ product }) => {
-    const test = product.test("test")
-    expect(test).toBe("test")
+	const test = product.test("test")
+	expect(test).toBe("test")
   }
 )
 

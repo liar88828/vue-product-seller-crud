@@ -30,6 +30,7 @@ const create = z.object({
   id_trolly: z.number(),
   id_follow: z.number(),
   id_like: z.number(),
+
 }) satisfies ZodType<UserCreate>
 
 export const zodUser = {

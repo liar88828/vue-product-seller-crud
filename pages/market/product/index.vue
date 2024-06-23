@@ -1,13 +1,15 @@
 <template>
   <NuxtLayout name="market">
-    <!-- @vue-expect-error -->
-    <PageProductMarket :data="data" />
+    {{ status }}
+    <ElLoading v-if="pending"/>
+    <ElError v-else-if="error|| !data?.products"/>
+    <PageProductMarketAll v-else :data="data?.products"/>
   </NuxtLayout>
 </template>
 
 <script lang="ts" setup>
 // import { dataProductDetails } from "~/assets/example/product/dataProduct"
-const { data } = await useFetch("/api/market/product/")
+const { error, data, pending, status } = await useFetch("/api/market/product/")
 watch(data, () => {
   console.log(data.value)
 })

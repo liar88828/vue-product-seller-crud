@@ -10,13 +10,13 @@ export class LikeDB {
   }
   id(id: number, id_product: number): Promise<Like[]> {
     return prisma.likeBox.findMany({
-      where: { likeId: id, productId: id_product },
+      where: { id_like: id, id_product: id_product },
     })
   }
 
   add({ id_product, id }: IdLike): Promise<Like> {
     return prisma.likeBox.create({
-      data: { productId: id_product, id },
+      data: { id_product: id_product, id },
     })
   }
 
@@ -25,7 +25,7 @@ export class LikeDB {
       where: {
         id: id,
         // likeId: id,
-        productId: id_product,
+        id_product: id_product,
       },
     })
   }

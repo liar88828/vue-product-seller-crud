@@ -5,7 +5,7 @@
       :placeholder="place"
       class="input input-bordered join-item w-full"
     />
-    <button @click="handler" :class="`btn  join-item ${btn}`">
+    <button @click="handler" :class="`btn join-item ${btn}`">
       <slot />
     </button>
   </div>

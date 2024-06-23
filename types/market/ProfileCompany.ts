@@ -1,11 +1,4 @@
-import type {
-  Additional,
-  Contact,
-  Market,
-  SocialMedia,
-  Transaction,
-  User,
-} from "@prisma/client"
+import type { Contact, Market, SocialMedia, Transaction, User, } from "@prisma/client"
 import type { IfEquals, RequiredProperty } from "../globals/generic"
 
 export type ProfileMarket = {
@@ -23,17 +16,17 @@ export type ProfileMarket = {
   id_user: string
   id_follow: number
   Contact: {
-    id: number
-    email: string
-    phone: string
-    website: string
+	id: number
+	email: string
+	phone: string
+	website: string
   }
   SocialMedia: {
-    id: number
-    instagram: string
-    facebook: string
-    twitter: string
-    whatsapp: string
+	id: number
+	instagram: string
+	facebook: string
+	twitter: string
+	whatsapp: string
   }
   // Additional: {
   //   id: string
@@ -105,5 +98,4 @@ export type MarketServiceSingle = {
 
 export type idMarketFind = {
   id: number
-  create: boolean
 }

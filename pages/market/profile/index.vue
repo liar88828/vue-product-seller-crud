@@ -1,21 +1,22 @@
 <template>
   <NuxtLayout name="market">
-    <ElLoading v-if="pending" />
-    <ElError v-else-if="error || !data" />
+    <ElLoading v-if="pending"/>
+    <ElError v-else-if="error || !data"/>
     <!-- @vue-expect-error -->
-    <PageProfileMarket v-else :data="data?.market" />
+    <PageProfileMarket v-else :data="data?.market"/>
   </NuxtLayout>
 </template>
 <script lang="ts" setup>
+
+import { definePageMeta } from "#imports";
+
 const { data, pending, error } = await useFetch("/api/market/profile")
 
-// const { data: check } = await useFetch("/api/market/profile/check")
-// console.log(data.value, "market profile check")
-// if (check.value) {
-//   if (check.value.market.create) {
-//     await navigateTo("/market/profile")
-//   } else {
-//     await navigateTo("/market/create")
-//   }
+// const { session } = useUserSession()
+// if (session.value.session.createMarket) {
+//   throw navigateTo("/market/profile/create")
 // }
+definePageMeta({
+  middleware: ['market']
+})
 </script>

@@ -2,10 +2,10 @@ import jwt from 'jsonwebtoken';
 import type { SessionUser } from "~/types/globals/session";
 
 export class JWTService {
-  private accessTokenSecret: string;
-  private refreshTokenSecret: string;
-  private accessTokenExpiresIn: string | number;
-  private refreshTokenExpiresIn: string | number;
+  private readonly accessTokenSecret: string;
+  private readonly refreshTokenSecret: string;
+  private readonly accessTokenExpiresIn: string | number;
+  private readonly refreshTokenExpiresIn: string | number;
 
   constructor(
 	accessTokenSecret: string,

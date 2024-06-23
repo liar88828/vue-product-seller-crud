@@ -24,10 +24,11 @@ export class AuthController {
   async signIn(event: H3Event): Promise<SessionUser> {
     return tryCatch(async () => {
       const config = useRuntimeConfig(event)
-      const cryptr = new CryptrService(config.cryptrKey)
       const body = await readBody(event)
 
       const { password, ...user } = await this.service.foundExist(body)
+
+      const cryptr = new CryptrService(config.cryptrKey)
       cryptr.compare(body.password, password)
 
       // const userJWT = await control.auth.jwt.accessToken(user, access)
@@ -55,11 +56,10 @@ export class AuthController {
   async signUp(event: H3Event) {
     return tryCatch(async () => {
       const config = useRuntimeConfig(event)
-      const cryptr = new CryptrService(config.cryptrKey)
       const body = await readBody(event)
-
       const { email, name } = await this.service.emailExists(body)
 
+      const cryptr = new CryptrService(config.cryptrKey)
       const hashPassword = cryptr.encrypted(body.password)
       return db.user.signUp({ email, name, password: hashPassword })
     })

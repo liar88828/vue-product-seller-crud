@@ -194,7 +194,7 @@ export const dataProductDetailServer: ProductDetail = {
   },
 
   market: {
-    create: true,
+
     id: 31,
     name: "Adam",
     industry: "Eugenia",
@@ -217,6 +217,8 @@ export const dataProductDetailServer: ProductDetail = {
       time: new Date(),
 
       User: {
+        createMarket:true,
+        activeOnline:false,
         id: "001",
         email: "john@example.com",
         name: "John Doe",

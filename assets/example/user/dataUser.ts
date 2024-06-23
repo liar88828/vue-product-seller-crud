@@ -12,6 +12,8 @@ export const userProfile: User = {
   password: "12345678",
   id_like: 1,
   id_market: 1,
+  createMarket: false,
+  activeOnline: true
 }
 
 export const userProfile2: User = {
@@ -26,4 +28,6 @@ export const userProfile2: User = {
   password: "12345678",
   id_like: 1,
   id_market: 1,
+  createMarket: true,
+  activeOnline: false
 }

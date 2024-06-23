@@ -11,7 +11,6 @@ import type {
 } from "@prisma/client"
 // import type { DataImage } from "~/assets/example/product/image"
 import type { IfEquals } from "../globals/generic"
-import { dataPreview } from "~/assets/example/product/dataPreview"
 import type { MarketStatic } from "../market/ProfileCompany"
 // id: string
 // name: string | null
@@ -57,11 +56,16 @@ export type ProductDetail = {
   // dataProduct: ProductItem
   // dataPreviews: DataPreviewProps[]
 }
-export type ProductItemServer = Product & {
-  Spec: (Spec & {
-    List: List_Spec[]
-  })[]
 
+export type ProductMarketDetail = {
+  product: ProductItemServer
+  market: Market
+}
+export type SpecProduct = Spec & {
+  List: List_Spec[]
+}
+export type ProductItemServer = Product & {
+  Spec: SpecProduct[]
   Tech: Tech[]
   Desc: Desc[]
   Img: Image[]

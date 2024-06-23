@@ -1,3 +1,2 @@
-import { MarketSanitize } from "./MarketSanitize"
-
-export class MarketStaticService {}
+export class MarketStaticService {
+}

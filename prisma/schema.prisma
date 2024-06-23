@@ -11,33 +11,35 @@ datasource db {
 }
 
 model User {
-  id          String        @id @default(uuid())
-  email       String        @unique
-  name        String?
-  phone       String?       @unique
-  address     String?
-  password    String
+  id           String        @id @default(uuid())
+  email        String        @unique
+  name         String?
+  phone        String?       @unique
+  address      String?
+  password     String
+  createMarket Boolean       @default(false)
+  activeOnline Boolean       @default(false)
   // 
-  Product     Product[]
-  Transaction Transaction[]
+  Product      Product[]
+  Transaction  Transaction[]
   // Order       Order[]
-  MessageList MessageList[]
-  Preview     Preview[]
+  MessageList  MessageList[]
+  Preview      Preview[]
   // 
-  id_market   Int           @unique
-  Market      Market        @relation(fields: [id_market], references: [id])
+  id_market    Int           @unique
+  Market       Market        @relation(fields: [id_market], references: [id])
   // 
-  Like        Like          @relation(fields: [id_like], references: [id])
-  id_like     Int           @unique
+  Like         Like          @relation(fields: [id_like], references: [id])
+  id_like      Int           @unique
   // 
-  Trolly      Trolly        @relation(fields: [id_trolly], references: [id])
-  id_trolly   Int           @unique
+  Trolly       Trolly        @relation(fields: [id_trolly], references: [id])
+  id_trolly    Int           @unique
   // 
-  Role        Role          @relation(fields: [id_role], references: [id])
-  id_role     String
+  Role         Role          @relation(fields: [id_role], references: [id])
+  id_role      String
   //
-  Follow      Follow        @relation(fields: [id_follow], references: [id])
-  id_follow   Int
+  Follow       Follow        @relation(fields: [id_follow], references: [id])
+  id_follow    Int
 }
 
 model Product {
@@ -53,7 +55,7 @@ model Product {
   User        User?     @relation(fields: [id_user], references: [id])
   // 
   id_type     String?
-  type        Type?     @relation(fields: [id_type], references: [id])
+  Type        Type?     @relation(fields: [id_type], references: [id])
   // 
   // Package     Package[] // will order
   Box         Box[] // only save on trolly
@@ -135,7 +137,7 @@ model Trolly {
 
 model Box {
   id             Int         @id @default(autoincrement())
-  qty            Int // how many buy @map("amount") 
+  qty            Int // how many buy @map("amount")
   price          Int // may be discount
   // save a product
   Product        Product?    @relation(fields: [id_product], references: [id])
@@ -213,7 +215,6 @@ model Market {
   mission        String?
   vision         String?
   history        String?
-  create         Boolean      @default(false)
   since          DateTime     @default(now())
   // 
   // Order          Order[]
@@ -310,9 +311,9 @@ model Like {
 }
 
 model LikeBox {
-  id        Int      @id @default(autoincrement())
-  Product   Product? @relation(fields: [productId], references: [id])
-  productId Int?
-  Like      Like?    @relation(fields: [likeId], references: [id])
-  likeId    Int?
+  id         Int      @id @default(autoincrement())
+  Product    Product? @relation(fields: [id_product], references: [id])
+  id_product Int?
+  Like       Like?    @relation(fields: [id_like], references: [id])
+  id_like    Int?
 }

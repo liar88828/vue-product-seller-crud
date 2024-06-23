@@ -1,16 +1,16 @@
 // find product all from market
 // get di from session
 //
-export default defineEventHandler(async (event) => {
-  const { session } =  await getUserSession(event)
-  const data = {
-    product: await db.product.findAllId(session.id),
+import type { Product } from "@prisma/client";
 
-    toJSON() {
-      return {
-        product: this.product,
-      }
-    },
+export default defineEventHandler(async (event) => {
+  const data = {
+	product: await control.product.market.current.all(event),
+	toJSON(): { products: Product[] } {
+	  return {
+		products: this.product,
+	  }
+	},
   }
   return data
 })

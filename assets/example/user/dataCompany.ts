@@ -18,7 +18,6 @@ export const marketStaticServer: MarketStatic = {
 }
 
 export const marketServerFull: MarketServerFull = {
-  create: true,
   since: new Date(),
   name: "PT. Orak Genah",
   industry: "Sustainable Clothing Manufacturing",
@@ -120,7 +119,6 @@ export const dataCompany: MarketServerFull = {
   id_contact: 1,
   id_socialMedia: 1,
   id_follow: 1,
-  create: true,
 }
 
 //@ts-ignore

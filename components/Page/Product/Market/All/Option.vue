@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { staticLink } from "~/assets/link/shopLink"
+import { staticLink } from "assets/link/shopLink"
+
 const { store } = useMarket()
 </script>
 <template>
