@@ -1,16 +1,13 @@
 <script setup lang="ts">
 import { dataProducts } from "~/assets/example/product/dataProduct"
-import Auths from "../Nav/Auths.vue"
+import Notify from "./Notify.vue"
 const totalTrolly = computed(() => dataProducts.length)
 const totalPrice = computed(() => dataProducts.reduce((a, b) => a + b.price, 0))
-const { loggedIn, clear, user, ready, session } = useUserSession()
+const { loggedIn, clear } = useUserSession()
 </script>
 <template>
   <div class="dropdown dropdown-end z-40 sm:mt-2 mt-2">
-    <ElDropDownIconNew index="1" indicator="2">
-      <IconsTrolley class="icons" v-if="loggedIn" />
-      <IconsUser class="icons" v-else />
-    </ElDropDownIconNew>
+    <Notify :loggedIn="loggedIn" />
 
     <div
       tabindex="1"

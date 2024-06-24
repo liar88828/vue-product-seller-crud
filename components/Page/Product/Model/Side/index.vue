@@ -16,8 +16,7 @@
 
 <script lang="ts" setup>
 import type { Product } from "@prisma/client"
-import Desc from "../Desc.vue"
-import type { ProductTrolly } from "~/types/transaction/trolly"
+import Desc from "../Desc/index.vue"
 
 defineProps<{ data: ProductTrolly }>()
 const detail = ref<boolean>(false)

@@ -12,7 +12,7 @@ const create = z.object({
   id_trolly: z.number(),
   qty: z.number(),
   id_product: z.number(),
-  id_transaction: z.number(),
+  // id_transaction: z.number(),
 }) satisfies ZodType<BoxCreate>
 
 export const zodBox = {

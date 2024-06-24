@@ -17,11 +17,8 @@ if (!data.value) {
   <Suspense>
     <template #fallback>Loading.....</template>
     <template #default>
-      <!-- {{ data?.product }} -->
-
-      <div v-if="pending">Loading...</div>
+      <ElLoading v-if="pending" />
       <ElError v-else-if="error || !data" text="error" />
-      <!-- v-show="!pending && !error" -->
       <PageProductDetail v-else :data="data.product" />
     </template>
   </Suspense>

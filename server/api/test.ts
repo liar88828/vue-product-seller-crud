@@ -1,3 +1,4 @@
+let count = 0
 export default defineEventHandler(async (event) => {
-  return "Hello Nitro for test"
+  return { count: count++ }
 })

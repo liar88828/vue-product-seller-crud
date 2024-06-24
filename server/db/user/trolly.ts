@@ -45,9 +45,7 @@ export class TrollyMutation extends CheckDB {
     const boxs = await prisma.box.createMany({ data: box })
     return { trolly, boxs }
   }
-  async push(data: BoxCreate): Promise<Box> {
-    return prisma.box.create({ data })
-  }
+
   async check(id_trolly: number) {
     return prisma.trolly.upsert({
       where: { id: id_trolly },

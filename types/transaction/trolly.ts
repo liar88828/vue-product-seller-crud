@@ -1,7 +1,7 @@
 import type { Box, Product, Transaction, Trolly, User } from "@prisma/client"
 import type { Remove } from "../market/ProfileCompany"
 
-export type BoxCreate = Omit<Box, "id">
+export type BoxCreate = Omit<Box, "id" | "id_transaction">
 
 export type GetBoxProps = Omit<Box, "id" | "id_trolly">
 // export type PushTrolly = Omit<Box>
@@ -27,12 +27,11 @@ export type IdBox = {
   id_box: number
 }
 
-export type ProductTrolly = Product | null
-
+export type BoxProductTrolly = Box & {
+  Product: Product | null
+}
 export type TollyProps = Trolly & {
-  Box: (Box & {
-    Product: ProductTrolly
-  })[]
+  Box: BoxProductTrolly[]
 }
 export type TrollyAllService = {
   trolleys: Trolly[]

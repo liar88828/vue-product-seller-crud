@@ -7,8 +7,6 @@
       >
         <IconsTrash />
       </button>
-      <!-- remove because test -->
-      <!-- v-if="$route.path.includes('like')" -->
       <button @click="handlerAddTrolly" class="btn btn-sm btn-square btn-info">
         <IconsTrolley />
       </button>
@@ -34,7 +32,7 @@
 
         <div class="" v-if="!side">
           <NuxtLink
-            :to="`/shop/${data.id}`"
+            :to="`/shop/product/${data.id}`"
             class="btn sm:btn-outline sm:btn-md btn-sm btn-square"
             v-if="detail === false"
           >
@@ -56,7 +54,7 @@
 
 <script setup lang="ts">
 import type { Product } from "@prisma/client"
-import Counter from "./Counter.vue"
+import Counter from "../Counter.vue"
 
 const props = defineProps<{
   data: Product
@@ -77,7 +75,14 @@ const handlerDeleteTrolly = () => {
   console.log(`delete trolly ${props.data.id}`)
 }
 
-const handlerAddTrolly = () => {
-  console.log(`Add trolly ${props.data.id}`)
+const { id } = useRoute().params
+const handlerAddTrolly = async () => {
+  // console.log(`Add trolly ${props.data.id}`)
+  console.log(`Add trolly ${id}`)
+  // const { data } = await useFetch(`/api/user/trolly/${props.data.id}`, {
+  //   method: "POST",
+  //   body: counter.value,
+  // })
+  // console.log(data)
 }
 </script>

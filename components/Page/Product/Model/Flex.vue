@@ -19,7 +19,7 @@
 
 <script lang="ts" setup>
 import type { Product } from "@prisma/client"
-import Desc from "./Desc.vue"
+import Desc from "./Desc/index.vue"
 
 const props = defineProps({
   data: {
