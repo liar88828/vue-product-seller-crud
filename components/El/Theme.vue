@@ -1,5 +1,5 @@
 <template>
-  <label class="swap swap-rotate">
+  <label class="swap swap-rotate btn btn-ghost btn-square">
     <input type="checkbox" class="theme-controller" value="dim" />
     <IconsThemeSun class="icons" />
     <IconsThemeMoon class="icons" />

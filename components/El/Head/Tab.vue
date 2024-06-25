@@ -6,7 +6,7 @@
     <NuxtLink
       v-for="item in props.items"
       :key="item.link"
-      :to="`${item.link}`"
+      :to="`${item.link}/${$route.params.id}`"
       role="tab"
       :class="` tab ${getActive(item.link, 'tab-active')}`"
       >{{ item.title }}</NuxtLink

@@ -3,6 +3,7 @@ import { ProductServices } from "../../services/product"
 import { ProductMarketController } from "./ProductMarketController"
 import { ProductUserController } from "./ProductUserController"
 import { ProductShopController } from "./ProductShopController"
+import type { H3Event } from "h3"
 
 export class ProductController {
   protected service = new ProductServices()
@@ -11,18 +12,19 @@ export class ProductController {
   shop = new ProductShopController(this.service)
 
   test(text: string): string {
-	return text
+    return text
   }
 
   async id(id: number) {
-	return tryCatch(async () => {
-	  return this.service.id(id)
-	})
+    return tryCatch(async () => {
+      return this.service.id(id)
+    })
   }
 
-  async findDetail(id: number) {
-	return tryCatch(async () => {
-	  return this.service.detail(id)
-	})
+  async detail(event: H3Event) {
+    return tryCatch(async () => {
+      const { id } = getRouterParams(event)
+      return this.service.detail(Number(id))
+    })
   }
 }

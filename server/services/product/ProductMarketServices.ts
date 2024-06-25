@@ -12,9 +12,21 @@ export type FindIdProductCurrentMarket = {
 export type AllProductCurrentMarket = { id_market: number; id_user: string }
 
 export class ProductMarketServices {
-  async all(id_market: number) {
+  async all(id_market: number): Promise<Product[]> {
     id_market = zods.id.number.parse(id_market)
-    return db.product.market.all(id_market)
+    return prisma.product
+      .findMany({
+        where: { id_market },
+      })
+      .then((data) => {
+        if (!data) {
+          throw createError({
+            statusCode: 404,
+            statusMessage: "Product not found",
+          })
+        }
+        return data
+      })
   }
 
   async id(id: ProductMarketId) {
@@ -74,7 +86,7 @@ export class ProductCurrentMarketServices {
           id: data.id_type,
         },
       })
-      return tx.product.create({
+      const product = await tx.product.create({
         data: {
           id_type: type.id,
           name: data.name,
@@ -87,6 +99,14 @@ export class ProductCurrentMarketServices {
           id_market: data.id_market,
         },
       })
+      const images = await tx.image.create({
+        data: {
+          id_product: product.id,
+          img: data.image,
+          title: data.name,
+        },
+      })
+      return product
     })
   }
 

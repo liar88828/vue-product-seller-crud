@@ -13,7 +13,7 @@ export const dataLink = [
   },
   {
     title: "Shop",
-    link: "/shop",
+    link: "/shop/product",
     icon: IconsShop,
     sub: [],
   },
@@ -40,18 +40,18 @@ export const dataLink = [
     ],
   },
 
-  {
-    title: "Table",
-    link: "/#",
-    icon: IconsChartBar,
-    sub: [
-      {
-        title: "Index",
-        link: "/table",
-        sub: [],
-      },
-    ],
-  },
+  // {
+  //   title: "Table",
+  //   link: "/#",
+  //   icon: IconsChartBar,
+  //   sub: [
+  //     {
+  //       title: "Index",
+  //       link: "/table",
+  //       sub: [],
+  //     },
+  //   ],
+  // },
   // {
   //   title: "Info",
   //   link: "/#",

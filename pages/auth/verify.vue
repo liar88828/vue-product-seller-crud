@@ -11,7 +11,7 @@
           <div class="text-center space-y-2">
             <h1 class="auth-h">Verify Your Email</h1>
             <p>Please enter the code on just sent to your email</p>
-            <h2 class="text-lg font-medium">user1@gmail.com</h2>
+            <h2 class="text-lg font-medium">asdas</h2>
           </div>
 
           <form @submit.prevent="handleSubmit" class="my-3">
@@ -35,7 +35,13 @@
                   <p class="text-justify">
                     If you don't receive an email, please check your spam
                     folder?
-                    <button class="link link-primary">Resend</button>
+                    <button
+                      @click="handlerResendOTP"
+                      type="button"
+                      class="link link-primary"
+                    >
+                      Resend
+                    </button>
                   </p>
                 </div>
 
@@ -57,6 +63,7 @@
 definePageMeta({
   layout: "auth",
 })
+const { session } = useUserSession()
 const otp = ref<string[]>(Array(6).fill(""))
 const error = ref<string>("")
 
@@ -72,13 +79,27 @@ const handleInput = (event: Event, index: number) => {
 }
 
 const handleSubmit = async () => {
-  if (otp.value.join("").length !== 6) {
+  const otpJoin = otp.value.join("")
+  if (otpJoin.length !== 6) {
     error.value = "Please enter a valid 6-digit OTP."
 
     return
   }
   error.value = ""
-  alert("Entered OTP is: " + otp.value.join(""))
-  await navigateTo("/auth/forgot")
+  alert("Entered OTP is: " + otpJoin)
+  const { data, pending } = await useFetch("/api/auth/valid-otp", {
+    method: "POST",
+    body: {
+      otp: otpJoin,
+    },
+  })
+  if (data.value) {
+    await navigateTo("/home")
+  }
+}
+const handlerResendOTP = async () => {
+  const { data, pending, error } = await useFetch("/api/auth/resend-otp")
+
+  console.log(data.value)
 }
 </script>

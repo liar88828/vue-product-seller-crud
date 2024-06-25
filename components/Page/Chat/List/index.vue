@@ -2,11 +2,11 @@
 <template>
   <CardParent :title="'Message'" :class="'bg-base-100/85'">
     <template #rightSlot>
-      <Search :newMessage="newMessage" />
+      <Search :newMessage="count" />
     </template>
     <template #filter>
       <div class="flex gap-5 justify-end">
-        <Filter :data="data" />
+        <Filter :data="notify" />
       </div>
     </template>
     <Box v-for="dataList in newData" :data="dataList" :key="dataList.name" />
@@ -23,9 +23,9 @@ import Search from "./Search.vue"
 import Filter from "./Filter.vue"
 import { useList } from "~/composables/message/useList"
 const { filter, keys } = useList()
-const newData = computed(() => filter(props.data))
+const newData = computed(() => filter(props.notify))
 const props = defineProps<{
-  data: NotifyMessage[]
-  newMessage: number
+  notify: NotifyMessage[]
+  count: number
 }>()
 </script>

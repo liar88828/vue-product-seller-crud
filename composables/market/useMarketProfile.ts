@@ -2,6 +2,7 @@ import type { StoreBase } from "~/types/globals/store"
 import type { MarketServer } from "~/types/market/ProfileCompany"
 
 export const useMarketProfile = () => {
+  const { fetch } = useUserSession()
   type Type = MarketServer
   const store = reactive<StoreBase<Type>>({
     pending: false,
@@ -64,7 +65,11 @@ export const useMarketProfile = () => {
     try {
       store.pending = true
       const valid = validData(store.data)
-      await create(valid)
+
+      const res = await create(valid)
+      if (res.value?.market) {
+        await fetch()
+      }
     } catch (e) {
       if (e instanceof Error) {
         console.log(e.message)

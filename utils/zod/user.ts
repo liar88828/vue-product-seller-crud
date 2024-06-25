@@ -30,11 +30,16 @@ const create = z.object({
   id_trolly: z.number(),
   id_follow: z.number(),
   id_like: z.number(),
-
 }) satisfies ZodType<UserCreate>
+
+const otpSchema = z.object({
+  OTP: z.string().min(6),
+  id_user: z.string(),
+})
 
 export const zodUser = {
   signUp,
   signIn,
   create,
+  otpSchema,
 }

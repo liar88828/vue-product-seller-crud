@@ -90,15 +90,15 @@ export const staticLink = {
 }
 
 export const dataCategory: ItemIcons[] = [
-  { link: "/shop?category=grapes", icon: IconsGrapes, title: "Grapes" },
+  { link: "/shop/product?category=grapes", icon: IconsGrapes, title: "Grapes" },
   {
-    link: "/shop?category=chocolate  ",
+    link: "/shop/product?category=chocolate  ",
     icon: IconsChocolate,
     title: "Chocolate",
   },
-  { link: "/shop?category=Milk", icon: IconsMilk, title: "Milk" },
-  { link: "/shop?category=Milk", icon: IconsMilk, title: "Milk" },
-  { link: "/shop?category=Milk", icon: IconsMilk, title: "Milk" },
-  { link: "/shop?category=Milk", icon: IconsMilk, title: "Milk" },
-  { link: "/shop?category=Bread", icon: IconsBread, title: "Bread" },
+  { link: "/shop/product?category=Milk", icon: IconsMilk, title: "Milk" },
+  { link: "/shop/product?category=Milk", icon: IconsMilk, title: "Milk" },
+  { link: "/shop/product?category=Milk", icon: IconsMilk, title: "Milk" },
+  { link: "/shop/product?category=Milk", icon: IconsMilk, title: "Milk" },
+  { link: "/shop/product?category=Bread", icon: IconsBread, title: "Bread" },
 ]

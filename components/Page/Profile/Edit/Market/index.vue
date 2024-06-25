@@ -1,16 +1,29 @@
 <template>
-  <div ref="refImage" class="profile-edit">
-    <CardInit>
-      <Title :data="data" />
-      <div class="grid gap-6 md:grid-cols-2 mt-5 w-full">
-        <Information :data="data">
-          <Social :data="data" />
-        </Information>
-        <Describe :data="data" />
-      </div>
-      <button @click="handleSave" class="btn btn-info">Save</button>
-    </CardInit>
-  </div>
+  <ClientOnly>
+    <div ref="refImage" class="profile-edit">
+      <CardInit>
+        <Title :data="data.Market" />
+        <div class="grid gap-6 md:grid-cols-2 mt-5 w-full">
+          <Information :data="data">
+            <Social :data="data.SocialMedia" />
+          </Information>
+          <Describe :data="data.Market" />
+        </div>
+
+        <CardAction>
+          <button
+            @click="() => handleUpdate(store.market)"
+            class="btn btn-info"
+          >
+            Save
+          </button>
+          <NuxtLink class="btn btn-info btn-outline" to="/market/profile"
+            >Back</NuxtLink
+          >
+        </CardAction>
+      </CardInit>
+    </div>
+  </ClientOnly>
 </template>
 
 <script lang="ts" setup>
@@ -20,8 +33,8 @@ import Social from "./Social.vue"
 import Title from "./Title.vue"
 
 const props = defineProps<{
-  data: MarketServerFull
+  data: MarketServiceSingle
 }>()
 
-const { handleSave, store } = useProfile(props.data)
+const { handleUpdate, store } = useProfile(props.data)
 </script>

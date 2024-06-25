@@ -6,25 +6,19 @@
       <div class="flex flex-col gap-3">
         <div class="flex flex-nowrap items-center gap-2">
           <IconsFacebook class="h-8 w-8" />
-          <input type="text" v-model="data.SocialMedia.facebook" />
+          <input type="text" v-model="data.facebook" />
         </div>
         <div class="flex flex-nowrap items-center gap-2">
           <IconsInstagram class="h-8 w-8" />
-          <input type="text" v-model="data.SocialMedia.instagram" />
+          <input type="text" v-model="data.instagram" />
         </div>
-        <div
-          class="flex flex-nowrap items-center gap-2"
-          :href="data.SocialMedia.twitter"
-        >
+        <div class="flex flex-nowrap items-center gap-2" :href="data.twitter">
           <IconsTwitter class="h-8 w-8" />
-          <input type="text" v-model="data.SocialMedia.twitter" />
+          <input type="text" v-model="data.twitter" />
         </div>
-        <div
-          class="flex flex-nowrap items-center gap-2"
-          :href="data.SocialMedia.whatsapp"
-        >
+        <div class="flex flex-nowrap items-center gap-2" :href="data.whatsapp">
           <IconsWhatsapp class="h-8 w-8" />
-          <input type="text" v-model="data.SocialMedia.whatsapp" />
+          <input type="text" v-model="data.whatsapp" />
         </div>
       </div>
     </div>
@@ -33,6 +27,6 @@
 
 <script setup lang="ts">
 defineProps<{
-  data: MarketServerFull
+  data: MarketServiceSingle["SocialMedia"]
 }>()
 </script>

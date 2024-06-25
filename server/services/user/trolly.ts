@@ -1,4 +1,4 @@
-import type { Box } from "@prisma/client"
+import type { Box, Product } from "@prisma/client"
 import { prisma } from "~/server/config/prisma"
 import type { IdTrolly } from "~/server/db/user/trolly"
 import type {
@@ -90,13 +90,15 @@ export class TrollyService extends SanitizeTrolly {
     const boxs = trolleys.map((trolly) => trolly.Box.map((box) => box))
     const products = boxs.flatMap((box) =>
       box.map((d) => {
-        return d.Product
+        if (d.Product !== null && d.Product !== undefined) {
+          return d.Product
+        }
       })
     )
-
     return {
       trolleys,
       boxs,
+      //@ts-expect-error
       products,
     }
   }

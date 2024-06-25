@@ -4,9 +4,9 @@
     role="button"
     class="btn btn-ghost btn-sm btn-square ml-5"
   >
-    <div class="indicator">
+    <div :class="['indicator']">
       <slot />
-      <span class="badge badge-sm indicator-item badge-primary">
+      <span :class="['badge badge-sm indicator-item badge-primary']">
         {{ indicator }}
       </span>
     </div>
@@ -14,8 +14,9 @@
 </template>
 
 <script lang="ts" setup>
-defineProps<{
+const props = defineProps<{
   index: string
-  indicator: string
+  indicator: number
 }>()
+const isRender = props.indicator > 0
 </script>

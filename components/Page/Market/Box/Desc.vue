@@ -12,7 +12,7 @@
         <IconsPersonAdd class="w-5 h-5" />
       </NuxtLink>
       <NuxtLink
-        :to="`/market/${data.id}`"
+        :to="`/shop/market/${data.id}`"
         class="btn btn-info btn-sm sm:btn-md flex-nowrap flex btn-square"
       >
         <IconsMarket class="w-5 h-5" />

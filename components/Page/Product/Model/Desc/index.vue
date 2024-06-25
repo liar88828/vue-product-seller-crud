@@ -28,7 +28,7 @@
       </div>
 
       <div class="flex items-end">
-        <Counter :side="side" v-model:counter="counter" />
+        <!-- <Counter :side="side" v-model:counter="counter" /> -->
 
         <div class="" v-if="!side">
           <NuxtLink

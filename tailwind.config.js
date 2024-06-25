@@ -11,7 +11,6 @@ export default {
   theme: {
     container: {
       center: true,
-
       padding: {
         DEFAULT: "1vh",
         sm: "6px",
@@ -19,7 +18,6 @@ export default {
         lg: "6px",
       },
     },
-    extend: {},
   },
   daisyui: {
     themes: [
@@ -38,6 +36,7 @@ export default {
       // "corporate",
       // "synthwave",
       // "retro",
+      "dim",
       "valentine",
       // "halloween",
       // "garden",
@@ -58,7 +57,6 @@ export default {
       // "night",
       // "coffee",
       // "winter",
-      "dim",
       // "nord",
       // "sunset",
     ],

@@ -4,6 +4,7 @@ import { dataDesc, dataDesc2, dataDesc3 } from "./desc"
 import { dataTech, dataTech2, dataTech3 } from "./tech"
 import { dataSpec, dataSpec2, dataSpec3 } from "./spec"
 import { dataImage } from "./image"
+import { userProfile } from "../user/dataUser"
 
 const dataProduct2: Product = {
   image: "https://picsum.photos/220",
@@ -39,30 +40,6 @@ const dataProduct1: Product = {
   id: 1001,
   description: "Comfortable running shoes",
   id_user: "110",
-  id_market: 1,
-}
-const dataProduct4: Product = {
-  image: "https://picsum.photos/230",
-  name: "T-Shirt",
-  price: 25,
-  stock: 100,
-  brand: "H&M",
-  id_type: "14",
-  id: 1003,
-  description: "Soft cotton t-shirt",
-  id_user: "113",
-  id_market: 1,
-}
-const dataProduct5: Product = {
-  image: "https://picsum.photos/240",
-  name: "Smartwatch",
-  price: 199,
-  stock: 20,
-  brand: "Apple",
-  id_type: "15",
-  id: 1004,
-  description: "Latest model with GPS",
-  id_user: "114",
   id_market: 1,
 }
 
@@ -122,41 +99,23 @@ const dataProductDetail3: ProductItem = {
   desc_spec: dataSpec3,
   id_market: 1,
 }
+
 export const dataProductDetails: ProductItem[] = [
   dataProductDetail,
   dataProductDetail2,
   dataProductDetail3,
 ]
+
 export const dataProducts: Product[] = [
   dataProduct1,
   dataProduct2,
   dataProduct3,
-  dataProduct4,
-  dataProduct5,
   dataProductDetail,
   dataProductDetail2,
   dataProductDetail3,
 ]
 
 export const dataProductDetailServer: ProductDetail = {
-  // dataImage: dataImage,
-
-  // name: "High-Quality Noise-Cancelling Headphones",
-  // description:
-  //   "Experience the ultimate in audio immersion with our premium noise-cancelling headphones. Crafted with the finest materials and advanced technology, these headphones deliver unparalleled sound quality and comfort for the discerning listener.",
-  // brand: "Apple",
-  // id: 1,
-  // image: "https://picsum.photos/220",
-  // price: 199.99,
-  // stock: 10,
-  // id_type: "1",
-  // id_user: "1",
-  // desc: dataDesc,
-  // desc_tech: dataTech,
-  // desc_spec: dataSpec,
-  // id_market: 1,
-  //
-
   detail: {
     id: 22,
     name: "Wesley",
@@ -171,15 +130,15 @@ export const dataProductDetailServer: ProductDetail = {
     Desc: [{ id_product: 1, text: "Wesley" }],
     Img: [
       {
+        id: 1,
         id_product: 1,
         img: "https://picsum.photos/220",
-        link: "Dorothy",
         title: "Travis",
       },
       {
+        id: 3,
         id_product: 3,
         img: "https://picsum.photos/210",
-        link: "Dorothy",
         title: "Travis",
       },
     ],
@@ -194,7 +153,6 @@ export const dataProductDetailServer: ProductDetail = {
   },
 
   market: {
-
     id: 31,
     name: "Adam",
     industry: "Eugenia",
@@ -215,22 +173,7 @@ export const dataProductDetailServer: ProductDetail = {
       id_user: "Wesley",
       text: "Devin",
       time: new Date(),
-
-      User: {
-        createMarket:true,
-        activeOnline:false,
-        id: "001",
-        email: "john@example.com",
-        name: "John Doe",
-        phone: "+1234567890",
-        address: "123 Main St, City",
-        password: "password123",
-        id_trolly: 1,
-        id_role: "role001",
-        id_follow: 123,
-        id_like: 123,
-        id_market: 1,
-      },
+      User: userProfile,
     },
   ],
   relateds: [

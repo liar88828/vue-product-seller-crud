@@ -1,5 +1,6 @@
 import type { SignInProps, SignUpProps } from "~/types/auth/user"
 import { prisma } from "../config/prisma"
+import { randomOTP } from "../utils/randomId"
 
 export class AuthServices {
   async foundExist(data: SignInProps) {
@@ -39,4 +40,48 @@ export class AuthServices {
   //   const user = await db.user.signUp({ email, name, password: hashPassword })
   //   return user
   // }
+
+  async validOTP(id_user: string, OTP: string) {
+    console.log("valid---------test----------")
+
+    const data = zods.user.otpSchema.parse({ OTP, id_user })
+    const otp = await prisma.user
+      .findUnique({
+        where: { id: id_user },
+        select: {
+          OTP: true,
+        },
+      })
+      .then((item) => {
+        if (!item) {
+          throw createError({
+            statusCode: 400,
+            statusMessage: "OTP NOT Exists",
+          })
+        }
+        return item
+      })
+    const validOTP = otp.OTP === data.OTP
+
+    await prisma.user.update({
+      where: { id: id_user },
+      select: {
+        OTP: true,
+      },
+      data: {
+        OTP: randomNumber(99999999).toString(),
+      },
+    })
+    return validOTP
+  }
+
+  async resendOTP(id_user: string) {
+    const user = await prisma.user.update({
+      where: { id: id_user },
+      data: {
+        OTP: randomOTP,
+      },
+    })
+    return user
+  }
 }

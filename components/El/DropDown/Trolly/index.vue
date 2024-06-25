@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { dataProducts } from "~/assets/example/product/dataProduct"
 import Notify from "./Notify.vue"
+import Auths from "../../Nav/Auths.vue"
 const totalTrolly = computed(() => dataProducts.length)
 const totalPrice = computed(() => dataProducts.reduce((a, b) => a + b.price, 0))
 const { loggedIn, clear } = useUserSession()
@@ -16,21 +17,19 @@ const { loggedIn, clear } = useUserSession()
       <div class="card-body" v-if="loggedIn">
         <div class="flex items-center justify-between">
           <div class="font-bold text-lg">{{ totalTrolly }} Items</div>
-          <ElTheme />
+          <!-- <ElDropDownSetting /> -->
         </div>
         <span class="text-info">Subtotal: {{ getRupiah(totalPrice) }}</span>
-        <div class="card-actions">
-          <NuxtLink to="/user/trolly" class="btn btn-primary btn-block">
-            View cart
-          </NuxtLink>
-        </div>
+        <div class="card-actions"></div>
       </div>
-      <div class="card-body" v-if="loggedIn">
-        <!-- {{ user }}
-        {{ loggedIn }}
-        {{ ready }}
-        {{ session }} -->
-        <button @click="() => clear()" class="btn btn-info">Logout</button>
+      <div class="card-body flex flex-row justify-between" v-if="loggedIn">
+        <ElTheme />
+        <NuxtLink to="/user/trolly" class="btn btn-primary btn-square">
+          <IconsTrolley />
+        </NuxtLink>
+        <button @click="() => clear()" class="btn btn-info btn-square">
+          <IconsExit class="icons" />
+        </button>
       </div>
       <div class="card-body" v-else>
         <div class="flex justify-center items-center">

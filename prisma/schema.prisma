@@ -15,6 +15,7 @@ model User {
   email        String        @unique
   name         String?
   phone        String?       @unique
+  OTP          String?
   address      String?
   password     String
   createMarket Boolean       @default(false)
@@ -76,11 +77,12 @@ model Product {
 }
 
 model Image {
-  title      String   @id
+  id         Int      @id @default(autoincrement())
+  title      String
   img        String
-  link       String
-  Product    Product? @relation(fields: [id_product], references: [id])
+  // link       String
   id_product Int?
+  Product    Product? @relation(fields: [id_product], references: [id])
 }
 
 model Desc {

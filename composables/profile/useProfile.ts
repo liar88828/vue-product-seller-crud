@@ -1,13 +1,18 @@
-export const useProfile = (data: MarketServerFull) => {
-  const store = reactive(data)
-  const handleSave = async () => {
-    console.log(store)
-    const { data } = await useFetch("/api/market/profile", {
+export const useProfile = (data: MarketServiceSingle) => {
+  let store = reactive({ market: data })
+
+  const handleUpdate = async (body: MarketServiceSingle) => {
+    // console.log(store.market)
+    const { data, error } = await useFetch("/api/market/profile", {
       method: "PUT",
-      body: store,
+      body,
     })
+    if (error.value) {
+      // console.log(error.value)
+      throw new Error("error bos")
+    }
     console.log(data.value?.market)
     // await navigateTo("/market/profile")
   }
-  return { store, handleSave }
+  return { store, handleUpdate }
 }

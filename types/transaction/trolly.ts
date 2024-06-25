@@ -36,5 +36,5 @@ export type TollyProps = Trolly & {
 export type TrollyAllService = {
   trolleys: Trolly[]
   boxs: TollyProps["Box"][]
-  products: ProductTrolly[]
+  products: Product[]
 }

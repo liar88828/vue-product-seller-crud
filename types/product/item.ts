@@ -21,11 +21,6 @@ import type { MarketStatic } from "../market/ProfileCompany"
 // price: number
 // userId: string | null
 // typeId: string | null
-export type DataImage = {
-  img: string
-  link: string
-  title: string
-}
 
 export type DataTech = {
   title: string
@@ -37,7 +32,7 @@ export type DataSpec = {
 }
 
 export type ProductItem = Product & {
-  dataImage: DataImage[]
+  dataImage: Image[]
   desc: string[]
   desc_spec: DataSpec[]
   desc_tech: DataTech[]
@@ -64,6 +59,12 @@ export type ProductMarketDetail = {
 export type SpecProduct = Spec & {
   List: List_Spec[]
 }
+export type DataImage = {
+  img: string
+  link: string
+  title: string
+}
+
 export type ProductItemServer = Product & {
   Spec: SpecProduct[]
   Tech: Tech[]

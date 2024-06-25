@@ -1,6 +1,8 @@
 <template>
   <div class="grid md:grid-cols-2 gap-8 mb-5">
-    <!-- <ImageDetail v-show="data.detail.Img" :data="data.detail.Img" /> -->
+    {{ data.detail }}
+    <ElError v-if="!data.detail" />
+    <Images v-else :data="data.detail" />
     <Desc v-show="data.detail" :data="data.detail">
       <div class="flex flex-col sm:flex-row gap-4 justify-end mt-5">
         <NuxtLink
@@ -22,8 +24,8 @@
           <ElLoading v-if="store.pending" />
           <span v-else class="md:hidden lg:block"> Add to Cart </span>
         </button>
-      </div></Desc
-    >
+      </div>
+    </Desc>
   </div>
   <div class="space-y-5">
     <Spec v-show="data.detail.Spec" :data="data.detail.Spec" />
@@ -45,6 +47,7 @@
 <script setup lang="ts">
 // import ImageDetail from "./Images.vue"
 import Desc from "./Desc.vue"
+import Images from "./Images.vue"
 import Spec from "./Spec.vue"
 import Tech from "./Tech.vue"
 import type { ProductDetail } from "~/types/product/item"

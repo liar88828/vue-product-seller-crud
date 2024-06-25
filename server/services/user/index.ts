@@ -9,10 +9,10 @@ class UserSanitize {
       phone: data.phone,
       id_role: data.id_role,
       password: data.password,
-      id_market: randomId(),
-      id_trolly: randomId(),
-      id_like: randomId(),
-      id_follow: randomId(),
+      id_market: randomNumber(),
+      id_trolly: randomNumber(),
+      id_like: randomNumber(),
+      id_follow: randomNumber(),
     }
   }
 }

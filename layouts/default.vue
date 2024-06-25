@@ -5,7 +5,8 @@ const { getMultiCon } = useStyle()
 <template>
   <!-- data-theme="cyberpunk" -->
   <section class="min-h-screen bg-base-300 w-screen">
-    <ElNav
+    <ElNav />
+    <!-- 
       :class="
         getMultiCon({
           array: ['shop', 'product', 'home'],
@@ -13,16 +14,16 @@ const { getMultiCon } = useStyle()
           con2: '',
         })
       "
-    />
-    <ElNavShop
-      :class="`
+    /> -->
+    <!-- <ElNavShop
+     :class="`
       ${getMultiCon({
         array: ['shop', 'product', 'home'],
         con1: '',
         con2: 'hidden',
       })}
-       `"
-    />
+       `" -->
+
     <div class="flex">
       <ElSide
         :class="

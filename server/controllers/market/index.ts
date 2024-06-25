@@ -1,4 +1,7 @@
-import type { MarketServerFull, MarketUser, } from "~/types/market/ProfileCompany"
+import type {
+  MarketServerFull,
+  MarketUser,
+} from "~/types/market/ProfileCompany"
 import { tryCatch } from "../../lib/tryCatch"
 import { MarketServices } from "../../services/user/market"
 import { MarketUserController } from "./MarketUserController"

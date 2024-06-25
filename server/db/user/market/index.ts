@@ -67,20 +67,6 @@ export class MarketDB extends MarketOwnerDB {
     return data
   }
 
-  async id(id: number): Promise<
-    | (Market & {
-        User: User | null
-      })
-    | null
-  > {
-    return prisma.market.findUnique({
-      where: { id },
-      include: {
-        User: true,
-      },
-    })
-  }
-
   async findFull(id: number): Promise<MarketServerFullNull | null> {
     return prisma.market.findUnique({
       where: { id },

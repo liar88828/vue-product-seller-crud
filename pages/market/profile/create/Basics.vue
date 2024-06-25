@@ -3,64 +3,64 @@
     <CardBody>
       <CardTitle>Create</CardTitle>
       <form
-          @submit.prevent="handleSubmit"
-          class="grid grid-cols-1 md:grid-cols-2 md:gap-5"
+        @submit.prevent="handleSubmit"
+        class="grid grid-cols-1 md:grid-cols-2 md:gap-5"
       >
         <div class="">
           <ElInput
-              v-model:input="store.data.name"
-              types="text"
-              :title="'Name'"
-              :err="store.error.name"
+            v-model:input="store.data.name"
+            types="text"
+            :title="'Name'"
+            :err="store.error.name"
           />
           <ElInput
-              v-model:input="store.data.address"
-              types="text"
-              :title="'Address'"
-              :err="store.error.address"
+            v-model:input="store.data.address"
+            types="text"
+            :title="'Address'"
+            :err="store.error.address"
           />
           <ElInput
-              v-model:input="store.data.industry"
-              types="text"
-              :title="'Type Industry'"
-              :err="store.error.industry"
+            v-model:input="store.data.industry"
+            types="text"
+            :title="'Type Industry'"
+            :err="store.error.industry"
           />
           <ElInput
-              v-model:input="store.data.vision"
-              types="text"
-              :title="'Vision'"
-              :err="store.error.vision"
+            v-model:input="store.data.vision"
+            types="text"
+            :title="'Vision'"
+            :err="store.error.vision"
           />
           <ElInput
-              v-model:input="store.data.mission"
-              types="text"
-              :title="'Mission'"
-              :err="store.error.mission"
+            v-model:input="store.data.mission"
+            types="text"
+            :title="'Mission'"
+            :err="store.error.mission"
           />
         </div>
         <div class="">
           <ElInput
-              v-model:input="store.data.since"
-              types="Date"
-              :title="'Type Since'"
-              :err="store.error.since"
+            v-model:input="store.data.since"
+            types="Date"
+            :title="'Type Since'"
+            :err="store.error.since"
           />
           <ElTextarea
-              :title="'Description'"
-              :err="store.error.description"
-              v-model:textarea="store.data.description"
+            :title="'Description'"
+            :err="store.error.description"
+            v-model:textarea="store.data.description"
           />
           <ElTextarea
-              :title="'History'"
-              :err="store.error.history"
-              v-model:textarea="store.data.history"
+            :title="'History'"
+            :err="store.error.history"
+            v-model:textarea="store.data.history"
           />
           <div class="flex flex-col gap-2 mt-4">
             <button
-                type="submit"
-                :class="['btn btn-primary', store.pending && 'btn-disabled']"
+              type="submit"
+              :class="['btn btn-primary', store.pending && 'btn-disabled']"
             >
-              <ElLoading v-show="store.pending"/>
+              <ElLoading v-show="store.pending" />
               Create
             </button>
 
@@ -73,7 +73,7 @@
       </form>
     </CardBody>
   </Card>
-  {{ store }}
+  <!-- {{ store }} -->
 </template>
 
 <script lang="ts" setup>

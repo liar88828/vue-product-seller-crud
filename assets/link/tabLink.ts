@@ -13,3 +13,10 @@ export const MarketLink = [
   { title: "History", link: "/market/history" },
   { title: "Static", link: "/market/static" },
 ]
+
+export const ShopMarketLink = [
+  { title: "Profile", link: "/shop/market" },
+  { title: "New", link: "/shop/market/new" },
+  { title: "Best", link: "/shop/market/best" },
+  { title: "Discount", link: "/shop/market/discount" },
+]

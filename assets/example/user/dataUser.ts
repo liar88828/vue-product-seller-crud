@@ -13,7 +13,8 @@ export const userProfile: User = {
   id_like: 1,
   id_market: 1,
   createMarket: false,
-  activeOnline: true
+  activeOnline: true,
+  OTP: "123_342",
 }
 
 export const userProfile2: User = {
@@ -29,5 +30,6 @@ export const userProfile2: User = {
   id_like: 1,
   id_market: 1,
   createMarket: true,
-  activeOnline: false
+  activeOnline: false,
+  OTP: "123_243",
 }

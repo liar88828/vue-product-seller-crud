@@ -2,6 +2,8 @@ import type { SignUpProps } from "~/types/auth/user"
 import type { StoreBase } from "~/types/globals/store"
 
 export const useSignUp = () => {
+  const { fetch } = useUserSession()
+
   const store = reactive<StoreBase<SignUpProps>>({
     pending: false,
     success: false,
@@ -55,6 +57,7 @@ export const useSignUp = () => {
     try {
       const valid = validData(store.data)
       await signUp(valid)
+      fetch()
       await navigateTo("/auth/verify")
     } catch (e) {
       if (e instanceof Error) {

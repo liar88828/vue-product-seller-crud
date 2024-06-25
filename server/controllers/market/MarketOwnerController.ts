@@ -1,8 +1,12 @@
 import { MarketServices } from "../../services/user/market"
 import type { H3Event } from "h3"
 import type { Market } from "@prisma/client"
-import type { idMarketFind, MarketServerFull, MarketServiceSingle } from "~/types/market/ProfileCompany";
-import type { TStatus } from "~/types/globals/Status";
+import type {
+  idMarketFind,
+  MarketServerFull,
+  MarketServiceSingle,
+} from "~/types/market/ProfileCompany"
+import type { TStatus } from "~/types/globals/Status"
 
 export class MarketOwnerController {
   constructor(protected service: MarketServices) {}
@@ -14,30 +18,36 @@ export class MarketOwnerController {
 
       body = this.service.marketCreate(body)
       body = zods.market.create.parse(body)
-      return this.service.owner.create(body, session)
+      const data = await this.service.owner.create(body, session)
+      await replaceUserSession(event, {
+        loggedInAt: new Date(),
+        session: data.user,
+        user: data.user,
+      })
+      return data.market
     })
   }
 
   async full(event: H3Event): Promise<MarketServerFull> {
     return tryCatch(async () => {
       const { session } = await getUserSession(event)
-      console.log(session, "test")
+      // console.log(session, "test")
       return this.service.findFull(Number(session.id_market))
     })
   }
   async fullSingle(event: H3Event): Promise<MarketServiceSingle> {
     return tryCatch(async () => {
       const { session } = await getUserSession(event)
-      console.log(session, "test")
+      // console.log(session, "test")
       return this.service.owner.findSingle(session.id_market)
     })
   }
 
-  async update(event: H3Event): Promise<MarketServerFull> {
+  // const role: TRole = "MARKET"
+  async update(event: H3Event): Promise<MarketServiceSingle> {
     return tryCatch(async () => {
       const { session } = await getUserSession(event)
-      const body = await readBody(event)
-      // const role: TRole = "MARKET"
+      const body: MarketServiceSingle = await readBody(event)
       return this.service.owner.updateProfile(session.id_market, body)
     })
   }

@@ -15,17 +15,4 @@ export class ProductMarketDB {
     }
     return data
   }
-
-  async all(id_market: number): Promise<Product[]> {
-    const data = await prisma.product.findMany({
-      where: { id_market },
-    })
-    if (!data) {
-      throw createError({
-        statusCode: 404,
-        statusMessage: "Product not found",
-      })
-    }
-    return data
-  }
 }

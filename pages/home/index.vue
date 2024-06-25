@@ -1,12 +1,7 @@
 <template>
-  <Suspense>
-    <template #fallback>Loading.....</template>
-    <template #default>
-      <div v-if="pending">Loading ...</div>
-      <div v-else-if="error">Error: {{ error.message }}</div>
-      <PageHome v-else v-show="!pending && !error" :data="sendData" />
-    </template>
-  </Suspense>
+  <div v-if="pending">Loading ...</div>
+  <div v-else-if="error">Error: {{ error.message }}</div>
+  <PageHome v-else v-show="!pending && !error" :data="sendData" />
 </template>
 
 <script lang="ts" setup>

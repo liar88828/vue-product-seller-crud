@@ -4,14 +4,14 @@
       <IconsLocation />
       <div class="">
         <h3 class="font-medium">Address</h3>
-        <textarea v-model="data.address"></textarea>
+        <textarea v-model="data.Market.address"></textarea>
       </div>
     </div>
     <div class="flex items-start gap-4">
       <IconsIndustry />
       <div>
         <h3 class="font-medium">Industry</h3>
-        <input type="text" v-model="data.industry" />
+        <input type="text" v-model="data.Market.industry" />
       </div>
     </div>
     <div class="flex items-start gap-4">
@@ -44,6 +44,6 @@
 import Social from "./Social.vue"
 
 defineProps<{
-  data: MarketServerFull
+  data: MarketServiceSingle
 }>()
 </script>

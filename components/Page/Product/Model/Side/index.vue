@@ -18,6 +18,6 @@
 import type { Product } from "@prisma/client"
 import Desc from "../Desc/index.vue"
 
-defineProps<{ data: ProductTrolly }>()
+defineProps<{ data: Product }>()
 const detail = ref<boolean>(false)
 </script>

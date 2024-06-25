@@ -1,6 +1,15 @@
+import type { Market, Product } from "@prisma/client"
+import { prisma } from "~/server/config/prisma"
+
 export class MarketServices extends MarketSanitize {
   owner = new MarketOwner(this.sanitizeProfile)
   static = new MarketStaticService()
+
+  async all(id_market: number): Promise<Product[]> {
+    return prisma.product.findMany({
+      where: { id_market },
+    })
+  }
 
   async create(data: MarketServer): Promise<MarketUser> {
     data = zods.market.create.parse(data)
@@ -15,29 +24,28 @@ export class MarketServices extends MarketSanitize {
     return { ...dataDB, User }
   }
 
-  async id(id: number): Promise<MarketUser> {
+  async id(id: number): Promise<Market> {
     id = zods.id.number.parse(id)
-    const data = await db.market.id(id)
-    if (!data) {
-      throw createError({
-        statusCode: 404,
-        statusMessage: "Market not found",
+    return prisma.market
+      .findUnique({
+        where: { id },
       })
-    }
-    const { User } = data
-    if (!User) {
-      throw createError({
-        statusCode: 404,
-        statusMessage: "Market not found",
+      .then((data) => {
+        if (!data) {
+          throw createError({
+            statusCode: 404,
+            statusMessage: "Market not found",
+          })
+        }
+        return data
       })
-    }
-    return { ...data, User }
   }
 
   async findFull(id_market: number): Promise<MarketServerFull> {
     id_market = zods.id.number.parse(id_market)
     const data = await db.market.findFull(id_market)
-    console.log(data, "data market")
+    // console.log(data, "data market")
+    console.log("data market")
     if (!data) {
       throw createError({
         statusCode: 404,

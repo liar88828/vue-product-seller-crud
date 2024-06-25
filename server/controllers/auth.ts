@@ -53,7 +53,7 @@ export class AuthController {
   //   })
   // }
 
-  async signUp(event: H3Event) {
+  async signUp(event: H3Event): Promise<{ name: string; email: string }> {
     return tryCatch(async () => {
       const config = useRuntimeConfig(event)
       const body = await readBody(event)
@@ -61,7 +61,23 @@ export class AuthController {
 
       const cryptr = new CryptrService(config.cryptrKey)
       const hashPassword = cryptr.encrypted(body.password)
-      return db.user.signUp({ email, name, password: hashPassword })
+      const user = await db.user.signUp({ email, name, password: hashPassword })
+      console.log(` success sign up ${user}`)
+      await setUserSession(event, {
+        loggedInAt: new Date(),
+        session: user,
+        user,
+      })
+      return user
     })
+  }
+  async validOTP(event: H3Event) {
+    const { session } = await requireUserSession(event)
+    const body = await readBody(event)
+    return this.service.validOTP(session.id, body.otp)
+  }
+  async resendOTP(event: H3Event) {
+    const { session } = await getUserSession(event)
+    return this.service.resendOTP(session.id)
   }
 }

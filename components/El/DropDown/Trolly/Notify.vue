@@ -1,7 +1,7 @@
 <template>
   <ElLoading v-if="pending" />
-  <ElError v-else-if="error || !data" />
-  <ElDropDownIconNew v-else index="1" :indicator="data?.trolly.toString()">
+  <!-- @vue-expect-error -->
+  <ElDropDownIconNew index="1" :indicator="data?.trolly">
     <IconsTrolley class="icons" v-if="loggedIn" />
     <IconsUser class="icons" v-else />
   </ElDropDownIconNew>
