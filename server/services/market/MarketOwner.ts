@@ -1,20 +1,13 @@
 import type { Contact, Market, SocialMedia } from "@prisma/client"
 import { prisma } from "~/server/config/prisma"
 import { MarketSanitize } from "./MarketSanitize"
-import type { SessionUser } from "~/types/globals/session"
-import type {
-  UpdateSocial,
-  MarketServer,
-  MarketServerFull,
-  MarketServiceSingle,
-  MarketServiceSingleNull,
-  UpdateMarket,
-  UpdateContact,
-} from "~/types/market/ProfileCompany"
-import type { RequiredProperty } from "~/types/globals/generic"
 
-export class MarketOwner {
+export class MarketOwnerService {
   constructor(protected sanitize: MarketSanitize["sanitizeProfile"]) {}
+
+  // confirm = new MarketConfirmService()
+  // product = new ProductUserController()
+  // history = new HistoryController().market
 
   async findSingle(id_market: number): Promise<MarketServiceSingleNull> {
     id_market = zods.id.number.parse(id_market)

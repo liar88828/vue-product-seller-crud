@@ -1,5 +1,5 @@
 <template>
-  <NuxtLayout name="profile">
+  <NuxtLayout name="user">
     <PageProfileEditUser :data="userProfile" />
   </NuxtLayout>
 </template>

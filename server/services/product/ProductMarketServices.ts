@@ -4,11 +4,6 @@ import type { Product } from "@prisma/client"
 import type { RequiredProperty } from "~/types/globals/generic"
 import { prisma } from "~/server/config/prisma"
 
-export type FindIdProductCurrentMarket = {
-  id: number
-  id_market: number
-  id_user: string
-}
 export type AllProductCurrentMarket = { id_market: number; id_user: string }
 
 export class ProductMarketServices {
@@ -44,14 +39,11 @@ export class ProductCurrentMarketServices {
     return data
   }
 
-  async id({
-    id,
-    id_market,
-    id_user,
-  }: FindIdProductCurrentMarket): Promise<ProductItemServer> {
+  async id(id: FindIdProductCurrentMarket): Promise<ProductItemServer> {
+    id = zods.id.marketProduct.parse(id)
     const product = await prisma.product
       .findUnique({
-        where: { id_market, id_user, id },
+        where: id,
         include: {
           Spec: { include: { List: true } },
           Tech: true,

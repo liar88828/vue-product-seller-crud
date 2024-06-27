@@ -1,5 +1,5 @@
 <template>
-  <NuxtLayout name="profile">
+  <NuxtLayout name="user">
     <div v-if="pending">Loading ...</div>
     <div v-else-if="error || !data?.user">Error</div>
     <PageProfileUser v-else :data="data?.user" />

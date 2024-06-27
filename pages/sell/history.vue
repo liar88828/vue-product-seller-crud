@@ -1,5 +1,5 @@
 <template>
-  <NuxtLayout name="profile">
+  <NuxtLayout name="user">
     <h1>history</h1>
   </NuxtLayout>
 </template>

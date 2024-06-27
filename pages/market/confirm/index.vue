@@ -1,21 +1,15 @@
 <template>
   <NuxtLayout name="market">
-    <div v-if="pending">Loading ...</div>
-    <div v-else-if="!data?.confirm">Data Is Not Found ...</div>
+    <ElLoading v-if="pending" />
+    <ElError v-else-if="error || !data?.confirms" />
     <!-- @vue-expect-error -->
-    <PageMarketConfirm v-else :data="data.confirm" />
+    <PageMarketConfirm v-else :data="data?.confirms" />
   </NuxtLayout>
 </template>
 
 <script lang="ts" setup>
 // import { dataOrders } from "~/assets/example/transaction/dataOrder"
-const { data, pending } = await useFetch(
-  "/api/market/confirm/"
-  // {
-  // pick: ["market"],
-  // transform: (data) => data.market,
-  // }
-)
+const { data, pending, error } = await useFetch("/api/market/confirm", {})
 // .then((res) => {
 //   return {
 //     data: res.data,

@@ -5,15 +5,19 @@ import { randomOTP } from "../utils/randomId"
 export class AuthServices {
   async foundExist(data: SignInProps) {
     data = zods.user.signIn.parse(data)
-    const findUser = await prisma.user.findUnique({
-      where: { email: data.email },
-    })
-    if (!findUser) {
-      throw createError({
-        statusCode: 404,
-        statusMessage: "User Email not found",
+    const findUser = await prisma.user
+      .findUnique({
+        where: { email: data.email },
       })
-    }
+      .then((data) => {
+        if (!data) {
+          throw createError({
+            statusCode: 404,
+            statusMessage: "User Email not found",
+          })
+        }
+        return data
+      })
     return findUser
   }
 

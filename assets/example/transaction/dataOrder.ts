@@ -6,15 +6,15 @@ import type { TransProps } from "~/types/market/order"
 const dataHistory: TransProps = {
   id: 3,
   Box: [
-    {
-      id: 1,
-      id_product: dataProducts[1].id,
-      id_transaction: 1,
-      id_trolly: 1,
-      price: 100,
-      qty: 1,
-      Product: dataProducts[1],
-    },
+	{
+	  id: 1,
+	  id_product: dataProducts[1].id,
+	  id_transaction: 1,
+	  id_trolly: 1,
+	  price: 100,
+	  qty: 1,
+	  Product: dataProducts[1],
+	},
   ],
   userBuy: userProfile2,
   Market: dataCompany,
@@ -34,15 +34,15 @@ const dataHistory2: TransProps = {
   status: "Cancelled",
   id: 3,
   Box: [
-    {
-      id: 1,
-      id_product: dataProducts[1].id,
-      id_transaction: 1,
-      id_trolly: 1,
-      price: 100,
-      qty: 1,
-      Product: dataProducts[1],
-    },
+	{
+	  id: 1,
+	  id_product: dataProducts[1].id,
+	  id_transaction: 1,
+	  id_trolly: 1,
+	  price: 100,
+	  qty: 1,
+	  Product: dataProducts[1],
+	},
   ],
   userBuy: userProfile2,
   Market: dataCompany,
@@ -56,18 +56,19 @@ const dataHistory2: TransProps = {
   id_status: "Cancelled",
   updatedAt: new Date(),
 }
+
 const dataOrder: TransProps = {
   id: 1,
   Box: [
-    {
-      id: 1,
-      id_product: dataProducts[1].id,
-      id_transaction: 1,
-      id_trolly: 1,
-      price: 100,
-      qty: 1,
-      Product: dataProducts[1],
-    },
+	{
+	  id: 1,
+	  id_product: dataProducts[1].id,
+	  id_transaction: 1,
+	  id_trolly: 1,
+	  price: 100,
+	  qty: 1,
+	  Product: dataProducts[1],
+	},
   ],
   userBuy: userProfile,
   Market: dataCompany,
@@ -98,15 +99,15 @@ const dataOrder2: TransProps = {
   updatedAt: new Date(),
   createdAt: new Date(),
   Box: [
-    {
-      id: 1,
-      id_product: dataProducts[0].id,
-      id_transaction: 1,
-      id_trolly: 1,
-      price: 100,
-      qty: 1,
-      Product: dataProducts[0],
-    },
+	{
+	  id: 1,
+	  id_product: dataProducts[0].id,
+	  id_transaction: 1,
+	  id_trolly: 1,
+	  price: 100,
+	  qty: 1,
+	  Product: dataProducts[0],
+	},
   ],
 }
 export const dataOrders: TransProps[] = [

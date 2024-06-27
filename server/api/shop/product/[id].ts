@@ -2,9 +2,8 @@ import type { ProductDetail } from "~/types/product/item"
 
 export default defineEventHandler(async (event) => {
   // return { product: dataProductDetailServer }
-  const { id } = getRouterParams(event)
   const data = {
-    product: await control.product.shop.detail(Number(id)),
+    product: await control.product.shop.detail(event),
 
     toJSON(): { product: ProductDetail } {
       return {

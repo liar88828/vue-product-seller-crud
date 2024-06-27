@@ -14,14 +14,22 @@ export const idValid = z.object({
   id_user: z.string().uuid(),
 }) satisfies ZodType<IdValid>
 
+export const MarketProductID = z.object({
+  id: z.number().min(1),
+  id_user: z.string().uuid(),
+  id_market: z.number().min(1),
+}) satisfies ZodType<FindIdProductCurrentMarket>
+
 export const zods = {
   market: zodMarket,
   box: zodBox,
   product: zodProduct,
   user: zodUser,
+
   id: {
     number: idNumber,
     string: idString,
     valid: idValid,
+    marketProduct: MarketProductID,
   },
 }

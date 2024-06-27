@@ -11,7 +11,6 @@ export async function tryCatch(fun: () => any) {
     }
     return data
   } catch (e) {
-    console.log(e)
     if (e instanceof ZodError) {
       throw e.flatten().fieldErrors
     }
@@ -30,6 +29,7 @@ export async function tryCatch(fun: () => any) {
         throw createError({ statusCode: 404, message: "Data not found" })
       }
     }
+    console.log(e)
     throw e
   }
 }

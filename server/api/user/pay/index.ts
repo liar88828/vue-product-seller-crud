@@ -1,5 +1,11 @@
 export default defineEventHandler(async (event) => {
-  const { id } = getRouterParams(event)
-  const { session } =  await getUserSession(event)
-  return control.trans.user.pay(id, session.id)
+
+  const data = {
+	order: await control.user.trans.order.pay(event),
+	toJson() {
+	  return { order: this.order }
+	}
+  }
+
+  return data
 })

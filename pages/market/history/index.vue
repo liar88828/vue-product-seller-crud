@@ -1,13 +1,15 @@
 <template>
   <NuxtLayout name="market">
+    <ElLoading v-if="pending" />
+    <ElError v-else-if="error || !data" />
     <!-- @vue-expect-error -->
-    <PageTransactionOrder :data="data?.history" />
+    <PageMarketHistory :data="data?.histories" />
   </NuxtLayout>
 </template>
 
 <script lang="ts" setup>
 // import { dataOrders } from "~/assets/example/transaction/dataOrder"
-const { data } = await useFetch("/api/market/history")
+const { data, error, pending } = await useFetch("/api/market/history")
 watch(data, () => {
   console.log(data.value)
 })

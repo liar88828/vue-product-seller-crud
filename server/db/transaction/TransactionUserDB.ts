@@ -1,9 +1,9 @@
 import type { CreateTransaction } from "~/types/transaction"
 import type { IdUserTrans } from "~/types/product/findId"
 import type { DataMarket, WantBuyProps } from "~/types/market/order"
-import { prisma } from "~/server/config/prisma"
-import type  { Transaction } from "@prisma/client";
+import type { Transaction } from "@prisma/client";
 import type { GetBoxProps, GetPackageReturn } from "~/types/transaction/trolly";
+import { prisma } from "~/server/config/prisma"
 
 export class TransactionUserDB {
   // async user(id_user: string) {

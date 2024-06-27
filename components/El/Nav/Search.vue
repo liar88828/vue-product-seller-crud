@@ -1,8 +1,8 @@
 <template>
-  <div class="join w-full">
+  <div class="join w-full max-w-xl">
     <input
       placeholder="Search"
-      class="join-item input input-bordered input-sm md:input-md w-full sm:w-1/2"
+      class="join-item input input-bordered input-sm w-full"
       v-model="search"
     />
     <button @click="handleSearch" class="btn-sm md:btn-md btn join-item">

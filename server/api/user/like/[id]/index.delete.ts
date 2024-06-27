@@ -1,10 +1,9 @@
 import type { Like } from "@prisma/client";
 
 export default defineEventHandler(async (event) => {
-  const { session } = await getUserSession(event)
-  const { id } = getRouterParams(event)
+
   const data = {
-	like: await control.user.like.unLike(session.id_like as number, Number(id)),
+	like: await control.user.product.like.unLike(event),
 
 	toJson(): { like: Like } {
 	  return { like: this.like }

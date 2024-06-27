@@ -1,16 +1,14 @@
-import { MarketServices } from "../../services/user/market"
+import { MarketServices } from "../../services/market/market"
 import type { H3Event } from "h3"
 import type { Market } from "@prisma/client"
-import type {
-  idMarketFind,
-  MarketServerFull,
-  MarketServiceSingle,
-} from "~/types/market/ProfileCompany"
-import type { TStatus } from "~/types/globals/Status"
+import type { idMarketFind, MarketServerFull, MarketServiceSingle, } from "~/types/market/ProfileCompany"
 
 export class MarketOwnerController {
-  constructor(protected service: MarketServices) {}
+  protected service = new MarketServices()
 
+  // confirm = new MarketConfirmController(this.service.owner.)
+  // product = new ProductUserController(this.service.owner.product)
+  trans = new TransactionController().market
   async create(event: H3Event): Promise<Market> {
     return tryCatch(async () => {
       const { session } = await getUserSession(event)
@@ -52,18 +50,6 @@ export class MarketOwnerController {
     })
   }
 
-  async confirm(event: H3Event, status: TStatus) {
-    const { id } = getRouterParams(event)
-    const { session } = await getUserSession(event)
-
-    await db.trans.market.confirm.add(
-      {
-        id: Number(id),
-        id_market: session.id_market,
-      },
-      status
-    )
-  }
   async id(event: H3Event) {
     const { id } = getRouterParams(event)
     const { session } = await getUserSession(event)

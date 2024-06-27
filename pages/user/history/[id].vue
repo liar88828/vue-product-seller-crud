@@ -1,5 +1,5 @@
 <template>
-  <NuxtLayout name="profile">
+  <NuxtLayout name="user">
     <!-- @vue-expect-error -->
     <PageTransactionOrder :data="data.order" />
   </NuxtLayout>

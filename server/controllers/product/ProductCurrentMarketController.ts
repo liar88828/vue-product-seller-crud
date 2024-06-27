@@ -1,5 +1,6 @@
-import { ProductServices } from "~/server/services/product"
 import type { H3Event } from "h3"
+import type { Product } from "@prisma/client"
+import { ProductServices } from "~/server/services/product"
 import { tryCatch } from "~/server/lib/tryCatch"
 
 export class ProductCurrentMarketController {
@@ -8,13 +9,15 @@ export class ProductCurrentMarketController {
     protected sanitize: ProductServices["sanitizeCreate"]
   ) {}
 
-  async all(event: H3Event) {
-    const { session } = await getUserSession(event)
-    const data = await this.service.all({
-      id_market: session.id_market,
-      id_user: session.id,
+  async all(event: H3Event): Promise<Product[]> {
+    return tryCatch(async () => {
+      const { session } = await getUserSession(event)
+      const data = await this.service.all({
+        id_market: session.id_market,
+        id_user: session.id,
+      })
+      return data
     })
-    return data
   }
 
   async id(event: H3Event): Promise<ProductItemServer> {

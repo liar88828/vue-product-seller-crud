@@ -1,4 +1,4 @@
-export const ProductLink = [
+export const UserLink = [
   { title: "Profile", link: "/user/profile" },
   { title: "Like", link: "/user/like" },
   { title: "Trolly", link: "/user/trolly" },

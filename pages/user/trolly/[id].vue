@@ -1,5 +1,5 @@
 <template>
-  <NuxtLayout name="profile">
+  <NuxtLayout name="user">
     <PageTransactionTrolly :data="dataProducts" />
   </NuxtLayout>
 </template>

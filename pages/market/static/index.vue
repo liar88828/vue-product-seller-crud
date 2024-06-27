@@ -6,14 +6,15 @@
     <h1>Best Sell By Product</h1>
     <h1>Best Sell By Category</h1>
     <h1>Best Sell By Brand</h1>
+    {{data?.products}}
   </NuxtLayout>
 </template>
 
 <script lang="ts" setup>
 const { data } = await useFetch("/api/market/static")
-watch(data, () => {
-  console.log(data.value)
-})
+// watch(data, () => {
+//   console.log(data.value)
+// })
 if (!data.value) {
   throw new Error("data not found")
 }

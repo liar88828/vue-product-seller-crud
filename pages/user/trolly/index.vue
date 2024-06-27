@@ -1,5 +1,5 @@
 <template>
-  <NuxtLayout name="profile">
+  <NuxtLayout name="user">
     <ElLoading v-if="pending" />
     <ElError v-else-if="error || !data" />
     <PageTransactionTrollyNew v-else :data="data?.trolly" />

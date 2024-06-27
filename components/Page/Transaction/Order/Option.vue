@@ -42,7 +42,6 @@
 <script lang="ts" setup>
 import { staticLink } from "~/assets/link/shopLink"
 import type { TransProps } from "~/types/market/order"
-const { store } = useOrder()
 
 const props = defineProps({
   data: {
@@ -55,6 +54,8 @@ const props = defineProps({
     required: false,
   },
 })
+const { store } = useOrder(props.data)
+
 // const { mutation } = useContexts<FilterData>("user_order", storeFilter)
 // const { store } = useFilter<OrderProps>(props.data, "",)
 // useUseContexts

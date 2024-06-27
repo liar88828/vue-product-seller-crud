@@ -1,9 +1,5 @@
 import type { Box, Market, Product, Transaction, User } from "@prisma/client"
-import type {
-  MarketServerFull,
-  MarketServerFullNull,
-  MarketServerValid,
-} from "./ProfileCompany"
+import type { MarketServerFull, } from "./ProfileCompany"
 import type { CreateTransaction } from "../transaction"
 import type { BoxProduct, GetBoxProps } from "../transaction/trolly"
 
@@ -33,13 +29,20 @@ export type DataMarket = Transaction & {
 //   Box: (Box & {
 //     Product: Product //| null
 //   })[]
-// }
+export type TBoxProduct = Box & {
+  Product: Product | null
+};
 export type TransProps = Transaction & {
   userBuy: User
-  Market: MarketServerFull
-  Box: (Box & {
-    Product: Product | null
-  })[]
+  Market: Market
+  Box: TBoxProduct[]
+}
+
+export type HBoxProducts = Box & Product
+export type HistoryProps = Transaction & {
+  userBuy: User
+  Market: Market
+  Box: HBoxProducts[]
 }
 
 export type OrderConfirm = Transaction & {
@@ -64,8 +67,8 @@ export type WantBuyProps = {
   id_user: User["id"]
   id_trolly: number
   data: {
-    box: GetBoxProps[]
-    data: CreateTransaction
+	box: GetBoxProps[]
+	data: CreateTransaction
   }
 }
 

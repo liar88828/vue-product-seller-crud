@@ -1,6 +1,6 @@
 import { AuthServices } from "./auth"
 import { HomeServices } from "./home"
-import { MarketServices } from "./user/market"
+import { MarketServices } from "./market/market"
 import { BoxService } from "./transaction/box"
 import { ProductServices } from "./product"
 import { SanitizeService } from "./sanitize"

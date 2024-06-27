@@ -1,7 +1,10 @@
 <template>
   <!-- {{ search }} -->
   <!-- {{ store }} -->
-  <PageShop :dataProducts="newData" />
+  <ElLoading v-if="pending" />
+  <ElError v-else-if="error || !data" />
+  <!-- @vue-expect-error  -->
+  <PageShop :data="data?.products" />
 
   <ElButtonScroll />
 </template>
@@ -12,11 +15,9 @@
 // const { search } = useSearch()
 // console.log(search.value, "from shop")
 
-const { data } = await useFetch("/api/product")
+const { data, pending, error } = await useFetch("/api/shop/product")
 
-const { filter, store } = useShop()
 if (!data.value) {
   throw createError({ statusCode: 404, statusMessage: "Page Not Found" })
 }
-const newData = filter(data.value?.products)
 </script>

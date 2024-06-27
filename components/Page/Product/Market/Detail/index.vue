@@ -1,6 +1,6 @@
 <template>
   <div class="grid md:grid-cols-2 gap-8 mb-5">
-    <!-- <ImageDetail v-show="data.detail.Img" :data="data.detail.Img" /> -->
+    <Images v-show="data.Img" :data="data.Img" />
     <Desc v-show="data" :data="data" />
   </div>
   <div class="space-y-5">
@@ -10,8 +10,8 @@
 </template>
 
 <script setup lang="ts">
-// import ImageDetail from "./Images.vue"
 import Desc from "./Desc.vue"
+import Images from "./Images.vue"
 import Spec from "./Spec.vue"
 import Tech from "./Tech.vue"
 

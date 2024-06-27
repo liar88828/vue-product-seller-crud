@@ -1,68 +1,126 @@
 import type { Transaction } from "@prisma/client"
 import type { TransactionServices } from "~/server/services/transaction"
-import type { PayProps } from "~/types/market/order"
+import type { PayProps, TBoxProduct, TransProps } from "~/types/market/order"
 import type { H3Event } from "h3"
-import { HistoryController } from "~/server/controllers/transaction/historyController"
-import { TransactionMarketCon } from "./TransactionMarketCon"
-import { MarketServices } from "~/server/services/user/market"
+
+import { MarketServices } from "~/server/services/market/market"
 import { prisma } from "~/server/config/prisma"
 
-export class TransactionUserCon {
+export class OrderUserController {
+
   constructor(
-    protected serviceTrans: TransactionServices,
-    protected serviceMarket: MarketServices
-  ) {}
-
-  history = new HistoryController()
-
-  async allProduct(id_user: string) {
-    const transaction = await prisma.user.findUnique({
-      where: { id: id_user },
-      select: {
-        Transaction: {
-          include: {
-            Box: {
-              include: {
-                Product: true,
-              },
-            },
-          },
-        },
-      },
-    })
-    return transaction
+	protected serviceMarket: MarketServices
+  ) {
   }
 
-  async detail(id: string, id_buyer: string) {
-    return db.trans.user.id({ id_buyer, id: Number(id) })
+  async detail(event: H3Event) {
+	const { id } = getRouterParams(event)
+	const { session } = await getUserSession(event)
+	return db.trans.user.id({ id_buyer: session.id, id: Number(id) })
   }
 
-  async all(id_buyer: string): Promise<Transaction[]> {
-    return db.trans.user.all(id_buyer)
+
+  async all(event: H3Event): Promise<TransProps[]> {
+	const { session } = await getUserSession(event)
+	return prisma.transaction
+	.findMany({
+	  where: {
+		id_market: session.id_market,
+	  },
+	  include: {
+		userBuy: true,
+		Market: true,
+		Box: {
+		  include: {
+			Product: true,
+		  },
+		},
+	  },
+	  take: 100,
+	})
+	.then((data) => {
+	  return data.map((d) => {
+		d.userBuy.OTP = ""
+		d.userBuy.password = ""
+		const Box: TransProps['Box'] = d.Box.map((item) => {
+		  const { Product, ...ress } = item
+
+		  return {
+			Product: Product,
+			...ress,
+		  } satisfies TBoxProduct
+		})
+
+		return {
+		  ...d,
+		  userBuy: d.userBuy,
+		  Market: d.Market,
+		  Box,
+		}satisfies TransProps
+	  })
+	})
   }
 
-  async delete(id: string, id_buyer: string) {
-    return db.trans.user.delete({ id_buyer, id: Number(id) })
-  }
-
-  async pay(id: string, id_buyer: string) {
-    return db.trans.user.pay({ id_buyer, id: Number(id) })
-  }
-
-  // async create(data: CreateTransaction): Promise<Transaction> {
-  // const sanitize = service.transaction.sanitize(data)
-  // return service.transaction.create(sanitize)
-  // }
 
   async payDetail(event: H3Event): Promise<PayProps> {
-    const { session } = await getUserSession(event)
-    const { id } = getRouterParams(event)
-    return {
-      market: await this.serviceMarket.findFull(Number(session.id_market)),
-      order: await db.trans.user.idDetail({
-        id: Number(id),
-        id_buyer: session.id,
-      }),
-    }
+
+	const { session } = await getUserSession(event)
+	const { id } = getRouterParams(event)
+	return {
+	  market: await this.serviceMarket.findFull(Number(session.id_market)),
+	  order: await db.trans.user.idDetail({
+		id: Number(id),
+		id_buyer: session.id,
+	  }),
+	}
+  }
+
+  async pay(event: H3Event) {
+	const { id } = getRouterParams(event)
+	const { session } = await getUserSession(event)
+	return db.trans.user.pay({ id_buyer: session.id, id: Number(id) })
+  }
+
+
+}
+
+export class TransactionUserCon {
+  protected serviceMarket = new MarketServices()
+
+  history = new HistoryController().user
+  order = new OrderUserController(this.serviceMarket)
+
+  constructor(protected serviceTrans: TransactionServices,) {
+  }
+
+
+  async allProduct(id_user: string) {
+	const transaction = await prisma.user.findUnique({
+	  where: { id: id_user },
+	  select: {
+		Transaction: {
+		  include: {
+			Box: {
+			  include: {
+				Product: true,
+			  },
+			},
+		  },
+		},
+	  },
+	})
+	return transaction
+  }
+
+
+  async all(event: H3Event): Promise<Transaction[]> {
+	const { session } = await getUserSession(event)
+	return db.trans.user.all(session.id)
+  }
+
+  async delete(event: H3Event) {
+	const { session } = await getUserSession(event)
+	const { id } = getRouterParams(event)
+	return db.trans.user.delete({ id_buyer: session.id, id: Number(id) })
   }
 }

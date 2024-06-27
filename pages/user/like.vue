@@ -1,7 +1,7 @@
 <template>
-  <NuxtLayout name="profile">
+  <NuxtLayout name="user">
     <!-- @vue-expect-error -->
-    <PageTransactionLike :data="data?.product" />
+    <PageTransactionLike :data="data?.product"/>
   </NuxtLayout>
 </template>
 

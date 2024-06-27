@@ -27,7 +27,7 @@ export class ProductDB extends ProductStatic {
     })
   }
 
-  async findTest(): Promise<ProductDetail["relateds"]> {
+  async findTest(): Promise<Product[]> {
     const product: Product[] = await prisma.product.findMany({
       take: 100,
     })

@@ -1,13 +1,15 @@
 <template>
-  <NuxtLayout name="profile">
+  <NuxtLayout name="user">
+    <ElLoading v-if="pending"/>
+    <ElError v-else-if="error || !data?.orders"/>
     <!-- @vue-expect-error -->
-    <PageTransactionOrder :data="data?.order" />
+    <PageMarketConfirm v-else :data="data?.orders"/>
   </NuxtLayout>
 </template>
 
 <script lang="ts" setup>
 // import { dataOrders } from "~/assets/example/transaction/dataOrder"
-const { data } = await useFetch("/api/user/order")
+const { data, pending, error } = await useFetch("/api/user/order", {})
 watch(data, () => {
   console.log(data.value)
 })

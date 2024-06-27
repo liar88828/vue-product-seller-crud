@@ -5,7 +5,8 @@
       <Filter />
     </div>
     <div class="md:col-span-3 lg:col-span-5 xl:col-span-6">
-      <PageProductGridShop :data="dataProducts" />
+      <ElEmptyProduct v-if="data?.length === 0" />
+      <PageProductGridShop v-else :data="newData" />
     </div>
   </section>
 </template>
@@ -14,7 +15,9 @@
 import type { Product } from "@prisma/client"
 import Filter from "./Filter.vue"
 
-defineProps<{
-  dataProducts: Product[]
+const props = defineProps<{
+  data: Product[]
 }>()
+const { filter, store } = useShop()
+const newData = filter(props.data)
 </script>

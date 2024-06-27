@@ -1,17 +1,15 @@
-import type {
-  MarketServerFull,
-  MarketUser,
-} from "~/types/market/ProfileCompany"
+import type { MarketServerFull, MarketUser, } from "~/types/market/ProfileCompany"
 import { tryCatch } from "../../lib/tryCatch"
-import { MarketServices } from "../../services/user/market"
+import { MarketServices } from "../../services/market/market"
 import { MarketUserController } from "./MarketUserController"
 import { MarketOwnerController } from "./MarketOwnerController"
 import type { H3Event } from "h3"
 
 export class MarketController {
   protected service = new MarketServices()
-  owner = new MarketOwnerController(this.service)
+  owner = new MarketOwnerController()
   user = new MarketUserController(this.service)
+
   async full(event: H3Event): Promise<MarketServerFull> {
     return tryCatch(async () => {
       const { session } = await getUserSession(event)

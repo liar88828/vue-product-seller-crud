@@ -1,8 +1,9 @@
 import type { Market, Product } from "@prisma/client"
 import { prisma } from "~/server/config/prisma"
+import { MarketOwnerService } from "./MarketOwner"
 
 export class MarketServices extends MarketSanitize {
-  owner = new MarketOwner(this.sanitizeProfile)
+  owner = new MarketOwnerService(this.sanitizeProfile)
   static = new MarketStaticService()
 
   async all(id_market: number): Promise<Product[]> {

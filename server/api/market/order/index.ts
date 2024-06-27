@@ -3,7 +3,7 @@
 // find by market id from session id
 export default defineEventHandler(async (event) => {
   const data = {
-    data: await control.trans.market.allProduct(event),
+    data: await control.market.owner.trans.allProduct(event),
     toJson() {
       return this.data
     },

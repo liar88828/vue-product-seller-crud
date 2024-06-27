@@ -1,9 +1,11 @@
 export default defineEventHandler(async (event) => {
-  const { id } = getRouterParams(event)
+  // confirm: await db.trans.market.allDetail(Number(id)),
   const data = {
-    confirm: await db.trans.market.allDetail(Number(id)),
+    confirms: await control.market.owner.trans.order.all(event),
     toJson() {
-      return this.confirm
+      return {
+        confirms: this.confirms,
+      }
     },
   }
   return data
