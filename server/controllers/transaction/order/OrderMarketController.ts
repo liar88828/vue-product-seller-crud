@@ -2,19 +2,20 @@ import type { H3Event } from "h3"
 import type { TStatus } from "~/types/globals/Status"
 import { MarketConfirmService } from "~/server/services/market/MarketConfirmService"
 
-export class MarketConfirmController {
-  constructor(protected service: MarketConfirmService) {}
+export class OrderMarketController {
+  constructor(protected event: H3Event) {}
+  protected service = new MarketConfirmService()
 
-  async all(event: H3Event): Promise<DataMarket[]> {
+  async all(): Promise<DataMarket[]> {
     return tryCatch(async () => {
-      const { session } = await getUserSession(event)
+      const { session } = await getUserSession(this.event)
       return this.service.all(Number(session.id_market))
     })
   }
 
-  async apply(event: H3Event, status: TStatus) {
-    const { id } = getRouterParams(event)
-    const { session } = await getUserSession(event)
+  async apply(status: TStatus) {
+    const { id } = getRouterParams(this.event)
+    const { session } = await getUserSession(this.event)
 
     await db.trans.market.confirm.add(
       {

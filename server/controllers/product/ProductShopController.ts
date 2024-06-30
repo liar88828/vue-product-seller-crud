@@ -4,20 +4,23 @@ import { ProductServices } from "../../services/product"
 import type { H3Event } from "h3"
 
 export class ProductShopController {
-  constructor(protected service: ProductServices) {}
+  constructor(
+    protected readonly event: H3Event,
+    protected readonly service: ProductServices
+  ) {}
 
-  async _all(event: H3Event): Promise<Product[]> {
+  async _all(): Promise<Product[]> {
     return db.product.findTest()
   }
 
-  async detail(event: H3Event): Promise<ProductDetail> {
+  async detail(): Promise<ProductDetail> {
     return tryCatch(async () => {
-      const { id } = getRouterParams(event)
+      const { id } = getRouterParams(this.event)
       return this.service.shop.oldDetail(Number(id))
     })
   }
-  async all(event: H3Event): Promise<Product[]> {
-    const { id } = getRouterParams(event)
+  async all(): Promise<Product[]> {
+    const { id } = getRouterParams(this.event)
     return this.service.market.all(Number(id))
   }
 }

@@ -1,14 +1,24 @@
 /* v8 ignore next 3 */
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  ignore: [
+    "**/*.test.*",
+    "**/.idea/*",
+    "**/.nuxt/*",
+    "**/.*ignore",
+    "**__test__",
+    "**vitest.config.ts",
+    "**coverage*",
+  ],
   vite: {
-    // esbuild: {
-    //   tsconfigRaw: {
-    //     compilerOptions: {
-    //       useDefineForClassFields: false,
-    //     },
-    //   },
-    // },
+    esbuild: {
+      tsconfigRaw: {
+        // compilerOptions: {
+        //   useDefineForClassFields: false,
+        // },
+        // exclude: ["**/__test__/**", "vitest.config.ts"],
+      },
+    },
   },
   // devtools: { enabled: true },
   css: ["@/assets/main/style.css"],

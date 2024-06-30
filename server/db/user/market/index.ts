@@ -2,7 +2,7 @@ import type {
   MarketServer,
   MarketServerFullNull,
 } from "~/types/market/ProfileCompany"
-import type { Market, User } from "@prisma/client"
+import type { Market } from "@prisma/client"
 import { MarketTestDB } from "./MarketTestDB"
 import { prisma } from "~/server/config/prisma"
 
@@ -12,15 +12,6 @@ class MarketOwnerDB extends MarketUserDB {
   async update(id_market: number, data: MarketServer): Promise<Market> {
     return prisma.market.update({
       where: { id: id_market },
-      data: data,
-      include: {
-        User: true,
-      },
-    })
-  }
-
-  async create(data: MarketServer) {
-    return prisma.market.create({
       data: data,
       include: {
         User: true,

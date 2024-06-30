@@ -1,9 +1,5 @@
 import type { CreateTransaction } from "~/types/transaction"
-import type {
-  GetBoxProps,
-  GetBoxReturn,
-  GetPackageReturn,
-} from "~/types/transaction/trolly"
+import type { GetBoxProps, GetBoxReturn, } from "~/types/transaction/trolly"
 
 export class TransactionSanitize {
   sanitize(data: CreateTransaction): CreateTransaction {

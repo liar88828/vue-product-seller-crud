@@ -2,61 +2,66 @@ import type { User } from "@prisma/client"
 import type { UserAll } from "~/types/user/ControlCreateUser"
 import { UserServices } from "../../services/user"
 import type { EventHandlerRequest, H3Event } from "h3"
-import type { ClassBase } from "~/types/globals/controller"
 import { UserProfileController } from "./UserProfileController"
+import { TransactionServices } from "../../services/transaction/index"
 
-export class UserController implements ClassBase {
-  protected service = new UserServices()
-
-  trans = new TransactionController().user
-  product = new ProductController().user
-  profile = new UserProfileController(this.service)
+export class UserController {
+  constructor(
+    protected readonly event: H3Event,
+    protected readonly service: UserServices,
+    protected readonly serviceTrans: TransactionServices,
+    public product = new ProductController(event, service.product).user,
+    public trolly = new TrollyController(event),
+    public like = new UserLikeController(event),
+    public profile = new UserProfileController(event, service),
+    public trans = new TransactionController(event, serviceTrans).user
+  ) {}
 
   detail(event: H3Event<EventHandlerRequest>): Promise<any> {
-	throw new Error("Method not implemented.")
+    throw new Error("Method not implemented.")
   }
 
   test(text: string): string {
-	return text
+    return text
   }
 
-  async all(event: H3Event): Promise<UserAll[]> {
-	return db.user.all()
+  async all(): Promise<UserAll[]> {
+    return db.user.all()
   }
 
-  async id(event: H3Event): Promise<User> {
-	const { id } = getRouterParams(event)
-	return this.service.id(id)
+  async id(): Promise<User> {
+    const { id } = getRouterParams(this.event)
+    return this.service.id(id)
   }
 
-  async myProfile(event: H3Event): Promise<User> {
-	const { session } = await requireUserSession(event)
-	return this.service.id(session.id)
+  async myProfile(): Promise<User> {
+    const { session } = await requireUserSession(this.event)
+    return this.service.id(session.id)
   }
 
-  async create(event: H3Event): Promise<User> {
-	const { session } = await getUserSession(event)
-	let data = await readBody(event)
+  async create(): Promise<User> {
+    const { session } = await getUserSession(this.event)
+    let data = await readBody(this.event)
 
-	data = this.service.sanitize(data)
-	return this.service.create(data)
+    data = this.service.sanitize(data)
+    return this.service.create(data)
   }
 
-  async update(event: H3Event): Promise<User> {
-	const { session } = await getUserSession(event)
-	let data = await readBody(event)
-	data = this.service.sanitize(data)
-	return this.service.update(session.id, data)
+  async update(): Promise<User> {
+    const { session } = await getUserSession(this.event)
+    let data = await readBody(this.event)
+    data = this.service.sanitize(data)
+    return this.service.update(session.id, data)
   }
 
-  async delete(event: H3Event): Promise<User> {
-	const { session } = await getUserSession(event)
-	if (session.id_role !== "USER") {
-	  throw createError({
-		statusCode: 401,
-		statusMessage: "Role is not allowed",
-	  })
-	}
-	return this.service.delete(session.id)
+  async delete(): Promise<User> {
+    const { session } = await getUserSession(this.event)
+    if (session.id_role !== "USER") {
+      throw createError({
+        statusCode: 401,
+        statusMessage: "Role is not allowed",
+      })
+    }
+    return this.service.delete(session.id)
   }
 }

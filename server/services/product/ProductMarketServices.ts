@@ -1,34 +1,10 @@
-import type { IdValid, ProductMarketId } from "~/types/product/findId"
+import type { IdValid } from "~/types/product/findId"
 import type { ProductMarketCreate } from "~/types/product/data.db"
 import type { Product } from "@prisma/client"
 import type { RequiredProperty } from "~/types/globals/generic"
 import { prisma } from "~/server/config/prisma"
 
 export type AllProductCurrentMarket = { id_market: number; id_user: string }
-
-export class ProductMarketServices {
-  async all(id_market: number): Promise<Product[]> {
-    id_market = zods.id.number.parse(id_market)
-    return prisma.product
-      .findMany({
-        where: { id_market },
-      })
-      .then((data) => {
-        if (!data) {
-          throw createError({
-            statusCode: 404,
-            statusMessage: "Product not found",
-          })
-        }
-        return data
-      })
-  }
-
-  async id(id: ProductMarketId) {
-    id = zods.product.idMarketProduct.parse(id)
-    return db.product.market.id(id)
-  }
-}
 
 export class ProductCurrentMarketServices {
   async all({ id_market, id_user }: AllProductCurrentMarket) {

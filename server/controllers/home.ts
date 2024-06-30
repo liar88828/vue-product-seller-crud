@@ -1,7 +1,6 @@
-import  type { HomeApi } from "~/types/home/props";
 import { prisma } from "~/server/config/prisma";
 import { HomeServices } from "~/server/services/home";
-import type  { Product } from "@prisma/client";
+import type { Product } from "@prisma/client";
 
 export class HomeController {
   constructor(protected service: HomeServices) {

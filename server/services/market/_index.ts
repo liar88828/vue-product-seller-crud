@@ -1,10 +1,19 @@
 import type { Market, Product } from "@prisma/client"
 import { prisma } from "~/server/config/prisma"
+import { MarketStaticService } from "./MarketStaticService"
+import { ProductServices } from "../product"
+import { TransactionServices } from "../transaction"
 import { MarketOwnerService } from "./MarketOwner"
 
 export class MarketServices extends MarketSanitize {
-  owner = new MarketOwnerService(this.sanitizeProfile)
-  static = new MarketStaticService()
+  constructor(
+    public _static: MarketStaticService,
+    public product: ProductServices,
+    public trans: TransactionServices
+  ) {
+    super()
+  }
+  public owner = new MarketOwnerService()
 
   async all(id_market: number): Promise<Product[]> {
     return prisma.product.findMany({
@@ -12,17 +21,41 @@ export class MarketServices extends MarketSanitize {
     })
   }
 
-  async create(data: MarketServer): Promise<MarketUser> {
+  async create(data: MarketServer, session: SessionUser): Promise<MarketUser> {
+    console.log(data, "data market")
     data = zods.market.create.parse(data)
-    const dataDB = await db.market.create(data)
-    const { User } = dataDB
-    if (!User) {
-      throw createError({
-        statusCode: 404,
-        statusMessage: "Market not found",
+
+    return prisma.market
+      .upsert({
+        where: { id: session.id_market },
+        create: data,
+        update: {
+          User: {
+            update: {
+              createMarket: true,
+            },
+          },
+        },
+        include: { User: true },
       })
-    }
-    return { ...dataDB, User }
+      .then((data) => {
+        if (!data) {
+          throw createError({
+            statusCode: 404,
+            statusMessage: "Market not found",
+          })
+        } else {
+          const { User } = data
+          if (!User) {
+            throw createError({
+              statusCode: 404,
+              statusMessage: "User not found",
+            })
+          }
+          User.password = ""
+          return { ...data, User: User }
+        }
+      })
   }
 
   async id(id: number): Promise<Market> {
@@ -43,6 +76,10 @@ export class MarketServices extends MarketSanitize {
   }
 
   async findFull(id_market: number): Promise<MarketServerFull> {
+    return MarketServices.findFullStatic(id_market)
+  }
+
+  static async findFullStatic(id_market: number) {
     id_market = zods.id.number.parse(id_market)
     const data = await db.market.findFull(id_market)
     // console.log(data, "data market")

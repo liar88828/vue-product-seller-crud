@@ -1,33 +1,10 @@
-import { AuthServices } from "./auth"
-import { HomeServices } from "./home"
-import { MarketServices } from "./market/market"
-import { BoxService } from "./transaction/box"
-import { ProductServices } from "./product"
-import { SanitizeService } from "./sanitize"
-import { TrollyService } from "./user/trolly"
-import { UserServices } from "./user"
-import { TransactionServices } from "./transaction"
-
 export class Services {
-  auth = new AuthServices()
-  user = new UserServices()
-  market = new MarketServices()
-  home = new HomeServices()
-  // shop = new ShopServices()
-  sanitize = new SanitizeService()
+  _static = new MarketStaticService()
   product = new ProductServices()
-  transaction = new TransactionServices()
-  trolly = new TrollyService()
-  box = new BoxService()
-}
 
-// export const service = new Services()
-
-export interface IService {
-  auth: AuthServices
-  user: UserServices
-  market: MarketServices
-  home: HomeServices
-  sanitize: SanitizeService
-  product: ProductServices
+  auth = new AuthServices()
+  home = new HomeServices()
+  user = new UserServices(this.product)
+  trans = new TransactionServices()
+  market = new MarketServices(this._static, this.product, this.trans)
 }

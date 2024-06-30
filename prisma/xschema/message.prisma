@@ -1,0 +1,19 @@
+// ------------- Message
+model MessageContact {
+  id          Int           @id @default(autoincrement())
+  name        String
+  time        DateTime
+  img         String
+  MessageList MessageList[]
+  read        Boolean
+}
+
+model MessageList {
+  id                Int             @id @default(autoincrement())
+  User              User?           @relation(fields: [id_user], references: [id])
+  id_user           String?
+  time              DateTime
+  msg               String
+  MessageContact    MessageContact? @relation(fields: [id_messageContact], references: [id])
+  id_messageContact Int?
+}

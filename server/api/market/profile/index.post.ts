@@ -7,7 +7,7 @@ import type { Market } from "@prisma/client"
 
 export default defineEventHandler(async (event) => {
   const data = {
-    market: await control.market.owner.create(event),
+    market: await control.market(event).owner.create(),
     toJson(): { market: Market } {
       return {
         market: this.market,

@@ -1,9 +1,10 @@
 export default defineEventHandler(async (event) => {
+  const user = control.market(event).user
   const data = {
-    bestProduct: await control.market.user.all(event),
-    discount: await control.market.user.all(event),
-    newProduct: await control.market.user.all(event),
-    profile: await control.market.user.idLess(event),
+    bestProduct: await user.all(),
+    discount: await user.all(),
+    newProduct: await user.all(),
+    profile: await user.idLess(),
     toJson(): ShopMarket {
       return {
         bestProduct: this.bestProduct,

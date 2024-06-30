@@ -2,14 +2,15 @@ import { tryCatch } from "../../lib/tryCatch"
 import { ProductServices } from "../../services/product"
 import { ProductMarketController } from "./ProductMarketController"
 import { ProductUserController } from "./ProductUserController"
-import { ProductShopController } from "./ProductShopController"
 import type { H3Event } from "h3"
 
 export class ProductController {
-  protected service = new ProductServices()
-  market = new ProductMarketController()
-  user = new ProductUserController(this.service)
-  shop = new ProductShopController(this.service)
+  constructor(
+    event: H3Event,
+    protected service: ProductServices,
+    public user = new ProductUserController(service, event),
+    public market = new ProductMarketController(event)
+  ) {}
 
   test(text: string): string {
     return text

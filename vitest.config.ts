@@ -30,6 +30,7 @@ export default defineVitestConfig({
       "**/cypress/**",
       "**/.{idea,git,cache,output,temp}/**",
       "**/server/config/**",
+      "**/coverage/**",
     ],
   },
 })

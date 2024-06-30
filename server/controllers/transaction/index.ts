@@ -1,18 +1,22 @@
 import type { Transaction } from "@prisma/client"
-import { TransactionServices } from "../../services/transaction"
+import type { H3Event } from "h3"
+import { TransactionServices } from "../../services/transaction/index"
 
 export class TransactionController {
-  protected serviceTrans = new TransactionServices()
+  constructor(
+    protected event: H3Event,
+    protected service: TransactionServices,
 
-  market = new TransactionMarketCon()
-  user = new TransactionUserCon(this.serviceTrans,)
+    public market = new TransactionMarketCon(event, service),
+    public user = new TransactionUserCon(event)
+  ) {}
 
   async id(id: number) {
-	return this.serviceTrans.id(id)
+    return this.service.id(id)
   }
 
   async createTrans(data: Transaction) {
-	return db.trans.create(data)
+    return db.trans.create(data)
   }
 
   // change in class MarketOwner
@@ -20,14 +24,14 @@ export class TransactionController {
   //   return db.transaction.confirm(data)
   // }
   async allTrans() {
-	return db.trans.all()
+    return db.trans.all()
   }
 
   async allTransDetail(id_market: number) {
-	return db.trans.id(id_market)
+    return db.trans.id(id_market)
   }
 
   async detailTrans(id: number) {
-	return db.trans.id(id)
+    return db.trans.id(id)
   }
 }

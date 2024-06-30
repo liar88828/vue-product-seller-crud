@@ -5,13 +5,14 @@ import { tryCatch } from "~/server/lib/tryCatch"
 
 export class ProductCurrentMarketController {
   constructor(
-    protected service: ProductServices["current"],
-    protected sanitize: ProductServices["sanitizeCreate"]
+    protected readonly event: H3Event,
+    protected readonly service: ProductServices["current"],
+    protected readonly sanitize: ProductServices["sanitizeCreate"]
   ) {}
 
-  async all(event: H3Event): Promise<Product[]> {
+  async all(): Promise<Product[]> {
     return tryCatch(async () => {
-      const { session } = await getUserSession(event)
+      const { session } = await getUserSession(this.event)
       const data = await this.service.all({
         id_market: session.id_market,
         id_user: session.id,
@@ -20,9 +21,9 @@ export class ProductCurrentMarketController {
     })
   }
 
-  async id(event: H3Event): Promise<ProductItemServer> {
-    const { session } = await getUserSession(event)
-    const { id } = getRouterParams(event)
+  async id(): Promise<ProductItemServer> {
+    const { session } = await getUserSession(this.event)
+    const { id } = getRouterParams(this.event)
     const data = await this.service.id({
       id: Number(id),
       id_market: session.id_market,
@@ -31,10 +32,10 @@ export class ProductCurrentMarketController {
     return data
   }
 
-  async delete(event: H3Event) {
+  async delete() {
     return tryCatch(async () => {
-      const { id } = getRouterParams(event)
-      const { session } = await getUserSession(event)
+      const { id } = getRouterParams(this.event)
+      const { session } = await getUserSession(this.event)
 
       return this.service.delete({
         id: Number(id),
@@ -43,12 +44,12 @@ export class ProductCurrentMarketController {
     })
   }
 
-  async create(event: H3Event) {
+  async create() {
     console.log("create")
 
     return tryCatch(async () => {
-      const { session } = await getUserSession(event)
-      const body = await readBody(event)
+      const { session } = await getUserSession(this.event)
+      const body = await readBody(this.event)
       const data = this.sanitize(body, {
         id_user: session.id,
         id_market: session.id_market,
@@ -57,11 +58,11 @@ export class ProductCurrentMarketController {
     })
   }
 
-  async update(event: H3Event) {
+  async update() {
     return tryCatch(async () => {
-      const { session } = await getUserSession(event)
-      const body = await readBody(event)
-      const { id } = getRouterParams(event)
+      const { session } = await getUserSession(this.event)
+      const body = await readBody(this.event)
+      const { id } = getRouterParams(this.event)
 
       const data = this.sanitize(body, {
         id_user: session.id,

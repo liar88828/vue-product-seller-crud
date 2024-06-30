@@ -53,12 +53,12 @@ export const useMarketProfile = () => {
       method: "POST",
       body,
     })
-    console.log(data)
     if (error.value) {
       throw new Error(` Error Create ${error.value?.statusMessage}`)
     }
+    // console.log(data)
     store.pending = pending.value
-    return data
+    return data.value
   }
 
   const handleSubmit = async () => {
@@ -67,8 +67,9 @@ export const useMarketProfile = () => {
       const valid = validData(store.data)
 
       const res = await create(valid)
-      if (res.value?.market) {
+      if (res) {
         await fetch()
+        await navigateTo("/market/profile")
       }
     } catch (e) {
       if (e instanceof Error) {

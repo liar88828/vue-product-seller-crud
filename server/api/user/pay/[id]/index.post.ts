@@ -3,10 +3,10 @@
 //
 export default defineEventHandler(async (event) => {
   const data = {
-	order: await control.user.trans.order.pay(event),
-	toJson() {
-	  return this.order
-	},
+    order: await control.user(event).trans.order.pay(),
+    toJson() {
+      return this.order
+    },
   }
   return data
 })

@@ -1,4 +1,4 @@
-import type { Box, Product } from "@prisma/client"
+import type { Box } from "@prisma/client"
 import { prisma } from "~/server/config/prisma"
 import type { IdTrolly } from "~/server/db/user/trolly"
 import type {
@@ -6,6 +6,7 @@ import type {
   IdBox,
   TrollyAllService,
 } from "~/types/transaction/trolly"
+
 class SanitizeTrolly {
   sanitize(data: BoxCreate): BoxCreate {
     return {
@@ -108,9 +109,16 @@ export class TrollyService extends SanitizeTrolly {
 
   async notify(id: number) {
     id = zods.id.number.parse(id)
-    const count = await prisma.box.count({
-      where: { id_trolly: id },
-    })
+    const count = await prisma.box
+      .count({
+        where: { id_trolly: id },
+      })
+      .then((data) => {
+        if (!data) {
+          return 0
+        }
+        return data
+      })
 
     const data = await prisma.box.findMany({
       where: { id_trolly: id },

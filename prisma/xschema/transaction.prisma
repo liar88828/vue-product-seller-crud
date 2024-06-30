@@ -1,0 +1,47 @@
+model Transaction {
+    id           Int    @id @default(autoincrement())
+    drop_address String
+    // who's buy 
+
+    discount  Int
+    status    String
+    promoCode String
+    // Box    Box[]
+    // trolly    Product[]
+    // 
+    id_buyer  String
+    userBuy   User     @relation(fields: [id_buyer], references: [id])
+    // 
+    id_market Int
+    Market    Market   @relation(fields: [id_market], references: [id])
+    // that status transaction is []
+    id_status String
+    Status    Status   @relation(fields: [id_status], references: [id])
+    // 
+    dateExp   DateTime
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+    // 
+    // Package   Package[]
+    Box       Box[]
+}
+
+model Status {
+    id          String        @id @default("PENDING")
+    Transaction Transaction[]
+}
+
+model Box {
+    id             Int          @id @default(autoincrement())
+    qty            Int // how many buy @map("amount")
+    price          Int // may be discount
+    // save a product
+    Product        Product      @relation(fields: [id_product], references: [id])
+    id_product     Int
+    // as label 
+    Trolly         Trolly       @relation(fields: [id_trolly], references: [id])
+    id_trolly      Int
+    // 
+    Transaction    Transaction? @relation(fields: [id_transaction], references: [id])
+    id_transaction Int?         @unique
+}

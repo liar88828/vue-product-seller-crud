@@ -20,10 +20,9 @@ class BoxTrolly {
 }
 
 export class BoxService extends BoxTrolly {
-  async pushPackage(data: Box[]) {
-    return db.box.boxMany(data)
-  }
-
+  // async pushPackage(data: Box[]) {
+  //   return db.box.boxMany(data)
+  // }
   // async checkTransaction(data: CheckTransaction): Promise<Transaction> {
   //   return db.transaction.create(data)
   // }

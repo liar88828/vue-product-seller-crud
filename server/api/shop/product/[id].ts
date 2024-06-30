@@ -3,7 +3,7 @@ import type { ProductDetail } from "~/types/product/item"
 export default defineEventHandler(async (event) => {
   // return { product: dataProductDetailServer }
   const data = {
-    product: await control.product.shop.detail(event),
+    product: await control.user(event).product.detail(),
 
     toJSON(): { product: ProductDetail } {
       return {

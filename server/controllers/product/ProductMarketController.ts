@@ -1,27 +1,36 @@
 import { tryCatch } from "../../lib/tryCatch"
 import { ProductServices } from "../../services/product"
-import { ProductCurrentMarketController } from "~/server/controllers/product/ProductCurrentMarketController";
+import { ProductCurrentMarketController } from "~/server/controllers/product/ProductCurrentMarketController"
+import { H3Event } from "h3"
 
 export class ProductMarketController {
-  protected service = new ProductServices()
-  current = new ProductCurrentMarketController(this.service.current,
-	this.service.sanitizeCreate)
+  constructor(
+    protected readonly event: H3Event,
+    protected readonly service = new ProductServices(),
+    public current = new ProductCurrentMarketController(
+      event,
+      service.current,
+      service.sanitizeCreate
+    )
+  ) {}
 
+  async _id(param: string = "id") {
+    const id_product = getRouterParam(this.event, param)
+    const { id } = getRouterParams(this.event)
 
-  async id(id_market: string, id_product: string) {
-	return tryCatch(async () => {
-	  return this.service.market.id({
-		id_market: Number(id_market),
-		id_product: Number(id_product),
-	  })
-	})
+    return tryCatch(async () => {
+      return this.service.market.id({
+        id_market: Number(id),
+        id_product: Number(id_product),
+      })
+    })
   }
 
-  async all(id_market: string) {
-	return tryCatch(async () => {
-	  return this.service.market.all(Number(id_market))
-	})
+  async all() {
+    return tryCatch(async () => {
+      const { id } = getRouterParams(this.event)
+
+      return this.service.market.all(Number(id))
+    })
   }
-
-
 }

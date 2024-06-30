@@ -3,9 +3,7 @@ import { prisma } from "~/server/config/prisma"
 import { MarketSanitize } from "./MarketSanitize"
 
 export class MarketOwnerService {
-  constructor(protected sanitize: MarketSanitize["sanitizeProfile"]) {}
-
-  // confirm = new MarketConfirmService()
+  confirm = new MarketConfirmService()
   // product = new ProductUserController()
   // history = new HistoryController().market
 
@@ -55,7 +53,7 @@ export class MarketOwnerService {
             statusMessage: "Market not found",
           })
         }
-        return this.sanitize(data)
+        return MarketSanitize.sanitizeProfileStatic(data)
       })
 
     const contact: Contact | null = await prisma.contact.findUnique({

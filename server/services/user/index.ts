@@ -1,4 +1,5 @@
 import type { User } from "@prisma/client"
+import { ProductServices } from "../product"
 
 class UserSanitize {
   sanitize(data: UserCreate): UserCreate {
@@ -18,6 +19,20 @@ class UserSanitize {
 }
 
 export class UserServices extends UserSanitize {
+  constructor(public product: ProductServices) {
+    super()
+  }
+
+  async first(id: string): Promise<User> {
+    id = zods.id.string.parse(id)
+    const data = await db.user.first()
+    if (!data) {
+      throw createError({ statusCode: 404, statusMessage: "User not found" })
+    }
+    data.password = ""
+    return data
+  }
+
   async id(id: string): Promise<User> {
     id = zods.id.string.parse(id)
     const data = await db.user.findId(id)

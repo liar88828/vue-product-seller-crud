@@ -1,4 +1,3 @@
-import type { Product } from "@prisma/client"
 import type { ProductMarketId } from "~/types/product/findId"
 import { prisma } from "~/server/config/prisma"
 

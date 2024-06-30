@@ -5,7 +5,7 @@
 
 export default defineEventHandler(async (event) => {
   const data = {
-    market: await control.market.owner.idMarketFind(event),
+    market: await control.market(event).owner.idMarketFind(),
     toJson(): { market: idMarketFind } {
       return {
         market: this.market,

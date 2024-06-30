@@ -1,7 +1,7 @@
 <template>
   <CardInit class="bg-base-100">
-    <Option />
-    <Tables :data="data" />
+    <Option/>
+    <Tables :data="data"/>
   </CardInit>
 </template>
 

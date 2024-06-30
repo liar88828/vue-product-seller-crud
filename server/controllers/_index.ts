@@ -1,18 +1,12 @@
-import { Services } from "../services/_index"
-import { MarketController } from "./market"
-import { ProductController } from "./product"
-import { UserController } from "./user"
-import { HomeController } from "~/server/controllers/home"
+import type { H3Event } from "h3"
 
 class Control {
-  private readonly service = new Services()
-  product = new ProductController()
-  market = new MarketController()
-  // trans = new TransactionController()
-  user = new UserController()
+  protected service = new Services()
   auth = new AuthController(this.service.auth)
-  // box = new BoxController(this.service.box)
   home = new HomeController(this.service.home)
+  user = (event: H3Event) =>
+    new UserController(event, this.service.user, this.service.trans)
+  market = (event: H3Event) => new MarketController(event, this.service.market)
 }
 
 export const control = new Control()

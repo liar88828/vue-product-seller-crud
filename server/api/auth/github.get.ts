@@ -7,7 +7,7 @@ export default oauth.githubEventHandler({
     // clientSecret: config.oauth.github.clientSecret,
   },
   async onSuccess(event, { user, tokens }) {
-    const { password, phone, ...rest } = await control.user.id(user.id)
+    const { password, phone, ...rest } = await control.user(event).id()
     await setUserSession(event, {
       user: rest,
       session: rest,

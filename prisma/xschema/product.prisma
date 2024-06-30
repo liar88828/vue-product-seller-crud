@@ -1,0 +1,73 @@
+model Product {
+    id          Int       @id @default(autoincrement())
+    name        String
+    description String?
+    image       String
+    brand       String?
+    stock       Int
+    price       Int
+    // 
+    id_user     String?
+    User        User?     @relation(fields: [id_user], references: [id])
+    // 
+    id_type     String?
+    Type        Type?     @relation(fields: [id_type], references: [id])
+    // 
+    // Package     Package[] // will order
+    Box         Box[] // only save on trolly
+    Preview     Preview[] // user comment after buy
+    // 
+    Spec        Spec[]
+    Tech        Tech[]
+    Desc        Desc[]
+    Img         Image[]
+    // 
+    // Order       Order?    @relation(fields: [id_order], references: [id])
+    // id_order    Int?
+    // 
+    Market      Market?   @relation(fields: [id_market], references: [id])
+    id_market   Int?
+    // 
+    Like        LikeBox[]
+}
+
+model Image {
+    id         Int      @id @default(autoincrement())
+    title      String
+    img        String
+    // link       String
+    id_product Int?
+    Product    Product? @relation(fields: [id_product], references: [id])
+}
+
+model Desc {
+    text       String   @id
+    Product    Product? @relation(fields: [id_product], references: [id])
+    id_product Int?
+}
+
+model Tech {
+    title      String   @id
+    text       String
+    // List       List_Tech[]
+    Product    Product? @relation(fields: [id_product], references: [id])
+    id_product Int?
+}
+
+model Spec {
+    title      String      @id
+    List       List_Spec[]
+    Product    Product?    @relation(fields: [id_product], references: [id])
+    id_product Int?
+}
+
+model List_Spec {
+    text      String  @id
+    Spec      Spec?   @relation(fields: [specTitle], references: [title])
+    specTitle String?
+}
+
+model Type {
+    id      String    @id @default("UNKNOWN")
+    Product Product[]
+}

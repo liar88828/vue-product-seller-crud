@@ -2,7 +2,7 @@ import type { Product } from "@prisma/client"
 
 export default defineEventHandler(async (event) => {
   const data = {
-    product: await control.product.shop._all(event),
+    product: await control.user(event).product._all(),
 
     toJSON(): { products: Product[] } {
       return {

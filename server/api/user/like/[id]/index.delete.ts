@@ -1,13 +1,12 @@
-import type { Like } from "@prisma/client";
+import type { Like } from "@prisma/client"
 
 export default defineEventHandler(async (event) => {
-
   const data = {
-	like: await control.user.product.like.unLike(event),
+    like: await control.user(event).product.like.unLike(),
 
-	toJson(): { like: Like } {
-	  return { like: this.like }
-	},
+    toJson(): { like: Like } {
+      return { like: this.like }
+    },
   }
   return data
 })
