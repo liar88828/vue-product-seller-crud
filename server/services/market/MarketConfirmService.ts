@@ -26,3 +26,5 @@ export class MarketConfirmService {
     return data
   }
 }
+
+export const marketConfirmService = new MarketConfirmService()

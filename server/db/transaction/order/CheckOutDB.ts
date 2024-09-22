@@ -31,3 +31,5 @@ export class CheckOutDB {
     return db.product.findTest()
   }
 }
+
+export const checkoutDB = new CheckOutDB()

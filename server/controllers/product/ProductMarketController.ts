@@ -1,36 +1,35 @@
 import { tryCatch } from "../../lib/tryCatch"
-import { ProductServices } from "../../services/product"
-import { ProductCurrentMarketController } from "~/server/controllers/product/ProductCurrentMarketController"
+import { ProductServices } from "../../services/product/ProductServices"
+import { productCurrentMarketController } from "~/server/controllers/product/ProductCurrentMarketController"
 import { H3Event } from "h3"
 
 export class ProductMarketController {
   constructor(
-    protected readonly event: H3Event,
-    protected readonly service = new ProductServices(),
-    public current = new ProductCurrentMarketController(
-      event,
-      service.current,
-      service.sanitizeCreate
-    )
+    private serviceProduct: ProductServices,
+    public current = productCurrentMarketController
   ) {}
 
-  async _id(param: string = "id") {
-    const id_product = getRouterParam(this.event, param)
-    const { id } = getRouterParams(this.event)
+  async _id(event: H3Event, param: string = "id") {
+    const id_product = getRouterParam(event, param)
+    const { id } = getRouterParams(event)
 
     return tryCatch(async () => {
-      return this.service.market.id({
+      return this.serviceProduct.productMarketId({
         id_market: Number(id),
         id_product: Number(id_product),
       })
     })
   }
 
-  async all() {
+  async marketAll(event: H3Event) {
     return tryCatch(async () => {
-      const { id } = getRouterParams(this.event)
+      const { id } = getRouterParams(event)
 
-      return this.service.market.all(Number(id))
+      return this.serviceProduct.marketAll(Number(id))
     })
   }
 }
+
+export const productMarketController = new ProductMarketController(
+  productService
+)

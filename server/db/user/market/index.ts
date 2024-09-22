@@ -58,8 +58,8 @@ export class MarketDB extends MarketOwnerDB {
     return data
   }
 
-  async findFull(id: number): Promise<MarketServerFullNull | null> {
-    return prisma.market.findUnique({
+  async findFull(id: number): Promise<MarketServerFullNull> {
+    const res = await prisma.market.findUnique({
       where: { id },
       include: {
         User: true,
@@ -68,5 +68,12 @@ export class MarketDB extends MarketOwnerDB {
         Additional: true,
       },
     })
+    if (!res) {
+      throw createError({
+        statusCode: 404,
+        statusMessage: "Market not found",
+      })
+    }
+    return res
   }
 }

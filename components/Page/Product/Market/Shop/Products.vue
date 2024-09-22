@@ -6,6 +6,6 @@
 import type { Product } from "@prisma/client"
 
 defineProps<{
-  data: ShopMarket["bestProduct"]
+  data: Product[]
 }>()
 </script>

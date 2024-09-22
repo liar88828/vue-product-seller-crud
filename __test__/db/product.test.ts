@@ -2,7 +2,7 @@ import { beforeAll, describe, expect, it, test } from "vitest"
 import { ProductController } from "~/server/controllers/product/index"
 import { ProductDB } from "~/server/db/product"
 
-const product = new ProductDB()
+const product = new ProductServices()
 export const testProductDb = test.extend({
   product,
 })
@@ -10,7 +10,7 @@ export const testProductDb = test.extend({
 testProductDb(
   "Describe can be tested product controller",
   async ({ product }) => {
-    const test = product.test("test")
+    const test = product.id(1)
     expect(test).toBe("test")
   }
 )

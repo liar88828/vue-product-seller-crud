@@ -2,7 +2,7 @@ export default defineEventHandler(async (event) => {
   const role = "ADMIN"
 
   const data = {
-    data: await control.user(event).update(),
+    data: await userController.update(event),
     async toJson() {
       return this.data
     },

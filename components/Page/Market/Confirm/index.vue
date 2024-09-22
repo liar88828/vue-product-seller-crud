@@ -1,16 +1,13 @@
 <template>
   <CardInit :title="'Confirm'">
-    <PageMarketConfirmTable :data="data" />
+    <Option />
+    <Table :data="data" />
   </CardInit>
 </template>
 
 <script lang="ts" setup>
-import type { DataMarket } from "~/types/market/order"
+import Option from "./Option.vue"
+import Table from "./Table.vue"
 
-// import type { DataMarket } from "~/types/market/confirm"
-// import type { OrderProps } from "~/types/product/order"
-
-defineProps<{
-  data: DataMarket[]
-}>()
+defineProps<{ data: TransClient[] }>()
 </script>

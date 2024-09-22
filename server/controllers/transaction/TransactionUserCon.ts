@@ -1,13 +1,19 @@
+import {
+  HistoryUserController,
+  historyUserController,
+} from "./history/HistoryUserController"
+import {
+  orderUserController,
+  OrderUserController,
+} from "./order/OrderUserController"
 import type { H3Event } from "h3"
 import type { Transaction } from "@prisma/client"
 import { prisma } from "~/server/config/prisma"
-import { OrderController } from "~/server/controllers/transaction/order"
 
 export class TransactionUserCon {
   constructor(
-    protected event: H3Event,
-    public order = new OrderController(event).user,
-    public history = new HistoryController(event).user
+    private serviceOrder: OrderUserController,
+    private serviceHistory: HistoryUserController
   ) {}
 
   async allProduct(id_user: string) {
@@ -28,14 +34,19 @@ export class TransactionUserCon {
     return transaction
   }
 
-  async all(): Promise<Transaction[]> {
-    const { session } = await getUserSession(this.event)
+  async all(event: H3Event): Promise<Transaction[]> {
+    const { session } = await getUserSession(event)
     return db.trans.user.all(session.id)
   }
 
-  async delete() {
-    const { session } = await getUserSession(this.event)
-    const { id } = getRouterParams(this.event)
+  async delete(event: H3Event) {
+    const { session } = await getUserSession(event)
+    const { id } = getRouterParams(event)
     return db.trans.user.delete({ id_buyer: session.id, id: Number(id) })
   }
 }
+
+export const transactionUserController = new TransactionUserCon(
+  orderUserController,
+  historyUserController
+)

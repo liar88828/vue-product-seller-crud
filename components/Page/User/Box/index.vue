@@ -4,8 +4,12 @@
       title="Customer Review"
       :class="'text-xl sm:text-2xl font-bold'"
     />
+    <ElLoading v-if="pending" />
+    <ElError v-else-if="error || !data" />
+    <ElEmpty v-else-if="data.preview.length === 0" />
     <Review
-      v-for="dataPreview in data"
+      v-else
+      v-for="dataPreview in data.preview"
       :data="dataPreview"
       :key="dataPreview.id"
     />
@@ -13,11 +17,9 @@
 </template>
 
 <script lang="ts" setup>
-// import type { DataPreviewProps } from "~/types/product/review"
 import Review from "./Review.vue"
-import type { ProductDetail } from "~/types/product/item"
-
-defineProps<{
-  data: ProductDetail["previews"]
-}>()
+const { id } = useRoute().params
+const { data, pending, error } = useFetch("/api/product/preview/:id", {
+  params: { id },
+})
 </script>

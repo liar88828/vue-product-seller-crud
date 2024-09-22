@@ -1,15 +1,22 @@
 import { prisma } from "~/server/config/prisma"
 import type { Pagination } from "~/types/globals/Pagination"
-import type { Product } from "@prisma/client"
+import type { Market, Product } from "@prisma/client"
 import type { ProductDetail, ProductItemServer } from "~/types/product/item"
-import { ProductUserDB } from "./ProductUserDB"
-import { ProductMarketDB } from "./ProductMarketDB"
-import { ProductStatic } from "./ProductStatic"
+import { statics } from "./ProductStatic"
 
-export class ProductDB extends ProductStatic {
-  user = new ProductUserDB()
-  market = new ProductMarketDB()
-
+export class ProductDB {
+  async marketFindId({ id_market, id_product }: ProductMarketId) {
+    const data = await prisma.product.findUnique({
+      where: { id_market, id: id_product },
+    })
+    if (!data) {
+      throw createError({
+        statusCode: 404,
+        statusMessage: "Product not found",
+      })
+    }
+    return data
+  }
   async findAll({ page, search }: Pagination) {
     return prisma.product.findMany({
       where: {
@@ -64,7 +71,7 @@ export class ProductDB extends ProductStatic {
     })
   }
 
-  async findCompany(id: number): Promise<ProductDetail["market"]> {
+  async findCompany(id: number): Promise<Market> {
     const data = await prisma.product
       .findUnique({ where: { id }, select: { Market: true } })
       .then((data) => data?.Market)
@@ -112,8 +119,12 @@ export class ProductDB extends ProductStatic {
         productRelated: await db.product.findTest(),
         userPreview: await db.preview.findUser(valid),
         market,
-        statics: await this.statics(valid, market),
+        statics: await statics(valid, market),
       }
     })
+  }
+
+  async delete({ id, id_user }: IdValid) {
+    return prisma.product.delete({ where: { id, id_user } })
   }
 }

@@ -3,8 +3,6 @@
     <!--    <ElLoading v-if="pending"/>-->
     <ElLoading v-if="pending" />
     <ElError v-else-if="error || !data" />
-    <!-- @vue-expect-error -->
-    <PageProfileMarket v-else :data="data.market" />
   </NuxtLayout>
 </template>
 <script lang="ts" setup>

@@ -2,7 +2,7 @@ import type { Like } from "@prisma/client"
 
 export default defineEventHandler(async (event) => {
   const data = {
-    like: await control.user(event).like.all(),
+    like: await likeController.all(event),
 
     toJson(): { likes: Like[] } {
       return { likes: this.like }

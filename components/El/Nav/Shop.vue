@@ -8,7 +8,7 @@
     </div>
 
     <div class="flex-none">
-      <ElDropDownTrolly />
+      <ElDropDownTrolley />
 
       <!-- if has login -->
       <!-- <ElDropDownNotify v-if="!hidden" /> -->

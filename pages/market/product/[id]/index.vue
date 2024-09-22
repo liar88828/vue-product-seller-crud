@@ -12,7 +12,7 @@
 // import { dataImage } from "~/assets/example/product/image"
 const { id } = useRoute().params
 
-const { data, error, pending } = await useFetch(`/api/market/product/${id}`)
+const { data, error, pending } = await useFetch(`/api/product/market/${id}`)
 watch(data, () => {
   console.log(data.value)
 })

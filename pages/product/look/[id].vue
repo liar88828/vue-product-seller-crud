@@ -1,5 +1,6 @@
 <template>
-  <!-- @vue-expect-error -->
+  <ElLoading v-if="pending" />
+  <ElError v-else-if="error || !data" />
   <PageTransactionPay
     :data="{
       market: data?.pay.market,

@@ -127,3 +127,4 @@ export class TrollyService extends SanitizeTrolly {
     return count
   }
 }
+export const trollyService = new TrollyService()

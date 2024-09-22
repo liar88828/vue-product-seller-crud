@@ -3,5 +3,7 @@
 </template>
 
 <script lang="ts" setup>
-defineProps<{ data: ShopMarket["profile"] }>()
+const { id } = useRoute().params
+const profile = await useFetch(`/api/market/profile/:id`)
+// defineProps<{ data: ShopMarket["profile"] }>()
 </script>

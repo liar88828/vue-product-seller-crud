@@ -1,5 +1,3 @@
-import type { SessionUser } from "~/types/globals/session"
-
 export default defineEventHandler(async (event) => {
   // const session = await requireUserSession(event)
   // if (session) {
@@ -8,7 +6,7 @@ export default defineEventHandler(async (event) => {
   //   return "You was logged"
   // }
   const data = {
-    data: await control.auth.signIn(event),
+    data: await authController.signIn(event),
     toJson(): { userLogin: SessionUser } {
       return { userLogin: this.data }
     },

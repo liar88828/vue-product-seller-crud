@@ -6,7 +6,5 @@
 </template>
 
 <script lang="ts" setup>
-defineProps<{
-  count: number
-}>()
+defineProps<{ count: number }>()
 </script>

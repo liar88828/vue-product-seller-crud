@@ -2,7 +2,7 @@ import type { UserCreate } from "~/types/user/ControlCreateUser"
 
 export default defineEventHandler<{ body: UserCreate }>(async (event) => {
   const data = {
-    data: await control.user(event).create(),
+    data: await userController.create(event),
     async toJson() {
       return this.data
     },

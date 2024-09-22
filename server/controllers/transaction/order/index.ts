@@ -1,10 +1,11 @@
-import type { H3Event } from "h3"
-import { MarketServices } from "../../../services/market/_index"
+import { orderUserController } from "./OrderUserController"
+import { orderMarketController } from "./OrderMarketController"
 
-export class OrderController {
+class OrderController {
   constructor(
-    protected event: H3Event,
-    public market = new OrderMarketController(event),
-    public user = new OrderUserController(event)
+    public market = orderMarketController,
+    public user = orderUserController
   ) {}
 }
+
+const orderControllerXX = new OrderController()

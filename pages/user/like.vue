@@ -1,14 +1,13 @@
 <template>
   <NuxtLayout name="user">
-    <!-- @vue-expect-error -->
-    <PageTransactionLike :data="data?.product"/>
+    <ElLoading v-if="pending" />
+    <ElError v-else-if="error || !data?.products" />
+    <PageTransactionLike v-else :data="data.products" />
   </NuxtLayout>
 </template>
 
 <script lang="ts" setup>
-// import { dataProducts } from "~/assets/example/product/dataProduct"
-// import { dataOrders } from "~/assets/example/transaction/dataOrder"
-const { data } = await useFetch("/api/user/like")
+const { data, pending, error } = await useFetch("/api/user/like/product")
 watch(data, () => {
   console.log(data.value)
 })

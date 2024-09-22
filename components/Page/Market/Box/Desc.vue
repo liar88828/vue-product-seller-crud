@@ -22,9 +22,7 @@
 </template>
 
 <script setup lang="ts">
-import type { Market } from "@prisma/client"
-
 defineProps<{
-  data: Market
+  data: MarketClient
 }>()
 </script>

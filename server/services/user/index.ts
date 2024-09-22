@@ -1,5 +1,5 @@
+import { ProductServices } from "~/server/services/product/ProductServices"
 import type { User } from "@prisma/client"
-import { ProductServices } from "../product"
 
 class UserSanitize {
   sanitize(data: UserCreate): UserCreate {
@@ -19,7 +19,7 @@ class UserSanitize {
 }
 
 export class UserServices extends UserSanitize {
-  constructor(public product: ProductServices) {
+  constructor(public serviceProduct: ProductServices) {
     super()
   }
 
@@ -65,3 +65,5 @@ export class UserServices extends UserSanitize {
     return res
   }
 }
+
+export const userService = new UserServices(productService)

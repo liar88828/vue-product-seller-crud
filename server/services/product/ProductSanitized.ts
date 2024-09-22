@@ -41,3 +41,5 @@ export class ProductSanitized extends MarketStaticService {
     }
   }
 }
+
+export const productSanitized = new ProductSanitized()

@@ -16,25 +16,8 @@
 </template>
 
 <script lang="ts" setup>
-// import type { Preview } from "@prisma/client"
-import type { DataPreview,  } from "~/types/product/item"
-// import type { DataPreviewProps } from "~/types/product/review"
+import type { UserPreviewClient } from "~/types/product/item"
 defineProps<{
-  data: DataPreview
+  data: UserPreviewClient
 }>()
 </script>
-
-<!-- <div class="card card-side bg-base-100 shadow-xl">
-    <figure>
-      <img :src="data.img" :alt="data.name" />
-    </figure>
-    <div class="card-body">
-      <h1 class="card-title">{{ data.name }}</h1>
-      <div class="flex items-center gap-2 mb-2">
-        <ProductDetailRating :rating="3" />
-        <span class="text-xs sm:text-sm">{{ getDate(data.time) }}</span>
-      </div>
-      <p class="text-xs sm:text-sm line-clamp-2">{{ data.text }}</p>
-    </div>
-  </div>
- -->

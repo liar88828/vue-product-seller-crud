@@ -1,8 +1,4 @@
-import type { IdValid } from "~/types/product/findId"
-import type { ProductMarketCreate } from "~/types/product/data.db"
 import type { Product } from "@prisma/client"
-import type { RequiredProperty } from "~/types/globals/generic"
-import { prisma } from "~/server/config/prisma"
 
 export type AllProductCurrentMarket = { id_market: number; id_user: string }
 
@@ -119,3 +115,5 @@ export class ProductCurrentMarketServices {
     return db.product.delete(id)
   }
 }
+
+export const productMarketService = new ProductCurrentMarketServices()

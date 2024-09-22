@@ -9,6 +9,8 @@ export class MarketOwnerService {
 
   async findSingle(id_market: number): Promise<MarketServiceSingleNull> {
     id_market = zods.id.number.parse(id_market)
+    // console.log("id_market-----", id_market)
+
     const market = await prisma.market
       .findUnique({ where: { id: id_market } })
       .then((data) => {
@@ -189,3 +191,5 @@ export class MarketOwnerService {
     })
   }
 }
+
+export const marketOwnerService = new MarketOwnerService()

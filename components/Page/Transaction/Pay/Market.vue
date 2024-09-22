@@ -1,23 +1,23 @@
 <template>
   <h3 class="nota-title">
     <IconsCardBoardClose />
-    <spam>{{ market.name }}</spam>
+    <spam>{{ data.name }}</spam>
   </h3>
   <div class="flex justify-between">
     <div class="w-2/3">
       <div class="gap-2 flex flex-col">
         <div class="flex flex-col">
           <div class="font-medium">Name</div>
-          <div>{{ market.address }}</div>
+          <div>{{ data.address }}</div>
         </div>
-        <ElError v-if="!market.address" text="error" />
+        <ElError v-if="!data.address" text="error" />
         <div class="flex flex-col">
           <div class="font-medium">Email</div>
-          <div>{{ market.Contact?.email ?? "" }}</div>
+          <div>{{ data.Contact?.email ?? "" }}</div>
         </div>
         <div class="flex flex-col">
           <div class="font-medium">Phone</div>
-          <div>{{ getPhone(market.Contact?.phone) }}</div>
+          <div>{{ getPhone(data.Contact?.phone) }}</div>
         </div>
       </div>
     </div>
@@ -31,10 +31,8 @@
 </template>
 
 <script setup lang="ts">
-import type { PayProps } from "~/types/market/order"
-
 defineProps<{
-  market: PayProps["market"]
+  data: MarketClientFull
 }>()
 
 // // Function to download the QR Code

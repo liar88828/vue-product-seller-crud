@@ -1,6 +1,6 @@
 export default defineEventHandler(async (event) => {
   console.time()
-  const user = await control.user(event).profile.first()
+  const user = await userController.myProfile(event)
   console.timeEnd()
   return user
 })

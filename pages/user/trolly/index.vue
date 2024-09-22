@@ -2,12 +2,12 @@
   <NuxtLayout name="user">
     <ElLoading v-if="pending" />
     <ElError v-else-if="error || !data" />
-    <PageTransactionTrollyNew v-else :data="data?.trolly" />
+    <PageTransactionTrollyNew v-else :data="data?.trolleys" />
   </NuxtLayout>
 </template>
 
 <script lang="ts" setup>
-const { data, pending, error } = await useFetch(`/api/user/trolly`)
+const { data, pending, error } = await useFetch(`/api/user/trolley`)
 watch(data, () => {
   console.log(data.value)
 })

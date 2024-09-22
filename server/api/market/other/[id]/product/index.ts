@@ -4,7 +4,7 @@
 //
 export default defineEventHandler(async (event) => {
   const data = {
-    product: await control.market(event).product.all(),
+    product: await productController.marketAll(event),
 
     toJSON() {
       return {

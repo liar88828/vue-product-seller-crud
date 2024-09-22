@@ -1,15 +1,3 @@
-import type {
-  MarketServerFullNull,
-  MarketStatic,
-  ProfileMarket,
-} from "~/types/market/ProfileCompany"
-export const marketStatic: MarketStatic = {
-  follow: 44_234_234_223_429,
-  product: 44_234_234_223_429,
-  since: new Date(),
-  response: "100%",
-}
-
 export const marketStaticServer: MarketStatic = {
   follow: 44_234_234_223_429,
   product: 44_234_234_223_429,

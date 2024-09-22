@@ -1,14 +1,12 @@
-import { TrollyService } from "../../services/user/trolly"
+import { trollyService, TrollyService } from "../../services/user/trolly"
 import type { Box } from "@prisma/client"
 import type { BoxProduct, TrollyAllService } from "~/types/transaction/trolly"
 import type { H3Event } from "h3"
-import { SessionIdClass } from "./SessionIdClass"
+import { sessionId } from "./sessionId"
 
-export class TrollyController extends SessionIdClass {
-  constructor(protected event: H3Event) {
-    super(event)
-  }
-  protected service = new TrollyService()
+export class TrolleyController {
+  constructor(private serviceTrolley: TrollyService) {}
+
   async id(
     id_user: string,
     id_trolly: number,
@@ -18,8 +16,8 @@ export class TrollyController extends SessionIdClass {
     return db.trolly.findBox(id_trolly)
   }
 
-  async productId(): Promise<BoxProduct[]> {
-    const { session, id } = await this.sessionId()
+  async productId(event: H3Event): Promise<BoxProduct[]> {
+    const { session, id } = await sessionId(event)
     return db.trolly.productId({
       id_trolly: session.id_trolly,
       id_product: id,
@@ -27,32 +25,32 @@ export class TrollyController extends SessionIdClass {
     })
   }
 
-  async all(): Promise<TollyProps[]> {
-    const { session } = await this.sessionId()
-    return this.service.all({
-      id_trolly: session.id_trolly,
+  async all(event: H3Event): Promise<TollyProps[]> {
+    const { session } = await sessionId(event)
+    return this.serviceTrolley.all({
+      id_trolley: session.id_trolly,
       id_user: session.id,
     })
   }
 
-  async _all(): Promise<TrollyAllService> {
-    const { session } = await this.sessionId()
-    return this.service._all({
-      id_trolly: session.id_trolly,
+  async _all(event: H3Event): Promise<TrollyAllService> {
+    const { session } = await sessionId(event)
+    return this.serviceTrolley._all({
+      id_trolley: session.id_trolly,
       id_user: session.id,
     })
   }
 
-  async notify(): Promise<number> {
-    const { session } = await getUserSession(this.event)
-    return this.service.notify(session.id_trolly)
+  async notify(event: H3Event): Promise<number> {
+    const { session } = await getUserSession(event)
+    return this.serviceTrolley.notify(session.id_trolly)
   }
 
-  async push(): Promise<Box> {
-    // await this.service.check(id_trolly)
-    let data = await readBody(this.event)
-    data = this.service.sanitize(data)
-    return this.service.push(data)
+  async push(event: H3Event): Promise<Box> {
+    // await this.serviceTrolley.check(id_trolly)
+    let data = await readBody(event)
+    data = this.serviceTrolley.sanitize(data)
+    return this.serviceTrolley.push(data)
   }
 
   async delete(
@@ -60,6 +58,8 @@ export class TrollyController extends SessionIdClass {
     id_product: number,
     id_trolly: number
   ): Promise<Box> {
-    return this.service.delete({ id_box, id_product, id_trolly })
+    return this.serviceTrolley.delete({ id_box, id_product, id_trolly })
   }
 }
+
+export const trolleyController = new TrolleyController(trollyService)

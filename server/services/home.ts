@@ -15,3 +15,5 @@ export class HomeServices {
     })
   }
 }
+
+export const homeService = new HomeServices()

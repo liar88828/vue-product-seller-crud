@@ -1,7 +1,7 @@
 import { type FilterData, storeFilter } from "~/assets/filter"
-import type { TransProps } from "~/types/market/order"
+import type { TransServer } from "~/types/market/order"
 
-export const useHistory = (data: HistoryProps["Box"]) => {
+export const useHistory = (data: any) => {
   // const store = reactive<HistoryProps['Box']>(data)
   // const filters: HistoryProps['Box'] = store.filter((d) => {
   //   if (store.ma === "") {

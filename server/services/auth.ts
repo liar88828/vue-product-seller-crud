@@ -89,3 +89,5 @@ export class AuthServices {
     return user
   }
 }
+
+export const authService = new AuthServices()

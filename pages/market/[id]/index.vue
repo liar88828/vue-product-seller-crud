@@ -1,22 +1,18 @@
 <template>
   <NuxtLayout name="market">
-    <!--    <ElLoading v-if="pending"/>-->
-    <ElLoading v-if="pending"/>
-    <ElError v-else-if=" error||!data"/>
-    <!-- @vue-expect-error -->
-    <PageProfileMarket v-else :data="data.market"/>
+    <!-- <h1>hellos</h1> -->
+    <ElLoading v-if="pending" />
+    <ElError v-else-if="error || !data" />
+    <Index v-else :data="data.market" />
   </NuxtLayout>
 </template>
+
 <script lang="ts" setup>
-// import { dataCompany } from "~/assets/example/user/dataCompany"
+import Index from "~/pages/market/profile/index.vue"
+
 const { id } = useRoute().params
-const { data, pending, error } = await useFetch(`/api/market/profile${ id }}`, {
-  method: 'GET',
+const { data, pending, error } = await useFetch(`/api/market/profile/:id`, {
+  params: { id },
+  method: "GET",
 })
-watch(data, () => {
-  console.log(data.value)
-})
-if (!data.value) {
-  throw new Error("data not found")
-}
 </script>

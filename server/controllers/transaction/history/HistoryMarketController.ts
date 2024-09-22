@@ -1,12 +1,10 @@
 import { H3Event } from "h3"
 import { prisma } from "~/server/config/prisma"
-import type { HistoryProps } from "~/types/market/order"
+import type { HistoryServer } from "~/types/market/order"
 
 export class HistoryMarketController {
-  constructor(private readonly event: H3Event) {}
-
-  async all(): Promise<HistoryProps[]> {
-    const { session } = await getUserSession(this.event)
+  async all(event: H3Event): Promise<HistoryServer[]> {
+    const { session } = await getUserSession(event)
     return prisma.transaction
       .findMany({
         where: {
@@ -27,7 +25,7 @@ export class HistoryMarketController {
         return data.map((d) => {
           d.userBuy.OTP = ""
           d.userBuy.password = ""
-          const Box: HistoryProps["Box"] = d.Box.map((item) => {
+          const Box: HistoryServer["Box"] = d.Box.map((item) => {
             const { Product, ...ress } = item
 
             return {
@@ -46,3 +44,5 @@ export class HistoryMarketController {
       })
   }
 }
+
+export const historyMarketController = new HistoryMarketController()

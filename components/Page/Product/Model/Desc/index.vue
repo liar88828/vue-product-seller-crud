@@ -32,7 +32,7 @@
 
         <div class="" v-if="!side">
           <NuxtLink
-            :to="`/shop/product/${data.id}`"
+            :to="`/product/${data.id}`"
             class="btn sm:btn-outline sm:btn-md btn-sm btn-square"
             v-if="detail === false"
           >
@@ -54,7 +54,6 @@
 
 <script setup lang="ts">
 import type { Product } from "@prisma/client"
-import Counter from "../Counter.vue"
 
 const props = defineProps<{
   data: Product

@@ -25,7 +25,7 @@ export default defineNuxtConfig({
 
   // 4. Integrate with Nitro
   imports: {
-    dirs: ["composables/**", "utils/**", "types/**"],
+    dirs: ["composables/**", "utils/**", "types/**", "assets/**"],
   },
   nitro: {
     imports: {
@@ -33,9 +33,9 @@ export default defineNuxtConfig({
         "./server/services/**",
         "./server/controllers/**",
         "./server/db/**",
-        "./server/lib/**",
-        "./server/utils/**",
-        // "./server/config",
+        "server/lib/**",
+        "server/utils/**",
+        "server/config/**",
         "utils/**",
         "types/**",
       ],
@@ -70,7 +70,7 @@ export default defineNuxtConfig({
   },
 
   devtools: {
-    enabled: false,
+    enabled: true,
   },
   runtimeConfig: {
     oauth: {

@@ -1,7 +1,7 @@
 // noinspection JSUnusedGlobalSymbols
 
 import { tryCatch } from "../lib/tryCatch"
-import { AuthServices } from "../services/auth"
+import { authService, AuthServices } from "../services/auth"
 import type { SessionUser } from "~/types/globals/session"
 import type { H3Event } from "h3"
 
@@ -81,3 +81,5 @@ export class AuthController {
     return this.service.resendOTP(session.id)
   }
 }
+
+export const authController = new AuthController(authService)

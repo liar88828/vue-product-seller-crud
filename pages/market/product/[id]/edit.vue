@@ -8,7 +8,7 @@
 import type { Product } from "@prisma/client"
 
 const { id } = useRoute().params
-const { data, error, pending } = await useFetch(`/api/market/product/${id}`)
+const { data, error, pending } = await useFetch(`/api/product/market/${id}`)
 watch(data, () => {
   console.log(data.value)
 })

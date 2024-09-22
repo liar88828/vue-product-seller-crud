@@ -1,6 +1,6 @@
 export default defineEventHandler(async (event) => {
   const data = {
-    user: await control.auth.signUp(event),
+    user: await authController.signUp(event),
     async toJson() {
       return { user: this.user }
     },

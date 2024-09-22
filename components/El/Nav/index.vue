@@ -12,8 +12,7 @@
     </div>
     <div class="flex-none">
       <div v-if="loggedIn">
-        <ElDropDownTrolly />
-        <!-- <ElTheme /> -->
+        <ElDropDownTrolley />
       </div>
       <Auths v-else />
     </div>

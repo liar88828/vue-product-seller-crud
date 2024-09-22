@@ -70,10 +70,8 @@
 </template>
 
 <script lang="ts" setup>
-import type { DataMarket } from "~/types/market/order"
-
 const props = defineProps<{
-  data: DataMarket[]
+  data: TransClient[]
 }>()
 const totalProduct = computed(() =>
   props.data

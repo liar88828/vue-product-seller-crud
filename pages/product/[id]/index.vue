@@ -1,25 +1,15 @@
 <script setup lang="ts">
-// import { dataPreviews } from "~/assets/example/product/dataPreview"
-// import {
-//   dataProductDetails,
-//   dataProducts,
-// } from "~/assets/example/product/dataProduct"
-// import { marketStatic } from "~/assets/example/user/dataCompany"
-// import { dataImage } from "~/assets/example/product/image"
-// import type { ProductDetail } from "~/types/product/item"
-
-// const { data, error } = await useFetch<ProductDetail>(`/api/shop/${id}`)
-// watch(data, () => {
-//   console.log(data.value)
-// })
-// if (!data.value) {
-//   throw new Error("data not found")
-// }
-const { redirectedFrom, params } = useRoute()
-await navigateTo(`/shop/${params.id}?redirectedFrom=${redirectedFrom}`)
+const { id } = useRoute().params
+const { data, error, pending } = await useFetch(`/api/product/shop/${id}`)
 </script>
 
 <template>
-  <!-- <PageProductDetail :data="data" /> -->
-  will redirect
+  <Suspense>
+    <template #fallback><ElLoading /></template>
+    <template #default>
+      <ElLoading v-if="pending" />
+      <ElError v-else-if="error || !data" text="error" />
+      <PageProductDetail v-else :data="data.product" />
+    </template>
+  </Suspense>
 </template>

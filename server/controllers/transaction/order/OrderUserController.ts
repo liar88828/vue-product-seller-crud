@@ -1,73 +1,43 @@
-import { MarketServices } from "~/server/services/market/_index"
+import { MarketServices } from "~/server/services/market/MarketService"
 import type { H3Event } from "h3"
-import type { PayProps, TBoxProduct, TransProps } from "~/types/market/order"
-import { prisma } from "~/server/config/prisma"
+import type { PayProps } from "~/types/market/order"
+import { PayService } from "../../pay.controller"
 
-export class OrderUserController {
-  constructor(protected readonly event: H3Event) {}
+export class OrderUserController extends PayService {
+  constructor(private serviceMarket: MarketServices) {
+    super()
+  }
 
-  async detail() {
-    const { id } = getRouterParams(this.event)
-    const { session } = await getUserSession(this.event)
+  async detail(event: H3Event) {
+    const { id } = getRouterParams(event)
+    const { session } = await getUserSession(event)
     return db.trans.user.id({ id_buyer: session.id, id: Number(id) })
   }
 
-  async all(): Promise<TransProps[]> {
-    const { session } = await getUserSession(this.event)
-    return prisma.transaction
-      .findMany({
-        where: {
-          id_market: session.id_market,
-        },
-        include: {
-          userBuy: true,
-          Market: true,
-          Box: {
-            include: {
-              Product: true,
-            },
-          },
-        },
-        take: 100,
-      })
-      .then((data) => {
-        return data.map((d) => {
-          d.userBuy.OTP = ""
-          d.userBuy.password = ""
-          const Box: TransProps["Box"] = d.Box.map((item) => {
-            const { Product, ...ress } = item
+  async payDetail(event: H3Event): Promise<PayProps> {
+    const { session } = await getUserSession(event)
+    const { id } = getRouterParams(event)
 
-            return {
-              Product: Product,
-              ...ress,
-            } satisfies TBoxProduct
-          })
-
-          return {
-            ...d,
-            userBuy: d.userBuy,
-            Market: d.Market,
-            Box,
-          } satisfies TransProps
-        })
-      })
-  }
-
-  async payDetail(): Promise<PayProps> {
-    const { session } = await getUserSession(this.event)
-    const { id } = getRouterParams(this.event)
     return {
       market: await MarketServices.findFullStatic(Number(session.id_market)),
-      order: await db.trans.user.idDetail({
+
+      order: await this.idDetail({
         id: Number(id),
         id_buyer: session.id,
       }),
     }
   }
 
-  async pay() {
-    const { id } = getRouterParams(this.event)
-    const { session } = await getUserSession(this.event)
+  async findMarket(event: H3Event): Promise<MarketServerFull> {
+    const { session } = await getUserSession(event)
+    return MarketServices.findFullStatic(Number(session.id_market))
+  }
+
+  async pay(event: H3Event) {
+    const { id } = getRouterParams(event)
+    const { session } = await getUserSession(event)
     return db.trans.user.pay({ id_buyer: session.id, id: Number(id) })
   }
 }
+
+export const orderUserController = new OrderUserController(marketService)

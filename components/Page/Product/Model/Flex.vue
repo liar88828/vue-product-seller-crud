@@ -3,7 +3,7 @@
     <figure>
       <img
         alt="Related product"
-        class="object-cover w-full aspect-square group-hover:opacity-50 transition-opacity"
+        class="object-cover w-full flex-shrink aspect-square group-hover:opacity-50 transition-opacity"
         :src="data.image ?? 'https://picsum.photos/300'"
         height="300"
         width="300"

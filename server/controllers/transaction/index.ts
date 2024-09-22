@@ -1,18 +1,26 @@
+import {
+  TransactionUserCon,
+  transactionUserController,
+} from "./TransactionUserCon"
 import type { Transaction } from "@prisma/client"
-import type { H3Event } from "h3"
-import { TransactionServices } from "../../services/transaction/index"
+import {
+  transactionService,
+  TransactionService,
+} from "../../services/transaction/index"
+import {
+  TransactionMarketCon,
+  transactionMarketController,
+} from "./TransactionMarketCon"
 
 export class TransactionController {
   constructor(
-    protected event: H3Event,
-    protected service: TransactionServices,
-
-    public market = new TransactionMarketCon(event, service),
-    public user = new TransactionUserCon(event)
+    private serviceService: TransactionService,
+    private market: TransactionMarketCon,
+    private user: TransactionUserCon
   ) {}
 
   async id(id: number) {
-    return this.service.id(id)
+    return this.serviceService.id(id)
   }
 
   async createTrans(data: Transaction) {
@@ -35,3 +43,9 @@ export class TransactionController {
     return db.trans.id(id)
   }
 }
+
+export const transactionController = new TransactionController(
+  transactionService,
+  transactionMarketController,
+  transactionUserController
+)

@@ -25,7 +25,6 @@ if (error) {
 <template>
   <div v-if="pending">Loading ...</div>
   <div v-else-if="error || !data?.pay">Error</div>
-  <!-- @vue-expect-error -->
   <PageTransactionPay
     v-else
     :data="{

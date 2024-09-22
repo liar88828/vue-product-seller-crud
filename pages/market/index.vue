@@ -1,9 +1,9 @@
 <template>
-  <ElLoading/>
+  <!-- <ElLoading/> -->
+  Hello
 </template>
 <script lang="ts" setup>
-
 definePageMeta({
-  middleware: ['market']
+  middleware: ["market"],
 })
 </script>

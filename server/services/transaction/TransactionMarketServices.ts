@@ -12,3 +12,5 @@ export class TransactionMarketServices {
     return db.trans.market.idDetail(id)
   }
 }
+
+export const transactionMarketService = new TransactionMarketServices()

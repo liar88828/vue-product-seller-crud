@@ -1,7 +1,7 @@
 import { type FilterData, storeFilter } from "~/assets/filter"
-import type { TransProps } from "~/types/market/order"
+import type { TransClient, TransServer } from "~/types/market/order"
 
-export const useOrder = (data: TransProps[]) => {
+export const useOrder = (data: TransClient[]) => {
   const store = reactive<FilterData>(storeFilter)
   const filter = computed(() =>
     data.filter((d) => {

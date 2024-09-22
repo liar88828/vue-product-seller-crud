@@ -1,47 +1,52 @@
 import type { Box, Market, Product, Transaction, User } from "@prisma/client"
-import type { MarketServerFull, } from "./ProfileCompany"
+import type { MarketClient, MarketServerFull } from "./ProfileCompany"
 import type { CreateTransaction } from "../transaction"
 import type { BoxProduct, GetBoxProps } from "../transaction/trolly"
-
-// export type OrderProps = {
-//   id: number
-//   discount: number
-//   status: string
-//   promoCode: string
-//   dateBuy: Date
-//   expired: Date
-//   id_userBuy: string
-//   id_market: number
-//   userBuy: User
-//   Market: ProfileMarket
-//   trolly: Product[]
-//   // Market: DataCompany
-// }
 
 export type DataMarket = Transaction & {
   userBuy: User
   Market: Market
   Box: BoxProduct[]
 }
-// export type DataMarketProps = Transaction & {
-//   userBuy: User
-//   Market: Market
-//   Box: (Box & {
-//     Product: Product //| null
-//   })[]
+
 export type TBoxProduct = Box & {
   Product: Product | null
-};
-export type TransProps = Transaction & {
+}
+export type TransServer = Transaction & {
   userBuy: User
   Market: Market
   Box: TBoxProduct[]
 }
 
+export type TransactionClient = Omit<
+  Transaction,
+  "dateExp" | "updatedAt" | "createdAt"
+>
+
+export type TransClient = TransactionClient & {
+  updatedAt: string
+  createdAt: string
+  dateExp: string
+} & {
+  userBuy: User
+  Market: MarketClient
+  Box: TBoxProduct[]
+}
 export type HBoxProducts = Box & Product
-export type HistoryProps = Transaction & {
+
+export type HistoryServer = Transaction & {
   userBuy: User
   Market: Market
+  Box: HBoxProducts[]
+}
+
+export type HistoryClient = TransactionClient & {
+  dateExp: string
+  updatedAt: string
+  createdAt: string
+} & {
+  userBuy: User
+  Market: MarketClient
   Box: HBoxProducts[]
 }
 
@@ -67,8 +72,8 @@ export type WantBuyProps = {
   id_user: User["id"]
   id_trolly: number
   data: {
-	box: GetBoxProps[]
-	data: CreateTransaction
+    box: GetBoxProps[]
+    data: CreateTransaction
   }
 }
 

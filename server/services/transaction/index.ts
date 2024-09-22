@@ -6,7 +6,7 @@ import { prisma } from "~/server/config/prisma"
 import type { Market } from "@prisma/client"
 import type { TransactionId } from "~/types/transaction/trolly"
 
-export class TransactionServices extends TransactionSanitize {
+export class TransactionService extends TransactionSanitize {
   user = new TransactionUserServices()
   market = new TransactionMarketServices()
 
@@ -60,3 +60,5 @@ export class TransactionServices extends TransactionSanitize {
     return db.trans.all()
   }
 }
+
+export const transactionService = new TransactionService()

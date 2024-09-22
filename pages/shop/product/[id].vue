@@ -4,7 +4,7 @@
 // import type { ProductDetail } from "~/types/product/item"
 
 const { id } = useRoute().params
-const { data, error, pending } = await useFetch(`/api/shop/product/${id}`)
+const { data, error, pending } = await useFetch(`/api/product/shop/${id}`)
 watch(data, () => {
   console.log(data.value)
 })
@@ -18,14 +18,8 @@ if (!data.value) {
     <template #fallback>Loading.....</template>
     <template #default>
       <ElLoading v-if="pending" />
-      <ElError v-else-if="error || !data" text="error" />
+      <ElError v-else-if="error || !data" />
       <PageProductDetail v-else :data="data.product" />
     </template>
   </Suspense>
 </template>
-
-<!-- detail: data?.detail, -->
-<!-- previews: data?.previews, -->
-<!-- relateds: data?.relateds, -->
-<!-- market: data?.market, -->
-<!-- static: data?.static, -->

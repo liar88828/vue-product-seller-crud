@@ -9,18 +9,7 @@ import type {
   Tech,
   User,
 } from "@prisma/client"
-// import type { DataImage } from "~/assets/example/product/image"
 import type { IfEquals } from "../globals/generic"
-import type { MarketStatic } from "../market/ProfileCompany"
-// id: string
-// name: string | null
-// description: string | null
-// image: string | null
-// brand: string | null
-// stock: number
-// price: number
-// userId: string | null
-// typeId: string | null
 
 export type DataTech = {
   title: string
@@ -40,14 +29,29 @@ export type ProductItem = Product & {
 
 // server
 
-export type DataPreview = Preview & { User: User }
+export type UserPreviewServer = Preview & { User: User }
+export type UserPreviewClient = Omit<Preview, "time"> & {
+  time: string | Date
+} & {
+  User: User
+}
 
 export type ProductDetail = {
   detail: ProductItemServer
-  market: Market
-  previews: DataPreview[]
-  relateds: Product[]
-  static: MarketStatic
+  previews: UserPreviewServer[]
+  // relateds: Product[]
+  // market: Market
+  // static: MarketStatic
+  // dataProduct: ProductItem
+  // dataPreviews: DataPreviewProps[]
+}
+
+export type ProductDetailClient = {
+  detail: ProductItemServer
+  previews: UserPreviewClient[]
+  // market: MarketClient
+  // relateds: Product[]
+  // static: MarketStaticClient
   // dataProduct: ProductItem
   // dataPreviews: DataPreviewProps[]
 }
@@ -74,3 +78,8 @@ export type ProductItemServer = Product & {
 // --------
 type test = IfEquals<ProductItem, ProductItemServer, "save", "different">
 const Test: test = "different"
+
+export type SearchProduct = {
+  category: string
+  search: string
+}

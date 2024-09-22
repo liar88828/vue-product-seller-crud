@@ -3,9 +3,7 @@
   <!-- {{ store }} -->
   <ElLoading v-if="pending" />
   <ElError v-else-if="error || !data" />
-  <!-- @vue-expect-error  -->
-  <PageShop :data="data?.products" />
-
+  <PageShop v-else :data="data?.products" />
   <ElButtonScroll />
 </template>
 
@@ -15,9 +13,9 @@
 // const { search } = useSearch()
 // console.log(search.value, "from shop")
 
-const { data, pending, error } = await useFetch("/api/shop/product")
+const { data, pending, error } = await useFetch("/api/product/shop")
 
-if (!data.value) {
-  throw createError({ statusCode: 404, statusMessage: "Page Not Found" })
-}
+// if (!data.value) {
+//   throw createError({ statusCode: 404, statusMessage: "Page Not Found" })
+// }
 </script>

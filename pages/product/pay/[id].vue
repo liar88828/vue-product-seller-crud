@@ -24,7 +24,6 @@ if (error) {
 </script>
 
 <template>
-  <!-- @vue-expect-error   -->
   <PageTransactionPay
     :data="{ market: data?.pay.market, order: data?.pay.order }"
   >

@@ -1,9 +1,8 @@
 <template>
   <div ref="refImage">
     <CardInit :class="'sm:card-normal'">
-      <Market :market="data.market">
-        <ElQRBarcode :qrValue="fullUrl" class="bg-white rounded-3xl" />
-      </Market>
+      <TransactionPayMarket :data="data" :fullUrl="fullUrl" />
+
       <ElDivider class="my-0" />
       <Customer :data="data.order" />
       <ElDivider class="my-0" />
@@ -14,6 +13,7 @@
       <Total :data="data.order" />
     </CardInit>
   </div>
+
   <div class="flex flex-col gap-2 p-5">
     <button @click="clickImage" class="btn btn-info w-full">Save Image</button>
     <slot />
@@ -27,6 +27,7 @@ import Customer from "./Customer.vue"
 import Market from "./Market.vue"
 import Dates from "./Dates.vue"
 import type { PayProps } from "~/types/market/order"
+import TransactionPayMarket from "./TransactionPayMarket.vue"
 defineProps<{ data: PayProps }>()
 const route = useRoute()
 let url = ""

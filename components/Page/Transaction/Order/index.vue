@@ -1,9 +1,9 @@
 <template>
   <CardInit>
-    <Option :data="data"/>
+    <Option :data="data" />
     <!-- @vue-skip -->
     <CardTable :data="data">
-      <Tables :data="item" v-for="item in data" :key="item.id"/>
+      <Tables :data="item" v-for="item in data" :key="item.id" />
     </CardTable>
   </CardInit>
 </template>
@@ -11,7 +11,7 @@
 <script lang="ts" setup>
 import Option from "./Option.vue"
 import Tables from "./Tables.vue"
-import type { TransProps } from "~/types/market/order"
+import type { TransClient } from "~/types/market/order"
 
-defineProps<{ data: TransProps[] }>()
+defineProps<{ data: TransClient[] }>()
 </script>
