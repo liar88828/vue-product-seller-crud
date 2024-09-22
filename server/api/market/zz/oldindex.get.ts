@@ -7,7 +7,7 @@ import type { MarketServerFull } from "~/types/market/ProfileCompany"
 
 export default defineEventHandler(async (event) => {
   const data = {
-    market: await marketOwnerController.full(event),
+    market: await marketController.ownerFull(event),
     toJson(): { market: MarketServerFull } {
       return {
         market: this.market,

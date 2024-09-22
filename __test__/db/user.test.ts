@@ -1,7 +1,4 @@
 import { beforeAll, describe, expect, it, test } from "vitest"
-import { ProductController } from "~/server/controllers/product/index"
-import { ProductDB } from "~/server/db/product"
-import { UserDB } from "~/server/db/user"
 
 const user = new UserDB()
 export const testUserDb = test.extend({

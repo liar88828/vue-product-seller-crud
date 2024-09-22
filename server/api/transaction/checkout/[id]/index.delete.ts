@@ -5,7 +5,6 @@ export default defineEventHandler(async (event) => {
   const { id } = getRouterParams(event)
   const { session } = await getUserSession(event)
   const data = {
-    // is must checkout not detail product
     product: await checkoutDB.delete(session.id, Number(id)), //detail(Number(id)),
 
     toJSON(): { product: Product } {

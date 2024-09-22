@@ -1,13 +1,11 @@
 <template>
   <ElLoading v-if="pending" />
   <ElError v-else-if="error || !data" />
-  <Market v-else :data="data?.market">
-    <ElQRBarcode :qrValue="fullUrl" class="bg-white rounded-3xl" />
-  </Market>
+  <MarketQr v-else :data="data?.market" :full-url="fullUrl" />
 </template>
 
 <script setup lang="ts">
-import Market from "./Market.vue"
+import MarketQr from "./MarketQr.vue"
 
 defineProps<{
   data: any

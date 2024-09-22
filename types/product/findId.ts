@@ -23,3 +23,8 @@ export type FindIdProductCurrentMarket = {
   id_market: number
   id_user: string
 }
+
+export type IdProductOwner = {
+  id_market: number
+  id_user: string
+}

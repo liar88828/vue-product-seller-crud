@@ -3,7 +3,7 @@ export default defineEventHandler(async (event) => {
     bestProduct: await productController.bestProduct(),
     discount: await productController.discount(),
     newProduct: await productController.newProduct(),
-    profile: await marketUserController.idLess(event),
+    profile: await marketController.marketIdLess(event),
     toJson(): ShopMarket {
       return {
         bestProduct: this.bestProduct,

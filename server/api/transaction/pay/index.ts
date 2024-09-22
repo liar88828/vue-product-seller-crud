@@ -1,6 +1,6 @@
 export default defineEventHandler(async (event) => {
   const data = {
-    order: await orderUserController.pay(event),
+    order: await orderController.userPay(event),
     toJson() {
       return { order: this.order }
     },

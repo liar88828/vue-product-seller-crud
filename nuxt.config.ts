@@ -31,7 +31,8 @@ export default defineNuxtConfig({
     imports: {
       dirs: [
         "./server/services/**",
-        "./server/controllers/**",
+        "server/controllers/**",
+        "server/sanitize/**",
         "./server/db/**",
         "server/lib/**",
         "server/utils/**",

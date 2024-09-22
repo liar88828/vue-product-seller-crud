@@ -1,6 +1,4 @@
 import { beforeAll, describe, expect, it, test } from "vitest"
-import { ProductController } from "~/server/controllers/product/index"
-import { ProductDB } from "~/server/db/product"
 
 const product = new ProductServices()
 export const testProductDb = test.extend({

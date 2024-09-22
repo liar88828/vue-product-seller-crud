@@ -1,7 +1,7 @@
 // noinspection JSUnusedGlobalSymbols
 
 import { tryCatch } from "../lib/tryCatch"
-import { authService, AuthServices } from "../services/auth"
+import { authService, AuthServices } from "../services/auth.service"
 import type { SessionUser } from "~/types/globals/session"
 import type { H3Event } from "h3"
 

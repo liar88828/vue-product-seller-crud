@@ -6,7 +6,7 @@ import {
   marketServerFull,
 } from "~/assets/example/user/dataCompany"
 import PayIndex from "~/components/Page/Transaction/Pay/index.vue"
-import PayMarket from "~/components/Page/Transaction/Pay/Market.vue"
+import PayMarket from "~/components/Page/Transaction/Pay/MarketQr.vue"
 import PayCustomer from "~/components/Page/Transaction/Pay/Customer.vue"
 import PayDates from "~/components/Page/Transaction/Pay/Dates.vue"
 import PayTable from "~/components/Page/Transaction/Pay/Table.vue"

@@ -1,6 +1,6 @@
 export default defineEventHandler(async (event) => {
   const data = {
-    market: await orderUserController.findMarket(event),
+    market: await orderController.userFindMarket(event),
     toJson(): { market: MarketServerFull } {
       return {
         market: this.market,

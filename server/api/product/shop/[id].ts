@@ -1,6 +1,6 @@
 export default defineEventHandler(async (event) => {
   const data = {
-    product: await productShopController.detail(event),
+    product: await productController.detail(event),
 
     toJSON(): { product: ProductDetail } {
       return {

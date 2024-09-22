@@ -24,7 +24,7 @@
 import Table from "./Table.vue"
 import Total from "./Total.vue"
 import Customer from "./Customer.vue"
-import Market from "./Market.vue"
+import Market from "./MarketQr.vue"
 import Dates from "./Dates.vue"
 import type { PayProps } from "~/types/market/order"
 import TransactionPayMarket from "./TransactionPayMarket.vue"
