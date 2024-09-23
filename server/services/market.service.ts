@@ -17,8 +17,24 @@ export class MarketServices extends MarketSanitize {
 
     return prisma.market
       .upsert({
-        where: { id: session.id_market },
-        create: data,
+        where: { id_user: session.id },
+        create: {
+          address: data.address,
+          description: data.description,
+          history: data.history,
+          industry: data.industry,
+          mission: data.mission,
+          vision: data.vision,
+          name: data.name,
+          since: data.since,
+          id_user: session.id,
+          id_contact: 1,
+          id_socialMedia: 1,
+          id_follow: 1,
+          // id_contact: data.id_contact,
+          // id_socialMedia: data.id_socialMedia,
+          // id_user: session.id,
+        },
         update: {
           User: {
             update: {
@@ -118,12 +134,12 @@ export class MarketServices extends MarketSanitize {
   //   return db.market.updateProfile(id_market, data)
   // }
 
-  async ownerFindSingle(id_market: number): Promise<MarketServiceSingleNull> {
-    id_market = zods.id.number.parse(id_market)
+  async ownerFindSingle(id_user: string): Promise<MarketServiceSingleNull> {
+    id_user = zods.id.string.parse(id_user)
     // console.log("id_market-----", id_market)
 
     const market = await prisma.market
-      .findUnique({ where: { id: id_market } })
+      .findUnique({ where: { id_user: id_user } })
       .then((data) => {
         if (!data) {
           throw createError({
@@ -193,6 +209,8 @@ export class MarketServices extends MarketSanitize {
     data: RequiredProperty<MarketServer>,
     user: SessionUser
   ): Promise<{ market: Market; user: SessionUser }> {
+    data = this.sanitize(data)
+    data = zods.market.create.parse(data)
     return prisma.$transaction(async (tx) => {
       const contact = await tx.contact.create({
         data: {
@@ -211,7 +229,7 @@ export class MarketServices extends MarketSanitize {
       })
       const follow = await tx.follow.create({ data: {} })
 
-      const sanitize: RequiredProperty<Market> = {
+      const sanitize: Omit<Market, "id"> = {
         name: data.name,
         industry: data.industry,
         address: data.address,
@@ -223,7 +241,7 @@ export class MarketServices extends MarketSanitize {
         id_contact: contact.id,
         id_socialMedia: social.id,
         id_follow: follow.id,
-        id: user.id_market,
+        id_user: user.id,
       }
 
       const userDB = await tx.user.update({
@@ -234,7 +252,7 @@ export class MarketServices extends MarketSanitize {
       })
       userDB.password = ""
       const market = await tx.market.update({
-        where: { id: user.id_market },
+        where: { id_user: user.id },
         data: sanitize,
       })
       return {
@@ -245,12 +263,12 @@ export class MarketServices extends MarketSanitize {
   }
 
   async ownerUpdateProfile(
-    id_market: number,
+    { id }: SessionUser,
     data: MarketServiceSingle
   ): Promise<MarketServiceSingle> {
     return prisma.$transaction(async (tx) => {
       const market = await tx.market.update({
-        where: { id: id_market },
+        where: { id_user: id },
         data: this.sanitizeMarket(data.Market),
       })
 
@@ -271,7 +289,63 @@ export class MarketServices extends MarketSanitize {
       }
     })
   }
+
+  async idMarketFind({ id }: Pick<SessionUser, "id">) {
+    return idMarketFind({ id })
+  }
+
+  async confirmId({
+    id_transaction,
+    session: { id },
+  }: {
+    id_transaction: number
+    session: SessionUser
+  }) {
+    const market = await this.idMarket(id)
+
+    return prisma.transaction.findUnique({
+      where: {
+        id: id_transaction,
+        id_market: market.id, // must be use id_market
+      },
+    })
+  }
+  async idMarket(id: string) {
+    return await prisma.market
+      .findUnique({
+        select: { id: true },
+        where: {
+          id_user: id,
+        },
+      })
+      .then((d) => {
+        if (!d) {
+          throw createError({
+            statusCode: 404,
+            statusMessage: "Market not found",
+          })
+        }
+        return d
+      })
+  }
 }
 
 export const marketService = new MarketServices()
 export type IMarketService = MarketServices
+
+export async function idMarketFind({ id }: Pick<SessionUser, "id">) {
+  return prisma.market
+    .findUnique({
+      where: { id_user: id },
+      select: { id: true },
+    })
+    .then((data) => {
+      if (!data) {
+        throw createError({
+          statusCode: 404,
+          statusMessage: "Market not found",
+        })
+      }
+      return data
+    })
+}

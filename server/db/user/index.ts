@@ -1,8 +1,4 @@
 import type { User } from "@prisma/client"
-import type { SignUpProps } from "~/types/auth/user"
-import type { UserAll, UserCreate } from "~/types/user/ControlCreateUser"
-import { prisma } from "~/server/config/prisma"
-import { randomOTP } from "~/server/utils/randomId"
 
 class UserMutation {
   async signUp({
@@ -11,21 +7,21 @@ class UserMutation {
     password,
   }: Omit<SignUpProps, "confPass">): Promise<SessionUser> {
     return prisma.$transaction(async (tx) => {
-      const trolly = await tx.trolly.create({
-        data: {},
-      })
+      // const trolley = await tx.trolley.create({
+      //   data: {},
+      // })
 
-      const follow = await tx.follow.create({
-        data: {},
-      })
+      // const follow = await tx.follow.create({
+      //   data: {},
+      // })
 
-      const like = await tx.like.create({
-        data: {},
-      })
+      // const like = await tx.like.create({
+      //   data: {},
+      // })
 
-      const market = await tx.market.create({
-        data: {},
-      })
+      // const market = await tx.market.create({
+      //   data: {},
+      // })
 
       const Role = await tx.role.upsert({
         where: { id: "USER" },
@@ -39,11 +35,13 @@ class UserMutation {
           email,
           password,
           OTP: randomOTP,
-          id_market: market.id,
-          id_like: like.id,
-          id_trolly: trolly.id,
-          id_follow: follow.id,
-          id_role: Role.id,
+          address: "",
+          phone: "",
+          // id_market: market.id,
+          // id_like: like.id,
+          // id_trolley: trolley.id,
+          // id_follow: follow.id,
+          // id_role: Role.id,
           createMarket: false,
         },
       })
@@ -94,14 +92,14 @@ export class UserDB extends UserMutation {
     return prisma.user
       .findMany({
         include: {
-          Follow: true,
+          // Follow: true,
           Market: true,
-          MessageList: true,
-          Preview: true,
-          Product: true,
-          Role: true,
+          // MessageList: true,
+          // Preview: true,
+          // Product: true,
+          // Role: true,
           Transaction: true,
-          Trolly: true,
+          // Trolley: true,
           _count: true,
         },
       })

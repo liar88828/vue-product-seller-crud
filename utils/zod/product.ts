@@ -8,6 +8,7 @@ const stringNoSymbol = z
 const id = z.object({
   id_user: z.string().uuid(),
   id_market: z.number().min(1),
+  id: z.number().min(1),
 }) satisfies ZodType<IdProduct>
 
 const idMarketProduct = z.object({
@@ -18,9 +19,10 @@ const idMarketProduct = z.object({
 const create = z.object({
   brand: z.string().min(3).max(20),
   description: z.string().min(3).max(250),
+  // id_type: z.string().min(3).max(20),
+  // id_user: z.string().uuid(),
   id_market: z.number(),
-  id_type: z.string().min(3).max(20),
-  id_user: z.string().uuid(),
+  type: z.string().min(3).max(20),
   image: z.string(),
   name: stringNoSymbol,
   price: z.number(),
@@ -31,8 +33,8 @@ const update = z.object({
   brand: z.string().min(3).max(20),
   description: z.string().min(3).max(250),
   id_market: z.number(),
-  id_type: z.string().min(3).max(20),
-  id_user: z.string().uuid(),
+  type: z.string().min(3).max(20),
+  // id_user: z.string().uuid(),
   image: z.string(),
   name: stringNoSymbol,
   price: z.number(),

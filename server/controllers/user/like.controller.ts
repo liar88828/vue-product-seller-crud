@@ -1,41 +1,43 @@
-import type { Like, Product } from "@prisma/client"
+import type { Like } from "@prisma/client"
 import type { H3Event } from "h3"
-import { prisma } from "~/server/config/prisma"
 
 export class UserLikeController {
   async all(event: H3Event): Promise<Like[]> {
     const { session } = await getUserSession(event)
 
     return prisma.like.findMany({
-      where: { id: session.id_like },
+      where: { id_user: session.id },
     })
   }
 
   async id(event: H3Event): Promise<Like[]> {
     const { session, id } = await sessionId(event)
-    return prisma.likeBox.findMany({
-      where: { id: session.id_like, id_product: id },
+    return prisma.like.findMany({
+      where: { id_user: session.id, id_product: id },
     })
   }
 
   async add(event: H3Event): Promise<Like> {
     const { session, id } = await sessionId(event)
-    return prisma.likeBox.create({
-      data: { id_product: id, id: session.id_like },
+    return prisma.like.create({
+      data: { id_user: session.id, id_product: id },
     })
   }
 
   async unLike(event: H3Event): Promise<Like> {
     const { session, id } = await sessionId(event)
-    return prisma.likeBox.delete({
-      where: { id: session.id_like, id_product: id },
+    return prisma.like.delete({
+      where: { id_user: session.id, id: id },
     })
   }
 
-  async productLike(event: H3Event): Promise<Product[]> {
+  async findAllProductLike(event: H3Event): Promise<LikeProduct[]> {
     const { session } = await getUserSession(event)
-    return prisma.product.findMany({
-      where: { id: session.id_like },
+    return prisma.like.findMany({
+      where: { id_user: session.id },
+      include: {
+        Product: true,
+      },
     })
   }
 }

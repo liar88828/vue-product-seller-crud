@@ -33,7 +33,7 @@ testUserDb.skipIf(!userFound)(
       phone: "01234567890",
       email: "test1@gmail.com",
       password: "test112345",
-      id_role: "USER",
+      // id_role: "USER",
       //@ts-ignore
       id: "test1",
     })

@@ -1,98 +1,102 @@
-import type { Box } from "@prisma/client"
-
-export class TrolleyService extends SanitizeTrolly {
-  // trolly is not buy just add trolly, box, product
+import type { Trolley } from "@prisma/client"
+export class TrolleyService {
+  // trolley is not buy just add trolley, box, product
   // and not add transaction
-  async push(data: BoxCreate): Promise<Box> {
-    data = zods.box.create.parse(data)
-    console.log(data)
+  constructor(private sanitizeTrolley: ITrolleySanitize) {}
+
+  async findTrolley(id_trolley: number): Promise<TrolleyProduct[]> {
+    const data = await prisma.trolley.findMany({
+      where: { id: id_trolley },
+      include: { Product: true },
+    })
+    if (!data) {
+      throw createError({
+        statusCode: 404,
+        statusMessage: "Trolley not found",
+      })
+    }
+    return data
+  }
+
+  async _push(data: TrolleyCreate, session: SessionUser) {
+    data = this.sanitizeTrolley.sanitize(data, session)
 
     return prisma.$transaction(async (tx) => {
-      const box = await tx.box.findFirst({
+      const trolleyDB = await tx.trolley.findUnique({
         where: {
-          id_product: data.id_product,
-          id_trolly: data.id_trolly,
+          id: data.id,
         },
       })
-      console.log(box)
-      if (box) {
-        return tx.box.update({
-          where: { id: box.id },
+      if (trolleyDB) {
+        return tx.trolley.update({
+          where: {
+            id: trolleyDB.id,
+          },
           data: {
             qty: { increment: 1 },
           },
         })
       } else {
-        return tx.box.create({
+        return tx.trolley.create({
           data: {
-            price: data.price,
             qty: 1,
             id_product: data.id_product,
-            id_trolly: data.id_trolly,
+            id_user: data.id_user,
           },
         })
       }
-    })
-  }
-
-  async _push(data: BoxCreate): Promise<Box> {
-    const box = await prisma.box.findFirstOrThrow({
-      where: {
-        id_product: data.id_product,
-        id_trolly: data.id_trolly,
-      },
-    })
-
-    return prisma.box.upsert({
-      where: {
-        id_product: data.id_product,
-        id_trolly: data.id_trolly,
-        id: box.id,
-      },
-      update: {
-        qty: { increment: 1 },
-      },
-      create: {
-        price: data.price,
-        qty: 1,
-        id_product: data.id_product,
-        id_trolly: data.id_trolly,
-      },
-    })
-  }
-  async check(id_trolly: number) {
-    return db.trolly.check(id_trolly)
-  }
-  async delete(id: IdBox): Promise<Box> {
-    id = zods.box.id.parse(id)
-    return db.trolly.delete(id)
-  }
-  async _all(id: IdTrolly): Promise<TrollyAllService> {
-    const trolleys = await db.trolly.all(id)
-    const boxs = trolleys.map((trolly) => trolly.Box.map((box) => box))
-    const products = boxs.flatMap((box) =>
-      box.map((d) => {
-        if (d.Product !== null && d.Product !== undefined) {
-          return d.Product
-        }
+      throw createError({
+        statusCode: 500,
+        statusMessage: "Internal Server Error",
       })
-    )
-    return {
-      trolleys,
-      boxs,
-      //@ts-expect-error
-      products,
-    }
+    })
   }
-  async all(id: IdTrolly): Promise<TollyProps[]> {
-    return db.trolly.all(id)
+  async delete({
+    id_trolley,
+  }: Pick<IdTrolley, "id_trolley">): Promise<Trolley> {
+    id_trolley = zods.id.number.parse(id_trolley)
+
+    return prisma.trolley.delete({
+      where: {
+        id: id_trolley,
+      },
+    })
+  }
+  // async _all(id: IdTrolley): Promise<TrolleyAllService> {
+  //   const trolleys = await db.trolley.all(id)
+  //   const boxs = trolleys.map((trolley) => trolley.Box.map((box) => box))
+  //   const products = boxs.flatMap((box) =>
+  //     box.map((d) => {
+  //       if (d.Product !== null && d.Product !== undefined) {
+  //         return d.Product
+  //       }
+  //     })
+  //   )
+  //   return {
+  //     trolleys,
+  //     boxs,
+  //     products,
+  //   }
+  // }
+  async all({
+    id_user,
+  }: Pick<IdTrolley, "id_user">): Promise<NewTolleyProps[]> {
+    return prisma.trolley.findMany({
+      where: { id_user: id_user },
+      include: {
+        // Box: true,
+        Product: true,
+      },
+      take: 100,
+    })
   }
 
-  async notify(id: number) {
-    id = zods.id.number.parse(id)
-    const count = await prisma.box
+  async notify({ id_user }: Pick<IdTrolley, "id_user">) {
+    id_user = zods.id.string.parse(id_user)
+
+    return prisma.trolley
       .count({
-        where: { id_trolly: id },
+        where: { id_user: id_user },
       })
       .then((data) => {
         if (!data) {
@@ -100,13 +104,30 @@ export class TrolleyService extends SanitizeTrolly {
         }
         return data
       })
+  }
 
-    const data = await prisma.box.findMany({
-      where: { id_trolly: id },
+  async userProductId({
+    id_trolley,
+    id_user,
+  }: Omit<IdTrolley, "id_product">): Promise<TrolleyProduct[]> {
+    const data = await prisma.trolley.findMany({
+      where: {
+        id: id_trolley,
+        id_user: id_user,
+        // productId: id_product,
+      },
+      include: {
+        Product: true,
+      },
     })
-    console.log(data)
-    return count
+    if (!data) {
+      throw createError({
+        statusCode: 404,
+        statusMessage: "Box not found",
+      })
+    }
+    return data
   }
 }
-export const trolleyService = new TrolleyService()
+export const trolleyService = new TrolleyService(trolleySanitize)
 export type ITrolleyService = TrolleyService

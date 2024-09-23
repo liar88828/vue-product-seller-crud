@@ -15,8 +15,8 @@ export const useProductCreate = () => {
       price: [],
       stock: [],
       id_market: [],
-      id_type: [],
-      id_user: [],
+      type: [],
+      // id_user: [],
     },
     data: {
       brand: "",
@@ -24,10 +24,10 @@ export const useProductCreate = () => {
       name: "",
       price: 0,
       stock: 0,
-      id_type: "",
-      id_market: session.value.session.id_market,
+      type: "",
+      id_market: 6666,
       image: "https://picsum.photos/200/300",
-      id_user: session.value.session.id,
+      // id_user: session.value.session.id,
     },
   })
 

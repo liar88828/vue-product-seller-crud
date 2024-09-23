@@ -3,9 +3,9 @@ export type ProductTotal = {
   totalSend: number
   totalPay: number
 }
-export type TollyMark = {
+export type TolleyMark = {
   id_product: number
   name: string
-  price: number
+  // price: number
   qty: number
 }

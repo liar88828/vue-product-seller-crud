@@ -15,11 +15,15 @@ export class TransactionService extends TransactionSanitize {
     return market
   }
 
-  async findIdTransaction(id_market: number): Promise<TransactionId> {
+  async allProduct(
+    id_market: number,
+    id_user: string
+  ): Promise<TransactionProduct> {
+    const market = await this.findId(id_market, id_user)
     const transaction = await prisma.transaction.findFirst({
       where: { id_market },
       include: {
-        Box: {
+        Trolley: {
           include: {
             Product: true,
           },
@@ -29,12 +33,6 @@ export class TransactionService extends TransactionSanitize {
     if (!transaction) {
       throw new Error("transaction not found")
     }
-    return transaction
-  }
-
-  async allProduct(id_market: number, id_user: string): Promise<TransactionId> {
-    const market = await this.findId(id_market, id_user)
-    const transaction = await this.findIdTransaction(market.id)
     return transaction
   }
   async create(data: CreateTransaction) {
@@ -51,12 +49,12 @@ export class TransactionService extends TransactionSanitize {
     return db.trans.all()
   }
 
-  async markerAll(id_market: number): Promise<DataMarket[]> {
-    return db.trans.market.allDetail(id_market)
-  }
-  async markerDetail(id: IdMarketTrans): Promise<DataMarket> {
-    return db.trans.market.idDetail(id)
-  }
+  // async markerAll(id_market: number): Promise<DataMarket[]> {
+  //   return db.trans.market.allDetail(id_market)
+  // }
+  // async markerDetail(id: IdMarketTrans): Promise<DataMarket> {
+  //   return db.trans.market.idDetail(id)
+  // }
 
   async userDetail(id: IdUserTrans) {
     return db.trans.user.id(id)

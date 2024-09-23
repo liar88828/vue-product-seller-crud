@@ -1,7 +1,7 @@
 export default defineEventHandler(async (event) => {
   const data = {
-    orders: await orderController.all(event),
-    toJson(): { orders: TransServer[] } {
+    orders: await orderController.marketFindAll(event),
+    toJson(): { orders: HistoryServer[] } {
       return {
         orders: this.orders,
       }

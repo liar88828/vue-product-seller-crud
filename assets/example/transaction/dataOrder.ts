@@ -2,22 +2,23 @@ import { userProfile, userProfile2 } from "../user/dataUser"
 import { dataCompany } from "../user/dataCompany"
 import { dataProducts } from "../product/dataProduct"
 import type { TransClient, TransServer } from "~/types/market/order"
+import type { Market } from "@prisma/client"
 
 const dataHistory: TransServer = {
+  Market: dataCompany,
   id: 3,
-  Box: [
+  Trolley: [
     {
       id: 1,
-      id_product: dataProducts[1].id,
       id_transaction: 1,
-      id_trolly: 1,
-      price: 100,
       qty: 1,
       Product: dataProducts[1],
+      id_product: dataProducts[1].id,
+      id_user: "1",
     },
   ],
   userBuy: userProfile2,
-  Market: dataCompany,
+  // Market: dataCompany,
   discount: 20,
   status: "Delivered",
   promoCode: "FASDFSD5756",
@@ -33,15 +34,17 @@ const dataHistory: TransServer = {
 const dataHistory2: TransServer = {
   status: "Cancelled",
   id: 3,
-  Box: [
+  Trolley: [
     {
       id: 1,
-      id_product: dataProducts[1].id,
+      // id_product: dataProducts[1].id,
       id_transaction: 1,
-      id_trolly: 1,
-      price: 100,
+      // id_trolley: 1,
+      // price: 100,
       qty: 1,
       Product: dataProducts[1],
+      id_product: dataProducts[1].id,
+      id_user: "1",
     },
   ],
   userBuy: userProfile2,
@@ -57,54 +60,30 @@ const dataHistory2: TransServer = {
   updatedAt: new Date(),
 }
 
-const dataOrder2: TransServer = {
-  id: 3,
-  userBuy: userProfile2,
-  Market: dataCompany,
-  status: "Accepted",
-  discount: 20,
-  promoCode: "FASDFSD5756",
-  id_market: 1,
-  dateExp: new Date(),
-  drop_address: "semarang",
-  id_buyer: "1",
-  id_status: "Pending",
-  updatedAt: new Date(),
-  createdAt: new Date(),
-  Box: [
-    {
-      id: 1,
-      id_product: dataProducts[0].id,
-      id_transaction: 1,
-      id_trolly: 1,
-      price: 100,
-      qty: 1,
-      Product: dataProducts[0],
-    },
-  ],
-}
 export const dataOrders: TransServer[] = [
   // dataOrder,
-  dataOrder2,
   // dataHistory,
   dataHistory2,
 ]
 
 const dataOrder: TransClient = {
   id: 1,
-  Box: [
+  Trolley: [
     {
       id: 1,
-      id_product: dataProducts[1].id,
+      // id_product: dataProducts[1].id,
       id_transaction: 1,
-      id_trolly: 1,
-      price: 100,
+      // id_trolley: 1,
+      // price: 100,
+      id_product: dataProducts[1].id,
+      id_user: "1",
       qty: 1,
       Product: dataProducts[1],
     },
   ],
   userBuy: userProfile,
   Market: {
+    id_user: "1",
     since: new Date().toDateString(),
     name: "PT. Orak Genah",
     industry: "Sustainable Clothing Manufacturing",

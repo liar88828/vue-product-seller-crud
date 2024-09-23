@@ -1,6 +1,6 @@
 import type { Product } from "@prisma/client"
 
-export class ProductServices extends ProductSanitize {
+export class ProductService extends ProductSanitize {
   // current = new ProductCurrentMarketServices()
   async productMarketId(id: ProductMarketId) {
     id = zods.product.idMarketProduct.parse(id)
@@ -11,6 +11,7 @@ export class ProductServices extends ProductSanitize {
       },
     })
   }
+
   async marketAll(id_market: number): Promise<Product[]> {
     id_market = zods.id.number.parse(id_market)
     return prisma.product
@@ -67,25 +68,25 @@ export class ProductServices extends ProductSanitize {
     return prisma.$transaction(async (tx) => {
       const type = await tx.type.upsert({
         where: {
-          id: data.id_type,
+          id: data.type,
         },
         create: {
-          id: data.id_type,
+          id: data.type,
         },
         update: {
-          id: data.id_type,
+          id: data.type,
         },
       })
       const product = await tx.product.create({
         data: {
-          id_type: type.id,
+          type: type.id,
           name: data.name,
           description: data.description,
           image: data.image,
           brand: data.brand,
           stock: data.stock,
           price: data.price,
-          id_user: data.id_user,
+          // id_user: data.id_user,
           id_market: data.id_market,
         },
       })
@@ -102,7 +103,10 @@ export class ProductServices extends ProductSanitize {
 
   async ownerAll({ id_market, id_user }: IdProductOwner) {
     const data = await prisma.product.findMany({
-      where: { id_market, id_user },
+      where: {
+        id_market,
+        // id_user
+      },
       take: 100,
     })
     return data
@@ -140,25 +144,25 @@ export class ProductServices extends ProductSanitize {
     return prisma.$transaction(async (tx) => {
       const type = await tx.type.upsert({
         where: {
-          id: data.id_type,
+          id: data.type,
         },
         create: {
-          id: data.id_type,
+          id: data.type,
         },
         update: {
-          id: data.id_type,
+          id: data.type,
         },
       })
       const product = await tx.product.create({
         data: {
-          id_type: type.id,
+          type: type.id,
           name: data.name,
           description: data.description,
           image: data.image,
           brand: data.brand,
           stock: data.stock,
           price: data.price,
-          id_user: data.id_user,
+          // id_user: data.id_user,
           id_market: data.id_market,
         },
       })
@@ -183,39 +187,42 @@ export class ProductServices extends ProductSanitize {
     return prisma.$transaction(async (tx) => {
       const type = await tx.type.upsert({
         where: {
-          id: data.id_type,
+          id: data.type,
         },
         create: {
-          id: data.id_type,
+          id: data.type,
         },
         update: {
-          id: data.id_type,
+          id: data.type,
         },
       })
       return tx.product.update({
         where: { id: id.id },
         data: {
-          id_type: type.id,
+          type: type.id,
           name: data.name,
           description: data.description,
           image: data.image,
           brand: data.brand,
           stock: data.stock,
           price: data.price,
-          id_user: data.id_user,
+          // id_user: data.id_user,
           id_market: data.id_market,
         },
       })
     })
   }
 
-  async ownerDelete(id: IdValid): Promise<Product> {
-    id = zods.id.valid.parse(id)
-    return db.product.delete(id)
+  async ownerDelete({
+    id,
+    id_market,
+  }: Omit<IdProduct, "id_user">): Promise<Product> {
+    id = zods.id.number.parse(id)
+    return prisma.product.delete({ where: { id: id, id_market: id_market } })
   }
 
   async shopDetail(id: number): Promise<ProductDetail> {
-    const previews = await db.preview.findUser(id)
+    const previews = await db.preview.findUser({ id })
     const product = await db.product.findFull(id)
     // const market = await db.product.findCompany(id)
     // const relateds = await db.product.findTest()
@@ -231,6 +238,6 @@ export class ProductServices extends ProductSanitize {
   }
 }
 
-export const productService = new ProductServices()
+export const productService = new ProductService()
 
-export type IProductService = ProductServices
+export type IProductService = ProductService

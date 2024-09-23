@@ -2,7 +2,7 @@
   <CardParentSide :title="'Like'">
     <PageProductModelSide
       v-for="dataProduct in data"
-      :data="dataProduct"
+      :data="dataProduct.Product"
       :key="dataProduct.id"
     />
   </CardParentSide>
@@ -11,5 +11,5 @@
 <script lang="ts" setup>
 import type { Product } from "@prisma/client"
 
-defineProps<{ data: Product[] }>()
+defineProps<{ data: LikeProduct[] }>()
 </script>

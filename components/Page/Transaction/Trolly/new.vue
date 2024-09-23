@@ -4,7 +4,7 @@
     <PageProductModelSideNew
       v-else
       v-for="item in data"
-      :data="item.Box"
+      :item="item"
       :key="item?.id"
       @click="handlerClick"
     />
@@ -15,16 +15,16 @@
 </template>
 
 <script lang="ts" setup>
-import type { TollyMark } from "~/types/product/total"
+import type { TolleyMark } from "~/types/product/total"
 import Total from "./Total.vue"
 import Trash from "~/components/Icons/Trash.vue"
 
-defineProps<{ data: TollyProps[] }>()
+defineProps<{ data: NewTolleyProps[] }>()
 const handlerClick = () => {
   console.log(`click `)
 }
 
-const addTotal = useState<TollyMark[]>("add_total", () => [])
+const addTotal = useState<TolleyMark[]>("add_total", () => [])
 
 const store = reactive({
   data: [],
@@ -42,6 +42,7 @@ const dataTotal = () => {
   // }
 }
 const dataTotalPays = computed(() =>
-  addTotal.value.reduce((a, b) => a + b.price * b.qty, 0)
+  // must price not qty
+  addTotal.value.reduce((a, b) => a + b.qty * b.qty, 0)
 )
 </script>

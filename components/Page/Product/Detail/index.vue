@@ -58,11 +58,13 @@ const store = reactive({
 
 const refreshTrollyNotify = () => refreshNuxtData("trolly_notify")
 const handlerAddTrolly = async () => {
-  const sendData: BoxCreate = {
+  const sendData: TrolleyCreate = {
     id_product: Number(id),
-    id_trolly: session.value.session.id_trolly,
-    price: props.data.detail.price,
+    // id_trolley: id_trolley,
+    // price: props.data.detail.price,
     qty: 1,
+    id_user: session?.value.session.id,
+    id: 0,
   }
 
   store.pending = true

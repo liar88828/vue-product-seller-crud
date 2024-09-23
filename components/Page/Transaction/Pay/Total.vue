@@ -19,10 +19,12 @@ import type { PayProps } from "~/types/market/order"
 const props = defineProps<{
   data: PayProps["order"]
 }>()
-const total = props.data.Box.map((t) => t.price * t.qty).reduce(
-  (a, b) => a + b,
-  0
-)
+
+const total = props.data.Trolley.map(
+  (t) =>
+    // t.price
+    t.Product.price * t.qty
+).reduce((a, b) => a + b, 0)
 
 const withDiscount = getDiscount(total, props.data.discount)
 </script>

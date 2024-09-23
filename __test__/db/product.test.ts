@@ -1,6 +1,6 @@
 import { beforeAll, describe, expect, it, test } from "vitest"
 
-const product = new ProductServices()
+const product = new ProductService()
 export const testProductDb = test.extend({
   product,
 })
@@ -22,9 +22,9 @@ testProductDb.skip(
       name: "test",
       price: 100,
       stock: 100,
-      id_user: "test1",
+      // id_user: "test1",
       id_market: 1,
-      id_type: "Buku",
+      type: "Buku",
     })
 
     expect(test).toBe("test")

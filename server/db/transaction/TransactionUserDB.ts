@@ -16,12 +16,12 @@ export class TransactionUserDB {
     id_trolly: number
   ): GetPackageReturn[] {
     return data.map((d) => ({
-      id_product: d.id_product,
+      // id_product: d.id_product,
       price: d.price,
       qty: d.qty,
       transactionId: id_trans,
       id_transaction: id_trans,
-      id_trolly: id_trolly,
+      id_trolley: id_trolly,
     }))
   }
 

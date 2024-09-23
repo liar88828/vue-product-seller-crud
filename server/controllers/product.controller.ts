@@ -1,9 +1,11 @@
 import type { Product } from "@prisma/client"
 import type { H3Event } from "h3"
+import { idMarketFind } from "../services/market.service"
 
 export class ProductController extends ReviewController {
   constructor(
     private serviceProduct: IProductService,
+
     private sanitize: IProductSanitize // private user: ProductUserController, // private market: ProductMarketController
   ) {
     super(serviceProduct)
@@ -70,16 +72,16 @@ export class ProductController extends ReviewController {
 
   async detailFull(id: number) {
     return tryCatch(async () => {
-      const valid = zods.id.number.parse(id)
-      const market = await db.product.findCompany(valid)
+      id = zods.id.number.parse(id)
+      const market = await db.product.findCompany(id)
       // console.log(valid, "valid")
       // console.log(market, "market")
       return {
-        product: await db.product.findFull(valid),
+        product: await db.product.findFull(id),
         productRelated: await db.product.findTest(),
-        userPreview: await db.preview.findUser(valid),
+        userPreview: await db.preview.findUser({ id }),
         market,
-        statics: await statics(valid, market),
+        statics: await statics(id, market),
       }
     })
   }
@@ -90,9 +92,9 @@ export class ProductController extends ReviewController {
     return tryCatch(async () => {
       const { session } = await getUserSession(event)
       const body = await readBody(event)
+      const { id } = await idMarketFind(session)
       const data = this.sanitize.sanitizeCreate(body, {
-        id_user: session.id,
-        id_market: session.id_market,
+        id_market: id,
       })
       return this.serviceProduct.create(data)
     })
@@ -100,8 +102,10 @@ export class ProductController extends ReviewController {
   async ownerAll(event: H3Event): Promise<Product[]> {
     return tryCatch(async () => {
       const { session } = await getUserSession(event)
+      const { id } = await idMarketFind(session)
+
       const data = await this.serviceProduct.ownerAll({
-        id_market: session.id_market,
+        id_market: id,
         id_user: session.id,
       })
       return data
@@ -155,9 +159,11 @@ export class ProductController extends ReviewController {
   async marketId(event: H3Event): Promise<ProductItemServer> {
     const { session } = await getUserSession(event)
     const { id } = getRouterParams(event)
+    const { id: id_market } = await idMarketFind(session)
+
     const data = await this.serviceProduct.ownerId({
       id: Number(id),
-      id_market: session.id_market,
+      id_market: id_market,
       id_user: session.id,
     })
     return data
@@ -166,10 +172,11 @@ export class ProductController extends ReviewController {
     return tryCatch(async () => {
       const { id } = getRouterParams(event)
       const { session } = await getUserSession(event)
+      const { id: id_market } = await idMarketFind(session)
 
       return this.serviceProduct.ownerDelete({
         id: Number(id),
-        id_user: session.id,
+        id_market: id_market,
       })
     })
   }
@@ -180,9 +187,10 @@ export class ProductController extends ReviewController {
     return tryCatch(async () => {
       const { session } = await getUserSession(event)
       const body = await readBody(event)
+      const { id: id_market } = await idMarketFind(session)
+
       const data = this.sanitize.sanitizeCreate(body, {
-        id_user: session.id,
-        id_market: session.id_market,
+        id_market,
       })
       return this.serviceProduct.ownerCreate(data)
     })
@@ -193,10 +201,10 @@ export class ProductController extends ReviewController {
       const { session } = await getUserSession(event)
       const body = await readBody(event)
       const { id } = getRouterParams(event)
+      const { id: id_market } = await idMarketFind(session)
 
       const data = this.sanitize.sanitizeCreate(body, {
-        id_user: session.id,
-        id_market: session.id_market,
+        id_market: id_market,
       })
 
       return this.serviceProduct.ownerUpdate(

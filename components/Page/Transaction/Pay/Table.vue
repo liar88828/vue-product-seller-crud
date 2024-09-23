@@ -14,7 +14,7 @@
       </thead>
 
       <tbody>
-        <tr v-for="item in data.Box">
+        <tr v-for="item in data.Trolley">
           <ElError v-if="!item.Product" text="error" />
           <td v-else class="border border-slate-600">
             <div class="flex items-center gap-3">
@@ -36,12 +36,12 @@
           </td>
           <ElError v-if="!item.Product" text="error" />
           <td v-else class="border border-slate-600">
-            {{ formatRupiah(item.price) }}
+            {{ formatRupiah(item.Product.price) }}
           </td>
           <ElError v-if="!item.Product" text="error" />
 
           <td v-else class="border border-slate-600">
-            {{ totalNumber(item.price, item.qty) }}
+            {{ totalNumber(item.Product.price, item.qty) }}
           </td>
         </tr>
       </tbody>

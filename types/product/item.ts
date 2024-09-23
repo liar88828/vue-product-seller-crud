@@ -28,13 +28,14 @@ export type ProductItem = Product & {
 }
 
 // server
-
-export type UserPreviewServer = Preview & { User: User }
-export type UserPreviewClient = Omit<Preview, "time"> & {
+export type PreviewClient = Omit<Preview, "time"> & {
   time: string | Date
-} & {
-  User: User
 }
+export type UserPreviewServer = Preview & { User: User }
+export type UserPreviewClient = PreviewClient
+// & {
+//   User: User
+// }
 
 export type ProductDetail = {
   detail: ProductItemServer

@@ -14,6 +14,7 @@ export type ProductMarketId = {
   id_product: number
 }
 export type IdProduct = {
+  id: number
   id_user: string
   id_market: number
 }

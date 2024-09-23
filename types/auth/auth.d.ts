@@ -15,7 +15,6 @@ declare module "#auth-utils" {
   interface UserSession {
     // Add your own fields
     session: SessionUser
-
     loggedInAt: Date
     // role: TRole
     user: SessionUser

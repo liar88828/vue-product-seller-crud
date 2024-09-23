@@ -20,16 +20,16 @@ const signIn = z.object({
 }) satisfies ZodType<SignInProps>
 
 const create = z.object({
-  id_market: z.number(),
-  name: z.string().nullable(),
-  phone: z.string().nullable(),
+  name: z.string(),
+  phone: z.string(),
   email: z.string(),
   password: z.string(),
-  address: z.string().nullable(),
-  id_role: z.string(),
-  id_trolly: z.number(),
-  id_follow: z.number(),
-  id_like: z.number(),
+  address: z.string(),
+  // id_market: z.number(),
+  // id_role: z.string(),
+  // id_trolly: z.number(),
+  // id_follow: z.number(),
+  // id_like: z.number(),
 }) satisfies ZodType<UserCreate>
 
 const otpSchema = z.object({

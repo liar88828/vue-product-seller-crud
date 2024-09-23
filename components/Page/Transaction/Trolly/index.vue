@@ -16,7 +16,7 @@
 import type { Product } from "@prisma/client"
 import Total from "./Total.vue"
 import Trash from "~/components/Icons/Trash.vue"
-import type { TrollyAllService } from "~/types/transaction/trolly"
+import type { TrollyAllService } from "~/types/trolley"
 
 defineProps<{ data: TrollyAllService["products"] }>()
 </script>

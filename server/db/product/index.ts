@@ -1,5 +1,5 @@
 import { prisma } from "~/server/config/prisma"
-import type { Pagination } from "~/types/globals/Pagination"
+import type { SearchPagination } from "~/types/globals/Pagination"
 import type { Market, Product } from "@prisma/client"
 import type { ProductDetail, ProductItemServer } from "~/types/product/item"
 import { statics } from "./ProductStatic"
@@ -17,19 +17,19 @@ export class ProductDB {
     }
     return data
   }
-  async findAll({ page, search }: Pagination) {
+  async findAll({ page, search }: SearchPagination) {
     return prisma.product.findMany({
       where: {
-        id_type: search,
+        type: search,
       },
       take: 100,
       skip: page * 100,
     })
   }
 
-  async findAllId(id_user: string) {
+  async findAllId({ id_market }: Pick<SearchPagination, "id_market">) {
     return prisma.product.findMany({
-      where: { id_user },
+      where: { id_market },
       take: 100,
     })
   }
@@ -60,11 +60,11 @@ export class ProductDB {
     return product as ProductItemServer
   }
 
-  async myProduct({ id_user, page, search }: Pagination) {
+  async myProduct({ id_market, page, search }: SearchPagination) {
     return prisma.product.findMany({
       where: {
-        id_user: id_user,
-        id_type: search,
+        id_market: id_market,
+        type: search,
       },
       take: 100,
       skip: page * 100,
@@ -110,21 +110,17 @@ export class ProductDB {
 
   async detailFull(id: number) {
     return tryCatch(async () => {
-      const valid = zods.id.number.parse(id)
-      const market = await db.product.findCompany(valid)
+      id = zods.id.number.parse(id)
+      const market = await db.product.findCompany(id)
       // console.log(valid, "valid")
       // console.log(market, "market")
       return {
-        product: await db.product.findFull(valid),
+        product: await db.product.findFull(id),
         productRelated: await db.product.findTest(),
-        userPreview: await db.preview.findUser(valid),
+        userPreview: await db.preview.findUser({ id }),
         market,
-        statics: await statics(valid, market),
+        statics: await statics(id, market),
       }
     })
-  }
-
-  async delete({ id, id_user }: IdValid) {
-    return prisma.product.delete({ where: { id, id_user } })
   }
 }

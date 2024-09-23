@@ -50,6 +50,6 @@
 
 <script lang="ts" setup>
 defineProps<{
-  data: TransClient["Box"]
+  data: TransClient["Trolley"]
 }>()
 </script>

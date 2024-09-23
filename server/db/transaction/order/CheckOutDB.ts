@@ -1,23 +1,23 @@
-import type { Trolly } from "@prisma/client"
+import type { Trolley } from "@prisma/client"
 import { prisma } from "~/server/config/prisma"
 
 export class CheckOutDB {
   async find(id: number) {
-    const data = await prisma.trolly.findUnique({
+    const data = await prisma.trolley.findUnique({
       where: { id },
     })
     if (!data) {
       throw createError({
         statusCode: 404,
-        statusMessage: "Trolly not found",
+        statusMessage: "Trolley not found",
       })
     }
     return data
   }
 
-  async all(id_user: string, id_checkout: number): Promise<Trolly[]> {
-    const data = await prisma.trolly.findMany({
-      where: { User: { id: id_user } },
+  async all(id_user: string, id_checkout: number): Promise<Trolley[]> {
+    const data = await prisma.trolley.findMany({
+      // where: { User: { id: id_user } },
     })
     return data
   }

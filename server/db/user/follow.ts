@@ -1,19 +1,20 @@
 import { prisma } from "~/server/config/prisma"
 
-type FollowServer = {
-  User: {
-    id: string
-  }[]
-}
-export async function all(id: number): Promise<FollowServer[]> {
+// type FollowServer = {
+//   User: {
+//     id: string
+//   }[]
+// }
+export async function all(id: number) {
+  //: Promise<FollowServer[]>
   const data = await prisma.follow.findMany({
     where: { id },
     select: {
-      User: {
-        select: {
-          id: true,
-        },
-      },
+      // User: {
+      //   select: {
+      //     id: true,
+      //   },
+      // },
     },
   })
   if (!data) {

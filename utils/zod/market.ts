@@ -15,6 +15,7 @@ const create = z.object({
   vision: z.string(),
   history: z.string(),
   since: z.date(),
+  user_Id: z.string().uuid(),
 }) satisfies ZodType<MarketServer>
 
 const social = z.object({
@@ -36,6 +37,7 @@ const market = z.object({
   vision: z.string().max(50),
   history: z.string().max(50),
   since: z.date().max(new Date()),
+  id_user: z.string().uuid(),
 }) satisfies ZodType<UpdateMarket>
 
 const contact = z.object({

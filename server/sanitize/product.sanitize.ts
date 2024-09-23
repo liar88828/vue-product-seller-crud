@@ -4,8 +4,8 @@ import type { RequiredProperty } from "~/types/globals/generic"
 
 export class ProductSanitize {
   sanitizeCreate(
-    data: Omit<ProductMarketCreate, "id_user">,
-    { id_user, id_market }: IdProduct
+    data: Omit<ProductMarketCreate, "id_user" | "id">,
+    { id_market }: Omit<IdProduct, "id_user" | "id">
   ): RequiredProperty<ProductMarketCreate> {
     return {
       brand: data.brand ?? "",
@@ -14,8 +14,8 @@ export class ProductSanitize {
       name: data.name,
       price: data.price,
       stock: data.stock,
-      id_type: data.id_type ?? "kosong",
-      id_user,
+      type: data.type ?? "kosong",
+      // id_user,
       id_market,
     }
   }
@@ -24,7 +24,7 @@ export class ProductSanitize {
     data: Omit<ProductMarketCreate, "id_type">,
     // id: number,
     // id_user: string,
-    id_type: string
+    type: string
   ): ProductMarketCreate {
     return {
       brand: data.brand ?? "",
@@ -33,8 +33,8 @@ export class ProductSanitize {
       name: data.name,
       price: data.price,
       stock: data.stock,
-      id_type,
-      id_user: data.id_user,
+      type,
+      // id_user: data.id_user,
       id_market: data.id_market,
       // id: id,
     }

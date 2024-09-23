@@ -16,7 +16,9 @@ export class MarketController {
   async full(event: H3Event): Promise<MarketServerFull> {
     return tryCatch(async () => {
       const { session } = await getUserSession(event)
-      return this.serviceMarket.findFull(Number(session.id_market))
+      const { id } = getRouterParams(event)
+
+      // return this.serviceMarket.findFull(Number(session.id_market))
     })
   }
 
@@ -68,20 +70,20 @@ export class MarketController {
   async fullSingle(event: H3Event): Promise<MarketServiceSingle> {
     return tryCatch(async () => {
       const { session } = await getUserSession(event)
-      return this.serviceMarket.ownerFindSingle(session.id_market)
+      return this.serviceMarket.ownerFindSingle(session.id)
     })
   }
 
   async fullSingleId(event: H3Event): Promise<MarketServiceSingle> {
     return tryCatch(async () => {
       const { id } = getRouterParams(event)
-      return this.serviceMarket.ownerFindSingle(Number(id))
+      return this.serviceMarket.ownerFindSingle(id)
     })
   }
 
   async idMarketFind(event: H3Event): Promise<idMarketFind> {
     const { session } = await getUserSession(event)
-    return db.trans.market.confirm.idMarketFind(session.id_market)
+    return this.serviceMarket.idMarketFind(session)
   }
 
   // const role: TRole = "MARKET"
@@ -89,7 +91,7 @@ export class MarketController {
     return tryCatch(async () => {
       const { session } = await getUserSession(event)
       const body: MarketServiceSingle = await readBody(event)
-      return this.serviceMarket.ownerUpdateProfile(session.id_market, body)
+      return this.serviceMarket.ownerUpdateProfile(session, body)
     })
   }
   async marketStatic(event: H3Event): Promise<StaticServer> {
@@ -121,7 +123,7 @@ export class MarketController {
       const { session } = await getUserSession(event)
 
       return prisma.market
-        .findUnique({ where: { id: session.id_market } })
+        .findUnique({ where: { id_user: session.id } })
         .then((data) => {
           if (!data) {
             throw createError({
@@ -137,10 +139,12 @@ export class MarketController {
   async additional(event: H3Event): Promise<Additional[]> {
     return tryCatch(async () => {
       const { session } = await getUserSession(event)
-
+      const { id } = getRouterParams(event)
       return prisma.additional
         .findMany({
-          where: { id_market: session.id_market },
+          where: {
+            id_market: Number(id),
+          },
         })
         .then((d) => {
           if (d.length === 0) {
@@ -159,7 +163,7 @@ export class MarketController {
         .findFirst({
           where: {
             Market: {
-              id: session.id_market,
+              id_user: session.id,
             },
           },
         })
@@ -180,7 +184,7 @@ export class MarketController {
         .findFirst({
           where: {
             Market: {
-              id: session.id_market,
+              id_user: session.id,
             },
           },
         })
@@ -197,24 +201,18 @@ export class MarketController {
     return tryCatch(async () => {
       const { session } = await getUserSession(event)
       // console.log(session, "test")
-      return this.serviceMarket.findFull(Number(session.id_market))
-    })
-  }
-  async ownerId(event: H3Event) {
-    const { id } = getRouterParams(event)
-    const { session } = await getUserSession(event)
-    await db.trans.market.confirm.id({
-      id: Number(id),
-      id_market: session.id_market,
+      const { id } = getRouterParams(event)
+
+      return this.serviceMarket.findFull(Number(id))
     })
   }
 
-  async owner_id(event: H3Event, param: string = "id") {
+  async ownerId(event: H3Event, param: string = "id") {
     const id = getRouterParam(event, param)
     const { session } = await getUserSession(event)
-    await db.trans.market.confirm.id({
-      id: Number(id),
-      id_market: session.id_market,
+    await this.serviceMarket.confirmId({
+      id_transaction: Number(id),
+      session,
     })
   }
 
@@ -225,12 +223,12 @@ export class MarketController {
     })
   }
 
-  async userFull(event: H3Event): Promise<MarketServerFull> {
-    return tryCatch(async () => {
-      const { session } = await getUserSession(event)
-      return this.serviceMarket.findFull(Number(session.id_market))
-    })
-  }
+  // async userFull(event: H3Event): Promise<MarketServerFull> {
+  //   return tryCatch(async () => {
+  //     const { session } = await getUserSession(event)
+  //     return this.serviceMarket.findFull(Number(session.id_market))
+  //   })
+  // }
 
   async userId(event: H3Event): Promise<MarketServerFull> {
     return tryCatch(async () => {

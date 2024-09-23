@@ -21,6 +21,7 @@ export class MarketSanitize {
       mission: data.mission,
       since: new Date(data.since),
       vision: data.vision,
+      // id_user: data.id_user,
     }
   }
 
@@ -34,6 +35,7 @@ export class MarketSanitize {
       mission: data.mission,
       since: new Date(data.since),
       vision: data.vision,
+      // id_user: data.id_user,
       // id_user: data.id_user,
     }
   }
@@ -56,6 +58,7 @@ export class MarketSanitize {
       vision: data.vision ?? "",
       id: data.id ?? "",
       id_follow: data.id_follow ?? 0,
+      id_user: data.id_user ?? "",
     }
   }
 

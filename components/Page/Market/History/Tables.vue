@@ -12,15 +12,15 @@
     <tbody>
       <tr v-for="item in data" :key="item.id">
         <td class=" ">
-          <div class="font-bold">{{ item.name }}</div>
-          <div class="text-xs opacity-50">{{ item.brand }}</div>
+          <div class="font-bold">{{ item.Product.name }}</div>
+          <div class="text-xs opacity-50">{{ item.Product.brand }}</div>
         </td>
         <td>
-          <div class="font-bold">{{ getRupiah(item.price) }}</div>
-          <div class="text-xs opacity-50">{{ item.stock }} pcs</div>
+          <div class="font-bold">{{ getRupiah(item.Product.price) }}</div>
+          <div class="text-xs opacity-50">{{ item.Product.stock }} pcs</div>
         </td>
         <td>
-          {{ getTotal(item.price, item.stock) }}
+          {{ getTotal(item.Product.price, item.Product.stock) }}
         </td>
         <!-- <td>
         <span :class="getStatus(status)"> {{ status }} </span>
@@ -41,6 +41,6 @@
 
 <script lang="ts" setup>
 defineProps<{
-  data: HistoryClient["Box"]
+  data: HistoryClient["Trolley"]
 }>()
 </script>

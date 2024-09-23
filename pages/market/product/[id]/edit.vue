@@ -25,8 +25,8 @@ const state = reactive<Product>({
   price: 0,
   stock: 0,
   id_market: 0,
-  id_user: "",
-  id_type: "",
+  // id_user: "",
+  type: "",
 })
 
 async function onSubmit() {

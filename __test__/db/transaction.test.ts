@@ -37,7 +37,7 @@ const userFound = await user.findId("test_transaction").then(async (data) => {
       phone: "01234567890",
       email: "test_transaction@gmail.com",
       password: "test_transaction12345",
-      id_role: "USER",
+      // id_role: "USER",
       //@ts-ignore
       id: "test_transaction",
     })

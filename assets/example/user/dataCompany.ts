@@ -6,6 +6,7 @@ export const marketStaticServer: MarketStatic = {
 }
 
 export const marketServerFull: MarketServerFull = {
+  id_user: "112",
   since: new Date(),
   name: "PT. Orak Genah",
   industry: "Sustainable Clothing Manufacturing",
@@ -58,6 +59,7 @@ export const marketServerFull: MarketServerFull = {
 }
 
 export const dataCompany: MarketServerFull = {
+  id_user: "112",
   since: new Date(),
   name: "PT. Orak Genah",
   industry: "Sustainable Clothing Manufacturing",

@@ -13,9 +13,9 @@ export class TransactionSanitize {
   }
   getBox(id_trolly: number, data: GetBoxProps[]): GetBoxReturn[] {
     return data.map((d) => ({
-      id_product: d.id_product,
+      // id_product: d.id_product,
       id_transaction: id_trolly,
-      id_trolly: id_trolly,
+      id_trolley: id_trolly,
       price: d.price,
       qty: d.qty,
       trollyId: id_trolly,

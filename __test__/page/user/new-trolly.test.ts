@@ -11,18 +11,12 @@ test("it can be tested trolly", async () => {
     props: {
       data: [
         {
-          Box: [
-            {
-              id: 1,
-              id_product: dataProducts[0].id,
-              id_transaction: 1,
-              id_trolly: 1,
-              price: 100,
-              Product: dataProducts[0],
-              qty: 1,
-            },
-          ],
           id: 1,
+          id_product: dataProducts[0].id,
+          id_transaction: 1,
+          qty: 1,
+          id_user: "1",
+          Product: dataProducts[0],
         },
       ],
     },

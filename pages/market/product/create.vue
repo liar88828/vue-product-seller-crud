@@ -29,8 +29,8 @@
       <ElInput
         types="type"
         title="Type"
-        v-model:input="store.data.id_type"
-        :err="store.error.id_type"
+        v-model:input="store.data.type"
+        :err="store.error.type"
       />
 
       <ElTextarea

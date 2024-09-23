@@ -1,8 +1,5 @@
-import type { ProductDetail } from "~/types/product/item"
-import { prisma } from "../../config/prisma"
-
 export class PreviewDB {
-  async findUser(id: number): Promise<UserPreviewServer[]> {
+  async findUser({ id }: Pick<IdProduct, "id">): Promise<UserPreviewServer[]> {
     return prisma.preview.findMany({
       include: {
         User: true,

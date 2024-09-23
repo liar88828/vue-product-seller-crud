@@ -50,12 +50,12 @@ export class UserController extends UserSanitize {
 
   async delete(event: H3Event): Promise<User> {
     const { session } = await getUserSession(event)
-    if (session.id_role !== "USER") {
-      throw createError({
-        statusCode: 401,
-        statusMessage: "Role is not allowed",
-      })
-    }
+    // if (session. !== "USER") {
+    //   throw createError({
+    //     statusCode: 401,
+    //     statusMessage: "Role is not allowed",
+    //   })
+    // }
     return this.serviceUser.delete(session.id)
   }
 

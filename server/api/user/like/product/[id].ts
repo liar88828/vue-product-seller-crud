@@ -2,9 +2,9 @@ import type { Product } from "@prisma/client"
 
 export default defineEventHandler(async (event) => {
   const data = {
-    product: await likeController.productLike(event),
+    product: await likeController.findAllProductLike(event),
 
-    toJSON(): { products: Product[] } {
+    toJSON(): { products: LikeProduct[] } {
       return {
         products: this.product,
       }

@@ -8,27 +8,27 @@ export class ProductTestDB {
     return test
   }
 
-  async delete({ id, id_user }: IdValid) {
-    const data = await prisma.product.delete({
-      where: { id, id_user },
-    })
-    if (!data) {
-      throw createError({
-        statusCode: 404,
-        statusMessage: "Product not found",
-      })
-    }
-    return data
-  }
+  // async delete({ id, id_user }: IdValid) {
+  //   const data = await prisma.product.delete({
+  //     where: { id, id_user },
+  //   })
+  //   if (!data) {
+  //     throw createError({
+  //       statusCode: 404,
+  //       statusMessage: "Product not found",
+  //     })
+  //   }
+  //   return data
+  // }
 
   async create(data: ProductMarketCreate) {
     return prisma.product.create({ data })
   }
 
-  async update(
-    { id, id_user }: IdValid,
-    data: ProductMarketCreate
-  ): Promise<Product> {
-    return prisma.product.update({ where: { id, id_user }, data: data })
-  }
+  // async update(
+  //   { id, id_user }: IdValid,
+  //   data: ProductMarketCreate
+  // ): Promise<Product> {
+  //   return prisma.product.update({ where: { id, id_user }, data: data })
+  // }
 }

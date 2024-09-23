@@ -1,6 +1,6 @@
 <template>
   <HistoryWrap :dataPurchase="dataPurchase">
-    <HistoryBody :data="dataPurchase[0].Box" />
+    <HistoryBody :data="dataPurchase[0].Trolley" />
   </HistoryWrap>
 </template>
 

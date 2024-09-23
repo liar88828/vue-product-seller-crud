@@ -27,7 +27,7 @@
         <td>
           <div
             class="flex gap-2 space-y-2"
-            v-for="box in item.Box"
+            v-for="box in item.Trolley"
             :key="box.id"
           >
             <ElError v-if="!box.Product" text="error" />
@@ -45,7 +45,7 @@
             <div v-else class="space-y-1">
               <div class="font-bold">{{ box.Product.name }}</div>
               <div class="text-sm opacity-50">{{ box.Product.brand }}</div>
-              <div class="">{{ getRupiah(box.price) }}</div>
+              <div class="">{{ getRupiah(box.Product.price) }}</div>
             </div>
           </div>
         </td>
@@ -75,8 +75,8 @@ const props = defineProps<{
 }>()
 const totalProduct = computed(() =>
   props.data
-    .flatMap((t) => t.Box)
-    .map((t) => t.price)
+    .flatMap((t) => t.Trolley)
+    .map((t) => t.Product.price)
     .reduce((a, b) => a + b, 0)
 )
 </script>

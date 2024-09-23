@@ -36,7 +36,7 @@
     <div class="flex justify-between mt-2">
       <div class="flex flex-col gap-1">
         <h4 class="text-sm sm:text-md md:text-lg font-bold">
-          {{ getRupiah(data.price) }}
+          {{ getRupiah(data.Product.price) }}
         </h4>
         <p class="text-sm whitespace-nowrap space-x-1">
           <span class="badge badge-info badge-sm sm:badge-md">
@@ -80,12 +80,8 @@
 </template>
 
 <script setup lang="ts">
-import type { Product } from "@prisma/client"
-import Counter from "../Counter.vue"
-import type { TollyMark } from "~/types/product/total"
-
 const props = defineProps<{
-  data: BoxProductTrolly
+  data: NewTolleyProps
   detail?: boolean
 }>()
 // const detail = defineModel("detail", { required: true })
@@ -94,7 +90,7 @@ const addTotal = useState<TollyMark[]>("add_total")
 const foundItem = computed(() =>
   addTotal.value.map((i) => i.id_product).includes(props.data.id)
 )
-const handlerMark = (item: BoxProductTrolly, count = false) => {
+const handlerMark = (item: NewTolleyProps, count = false) => {
   if (count) {
     addTotal.value = addTotal.value.map((i) => {
       if (i.id_product === item.id) {
@@ -111,7 +107,7 @@ const handlerMark = (item: BoxProductTrolly, count = false) => {
       addTotal.value.push({
         id_product: item.id,
         name: item.Product?.name ?? "",
-        price: item.price,
+        // price: item.price,
         qty: counter.value,
       })
     }

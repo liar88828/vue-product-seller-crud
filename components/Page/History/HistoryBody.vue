@@ -17,7 +17,7 @@
         </td>
         <ElError v-if="!item.Product" text="error" />
         <td v-else class="border border-slate-600">
-          {{ getRupiah(item.price) }}
+          {{ getRupiah(item.Product.price) }}
         </td>
         <ElError v-if="!item.Product" text="error" />
         <td v-else class="border border-slate-600">
@@ -33,6 +33,6 @@
 import type { TransServer } from "~/types/market/order"
 
 defineProps<{
-  data: TransServer["Box"]
+  data: TransServer["Trolley"]
 }>()
 </script>

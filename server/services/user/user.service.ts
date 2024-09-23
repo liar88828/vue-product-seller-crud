@@ -1,6 +1,6 @@
 import type { User } from "@prisma/client"
 
-export class UserServices extends UserSanitize {
+export class UserService extends UserSanitize {
   constructor(public serviceProduct: IProductService) {
     super()
   }
@@ -27,7 +27,19 @@ export class UserServices extends UserSanitize {
 
   async create(data: UserCreate): Promise<User> {
     data = zods.user.create.parse(data)
-    const res = await db.user.create(data)
+    // const res = await db.user.create(data)
+
+    const res = await prisma.user.create({
+      data: {
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+        address: data.address,
+        password: data.password,
+        // id_market: data.id_market,
+      },
+    })
+
     res.password = ""
     return res
   }
@@ -48,5 +60,5 @@ export class UserServices extends UserSanitize {
   }
 }
 
-export const userService = new UserServices(productService)
-export type IUserServices = UserServices
+export const userService = new UserService(productService)
+export type IUserServices = UserService
