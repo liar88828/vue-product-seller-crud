@@ -1,15 +1,14 @@
 import type { User } from "@prisma/client"
 import type { EventHandlerRequest, H3Event } from "h3"
-import { UserSanitize } from "../sanitize/user.sanitize"
+import { type IUserSanitize, userSanitize } from "../sanitize/user.sanitize"
 
-export class UserController extends UserSanitize {
+export class UserController {
   constructor(
-    protected readonly serviceUser: IUserServices,
-    protected readonly serviceTransaction: ITransactionService,
-    protected readonly trolly: ITrolleyController
-  ) {
-    super()
-  }
+    private readonly serviceUser: IUserService,
+    // private readonly serviceTransaction: ITransactionService,
+    private readonly trolly: ITrolleyController,
+    private readonly sanitizeUser: IUserSanitize
+  ) {}
 
   detail(event: H3Event<EventHandlerRequest>): Promise<any> {
     throw new Error("Method not implemented.")
@@ -33,18 +32,18 @@ export class UserController extends UserSanitize {
     return this.serviceUser.id(session.id)
   }
 
-  async create(event: H3Event): Promise<User> {
+  async create(event: H3Event): Promise<SessionUser> {
     const { session } = await getUserSession(event)
     let data = await readBody(event)
 
-    data = this.serviceUser.sanitize(data)
-    return this.serviceUser.create(data)
+    data = this.sanitizeUser.sanitize(data)
+    return this.serviceUser.signUp(data)
   }
 
   async update(event: H3Event): Promise<User> {
     const { session } = await getUserSession(event)
     let data = await readBody(event)
-    data = this.serviceUser.sanitize(data)
+    data = this.sanitizeUser.sanitize(data)
     return this.serviceUser.update(session.id, data)
   }
 
@@ -72,6 +71,7 @@ export class UserController extends UserSanitize {
 
 export const userController = new UserController(
   userService,
-  transactionService,
-  trolleyController
+  // transactionService,
+  trolleyController,
+  userSanitize
 )

@@ -1,4 +1,4 @@
-export class AuthServices {
+export class AuthService {
   async foundExist(data: SignInProps) {
     data = zods.user.signIn.parse(data)
     const findUser = await prisma.user
@@ -86,4 +86,6 @@ export class AuthServices {
   }
 }
 
-export const authService = new AuthServices()
+export const authService = new AuthService()
+
+export type IAuthService = AuthService

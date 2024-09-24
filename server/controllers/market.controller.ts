@@ -6,12 +6,16 @@ import type {
   Product,
   SocialMedia,
 } from "@prisma/client"
+import type { idMarketFind } from "~/types/market/ProfileCompany"
 
 // public user: MarketUserController,
 // public product: ProductMarketController,
 // public serviceShop: ShopServices
 export class MarketController {
-  constructor(private serviceMarket: IMarketService) {}
+  constructor(
+    private serviceMarket: IMarketService,
+    private sanitizeMarket: IMarketSanitize
+  ) {}
 
   async full(event: H3Event): Promise<MarketServerFull> {
     return tryCatch(async () => {
@@ -55,8 +59,8 @@ export class MarketController {
     return tryCatch(async () => {
       let data = await readBody(event)
       const { session } = await getUserSession(event)
-      data = this.serviceMarket.sanitize(data)
-      const marketData = await this.serviceMarket.create(data, session)
+      data = this.sanitizeMarket.sanitize(data)
+      const marketData = await this.serviceMarket.register(data, session)
 
       await replaceUserSession(event, {
         session: marketData.User,
@@ -106,8 +110,8 @@ export class MarketController {
       const { session } = await getUserSession(event)
       let body = await readBody(event)
 
-      body = this.serviceMarket.sanitize(body)
-      body = zods.market.create.parse(body)
+      body = this.sanitizeMarket.sanitize(body)
+      body = zods.market.register.parse(body)
       const data = await this.serviceMarket.ownerCreate(body, session)
       await replaceUserSession(event, {
         loggedInAt: new Date(),
@@ -243,4 +247,7 @@ export class MarketController {
   }
 }
 
-export const marketController = new MarketController(marketService)
+export const marketController = new MarketController(
+  marketService,
+  marketSanitize
+)

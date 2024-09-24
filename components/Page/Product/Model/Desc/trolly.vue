@@ -86,7 +86,7 @@ const props = defineProps<{
 }>()
 // const detail = defineModel("detail", { required: true })
 
-const addTotal = useState<TollyMark[]>("add_total")
+const addTotal = useState<TolleyMark[]>("add_total")
 const foundItem = computed(() =>
   addTotal.value.map((i) => i.id_product).includes(props.data.id)
 )

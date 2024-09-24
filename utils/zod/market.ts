@@ -4,9 +4,10 @@ import type {
   MarketServer,
   UpdateMarket,
   UpdateContact,
+  MarketRegister,
 } from "~/types/market/ProfileCompany"
 
-const create = z.object({
+const register = z.object({
   name: z.string(),
   industry: z.string(),
   address: z.string(),
@@ -15,8 +16,8 @@ const create = z.object({
   vision: z.string(),
   history: z.string(),
   since: z.date(),
-  user_Id: z.string().uuid(),
-}) satisfies ZodType<MarketServer>
+  id_user: z.string().uuid(),
+}) satisfies ZodType<MarketRegister>
 
 const social = z.object({
   facebook: z.string().max(50),
@@ -47,7 +48,7 @@ const contact = z.object({
 }) satisfies ZodType<UpdateContact>
 
 export const zodMarket = {
-  create,
+  register,
   social,
   market,
   contact,

@@ -26,13 +26,12 @@ export async function all(id: number) {
   return data
 }
 
-export async function findSelf(id: number): Promise<MarketStatic["follow"]> {
+export async function findSelf(
+  id_market: number
+): Promise<MarketStatic["follow"]> {
   const data = await prisma.follow.count({
-    where: { id },
+    where: { id_market: id_market },
   })
-  if (!data) {
-    return 0
-  }
   return data
 }
 export async function findThrow(id: number): Promise<number> {

@@ -12,7 +12,7 @@ export async function statics(
 ): Promise<MarketStatic> {
   return {
     product: await counts(id_product),
-    follow: await findSelf(Number(market.id_follow)),
+    follow: await findSelf(Number(market.id)),
     since: market?.since || new Date(),
     response: "100%",
   }

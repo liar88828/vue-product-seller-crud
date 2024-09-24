@@ -6,7 +6,7 @@ export default defineNuxtConfig({
     "**/.idea/*",
     "**/.nuxt/*",
     "**/.*ignore",
-    "**__test__",
+    "**__test__/*",
     "**vitest.config.ts",
     "**coverage*",
   ],

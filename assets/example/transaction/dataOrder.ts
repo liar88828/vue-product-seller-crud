@@ -1,4 +1,4 @@
-import { userProfile, userProfile2 } from "../user/dataUser"
+import { userProfile } from "../user/dataUser"
 import { dataCompany } from "../user/dataCompany"
 import { dataProducts } from "../product/dataProduct"
 import type { TransClient, TransServer } from "~/types/market/order"
@@ -17,7 +17,7 @@ const dataHistory: TransServer = {
       id_user: "1",
     },
   ],
-  userBuy: userProfile2,
+  userBuy: userProfile,
   // Market: dataCompany,
   discount: 20,
   status: "Delivered",
@@ -47,7 +47,7 @@ const dataHistory2: TransServer = {
       id_user: "1",
     },
   ],
-  userBuy: userProfile2,
+  userBuy: userProfile,
   Market: dataCompany,
   discount: 20,
   promoCode: "FASDFSD5756",
@@ -100,7 +100,7 @@ const dataOrder: TransClient = {
     id: 1,
     id_contact: 1,
     id_socialMedia: 1,
-    id_follow: 1,
+    // id_follow: 1,
   },
   discount: 20,
   promoCode: "FASDFSD5756",

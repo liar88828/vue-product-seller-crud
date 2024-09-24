@@ -1,26 +1,46 @@
-import { describe, expect, test } from "vitest"
+import { afterAll, beforeAll, describe, expect, test } from "vitest"
+import { UserService } from "~/server/services/user/user.service"
+import type { SignUpProps } from "~/types/auth/user"
+import { deleteUserByEmail, findUserByEmail } from "../utils/user"
 
-const testUser: UserCreate = {
-  address: "jl. jakarta no. 1",
-  email: "test@gmail",
-  name: "test",
-  password: "test",
-  phone: "01234567890",
+const testUser: SignUpProps = {
+  // address: "jl. jakarta no. 1",
+  name: "testUser",
+  email: "testUser@gmail.com",
+  // phone: "01234567890",
+  password: "12345678",
+  confPass: "12345678",
 }
+let userId = ""
 
 const testUserService = test.extend({
-  userService,
-  userId: "",
+  userService: new UserService(),
 })
 
-describe("test user service", () => {
-  describe("CREATE", () => {
+describe("test user service", async () => {
+  beforeAll(async () => {
+    const found = await findUserByEmail(testUser.email)
+    if (found) {
+      await deleteUserByEmail(testUser.email)
+    }
+  })
+
+  afterAll(async () => {
+    const found = await findUserByEmail(testUser.email)
+    if (found) {
+      await deleteUserByEmail(testUser.email)
+    }
+  })
+
+  describe("CREATE register", () => {
     testUserService(
       "SUCCESS : can test create user service",
-      async ({ userService, userId }) => {
-        const test = await userService.create(testUser)
-        userId = test.id
-        expect(test).toBeDefined()
+      async ({ userService }) => {
+        const result = await userService.signUp(testUser)
+        userId = result.id
+
+        expect(result).toBeDefined()
+        expect(result.email).toBe(testUser.email)
       }
     )
   })
@@ -29,9 +49,12 @@ describe("test user service", () => {
     testUserService(
       "SUCCESS : can test delete user service",
       async ({ userService }) => {
-        const test = userService.create(testUser)
+        const result = await userService.delete(userId)
 
-        expect(test).toBeDefined()
+        expect(result).toBeDefined()
+        expect(result.password).not.toBe("i dont know")
+        expect(result.password).toBe("")
+        expect(result.email).toBe(testUser.email)
       }
     )
   })

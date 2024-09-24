@@ -31,7 +31,7 @@ export const useMarketProfile = () => {
 
   const validData = (data: Type) => {
     data.since = new Date(data.since)
-    const valid = zods.market.create.safeParse(data)
+    const valid = zods.market.register.safeParse(data)
     if (!valid.success) {
       valid.error.errors.map((err) => {
         store.error[err.path[0] as keyof Type] = [err.message]

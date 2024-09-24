@@ -50,6 +50,10 @@ export type MarketServer = Omit<
   Market,
   "id" | "id_contact" | "id_socialMedia" | "id_follow" | "id_user" | "create"
 >
+export type MarketRegister = Omit<
+  Market,
+  "id" | "id_contact" | "id_socialMedia" | "id_follow" | "create"
+>
 
 export type MarketClientFullNull = MarketClient & {
   Contact: Contact | null

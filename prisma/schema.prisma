@@ -11,31 +11,30 @@ datasource db {
 }
 
 model User {
-    id           String        @id @default(uuid())
-    email        String        @unique
+    id           String  @id @default(uuid())
+    email        String  @unique
     name         String
-    phone        String        @unique
+    phone        String
     OTP          String?
     address      String
     password     String
-    createMarket Boolean       @default(false)
-    activeOnline Boolean       @default(false)
-    Transaction  Transaction[]
+    createMarket Boolean @default(false)
+    activeOnline Boolean @default(false)
+    role         String? @default("USER")
     // Order       Order[]
     // MessageList  MessageList[]
-    Preview      Preview[]
     // id_market    Int           @unique
     // Market       Market        @relation(fields: [id_market], references: [id])
     // Like    Like[]
-    Trolley      Trolley[]
+
     // 
-    // Role         Role[]
-    // id_role      String
-    //
-    // Follow       Follow        @relation(fields: [id_follow], references: [id])
-    // id_follow    Int
-    Market       Market?
-    Like         Like?
+    Market Market?
+    Like   Like?
+
+    Preview     Preview[]
+    Trolley     Trolley[]
+    Transaction Transaction[]
+    Follow      Follow[]
 }
 
 model Product {
@@ -210,7 +209,7 @@ model Role {
 }
 
 model Market {
-    id             Int         @id @default(autoincrement())
+    id             Int          @id @default(autoincrement())
     name           String
     industry       String
     address        String
@@ -218,33 +217,33 @@ model Market {
     mission        String
     vision         String
     history        String
-    since          DateTime    @default(now())
+    since          DateTime     @default(now())
     // 
-    // Order          Order[]
-    // Additional     Additional[]
-    Product        Product[]
+    id_contact     Int?         @unique
+    Contact        Contact?     @relation(fields: [id_contact], references: [id])
     // 
-    Contact        Contact     @relation(fields: [id_contact], references: [id])
-    id_contact     Int         @unique
-    // 
-    SocialMedia    SocialMedia @relation(fields: [id_socialMedia], references: [id])
-    id_socialMedia Int         @unique
-    // 
+    id_socialMedia Int?         @unique
+    SocialMedia    SocialMedia? @relation(fields: [id_socialMedia], references: [id])
 
+    id_user String @unique
+    User    User   @relation(fields: [id_user], references: [id])
+
+    // id_follow      Int?
+    Follow      Follow[]
     // 
-    Follow      Follow        @relation(fields: [id_follow], references: [id])
-    id_follow   Int
-    Transaction Transaction[]
-    // User        User
+    Product     Product[]
     Additional  Additional[]
-    User        User          @relation(fields: [id_user], references: [id])
-    id_user     String        @unique
+    Transaction Transaction[]
 }
 
 model Follow {
-    id     Int      @id @default(autoincrement())
+    id        Int    @id @default(autoincrement())
     // User   User[]
-    Market Market[]
+    // Market Market[]
+    Market    Market @relation(fields: [id_market], references: [id])
+    id_market Int
+    User      User   @relation(fields: [id_user], references: [id])
+    id_user   String
 }
 
 model Contact {

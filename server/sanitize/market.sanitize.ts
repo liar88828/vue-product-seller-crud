@@ -57,7 +57,7 @@ export class MarketSanitize {
       since: data.since,
       vision: data.vision ?? "",
       id: data.id ?? "",
-      id_follow: data.id_follow ?? 0,
+      // id_follow: data.id_follow ?? 0,
       id_user: data.id_user ?? "",
     }
   }
@@ -92,3 +92,5 @@ export class MarketSanitize {
     })
   }
 }
+export const marketSanitize = new MarketSanitize()
+export type IMarketSanitize = MarketSanitize

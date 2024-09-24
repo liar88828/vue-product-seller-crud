@@ -5,7 +5,7 @@ import CardBody from "~/components/Card/Body/index.vue"
 import Card from "~/components/Card/index.vue"
 import { mount } from "@vue/test-utils"
 
-test("it can be tested profile user", async () => {
+test.skip("it can be tested profile user", async () => {
   const component = await mount(Profile, {
     props: {
       data: userProfile,

@@ -1,7 +1,7 @@
 // noinspection JSUnusedGlobalSymbols
 
-import { tryCatch } from "../lib/tryCatch"
-import { authService, AuthServices } from "../services/auth.service"
+import { authService, type IAuthService } from "../services/auth.service"
+import type { IUserService } from "../services/user/user.service"
 import type { SessionUser } from "~/types/globals/session"
 import type { H3Event } from "h3"
 
@@ -9,7 +9,10 @@ import type { H3Event } from "h3"
 
 export class AuthController {
   // private service: AuthServices
-  constructor(private service: AuthServices) {}
+  constructor(
+    private serviceAuth: IAuthService,
+    private serviceUser: IUserService
+  ) {}
 
   // public jwt = new JWTService(
   //   // config.access_token,
@@ -26,7 +29,7 @@ export class AuthController {
       const config = useRuntimeConfig(event)
       const body = await readBody(event)
 
-      const { password, ...user } = await this.service.foundExist(body)
+      const { password, ...user } = await this.serviceAuth.foundExist(body)
 
       const cryptr = new CryptrService(config.cryptrKey)
       cryptr.compare(body.password, password)
@@ -57,11 +60,15 @@ export class AuthController {
     return tryCatch(async () => {
       const config = useRuntimeConfig(event)
       const body = await readBody(event)
-      const { email, name } = await this.service.emailExists(body)
+      const { email, name } = await this.serviceAuth.emailExists(body)
 
       const cryptr = new CryptrService(config.cryptrKey)
       const hashPassword = cryptr.encrypted(body.password)
-      const user = await db.user.signUp({ email, name, password: hashPassword })
+      const user = await this.serviceUser.signUp({
+        email,
+        name,
+        password: hashPassword,
+      })
       console.log(` success sign up ${user}`)
       await setUserSession(event, {
         loggedInAt: new Date(),
@@ -74,12 +81,12 @@ export class AuthController {
   async validOTP(event: H3Event) {
     const { session } = await requireUserSession(event)
     const body = await readBody(event)
-    return this.service.validOTP(session.id, body.otp)
+    return this.serviceAuth.validOTP(session.id, body.otp)
   }
   async resendOTP(event: H3Event) {
     const { session } = await getUserSession(event)
-    return this.service.resendOTP(session.id)
+    return this.serviceAuth.resendOTP(session.id)
   }
 }
 
-export const authController = new AuthController(authService)
+export const authController = new AuthController(authService, userService)

@@ -14,3 +14,5 @@ export class UserSanitize {
     }
   }
 }
+export const userSanitize = new UserSanitize()
+export type IUserSanitize = UserSanitize

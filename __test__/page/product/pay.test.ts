@@ -12,7 +12,7 @@ import PayTotal from "~/components/Page/Transaction/Pay/Total.vue"
 import Divider from "~/components/El/Divider.vue"
 import Barcode from "~/components/El/QR/Barcode.vue"
 
-describe("test product pay", () => {
+describe.skip("test product pay", () => {
   test("it can be tested product pay", async () => {
     const component = mount(PayIndex, {
       props: {

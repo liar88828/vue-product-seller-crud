@@ -1,9 +1,9 @@
 import type { Contact, Market, Product, SocialMedia } from "@prisma/client"
+import { marketSanitize } from "../sanitize/market.sanitize"
+import { prisma } from "~/server/config/prisma"
 
-export class MarketServices extends MarketSanitize {
-  constructor() {
-    super()
-  }
+export class MarketService {
+  constructor(private sanitizeMarket: IMarketSanitize) {}
 
   async all(id_market: number): Promise<Product[]> {
     return prisma.product.findMany({
@@ -11,9 +11,12 @@ export class MarketServices extends MarketSanitize {
     })
   }
 
-  async create(data: MarketServer, session: SessionUser): Promise<MarketUser> {
+  async register(
+    data: MarketServer,
+    session: SessionUser
+  ): Promise<MarketUser> {
     console.log(data, "data market")
-    data = zods.market.create.parse(data)
+    data = zods.market.register.parse(data)
 
     return prisma.market
       .upsert({
@@ -28,9 +31,9 @@ export class MarketServices extends MarketSanitize {
           name: data.name,
           since: data.since,
           id_user: session.id,
-          id_contact: 1,
-          id_socialMedia: 1,
-          id_follow: 1,
+          // id_contact: 1,
+          // id_socialMedia: 1,
+          // id_follow: 1,
           // id_contact: data.id_contact,
           // id_socialMedia: data.id_socialMedia,
           // id_user: session.id,
@@ -112,7 +115,7 @@ export class MarketServices extends MarketSanitize {
     }
   }
   async findFull(id_market: number): Promise<MarketServerFull> {
-    return MarketServices.findFullStatic(id_market)
+    return MarketService.findFullStatic(id_market)
   }
 
   async marketStatic(id: number): Promise<StaticServer> {
@@ -209,8 +212,8 @@ export class MarketServices extends MarketSanitize {
     data: RequiredProperty<MarketServer>,
     user: SessionUser
   ): Promise<{ market: Market; user: SessionUser }> {
-    data = this.sanitize(data)
-    data = zods.market.create.parse(data)
+    data = this.sanitizeMarket.sanitize(data)
+    data = zods.market.register.parse(data)
     return prisma.$transaction(async (tx) => {
       const contact = await tx.contact.create({
         data: {
@@ -227,7 +230,7 @@ export class MarketServices extends MarketSanitize {
           whatsapp: "empty",
         },
       })
-      const follow = await tx.follow.create({ data: {} })
+      // const follow = await tx.follow.create({ data: {} })
 
       const sanitize: Omit<Market, "id"> = {
         name: data.name,
@@ -240,7 +243,7 @@ export class MarketServices extends MarketSanitize {
         since: data.since,
         id_contact: contact.id,
         id_socialMedia: social.id,
-        id_follow: follow.id,
+        // id_follow: follow.id,
         id_user: user.id,
       }
 
@@ -269,17 +272,17 @@ export class MarketServices extends MarketSanitize {
     return prisma.$transaction(async (tx) => {
       const market = await tx.market.update({
         where: { id_user: id },
-        data: this.sanitizeMarket(data.Market),
+        data: this.sanitizeMarket.sanitizeMarket(data.Market),
       })
 
       const contact = await tx.contact.update({
         where: { id: market.id },
-        data: this.sanitizeContact(data.Contact),
+        data: this.sanitizeMarket.sanitizeContact(data.Contact),
       })
 
       const socialMedia = await tx.socialMedia.update({
         where: { id: market.id_socialMedia as number },
-        data: this.sanitizeSocial(data.SocialMedia),
+        data: this.sanitizeMarket.sanitizeSocial(data.SocialMedia),
       })
 
       return {
@@ -330,8 +333,8 @@ export class MarketServices extends MarketSanitize {
   }
 }
 
-export const marketService = new MarketServices()
-export type IMarketService = MarketServices
+export const marketService = new MarketService(marketSanitize)
+export type IMarketService = MarketService
 
 export async function idMarketFind({ id }: Pick<SessionUser, "id">) {
   return prisma.market

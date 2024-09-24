@@ -1,5 +1,4 @@
 import type { H3Event } from "h3"
-import { isFunctionDeclaration } from "typescript"
 import { idMarketFind } from "../services/market.service"
 
 export class OrderController {
@@ -17,7 +16,7 @@ export class OrderController {
   async userFindMarket(event: H3Event): Promise<MarketServerFull> {
     const { session } = await getUserSession(event)
     const { id } = await this.serviceMarket.idMarketFind(session)
-    return MarketServices.findFullStatic(id)
+    return MarketService.findFullStatic(id)
   }
 
   // async marketAll(event: H3Event): Promise<DataMarket[]> {
@@ -75,7 +74,7 @@ export class OrderController {
     const { id: id_market } = await idMarketFind(session)
 
     return {
-      market: await MarketServices.findFullStatic(id_market),
+      market: await MarketService.findFullStatic(id_market),
       order: await this.idDetail(event),
     }
   }

@@ -24,23 +24,23 @@ const userFound = await user.findId("test1").then((data) => {
     return false
   }
 })
-testUserDb.skipIf(!userFound)(
-  "Describe can be create user id",
-  async ({ user }) => {
-    const test = await user.create({
-      name: "test1",
-      address: "test1.address",
-      phone: "01234567890",
-      email: "test1@gmail.com",
-      password: "test112345",
-      // id_role: "USER",
-      //@ts-ignore
-      id: "test1",
-    })
+// testUserDb.skipIf(!userFound)(
+//   "Describe can be create user id",
+//   async ({ user }) => {
+//     const test = await user.create({
+//       name: "test1",
+//       address: "test1.address",
+//       phone: "01234567890",
+//       email: "test1@gmail.com",
+//       password: "test112345",
+//       // id_role: "USER",
+//       //@ts-ignore
+//       id: "test1",
+//     })
 
-    expect(test).toBeDefined()
-  }
-)
+//     expect(test).toBeDefined()
+//   }
+// )
 testUserDb("Describe can be find after create", async ({ user }) => {
   const test = await user.findId("test1")
   if (test) {

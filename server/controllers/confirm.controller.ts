@@ -7,7 +7,7 @@ export class ConfirmController {
   async id(event: H3Event) {
     const { id } = getRouterParams(event)
     const { session } = await getUserSession(event)
-    const { id: id_market } = await idMarket(session)
+    const { id: id_market } = await idMarketFind(session)
     await this.serviceConfirm.id({
       id: Number(id),
       id_market,
@@ -17,7 +17,7 @@ export class ConfirmController {
   async apply(event: H3Event, status: TStatus) {
     const { id } = getRouterParams(event)
     const { session } = await getUserSession(event)
-    const { id: id_market } = await idMarket(session)
+    const { id: id_market } = await idMarketFind(session)
 
     await this.serviceConfirm.add(
       {
@@ -30,7 +30,7 @@ export class ConfirmController {
 
   async all(event: H3Event): Promise<DataMarket[]> {
     const { session } = await getUserSession(event)
-    const { id: id_market } = await idMarket(session)
+    const { id: id_market } = await idMarketFind(session)
     return this.serviceConfirm.marketAll(session)
   }
 }

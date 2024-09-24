@@ -12,6 +12,7 @@ export type UserCreate = Omit<
   | "id_trolly"
   | "id_role"
   | "id_follow"
+  | "role"
 >
 // export type UserUpdate = User
 export type UserAll = Omit<User, "password">
