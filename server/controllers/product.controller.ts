@@ -1,6 +1,6 @@
 import type { Product } from "@prisma/client"
 import type { H3Event } from "h3"
-import { idMarketFind } from "../services/market.service"
+import { getIdMarket } from "../services/market.service"
 
 export class ProductController extends ReviewController {
   constructor(
@@ -92,7 +92,7 @@ export class ProductController extends ReviewController {
     return tryCatch(async () => {
       const { session } = await getUserSession(event)
       const body = await readBody(event)
-      const { id } = await idMarketFind(session)
+      const { id } = await getIdMarket(session)
       const data = this.sanitize.sanitizeCreate(body, {
         id_market: id,
       })
@@ -102,8 +102,7 @@ export class ProductController extends ReviewController {
   async ownerAll(event: H3Event): Promise<Product[]> {
     return tryCatch(async () => {
       const { session } = await getUserSession(event)
-      const { id } = await idMarketFind(session)
-
+      const { id } = await getIdMarket(session)
       const data = await this.serviceProduct.ownerAll({
         id_market: id,
         id_user: session.id,
@@ -159,7 +158,7 @@ export class ProductController extends ReviewController {
   async marketId(event: H3Event): Promise<ProductItemServer> {
     const { session } = await getUserSession(event)
     const { id } = getRouterParams(event)
-    const { id: id_market } = await idMarketFind(session)
+    const { id: id_market } = await getIdMarket(session)
 
     const data = await this.serviceProduct.ownerId({
       id: Number(id),
@@ -172,7 +171,7 @@ export class ProductController extends ReviewController {
     return tryCatch(async () => {
       const { id } = getRouterParams(event)
       const { session } = await getUserSession(event)
-      const { id: id_market } = await idMarketFind(session)
+      const { id: id_market } = await getIdMarket(session)
 
       return this.serviceProduct.ownerDelete({
         id: Number(id),
@@ -187,7 +186,7 @@ export class ProductController extends ReviewController {
     return tryCatch(async () => {
       const { session } = await getUserSession(event)
       const body = await readBody(event)
-      const { id: id_market } = await idMarketFind(session)
+      const { id: id_market } = await getIdMarket(session)
 
       const data = this.sanitize.sanitizeCreate(body, {
         id_market,
@@ -201,7 +200,7 @@ export class ProductController extends ReviewController {
       const { session } = await getUserSession(event)
       const body = await readBody(event)
       const { id } = getRouterParams(event)
-      const { id: id_market } = await idMarketFind(session)
+      const { id: id_market } = await getIdMarket(session)
 
       const data = this.sanitize.sanitizeCreate(body, {
         id_market: id_market,

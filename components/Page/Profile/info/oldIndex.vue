@@ -12,7 +12,6 @@
 
       <div class="grid gap-6 md:grid-cols-2 mt-5">
         <!-- <Information :data="data" /> -->
-        <Describe :data="data" />
       </div>
       <div class="flex gap-2">
         <NuxtLink to="/market/profile/edit" class="btn btn-primary"
@@ -25,12 +24,6 @@
 </template>
 
 <script lang="ts" setup>
-import type {
-  MarketServerFull,
-  MarketServerFullNull,
-} from "~/types/market/ProfileCompany"
-import Describe from "../../../../pages/market/profile/info/Describe.vue"
-
 defineProps<{ data: MarketClient }>()
 
 const { clickImage, refImage } = useImages("Market Profile")

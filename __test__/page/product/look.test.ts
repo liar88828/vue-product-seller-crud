@@ -1,7 +1,7 @@
 import { mount } from "@vue/test-utils"
 import { describe, expect, test } from "vitest"
 import { dataOrders } from "~/assets/example/transaction/dataOrder"
-import { dataCompany, dataCompany } from "~/assets/example/user/dataCompany"
+import { dataCompany } from "~/assets/example/user/dataCompany"
 import PayIndex from "~/components/Page/Transaction/Pay/index.vue"
 import PayMarket from "~/components/Page/Transaction/Pay/MarketQr.vue"
 import PayCustomer from "~/components/Page/Transaction/Pay/Customer.vue"

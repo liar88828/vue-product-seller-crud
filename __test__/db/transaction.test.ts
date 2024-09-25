@@ -1,11 +1,9 @@
 import { assert, expect, test } from "vitest"
 import { TransactionDB } from "~/server/db/transaction"
 import { UserDB } from "~/server/db/user"
-import { StatusDB } from "~/server/db/user/status"
 
 const transaction = new TransactionDB()
 const user = new UserDB()
-const status = new StatusDB()
 
 export const testTransactionDb = test.extend({
   transaction,
@@ -21,7 +19,7 @@ testTransactionDb(
 
 const testTransaction = {
   drop_address: "semarang test transaction",
-  id_status: "Pending",
+  status: "Pending",
   id_user: "test_transaction",
   id: 1,
 }
@@ -67,9 +65,6 @@ console.log(findTransaction, `this find is ${findTransaction}`)
 testTransactionDb.skipIf(!findTransaction)(
   "transaction can be create ",
   async ({ transaction }) => {
-    const checkStatus = await status.checkStatus()
-
-    console.log(checkStatus)
     console.log(userFound)
     console.log("will execute ")
 
@@ -79,9 +74,8 @@ testTransactionDb.skipIf(!findTransaction)(
       id_buyer: testTransaction.id_user,
       id_market: 1,
       promoCode: "FASDFSD5756",
-      status: checkStatus[0].id,
       drop_address: testTransaction.drop_address,
-      id_status: testTransaction.id_status,
+      status: testTransaction.status,
       //@ts-expect-error
       id: testTransaction.id,
     })
@@ -118,13 +112,13 @@ testTransactionDb.skip(
       promoCode: "FASDFSD5756",
       status: "Pending",
       drop_address: testTransaction.drop_address,
-      id_status: "Pending update",
+      // id_status: "Pending update",
     })
 
     expect(test).toBeDefined()
-    assert.include(test, {
-      id_status: "Pending update",
-    })
+    // assert.include(test, {
+    //   id_status: "Pending update",
+    // })
   }
 )
 
@@ -136,12 +130,12 @@ testTransactionDb.skip(
     if (test) {
       expect(test).toBeDefined()
       assert.isObject(test)
-      assert.include(test, {
-        id_status: "Pending update",
-      })
-      assert.include(test, {
-        id_status: testTransaction.drop_address,
-      })
+      // assert.include(test, {
+      //   id_status: "Pending update",
+      // })
+      // assert.include(test, {
+      //   id_status: testTransaction.drop_address,
+      // })
     } else {
       expect(test).toBeNull()
     }

@@ -21,6 +21,6 @@
 
 <script setup lang="ts">
 defineProps<{
-  data: MarketServiceSingle["Market"]
+  data: MarketServiceSingleClient["Market"]
 }>()
 </script>

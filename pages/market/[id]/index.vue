@@ -8,6 +8,12 @@
 </template>
 
 <script lang="ts" setup>
+definePageMeta({
+  middleware: ["market"],
+})
+definePageMeta({
+  layout: "market",
+})
 import Index from "~/pages/market/profile/index.vue"
 
 const { id } = useRoute().params

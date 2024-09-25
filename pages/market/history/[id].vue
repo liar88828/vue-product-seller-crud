@@ -1,14 +1,10 @@
 <script lang="ts" setup>
-
- defineComponent({
-  name: "[id]"
+definePageMeta({
+  middleware: ["market"],
+})
+definePageMeta({
+  layout: "market",
 })
 </script>
 
-<template>
-
-</template>
-
-<style scoped>
-
-</style>
+<template></template>

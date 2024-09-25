@@ -44,6 +44,6 @@
 import Social from "./Social.vue"
 
 defineProps<{
-  data: MarketServiceSingle
+  data: MarketServiceSingleClient
 }>()
 </script>

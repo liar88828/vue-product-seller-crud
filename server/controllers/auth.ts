@@ -59,7 +59,10 @@ export class AuthController {
   async signUp(event: H3Event): Promise<{ name: string; email: string }> {
     return tryCatch(async () => {
       const config = useRuntimeConfig(event)
-      const body = await readBody(event)
+      let body = await readBody(event)
+      body = zods.user.signUp.parse(body)
+
+      console.log(body, "signUp---")
       const { email, name } = await this.serviceAuth.emailExists(body)
 
       const cryptr = new CryptrService(config.cryptrKey)

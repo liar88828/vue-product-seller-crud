@@ -1,6 +1,6 @@
 <template>
   <ElNavChat class="z-20 fixed">
-    <Search />
+    <PageMessageChatSearch />
   </ElNavChat>
   <div class="container bg-base-300 min-h-screen">
     <!-- @vue-expect-error -->
@@ -10,11 +10,10 @@
 
 <script lang="ts" setup>
 definePageMeta({
-  layout: "chat",
+  layout: "message",
 })
 
 // import { dataChat1 } from "~/assets/example/message/dataMessage"
-import Search from "~/components/Page/Chat/Message/Search.vue"
 const { id } = useRoute().params
 const { data } = await useFetch(`/api/message/${id}`)
 watch(data, () => {

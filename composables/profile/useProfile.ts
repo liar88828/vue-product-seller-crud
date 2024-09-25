@@ -1,7 +1,7 @@
-export const useProfile = (data: MarketServiceSingle) => {
+export const useProfile = (data: MarketServiceSingleClient) => {
   let store = reactive({ market: data })
 
-  const handleUpdate = async (body: MarketServiceSingle) => {
+  const handleUpdate = async (body: MarketServiceSingleClient) => {
     // console.log(store.market)
     const { data, error } = await useFetch("/api/market/profile", {
       method: "PUT",

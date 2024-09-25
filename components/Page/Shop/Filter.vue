@@ -29,12 +29,15 @@ onMounted(() => {
     // console.log("is mobile", size.value.clientWidth)
     // console.log("is mobile")
     // console.log(size.value.clientWidth < 183 ? true : false)
-    getData.value = size.value.clientWidth <= 183
-    getData.value = size.value.clientWidth <= 382
+    // getData.value = size.value.clientWidth <= 183
+    // console.log(size.value.clientWidth)
+    getData.value = size.value.clientWidth >= 640 //382
   }
+
   // computed(() => {
   // })
 })
+
 onMounted(() => {
   if (size.value) {
     // console.log("is mounted")

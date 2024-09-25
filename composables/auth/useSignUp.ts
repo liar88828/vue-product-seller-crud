@@ -41,12 +41,13 @@ export const useSignUp = () => {
   }
 
   const signUp = async (body: SignUpProps) => {
+    console.log("sign up", body)
     const { data, error, pending } = await useFetch("/api/auth/sign-up", {
       method: "POST",
       body,
     })
 
-    console.log(data, error, pending)
+    console.log(data.value?.user, error, pending)
     if (error.value) {
       throw new Error(`Server Error Sign In ${error.value?.statusMessage}`)
     }

@@ -1,4 +1,26 @@
 export class HistoryService {
+  async marketAllConfirm(
+    id_market: number
+    // session: SessionUser
+  ): Promise<HistoryServer[]> {
+    return prisma.transaction.findMany({
+      where: {
+        status: "PENDING",
+        id_market: id_market,
+      },
+      include: {
+        userBuy: true,
+        Market: true,
+        Trolley: {
+          include: {
+            Product: true,
+          },
+        },
+      },
+      take: 100,
+    })
+  }
+
   async marketAll(session: SessionUser): Promise<HistoryServer[]> {
     return prisma.transaction.findMany({
       where: {

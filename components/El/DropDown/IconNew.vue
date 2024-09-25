@@ -1,15 +1,11 @@
 <template>
-  <div
-    :tabindex="index"
-    role="button"
-    class="btn btn-ghost btn-sm btn-square ml-5"
-  >
-    <div :class="['indicator']">
-      <slot />
-      <span :class="['badge badge-sm indicator-item badge-primary']">
-        {{ indicator }}
-      </span>
-    </div>
+  <div :class="['indicator']">
+    <slot />
+    <span
+      :class="['badge badge-xs sm:badge-sm indicator-item badge-primary mr-1']"
+    >
+      {{ indicator }}
+    </span>
   </div>
 </template>
 

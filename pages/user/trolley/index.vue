@@ -1,12 +1,14 @@
 <template>
-  <NuxtLayout name="user">
-    <ElLoading v-if="pending" />
-    <ElError v-else-if="error || !data" />
-    <PageTransactionTrollyNew v-else :data="data?.trolleys" />
-  </NuxtLayout>
+  <ElLoading v-if="pending" />
+  <ElError v-else-if="error || !data" />
+  <PageTransactionTrollyNew v-else :data="data?.trolleys" />
 </template>
 
 <script lang="ts" setup>
+definePageMeta({
+  layout: "user",
+})
+
 const { data, pending, error } = await useFetch(`/api/user/trolley`)
 watch(data, () => {
   console.log(data.value)

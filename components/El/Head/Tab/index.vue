@@ -8,7 +8,7 @@
       :key="item.link"
       :to="`${item.link}`"
       role="tab"
-      :class="` tab ${getActive(item.link, 'tab-active')}`"
+      :class="`tab ${getActive(item.link, 'tab-active')}`"
       >{{ item.title }}</NuxtLink
     >
   </div>
@@ -16,7 +16,6 @@
 
 <script lang="ts" setup>
 import type { Item } from "~/types/globals/LinkItem"
-
 const { getActive } = useStyle()
 const props = defineProps<{ items: Item[] }>()
 </script>

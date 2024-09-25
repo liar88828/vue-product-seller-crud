@@ -1,4 +1,8 @@
 <script setup lang="ts">
+definePageMeta({
+  layout: "shop",
+})
+
 // defineMid
 // import { dataProductDetailServer } from "~/assets/example/product/dataProduct"
 // import type { ProductDetail } from "~/types/product/item"

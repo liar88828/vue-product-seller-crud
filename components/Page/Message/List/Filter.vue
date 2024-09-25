@@ -6,12 +6,11 @@
 
 <script lang="ts" setup>
 import { useList } from "~/composables/message/useList"
-import type { NotifyMessage } from "~/types/message/notify"
 const { store } = useList()
 
 defineProps({
   data: {
-    type: Object as PropType<NotifyMessage[]>,
+    type: Object as PropType<NotifyMessageClient[]>,
     required: true,
   },
 })

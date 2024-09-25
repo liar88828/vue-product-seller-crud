@@ -1,15 +1,17 @@
 <template>
-  <NuxtLayout name="market">
-    <!-- <h1>hellos</h1> -->
-    <ElLoading v-if="pending"/>
-    <ElError v-else-if="error || !data"/>
-    <Index v-else :data="data?.market"/>
-  </NuxtLayout>
+  <ElLoading v-if="pending" />
+  <PageMarketErrorNotRegister v-else-if="error?.message.includes('market')" />
+  <ElError v-else-if="error || !data" />
+  <PageMarketProfile v-else :data="data?.market" />
 </template>
 
-
 <script lang="ts" setup>
-import Index from "./info/index.vue"
+definePageMeta({
+  middleware: ["market"],
+})
+definePageMeta({
+  layout: "market",
+})
 
 const { data, pending, error } = await useFetch("/api/market/profile")
 console.log(data)
@@ -17,7 +19,4 @@ console.log(data)
 // if (session.value.session.createMarket) {
 //   throw navigateTo("/market/profile/create")
 // }
-definePageMeta({
-  middleware: ["market"],
-})
 </script>

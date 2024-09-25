@@ -27,11 +27,6 @@ export class UserController {
     return this.serviceUser.id(id)
   }
 
-  async myProfile(event: H3Event): Promise<User> {
-    const { session } = await requireUserSession(event)
-    return this.serviceUser.id(session.id)
-  }
-
   async create(event: H3Event): Promise<SessionUser> {
     const { session } = await getUserSession(event)
     let data = await readBody(event)
@@ -58,14 +53,15 @@ export class UserController {
     return this.serviceUser.delete(session.id)
   }
 
-  async profileFirst(event: H3Event): Promise<User> {
-    const { session } = await getUserSession(event)
-    return this.serviceUser.id(session.id)
-  }
-
   async profileId(event: H3Event): Promise<User> {
-    const { session } = await getUserSession(event)
-    return this.serviceUser.id(session.id)
+    try {
+      const { session } = await getUserSession(event)
+      // console.log(session)
+      return this.serviceUser.id(session.id)
+    } catch (e) {
+      await clearUserSession(event)
+      throw createError({ statusCode: 404, statusMessage: "User not found" })
+    }
   }
 }
 

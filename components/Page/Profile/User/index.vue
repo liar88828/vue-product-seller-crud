@@ -11,4 +11,6 @@
 <script lang="ts" setup>
 import UserStatic from "./UserStatic.vue"
 import Info from "./Info.vue"
+import type { User } from "@prisma/client"
+defineProps<{ data: User }>()
 </script>

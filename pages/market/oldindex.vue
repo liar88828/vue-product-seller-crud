@@ -1,10 +1,8 @@
 <template>
-  <NuxtLayout name="market">
-    <!-- <ElLoading v-if="pending" />
+  <!-- <ElLoading v-if="pending" />
     <ElError v-else-if="error || !data" />
     <PageProfileMarket v-else :data="data?.market" /> -->
-    {{ data?.market }}
-  </NuxtLayout>
+  {{ data?.market }}
 </template>
 <script lang="ts" setup>
 // import { dataCompany } from "~/assets/example/user/dataCompany"

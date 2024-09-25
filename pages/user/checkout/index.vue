@@ -4,6 +4,9 @@
 </template>
 
 <script lang="ts" setup>
+definePageMeta({
+  layout: "user",
+})
 import { dataProducts } from "~/assets/example/product/dataProduct"
 const { id } = useRoute().params
 const { data } = await useFetch(`/api/product/${id}/checkout`)

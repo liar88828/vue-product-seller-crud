@@ -1,5 +1,5 @@
 import type { MessageContact, MessageList } from "~/types/message/message"
-import type { NotifyMessage } from "~/types/message/notify"
+import type { NotifyMessageServer } from "~/types/message/notify"
 export const dataChat1: MessageList[] = [
   {
     name: "Alex",
@@ -88,7 +88,7 @@ export const countUnRead = dataMessages.filter(
   (item) => item.read === false
 ).length
 
-const dataNotify: NotifyMessage = {
+const dataNotify: NotifyMessageServer = {
   type: "Message",
   name: "John",
   link: "/message/1",
@@ -98,7 +98,7 @@ const dataNotify: NotifyMessage = {
   img: "https://picsum.photos/63",
   msg: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
 }
-const dataTransaction: NotifyMessage = {
+const dataTransaction: NotifyMessageServer = {
   type: "Transaction",
   name: "Alex",
   link: "/product/look/1",
@@ -109,7 +109,7 @@ const dataTransaction: NotifyMessage = {
   msg: "Your order has been confirmed",
 }
 
-const dataTransactionSuccess: NotifyMessage = {
+const dataTransactionSuccess: NotifyMessageServer = {
   type: "Transaction",
   name: "Alex",
   link: "/product/look/1",
@@ -120,7 +120,7 @@ const dataTransactionSuccess: NotifyMessage = {
   msg: "Your order has been taken",
 }
 
-const dataConfirmProduct: NotifyMessage = {
+const dataConfirmProduct: NotifyMessageServer = {
   type: "Confirm",
   name: "Sarah",
   link: "/market/confirm",
@@ -131,14 +131,14 @@ const dataConfirmProduct: NotifyMessage = {
   msg: "Confirm product order",
 }
 
-export const dataNotifies: NotifyMessage[] = [
+export const dataNotifies: NotifyMessageServer[] = [
   dataNotify,
   dataTransaction,
   dataTransactionSuccess,
   dataConfirmProduct,
 ]
 
-export const dataNotifyExample: NotifyMessage = {
+export const dataNotifyExample: NotifyMessageServer = {
   type: "Message",
   name: "John",
   link: "/message/1",

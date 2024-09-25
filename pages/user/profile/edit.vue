@@ -1,8 +1,9 @@
 <template>
-  <NuxtLayout name="user">
-    <PageProfileEditUser :data="userProfile" />
-  </NuxtLayout>
+  <PageProfileEditUser :data="userProfile" />
 </template>
 <script lang="ts" setup>
+definePageMeta({
+  layout: "user",
+})
 import { userProfile } from "~/assets/example/user/dataUser"
 </script>

@@ -6,7 +6,7 @@ export class TransactionSanitize {
       drop_address: data.drop_address,
       id_buyer: data.id_buyer,
       id_market: data.id_market,
-      id_status: data.id_status,
+      // id_status: data.id_status,
       promoCode: data.promoCode,
       status: data.status,
     }

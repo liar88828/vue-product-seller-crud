@@ -20,12 +20,12 @@ export class UserService {
       throw createError({ statusCode: 404, statusMessage: "User not found" })
     }
     data.password = ""
+    console.log(data, "data user")
     return data
   }
 
   async signUp(data: Omit<SignUpProps, "confPass">): Promise<SessionUser> {
-    data = zods.user.signUp.parse(data)
-
+    console.log(data, "sign up")
     return prisma.$transaction(async (tx) => {
       const user = await tx.user.create({
         data: {

@@ -1,5 +1,5 @@
 import type { H3Event } from "h3"
-import { idMarketFind } from "../services/market.service"
+import { getIdMarket } from "../services/market.service"
 
 export class OrderController {
   constructor(
@@ -29,7 +29,7 @@ export class OrderController {
   async marketApply(event: H3Event, status: TStatus) {
     const { id } = getRouterParams(event)
     const { session } = await getUserSession(event)
-    const { id: id_market } = await idMarketFind(session)
+    const { id: id_market } = await getIdMarket(session)
     await this.serviceOrder.add(
       {
         id: Number(id),
@@ -71,7 +71,7 @@ export class OrderController {
   async userPayDetail(event: H3Event): Promise<PayProps> {
     const { session } = await getUserSession(event)
     const { id } = getRouterParams(event)
-    const { id: id_market } = await idMarketFind(session)
+    const { id: id_market } = await getIdMarket(session)
 
     return {
       market: await MarketService.findFullStatic(id_market),

@@ -127,13 +127,13 @@ model Trolley {
     id             Int          @id @default(autoincrement())
     // 
     Box            Box[]
-    User           User         @relation(fields: [id_user], references: [id])
-    id_user        String
-    Product        Product      @relation(fields: [id_product], references: [id])
-    id_product     Int
     qty            Int          @default(1)
+    id_user        String
+    User           User         @relation(fields: [id_user], references: [id])
+    id_product     Int
+    Product        Product      @relation(fields: [id_product], references: [id])
+    id_transaction Int?
     Transaction    Transaction? @relation(fields: [id_transaction], references: [id])
-    id_transaction Int?         @unique
 }
 
 model Box {
@@ -170,7 +170,7 @@ model Transaction {
     // who's buy 
 
     discount  Int
-    status    String
+    status    String    @default("PENDING")
     promoCode String
     // Box    Box[]
     // trolly    Product[]
@@ -181,8 +181,6 @@ model Transaction {
     id_market Int
     Market    Market    @relation(fields: [id_market], references: [id])
     // that status transaction is []
-    id_status String
-    Status    Status    @relation(fields: [id_status], references: [id])
     // 
     dateExp   DateTime
     createdAt DateTime  @default(now())
@@ -193,10 +191,10 @@ model Transaction {
     Trolley   Trolley[]
 }
 
-model Status {
-    id          String        @id @default("PENDING")
-    Transaction Transaction[]
-}
+// model Status {
+//     id          String        @id @default("PENDING")
+//     Transaction Transaction[]
+// }
 
 model Type {
     id      String    @id @default("TIDAK TAHU")

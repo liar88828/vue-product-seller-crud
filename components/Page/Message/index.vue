@@ -1,21 +1,27 @@
 <template>
+  <!-- sm:h-[86vh] -->
   <div
     :class="[
-      ' h-[70vh] sm:h-[71vh] md:h-[80vh] lg:h-[80vh] overflow-y-scroll border border-gray-300 p-2 transition-all duration-300 ease-linear flex flex-col justify-between',
+      ' h-[95vh] sm:h-[92vh] md:h-[92vh] lg:h-[91vh]    pt-16',
+      ' overflow-y-scroll   transition-all duration-300 ease-linear ',
       { fullscreen: isFullscreen },
     ]"
     ref="chatContainer"
   >
-    <ElButtonScroll />
-
     <Minimize
       :isFullscreen="isFullscreen"
       :toggleFullscreen="toggleFullscreen"
     />
 
-    <Message v-for="message in data" :data="message" :user="{ name: 'Alex' }" />
+    <Text
+      class=""
+      v-for="message in data"
+      :data="message"
+      :user="{ name: 'Alex' }"
+    />
   </div>
   <Send
+    class=""
     v-model:message="message"
     v-model:isFullscreen="isFullscreen"
     :onSend="onSend"
@@ -25,12 +31,12 @@
 
 <script lang="ts" setup>
 import { ref, watch, nextTick } from "vue"
-import type { MessageContact } from "~/types/message/message"
-import Message from "../Message/Text.vue"
-import Minimize from "../Message/Minimize.vue"
-import Send from "../Message/Send.vue"
+import Minimize from "./Chat/Minimize.vue"
+import type { MessageList } from "~/types/message/message"
+import Send from "./Chat/Send.vue"
+import Text from "./Chat/Text.vue"
 const props = defineProps<{
-  data: MessageContact[]
+  data: MessageList[]
 }>()
 
 const message = ref<string>("")
@@ -50,9 +56,9 @@ const onSend = (): void => {
       msg: message.value,
       name: "Alex",
       time: new Date(),
-      img: "https://i.pravatar.cc/300",
-      read: false,
-      message: [],
+      // img: "https://picsum.photos/200",
+      // read: false,
+      // message: [],
     })
     message.value = ""
     nextTick(() => {

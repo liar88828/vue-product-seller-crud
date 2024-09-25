@@ -70,7 +70,7 @@ export class TransactionUserDB {
     return prisma.transaction.update({
       where: { id, id_buyer },
       data: {
-        id_status: "Accepted",
+        status: "Accepted",
       },
     })
   }

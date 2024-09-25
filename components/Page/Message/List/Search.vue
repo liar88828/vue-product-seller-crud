@@ -1,5 +1,5 @@
 <template>
-  <div class="join">
+  <div class="join w-full">
     <input
       type="text"
       class="input input-bordered w-full input-sm join-item"
@@ -7,7 +7,7 @@
       v-model="store.name"
     />
     <ElIndicator :count="newMessage">
-      <div class="join-item btn btn-outline btn-sm">
+      <div class="join-item btn btn-sm">
         <IconsBell class="icons" />
       </div>
     </ElIndicator>

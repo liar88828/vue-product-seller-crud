@@ -1,9 +1,10 @@
 <template>
-  <NuxtLayout name="user">
-    <PageTransactionTrolly :data="dataProducts" />
-  </NuxtLayout>
+  <PageTransactionTrolly :data="dataProducts" />
 </template>
 
 <script lang="ts" setup>
+definePageMeta({
+  layout: "user",
+})
 import { dataProducts } from "~/assets/example/product/dataProduct"
 </script>

@@ -142,7 +142,7 @@ export class MarketService {
     // console.log("id_market-----", id_market)
 
     const market = await prisma.market
-      .findUnique({ where: { id_user: id_user } })
+      .findUnique({ where: { id_user } })
       .then((data) => {
         if (!data) {
           throw createError({
@@ -294,7 +294,7 @@ export class MarketService {
   }
 
   async idMarketFind({ id }: Pick<SessionUser, "id">) {
-    return idMarketFind({ id })
+    return getIdMarket({ id })
   }
 
   async confirmId({
@@ -336,7 +336,7 @@ export class MarketService {
 export const marketService = new MarketService(marketSanitize)
 export type IMarketService = MarketService
 
-export async function idMarketFind({ id }: Pick<SessionUser, "id">) {
+export async function getIdMarket({ id }: Pick<SessionUser, "id">) {
   return prisma.market
     .findUnique({
       where: { id_user: id },
@@ -346,7 +346,7 @@ export async function idMarketFind({ id }: Pick<SessionUser, "id">) {
       if (!data) {
         throw createError({
           statusCode: 404,
-          statusMessage: "Market not found",
+          statusMessage: "market not found please create first",
         })
       }
       return data

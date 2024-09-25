@@ -2,7 +2,7 @@ import { ZodType, z } from "zod"
 import type { SignInProps, SignUpProps } from "~/types/auth/user"
 import type { UserCreate } from "~/types/user/ControlCreateUser"
 
-const signUp = z
+export const signUp = z
   .object({
     name: z.string(),
     email: z.string().email(),

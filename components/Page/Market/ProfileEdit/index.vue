@@ -33,7 +33,7 @@ import Social from "./Social.vue"
 import Title from "./Title.vue"
 
 const props = defineProps<{
-  data: MarketServiceSingle
+  data: MarketServiceSingleClient
 }>()
 
 const { handleUpdate, store } = useProfile(props.data)

@@ -85,7 +85,7 @@ export class MarketController {
     })
   }
 
-  async idMarketFind(event: H3Event): Promise<idMarketFind> {
+  async getMarketId(event: H3Event): Promise<idMarketFind> {
     const { session } = await getUserSession(event)
     return this.serviceMarket.idMarketFind(session)
   }
@@ -100,7 +100,7 @@ export class MarketController {
   }
   async marketStatic(event: H3Event): Promise<StaticServer> {
     return tryCatch(async () => {
-      const { id } = getRouterParams(event)
+      const { id } = await this.getMarketId(event)
       return this.serviceMarket.marketStatic(Number(id))
     })
   }

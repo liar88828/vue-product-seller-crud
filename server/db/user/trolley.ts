@@ -8,34 +8,7 @@ export type IdTrolleyProduct = {
   id_user: string
 }
 
-export class TrolleyMutation extends CheckDB {
-  checkout = new CheckOutDB()
-
-  // async checkTrolley(id_user: string) {
-  //   const found = await prisma.trolley.findMany({
-  //     select: {
-  //       id: true,
-  //     },
-  //     // where: {
-  //     //   User: { id: id_user },
-  //     // },
-  //   })
-  //   if (!found) {
-  //     const create = await prisma.trolley.create({
-  //       data: {
-  //         User: {
-  //           connect: {
-  //             id: id_user,
-  //           },
-  //         },
-  //       },
-  //     })
-  //     return create
-  //   }
-  // }
-}
-
-export class TrolleyDB extends TrolleyMutation {
+export class TrolleyDB {
   async myNotify(id: string, page: number): Promise<number> {
     return prisma.trolley.count({
       where: {

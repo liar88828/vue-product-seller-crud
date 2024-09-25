@@ -56,7 +56,7 @@ const store = reactive({
   pending: false,
 })
 
-const refreshTrollyNotify = () => refreshNuxtData("trolly_notify")
+const refreshTrollyNotify = () => refreshNuxtData("trolley_notify")
 const handlerAddTrolly = async () => {
   const sendData: TrolleyCreate = {
     id_product: Number(id),

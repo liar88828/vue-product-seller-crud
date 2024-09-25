@@ -1,24 +1,24 @@
 <template>
-  <CardSide :bg="true" :class="'h-32 '">
-    <figure class="w-1/4">
+  <div :class="'rounded-lg shadow flex bg-base-100'">
+    <figure class="w-1/3">
       <img
         :src="data.img"
         :alt="data.name"
-        class="rounded-xl object-cover w-full aspect-square shadow-lg"
+        class="rounded-lg object-cover w-full h-auto aspect-square shadow-lg"
       />
     </figure>
-    <CardBody :class="'w-3/4'">
-      <CardHead :title="data.name">
-        <!-- <UnRead :data="data" /> -->
-        <template #title>
+    <div :class="'w-full p-2'">
+      <div class="flex justify-between items-center">
+        <div class="flex items-center gap-1">
+          <h1 class="text-md font-bold">{{ data.name }}</h1>
           <p class="badge badge-primary badge-sm sm:badge-md">
             {{ data.type }}
           </p>
-        </template>
-        <NuxtLink :to="data.link" class="btn btn-outline btn-sm self-end">
+        </div>
+        <NuxtLink :to="data.link" class="btn btn-outline btn-xs self-end">
           Reply
         </NuxtLink>
-      </CardHead>
+      </div>
       <CardActionBetween class="flex-nowrap">
         <div class="flex justify-between flex-col">
           <p class="text-xs sm:text-sm">
@@ -33,14 +33,14 @@
           Reply
         </NuxtLink> -->
       </CardActionBetween>
-    </CardBody>
-  </CardSide>
+    </div>
+  </div>
 </template>
 
 <script lang="ts" setup>
-import type { NotifyMessage } from "~/types/message/notify"
+import type { NotifyMessageServer } from "~/types/message/notify"
 const props = defineProps<{
-  data: NotifyMessage
+  data: NotifyMessageClient
 }>()
 
 const showText = ref(true)

@@ -1,14 +1,14 @@
 import type { keyPage } from "~/types/globals/Pagination"
 import type {
   FilterMessage,
-  NotifyMessage,
+  NotifyMessageServer,
   TypeMessage,
 } from "~/types/message/notify"
 const exData: FilterMessage = { value: "Select", name: "" }
 export const useList = () => {
   const keys: keyPage = "message_page"
   const store = reactive<{ value: TypeMessage; name: string }>(exData)
-  const filter = (data: NotifyMessage[]) =>
+  const filter = (data: NotifyMessageClient[]) =>
     data
       .filter((d) => {
         if (store.value === "Select") {

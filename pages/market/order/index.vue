@@ -1,6 +1,14 @@
 <template>
   <NuxtLayout name="market">
     <ElLoading v-if="pending" />
+    <PageMarketErrorNotRegister v-else-if="error?.message.includes('market')" />
+    <ErrorNotFound
+      v-else-if="data?.confirms.length === 0"
+      :title="'Product is Empty'"
+      :code="404"
+      :linkText="'Register'"
+      link="/market/profile/create"
+    />
     <ElError v-else-if="error || !data" />
     <PageMarketConfirm v-else :data="data?.confirms" />
   </NuxtLayout>

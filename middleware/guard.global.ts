@@ -1,9 +1,12 @@
 export default defineNuxtRouteMiddleware((to, from) => {
   const { loggedIn } = useUserSession()
-  const protectedRoutes = ["/profile", "/market", "message"]
+  // console.log("global auth---")
+  const protectedRoutes = ["profile", "market", "message", "user"]
 
+  // console.log(protectedRoutes.includes(to.path), " this path")
   if (!loggedIn.value) {
-    if (protectedRoutes.includes(to.path)) {
+    console.log("not login redirect --- ", to.path.split("/")[1])
+    if (protectedRoutes.includes(to.path.split("/")[1])) {
       return navigateTo("/auth/sign-in")
     }
   }
