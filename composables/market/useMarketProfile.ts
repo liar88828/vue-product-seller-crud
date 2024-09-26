@@ -3,7 +3,7 @@ import type { MarketServer } from "~/types/market/ProfileCompany"
 
 export const useMarketProfile = () => {
   const { fetch } = useUserSession()
-  type Type = MarketServer
+  type Type = MarketRegisterClient
   const store = reactive<StoreBase<Type>>({
     pending: false,
     msg: "",
@@ -31,9 +31,12 @@ export const useMarketProfile = () => {
 
   const validData = (data: Type) => {
     data.since = new Date(data.since)
+    console.log(data)
     const valid = zods.market.register.safeParse(data)
     if (!valid.success) {
       valid.error.errors.map((err) => {
+        console.log(err)
+
         store.error[err.path[0] as keyof Type] = [err.message]
       })
       throw new Error("Form Error Sign In")
@@ -53,6 +56,8 @@ export const useMarketProfile = () => {
       method: "POST",
       body,
     })
+    // console.log(data.value?.market)
+
     if (error.value) {
       throw new Error(` Error Create ${error.value?.statusMessage}`)
     }

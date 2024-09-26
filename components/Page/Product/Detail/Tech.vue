@@ -14,9 +14,9 @@
 </template>
 
 <script lang="ts" setup>
-import type { DataTech, ProductDetail } from "~/types/product/item"
+import type { DataTech, ProductDetailServer } from "~/types/product/item"
 
 defineProps<{
-  data: ProductDetail["detail"]["Tech"]
+  data: ProductDetailServer["detail"]["Tech"]
 }>()
 </script>

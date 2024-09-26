@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import type { ProductDetail } from "~/types/product/item"
-defineProps<{ data: ProductDetail["detail"] }>()
+import type { Product } from "@prisma/client"
+defineProps<{ data: Product }>()
 </script>
 <template>
   <CardInit class="card-normal bg-base-100/70" :bg="false">
@@ -14,9 +14,9 @@ defineProps<{ data: ProductDetail["detail"] }>()
       </p>
     </CardHeadTitle>
 
-    <ul class="product-desc-li-p" v-for="item in data.Desc" :key="item.text">
+    <!-- <ul class="product-desc-li-p" v-for="item in data.Desc" :key="item.text">
       <li>{{ item.text }}</li>
-    </ul>
+    </ul> -->
     <slot />
   </CardInit>
 </template>

@@ -37,7 +37,7 @@ export type UserPreviewClient = PreviewClient
 //   User: User
 // }
 
-export type ProductDetail = {
+export type ProductDetailServer = {
   detail: ProductItemServer
   previews: UserPreviewServer[]
   // relateds: Product[]

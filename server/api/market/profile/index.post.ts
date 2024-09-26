@@ -3,12 +3,10 @@
 // and find market from session user
 // return market profile
 
-import type { Market } from "@prisma/client"
-
 export default defineEventHandler(async (event) => {
   const data = {
-    market: await marketController.createProfile(event),
-    toJson(): { market: Market } {
+    market: await marketController.register(event),
+    toJson(): { market: MarketUser } {
       return {
         market: this.market,
       }

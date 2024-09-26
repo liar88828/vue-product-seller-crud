@@ -1,10 +1,10 @@
-import type { ProductDetail } from "~/types/product/item"
+import type { ProductDetailServer } from "~/types/product/item"
 
 export default defineEventHandler(async (event) => {
   const data = {
     product: await productController.detail(event),
 
-    toJSON(): { product: ProductDetail } {
+    toJSON(): { product: ProductDetailServer } {
       return {
         product: this.product,
       }

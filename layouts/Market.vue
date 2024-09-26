@@ -2,7 +2,7 @@
   <section class="min-h-screen bg-base-300 w-screen">
     <section class="navbar bg-base-100 shadow h-16">
       <div class="flex-none">
-        <button class="btn btn-ghost btn-square" @click="router.back()">
+        <button class="btn btn-ghost btn-square" @click="router.push('/home')">
           <IconsHome class="icons" />
         </button>
       </div>

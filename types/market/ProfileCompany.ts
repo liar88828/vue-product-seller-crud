@@ -48,9 +48,15 @@ type test = IfEquals<MarketServerValid, ProfileMarket, "save", "different">
 
 export type MarketServer = Omit<
   Market,
-  "id" | "id_contact" | "id_socialMedia" | "id_follow" | "id_user" | "create"
+  "id" | "id_contact" | "id_socialMedia" | "id_follow" | "create"
 >
-export type MarketRegister = Omit<
+
+export type MarketRegisterClient = Omit<
+  Market,
+  "id" | "id_contact" | "id_socialMedia" | "id_follow" | "create" | "id_user"
+>
+
+export type MarketRegisterServer = Omit<
   Market,
   "id" | "id_contact" | "id_socialMedia" | "id_follow" | "create"
 >
@@ -83,7 +89,7 @@ export type MarketServerFullClient = MarketClient & {
 }
 
 export type MarketClient = Omit<Market, "since"> & {
-  since: string
+  since: Date | string
 }
 
 export type MarketClientFull = MarketClient & {
@@ -131,9 +137,7 @@ export type DataMarketDesc = Market & {
 
 export type Remove<T> = Omit<T, "id">
 
-export type MarketUser = Market & {
-  User: User
-}
+export type MarketUser = { market: Market; user: User }
 
 export type MarketServiceSingleNull = {
   Market: Market | null

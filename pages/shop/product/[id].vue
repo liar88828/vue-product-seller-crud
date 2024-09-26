@@ -8,9 +8,13 @@ definePageMeta({
 // import type { ProductDetail } from "~/types/product/item"
 
 const { id } = useRoute().params
-const { data, error, pending } = await useFetch(`/api/product/shop/${id}`)
+const { data, error, pending } = await useFetch("/api/product/:id", {
+  params: {
+    id: id,
+  },
+})
 watch(data, () => {
-  console.log(data.value)
+  // console.log(data.value)
 })
 if (!data.value) {
   throw new Error("data not found")

@@ -15,9 +15,12 @@ export class ProductController extends ReviewController {
     return text
   }
 
-  async id(id: number) {
+  async id(event: H3Event) {
     return tryCatch(async () => {
-      return this.serviceProduct.id(id)
+      // console.log(event.path, "----")
+      const { id } = getQuery(event)
+      // console.log(id, "----------")
+      return this.serviceProduct.id(Number(id))
     })
   }
 
@@ -131,19 +134,29 @@ export class ProductController extends ReviewController {
   }
 
   async preview(event: H3Event): Promise<UserPreviewServer[]> {
-    const { id } = getRouterParams(event)
-    return prisma.preview.findMany({
-      include: { User: true },
-      where: {
-        id_product: Number(id),
-      },
+    return tryCatch(async () => {
+      const { id } = getQuery(event)
+      // console.log(id, "-------------")
+      return prisma.preview
+        .findMany({
+          include: { User: true },
+          where: {
+            id_product: Number(id),
+          },
+        })
+        .then((data) => {
+          if (!data) {
+            return []
+          }
+          return data
+        })
     })
   }
 
   async shop_All(): Promise<Product[]> {
     return db.product.findTest()
   }
-  async shopDetail(event: H3Event): Promise<ProductDetail> {
+  async shopId(event: H3Event): Promise<ProductDetailServer> {
     return tryCatch(async () => {
       const { id } = getRouterParams(event)
       return this.serviceProduct.shopDetail(Number(id))

@@ -30,9 +30,9 @@
 <script lang="ts" setup>
 // import type { DataImage } from "~/assets/example/product/image"
 import { useImageSelect } from "~/composables/useImageSelect"
-import type { ProductDetail } from "~/types/product/item"
+import type { ProductDetailServer } from "~/types/product/item"
 
-const props = defineProps<{ data: ProductDetail["detail"]["Img"] }>()
+const props = defineProps<{ data: ProductDetailServer["detail"]["Img"] }>()
 const { imageRender, selectImage } = useImageSelect(props.data)
 // const selectImage = ref("")
 // const imageRender = computed(() => {

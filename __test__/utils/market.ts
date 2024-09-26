@@ -1,5 +1,8 @@
 import type { Market } from "@prisma/client"
-import type { MarketRegister } from "~/types/market/ProfileCompany"
+import type {
+  MarketRegisterClient,
+  MarketRegisterServer,
+} from "~/types/market/ProfileCompany"
 import { prisma } from "~/server/config/prisma"
 
 export const testUser: SignUpProps = {
@@ -11,7 +14,7 @@ export const testUser: SignUpProps = {
   confPass: "12345678",
 }
 
-export const marketExample: MarketRegister = {
+export const marketExample: MarketRegisterServer = {
   name: "Global Trade Hub",
   address: "123 Commerce Street, New York, NY 10001, USA",
   industry: "E-commerce",

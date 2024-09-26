@@ -7,13 +7,11 @@
 <script lang="ts" setup>
 definePageMeta({
   middleware: ["market"],
-})
-definePageMeta({
   layout: "market",
 })
 // import { dataCompany } from "~/assets/example/user/dataCompany"
 
-const { data, error, pending } = await useFetch("/api/market/profile/")
+const { data, error, pending } = await useFetch("/api/market/profile/edit")
 watch(data, () => {
   // console.log(data.value)
 })

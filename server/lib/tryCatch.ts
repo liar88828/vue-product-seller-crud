@@ -13,6 +13,8 @@ export async function tryCatch(fun: () => any) {
   } catch (e) {
     // console.log(e)
     if (e instanceof ZodError) {
+      console.log("zod error---")
+      console.log(e)
       throw e.flatten().fieldErrors
     }
     if (e instanceof Prisma.PrismaClientKnownRequestError) {

@@ -221,7 +221,7 @@ export class ProductService extends ProductSanitize {
     return prisma.product.delete({ where: { id: id, id_market: id_market } })
   }
 
-  async shopDetail(id: number): Promise<ProductDetail> {
+  async shopDetail(id: number): Promise<ProductDetailServer> {
     const previews = await db.preview.findUser({ id })
     const product = await db.product.findFull(id)
     // const market = await db.product.findCompany(id)

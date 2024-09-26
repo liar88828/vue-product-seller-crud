@@ -54,8 +54,6 @@
 <script lang="ts" setup>
 definePageMeta({
   middleware: ["market"],
-})
-definePageMeta({
   layout: "market",
 })
 const { store, handleSubmit } = useProductCreate()

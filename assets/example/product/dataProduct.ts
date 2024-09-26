@@ -1,5 +1,5 @@
 import type { Product } from "@prisma/client"
-import type { ProductDetail, ProductItem } from "~/types/product/item"
+import type { ProductDetailServer, ProductItem } from "~/types/product/item"
 import { dataDesc, dataDesc2, dataDesc3 } from "./desc"
 import { dataTech, dataTech2, dataTech3 } from "./tech"
 import { dataSpec, dataSpec2, dataSpec3 } from "./spec"
@@ -115,7 +115,7 @@ export const dataProducts: Product[] = [
   dataProductDetail3,
 ]
 
-export const dataProductDetailServer: ProductDetail = {
+export const dataProductDetailServer: ProductDetailServer = {
   detail: {
     id: 22,
     name: "Wesley",

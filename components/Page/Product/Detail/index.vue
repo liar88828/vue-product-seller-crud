@@ -1,9 +1,9 @@
 <template>
   <div class="grid md:grid-cols-2 gap-8 mb-5">
-    <ElError v-if="!data.detail" />
-    <Images v-else :data="data.detail" />
+    <ElError v-if="!data" />
+    <Images v-else :data="data" />
 
-    <Desc v-show="data.detail" :data="data.detail">
+    <Desc v-show="data" :data="data">
       <div class="flex flex-col sm:flex-row gap-4 justify-end mt-5">
         <NuxtLink
           :to="`/product/checkout/${id}`"
@@ -29,10 +29,10 @@
     </Desc>
   </div>
   <div class="space-y-5">
-    <Spec v-show="data.detail.Spec" :data="data.detail.Spec" />
-    <Tech v-show="data.detail.Tech" :data="data.detail.Tech" />
-    <PageUserBox />
-    <ProductMarket />
+    <!-- <Spec v-show="data.detail.Spec" :data="data.detail.Spec" />
+    <Tech v-show="data.detail.Tech" :data="data.detail.Tech" /> -->
+    <ReviewUser />
+    <ProductMarket :id_market="data.id_market" :id_product="data.id" />
     <RelatedProducts />
   </div>
 </template>
@@ -42,12 +42,14 @@
 import Desc from "./Desc.vue"
 import Images from "./Images.vue"
 import Spec from "./Spec.vue"
+import ReviewUser from "./ReviewUser.vue"
 import Tech from "./Tech.vue"
 import ProductMarket from "./ProductMarket.vue"
 import RelatedProducts from "./RelatedProducts.vue"
 import type { ProductDetailClient } from "~/types/product/item"
+import type { Product } from "@prisma/client"
 
-const props = defineProps<{ data: ProductDetailClient }>()
+defineProps<{ data: Product }>()
 
 const { id } = useRoute().params
 const { session } = useUserSession()

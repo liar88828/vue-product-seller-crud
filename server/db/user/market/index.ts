@@ -9,7 +9,10 @@ import { prisma } from "~/server/config/prisma"
 class MarketUserDB extends MarketTestDB {}
 
 class MarketOwnerDB extends MarketUserDB {
-  async update(id_market: number, data: MarketServer): Promise<Market> {
+  async update(
+    id_market: number,
+    data: Omit<MarketServer, "id_user">
+  ): Promise<Market> {
     return prisma.market.update({
       where: { id: id_market },
       data: data,

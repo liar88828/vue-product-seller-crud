@@ -1,7 +1,10 @@
 import { prisma } from "~/server/config/prisma"
 import type { SearchPagination } from "~/types/globals/Pagination"
 import type { Market, Product } from "@prisma/client"
-import type { ProductDetail, ProductItemServer } from "~/types/product/item"
+import type {
+  ProductDetailServer,
+  ProductItemServer,
+} from "~/types/product/item"
 import { statics } from "./ProductStatic"
 
 export class ProductDB {
@@ -41,7 +44,7 @@ export class ProductDB {
     return product
   }
 
-  async findFull(id: number): Promise<ProductDetail["detail"]> {
+  async findFull(id: number): Promise<ProductDetailServer["detail"]> {
     const product = await prisma.product.findUnique({
       where: { id: Number(id) },
       include: {

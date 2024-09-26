@@ -1,9 +1,9 @@
 <template>
   <Basics />
-  <Contact />
+  <!-- <Contact />
   <Describe />
-  <Social />
-  {{ session }}
+  <Social /> -->
+  <!-- {{ session }} -->
 </template>
 
 <script lang="ts" setup>

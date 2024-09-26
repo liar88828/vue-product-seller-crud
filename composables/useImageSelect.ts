@@ -1,5 +1,5 @@
 // import type { DataImage } from "~/assets/example/product/image"
-import type { DataImage, ProductDetail } from "~/types/product/item"
+import type { DataImage, ProductDetailServer } from "~/types/product/item"
 
 // export const useImageSelect = (data: DataImage[]) => {
 export const useImageSelect = (data: ProductItemServer["Img"]) => {

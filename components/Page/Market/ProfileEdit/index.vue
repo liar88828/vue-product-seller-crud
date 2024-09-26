@@ -17,9 +17,9 @@
           >
             Save
           </button>
-          <NuxtLink class="btn btn-info btn-outline" to="/market/profile"
-            >Back</NuxtLink
-          >
+          <NuxtLink class="btn btn-info btn-outline" to="/market/profile">
+            Back
+          </NuxtLink>
         </CardAction>
       </CardInit>
     </div>

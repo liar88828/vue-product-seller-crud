@@ -17,6 +17,43 @@ export class MarketController {
     private sanitizeMarket: IMarketSanitize
   ) {}
 
+  async register(event: H3Event): Promise<MarketUser> {
+    return tryCatch(async () => {
+      let data = await readBody(event)
+      const { session } = await getUserSession(event)
+      const res = await this.serviceMarket.register(data, session)
+
+      await replaceUserSession(event, {
+        session: res.user,
+        user: res.user,
+        loggedInAt: new Date(),
+      })
+
+      return res
+    })
+  }
+
+  async findProfile(event: H3Event): Promise<Market> {
+    return tryCatch(async () => {
+      const { session } = await getUserSession(event)
+      return this.serviceMarket.findProfile(session)
+    })
+  }
+
+  async findProfileEdit(event: H3Event): Promise<MarketServiceSingle> {
+    return tryCatch(async () => {
+      const { session } = await getUserSession(event)
+      return this.serviceMarket.findProfileEdit(session.id)
+    })
+  }
+
+  async fullSingle(event: H3Event): Promise<MarketServiceSingle> {
+    return tryCatch(async () => {
+      const { session } = await getUserSession(event)
+      return this.serviceMarket.ownerFindSingle(session.id)
+    })
+  }
+
   async full(event: H3Event): Promise<MarketServerFull> {
     return tryCatch(async () => {
       const { session } = await getUserSession(event)
@@ -54,30 +91,6 @@ export class MarketController {
     })
   }
 
-  async createProfile(event: H3Event): Promise<MarketUser> {
-    // id_user: string, data: MarketServer
-    return tryCatch(async () => {
-      let data = await readBody(event)
-      const { session } = await getUserSession(event)
-      data = this.sanitizeMarket.sanitize(data)
-      const marketData = await this.serviceMarket.register(data, session)
-
-      await replaceUserSession(event, {
-        session: marketData.User,
-        user: marketData.User,
-        loggedInAt: new Date(),
-      })
-      return marketData
-    })
-  }
-
-  async fullSingle(event: H3Event): Promise<MarketServiceSingle> {
-    return tryCatch(async () => {
-      const { session } = await getUserSession(event)
-      return this.serviceMarket.ownerFindSingle(session.id)
-    })
-  }
-
   async fullSingleId(event: H3Event): Promise<MarketServiceSingle> {
     return tryCatch(async () => {
       const { id } = getRouterParams(event)
@@ -100,17 +113,19 @@ export class MarketController {
   }
   async marketStatic(event: H3Event): Promise<StaticServer> {
     return tryCatch(async () => {
-      const { id } = await this.getMarketId(event)
-      return this.serviceMarket.marketStatic(Number(id))
+      // const { id } = await this.getMarketId(event)
+      const { id_market, id_product } = getQuery(event)
+      return this.serviceMarket.marketStatic({
+        id_market: Number(id_market),
+        id_product: Number(id_product),
+      })
     })
   }
 
-  async marketCreate(event: H3Event): Promise<Market> {
+  private async marketCreate(event: H3Event): Promise<Market> {
     return tryCatch(async () => {
       const { session } = await getUserSession(event)
       let body = await readBody(event)
-
-      body = this.sanitizeMarket.sanitize(body)
       body = zods.market.register.parse(body)
       const data = await this.serviceMarket.ownerCreate(body, session)
       await replaceUserSession(event, {

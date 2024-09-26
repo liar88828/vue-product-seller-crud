@@ -43,11 +43,11 @@ describe("test user service", async () => {
           marketExample,
           user as SessionUser
         )
-        marketId = result.id
+        marketId = result.market.id
         expect(result).toBeDefined()
-        expect(result.name).toBe(marketExample.name)
-        expect(result.name).not.toBe("not name")
-        expect(result.name).not.toBe("not name")
+        expect(result.market.name).toBe(marketExample.name)
+        expect(result.market.name).not.toBe("not name")
+        expect(result.market.name).not.toBe("not name")
       }
     )
   })

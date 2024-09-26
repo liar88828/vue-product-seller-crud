@@ -4,9 +4,10 @@
   <ErrorNotFound
     v-else-if="data?.products.length === 0"
     :title="'Product is Empty'"
+    :description="'Please product in shop '"
     :code="404"
-    :linkText="'Register'"
-    link="/market/profile/create"
+    :linkTitle="'Create'"
+    link="/market/product/create"
   />
   <ElError v-else-if="error || !data" />
   <PageMarketProduct v-else :data="data.products" />
@@ -15,8 +16,6 @@
 <script lang="ts" setup>
 definePageMeta({
   middleware: ["market"],
-})
-definePageMeta({
   layout: "market",
 })
 const { error, data, pending } = await useFetch("/api/product/market")

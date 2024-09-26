@@ -3,7 +3,7 @@
     :title="'Data Profile Marker is not Found'"
     :description="'Please Create Your Market Profile First'"
     :code="404"
-    :linkText="'Register'"
+    :linkTitle="'Register'"
     link="/market/profile/create"
   />
 </template>
