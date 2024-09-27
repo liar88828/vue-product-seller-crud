@@ -18,13 +18,17 @@ export class TrolleyService {
     return data
   }
 
-  async _push(data: TrolleyCreate, session: SessionUser) {
-    data = this.sanitizeTrolley.sanitize(data, session)
+  async push(
+    { id_product }: Pick<TrolleyCreate, "id_product">,
+    session: SessionUser
+  ) {
+    // data = this.sanitizeTrolley.sanitize(data, session)
 
     return prisma.$transaction(async (tx) => {
-      const trolleyDB = await tx.trolley.findUnique({
+      const trolleyDB = await tx.trolley.findFirst({
         where: {
-          id: data.id,
+          id_product: id_product,
+          id_user: session.id,
         },
       })
       if (trolleyDB) {
@@ -40,8 +44,8 @@ export class TrolleyService {
         return tx.trolley.create({
           data: {
             qty: 1,
-            id_product: data.id_product,
-            id_user: data.id_user,
+            id_product: id_product,
+            id_user: session.id,
           },
         })
       }
@@ -49,6 +53,19 @@ export class TrolleyService {
         statusCode: 500,
         statusMessage: "Internal Server Error",
       })
+    })
+  }
+
+  async add(data: TrolleyCreate, session: SessionUser) {
+    data = this.sanitizeTrolley.sanitize(data, session)
+
+    return await prisma.trolley.update({
+      where: {
+        id: data.id,
+      },
+      data: {
+        qty: data.qty,
+      },
     })
   }
   async delete({

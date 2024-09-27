@@ -17,6 +17,7 @@ export const dataProduct2: Product = {
   description: "i dont know",
   // id_user: "112",
   id_market: 1,
+  sold: 0,
 }
 const dataProduct3: Product = {
   image: "https://picsum.photos/220",
@@ -29,23 +30,12 @@ const dataProduct3: Product = {
   description: "i dont know",
   // id_user: "112",
   id_market: 1,
-}
-const dataProduct1: Product = {
-  image: "https://picsum.photos/200",
-  name: "Sneakers",
-  price: 120,
-  stock: 30,
-  brand: "Nike",
-  type: "11",
-  id: 1001,
-  description: "Comfortable running shoes",
-  // id_user: "110",
-  id_market: 1,
+  sold: 0,
 }
 
 const dataProductDetail: ProductItem = {
   dataImage: dataImage,
-
+  sold: 0,
   name: "High-Quality Noise-Cancelling Headphones",
   description:
     "Experience the ultimate in audio immersion with our premium noise-cancelling headphones. Crafted with the finest materials and advanced technology, these headphones deliver unparalleled sound quality and comfort for the discerning listener.",
@@ -62,61 +52,17 @@ const dataProductDetail: ProductItem = {
   id_market: 1,
 }
 
-const dataProductDetail2: ProductItem = {
-  dataImage: dataImage,
-
-  brand: "Hart Hagerty",
-  description:
-    "The Nagasaki Lander is the trademarked name of several series of Nagasaki sport bikes, that started with the 1984 ABC800J",
-  image: "https://picsum.photos/134",
-
-  name: "Shoes",
-  price: 123,
-  stock: 10,
-  id: 3423,
-  type: "1",
-  // id_user: "1",
-  desc: dataDesc2,
-  desc_tech: dataTech2,
-  desc_spec: dataSpec2,
-  id_market: 1,
-}
-
-const dataProductDetail3: ProductItem = {
-  dataImage: dataImage,
-  brand: "Hart Hagerty",
-  description:
-    "The Nagasaki Lander is the trademarked name of several series of Nagasaki sport bikes, that started with the 1984 ABC800J",
-  image: "https://picsum.photos/234",
-  name: "Shoes",
-  price: 123,
-  stock: 10,
-  id: 2,
-  type: "1",
-  // id_user: "1",
-  desc: dataDesc3,
-  desc_tech: dataTech3,
-  desc_spec: dataSpec3,
-  id_market: 1,
-}
-
-export const dataProductDetails: ProductItem[] = [
-  dataProductDetail,
-  dataProductDetail2,
-  dataProductDetail3,
-]
+export const dataProductDetails: ProductItem[] = [dataProductDetail]
 
 export const dataProducts: Product[] = [
-  dataProduct1,
   dataProduct2,
   dataProduct3,
   dataProductDetail,
-  dataProductDetail2,
-  dataProductDetail3,
 ]
 
 export const dataProductDetailServer: ProductDetailServer = {
   detail: {
+    sold: 0,
     id: 22,
     name: "Wesley",
     description: "Devin",

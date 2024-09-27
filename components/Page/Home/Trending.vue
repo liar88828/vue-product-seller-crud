@@ -1,13 +1,13 @@
 <template>
-  <ErrorNotFound v-if="!data" />
-  <PageProductFlex
+  <ElLoading v-if="pending" />
+  <ErrorNotFound v-else-if="error || !data" />
+  <PageProductLoopHorizontal
     v-else
     :data="data.trending"
-    title="Trending Products"
-    link="/product?category=trading-products"
+    :link="'/product?category=trending'"
+    :title="'Trending'"
   />
 </template>
-
 <script lang="ts" setup>
-const { data } = await useFetch("/api/product/trending")
+const { data, pending, error } = await useFetch("/api/product/trending")
 </script>

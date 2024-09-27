@@ -38,25 +38,25 @@ model User {
 }
 
 model Product {
-    id          Int    @id @default(autoincrement())
+    id          Int     @id @default(autoincrement())
     name        String
     description String
     image       String
     brand       String
     stock       Int
     price       Int
-
-    type String
-    Type Type    @relation(fields: [type], references: [id])
+    sold        Int?    @default(0)
+    type        String
+    Type        Type    @relation(fields: [type], references: [id])
     // 
     // Package     Package[] // will order
     // Box       Box[] // only save on trolly
     // Preview   Preview[] // user comment after buy
     // 
-    Spec Spec[]
-    Tech Tech[]
-    Desc Desc[]
-    Img  Image[]
+    Spec        Spec[]
+    Tech        Tech[]
+    Desc        Desc[]
+    Img         Image[]
 
     // Order       Order?    @relation(fields: [id_order], references: [id])
     // id_order    Int?

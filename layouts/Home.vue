@@ -1,12 +1,13 @@
 <template>
   <section class="min-h-screen bg-base-300 w-screen">
-    <section class="navbar bg-base-100 shadow h-16">
+    <section
+      class="navbar bg-base-100 shadow h-16 flex justify-between sm:justify-around sm:gap-6 sm:px-4"
+    >
       <div class="flex-none">
-        <!-- <button class="btn btn-ghost btn-square" @click="router.back()">
-          <IconsBack class="icons" />
-        </button> -->
+        <IconsMenu class="size-7" />
       </div>
-      <div class="flex-1 gap-2 items-center justify-center ml-2">
+
+      <div class="flex-1 gap-2 items-center justify-center ml-2 w-full">
         <ElNavSearch />
       </div>
       <div class="flex-none">

@@ -49,13 +49,14 @@ export class ProductController extends ReviewController {
       take: 100,
     })
   }
-
+  // the product
   async bestProduct(): Promise<Product[]> {
     return prisma.product.findMany({
       take: 100,
+      orderBy: { sold: "desc" },
     })
   }
-
+  // the market
   async bestSeller(): Promise<Product[]> {
     return prisma.product.findMany({
       take: 100,

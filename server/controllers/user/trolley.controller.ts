@@ -9,7 +9,7 @@ export class TrolleyController {
     return this.serviceTrolley.findTrolley(id_trolley)
   }
 
-  async userProductId(event: H3Event): Promise<BoxProduct[]> {
+  async trolleyId(event: H3Event): Promise<BoxProduct[]> {
     return tryCatch(async () => {
       const { session } = await sessionId(event)
       const { id } = await getRouterParams(event)
@@ -42,10 +42,16 @@ export class TrolleyController {
   }
 
   async push(event: H3Event): Promise<Trolley> {
+    // let data = await readBody(event)
+    const { session } = await sessionId(event)
+    const { id } = getQuery(event)
+    return this.serviceTrolley.push({ id_product: Number(id) }, session)
+  }
+
+  async add(event: H3Event): Promise<Trolley> {
     let data = await readBody(event)
     const { session } = await sessionId(event)
-
-    return this.serviceTrolley._push(data, session)
+    return this.serviceTrolley.add(data, session)
   }
 
   async delete(id_trolley: number): Promise<Trolley> {

@@ -11,7 +11,6 @@
 
 <script lang="ts" setup>
 const props = defineProps<{
-  index: string
   indicator: number
 }>()
 const isRender = props.indicator > 0

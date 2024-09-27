@@ -25,6 +25,7 @@ testProductDb.skip(
       // id_user: "test1",
       id_market: 1,
       type: "Buku",
+      // sold: 1,
     })
 
     expect(test).toBe("test")

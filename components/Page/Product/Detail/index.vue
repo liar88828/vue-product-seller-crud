@@ -10,19 +10,19 @@
           class="btn btn-info font-bold md:btn-sm"
         >
           <IconsSell class="icons" />
-          <ElLoading v-if="store.pending" />
+          <ElLoading v-if="isPending" />
           <span v-else class="md:hidden lg:block"> Buy Now </span>
         </NuxtLink>
 
         <button
-          @click="handlerAddTrolly"
+          @click="() => onPush(data.id)"
           :class="[
             'btn btn-outline font-bold md:btn-sm',
-            store.pending && 'btn-disabled',
+            isPending && 'btn-disabled',
           ]"
         >
           <IconsTrolley class="icons" />
-          <ElLoading v-if="store.pending" />
+          <ElLoading v-if="isPending" />
           <span v-else class="md:hidden lg:block"> Add to Cart </span>
         </button>
       </div>
@@ -50,32 +50,13 @@ import type { ProductDetailClient } from "~/types/product/item"
 import type { Product } from "@prisma/client"
 
 defineProps<{ data: Product }>()
-
+const { pushTrolley } = useTrolley()
 const { id } = useRoute().params
-const { session } = useUserSession()
+const isPending = ref(false)
 
-const store = reactive({
-  pending: false,
-})
-
-const refreshTrollyNotify = () => refreshNuxtData("trolley_notify")
-const handlerAddTrolly = async () => {
-  const sendData: TrolleyCreate = {
-    id_product: Number(id),
-    // id_trolley: id_trolley,
-    // price: props.data.detail.price,
-    qty: 1,
-    id_user: session?.value.session.id,
-    id: 0,
-  }
-
-  store.pending = true
-  const { data, pending } = await useFetch(`/api/user/trolly/${id}`, {
-    method: "POST",
-    body: sendData,
-  })
-  console.log(data)
-  store.pending = pending.value
-  refreshTrollyNotify()
+const onPush = async (id: number) => {
+  isPending.value = false
+  const { pending } = await pushTrolley(id)
+  isPending.value = pending.value
 }
 </script>
