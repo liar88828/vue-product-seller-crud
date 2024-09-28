@@ -1,10 +1,13 @@
 export class TrolleySanitize {
-  sanitize(data: TrolleyCreate, session: SessionUser): TrolleyCreate {
+  sanitize(
+    data: TrolleyCreateClient,
+    session: SessionUser
+  ): TrolleyCreateServer {
     return {
-      qty: data.qty,
+      id: data.id_trolley,
       id_product: data.id_product,
+      qty: data.qty,
       id_user: session.id,
-      id: 1,
       // id_trolly: data.id_trolly,
       // id_product: data.id_product,
       // id_transaction: data.id_transaction,

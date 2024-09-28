@@ -51,7 +51,22 @@ export class TrolleyController {
   async add(event: H3Event): Promise<Trolley> {
     let data = await readBody(event)
     const { session } = await sessionId(event)
+
     return this.serviceTrolley.add(data, session)
+  }
+
+  async increment(event: H3Event): Promise<Trolley> {
+    let data = await readBody(event)
+    const { session } = await sessionId(event)
+
+    return this.serviceTrolley.increment(data, session)
+  }
+
+  async decrement(event: H3Event): Promise<Trolley> {
+    let data = await readBody(event)
+    const { session } = await sessionId(event)
+
+    return this.serviceTrolley.decrement(data, session)
   }
 
   async delete(id_trolley: number): Promise<Trolley> {

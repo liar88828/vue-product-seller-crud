@@ -19,7 +19,7 @@ export class TrolleyService {
   }
 
   async push(
-    { id_product }: Pick<TrolleyCreate, "id_product">,
+    { id_product }: Pick<TrolleyCreateClient, "id_product">,
     session: SessionUser
   ) {
     // data = this.sanitizeTrolley.sanitize(data, session)
@@ -56,18 +56,52 @@ export class TrolleyService {
     })
   }
 
-  async add(data: TrolleyCreate, session: SessionUser) {
-    data = this.sanitizeTrolley.sanitize(data, session)
-
+  async add(data: TrolleyCreateClient, session: SessionUser) {
+    const valid = this.sanitizeTrolley.sanitize(data, session)
     return await prisma.trolley.update({
       where: {
-        id: data.id,
+        id: valid.id,
+        id_user: valid.id_user,
+        id_product: valid.id_product,
       },
       data: {
         qty: data.qty,
       },
     })
   }
+
+  async increment(data: TrolleyCreateClient, session: SessionUser) {
+    const valid = this.sanitizeTrolley.sanitize(data, session)
+    return await prisma.trolley.update({
+      where: {
+        id: valid.id,
+        id_user: valid.id_user,
+        id_product: valid.id_product,
+      },
+      data: {
+        qty: {
+          increment: 1,
+        },
+      },
+    })
+  }
+
+  async decrement(data: TrolleyCreateClient, session: SessionUser) {
+    const valid = this.sanitizeTrolley.sanitize(data, session)
+    return await prisma.trolley.update({
+      where: {
+        id: valid.id,
+        id_user: valid.id_user,
+        id_product: valid.id_product,
+      },
+      data: {
+        qty: {
+          decrement: 1,
+        },
+      },
+    })
+  }
+
   async delete({
     id_trolley,
   }: Pick<IdTrolley, "id_trolley">): Promise<Trolley> {

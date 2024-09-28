@@ -1,6 +1,6 @@
 export default defineEventHandler(async (event) => {
   const data = {
-    trolley: await trolleyController.add(event),
+    trolley: await trolleyController.increment(event),
     toJson() {
       return this.trolley
     },

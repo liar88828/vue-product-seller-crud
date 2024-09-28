@@ -1,13 +1,14 @@
 <template>
-  <CardParentSide :title="'Trolly'" :right="Trash">
+  <CardParentSide :title="'Trolley'" :right="Trash">
     <ElError v-if="!data" text="error" />
-    <PageProductModelSideNew
+    <Item
       v-else
       v-for="item in data"
-      :item="item"
+      :data="item"
       :key="item?.id"
       @click="handlerClick"
     />
+
     <Total :total-pay="dataTotalPays" :total-product="4" :total-send="5.99" />
     <PageProductModelSideTotal />
   </CardParentSide>
@@ -18,6 +19,7 @@
 import type { TolleyMark } from "~/types/product/total"
 import Total from "./Total.vue"
 import Trash from "~/components/Icons/Trash.vue"
+import Item from "./Item.vue"
 
 defineProps<{ data: NewTolleyProps[] }>()
 const handlerClick = () => {

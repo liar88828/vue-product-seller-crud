@@ -1,7 +1,7 @@
 <template>
   <ElLoading v-if="pending" />
   <ElError v-else-if="error || !data" />
-  <PageTransactionTrollyNew v-else :data="data?.trolleys" />
+  <PageTrolley v-else :data="data?.trolleys" />
 </template>
 
 <script lang="ts" setup>

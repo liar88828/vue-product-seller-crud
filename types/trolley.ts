@@ -1,7 +1,18 @@
 import type { Box, Product, Transaction, Trolley, User } from "@prisma/client"
 import type { Remove } from "./market/ProfileCompany"
 
-export type TrolleyCreate = Omit<Trolley, "id_transaction">
+export type TrolleyCreateServer = Omit<Trolley, "id_transaction">
+
+export type TrolleyCreateClient = {
+  id_trolley: number
+  id_product: number
+  qty: number
+}
+
+// export type TrolleyCreateClientCount = {
+//   id_trolley: number
+//   id_product: number
+// }
 
 export type GetBoxProps = Omit<Box, "id" | "id_trolly">
 // export type PushTrolly = Omit<Box>

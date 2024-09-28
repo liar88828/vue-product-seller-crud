@@ -1,12 +1,33 @@
+import type { TrolleyCreateClient } from "~/types/trolley"
+
 export const useTrolley = () => {
   const refreshTrollyNotify = () => refreshNuxtData("trolley_notify")
 
-  const addTrolley = async (id: number) => {
+  const addTrolley = async (item: TrolleyCreateClient) => {
     const data = await useFetch("/api/user/trolley/:id", {
       params: {
-        id,
+        id: item.id_trolley,
       },
       method: "POST",
+      body: item,
+    })
+    refreshTrollyNotify()
+    return data
+  }
+
+  const incrementTrolley = async (item: TrolleyCreateClient) => {
+    const data = await useFetch("/api/user/trolley/increment", {
+      method: "PUT",
+      body: item,
+    })
+    refreshTrollyNotify()
+    return data
+  }
+
+  const decrementTrolley = async (item: TrolleyCreateClient) => {
+    const data = await useFetch("/api/user/trolley/decrement", {
+      method: "PUT",
+      body: item,
     })
     refreshTrollyNotify()
     return data
@@ -14,7 +35,7 @@ export const useTrolley = () => {
 
   const pushTrolley = async (id: number) => {
     // console.log(id, "woy")
-    const data = await useFetch("/api/user/trolley/:id", {
+    const data = await useFetch("/api/user/trolley/add", {
       params: {
         id,
       },
@@ -64,5 +85,7 @@ export const useTrolley = () => {
     pushTrolley,
     removeTrolley,
     notifyTrolley,
+    decrementTrolley,
+    incrementTrolley,
   }
 }

@@ -2,8 +2,12 @@
   <ElLoading v-if="pending" />
   <!-- <ElError v-else-if="error || !data" /> -->
   <ElDropDownIconNew index="1" :indicator="data?.notify ?? 0">
-    <IconsTrolley class="icons" v-if="loggedIn" />
-    <IconsUser class="icons" v-else />
+    <NuxtLink href="/user/trolley" v-if="loggedIn">
+      <IconsTrolley class="icons" />
+    </NuxtLink>
+    <NuxtLink href="#" v-else>
+      <IconsUser class="icons" />
+    </NuxtLink>
   </ElDropDownIconNew>
 </template>
 
