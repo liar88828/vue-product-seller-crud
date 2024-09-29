@@ -3,7 +3,7 @@ import type { SessionUser } from "../globals/session"
 
 // auth.d.ts
 declare module "#auth-utils" {
-  interface User {
+  interface User extends SessionUser {
     // id: string
     // id_market: number
     // id_like: number

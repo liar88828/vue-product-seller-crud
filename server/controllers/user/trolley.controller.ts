@@ -1,5 +1,6 @@
 import type { Box, Trolley } from "@prisma/client"
 import type { H3Event } from "h3"
+import type { TrolleyMark, TrolleyProduct } from "~/types/trolley"
 
 export class TrolleyController {
   constructor(private serviceTrolley: ITrolleyService) {}
@@ -13,13 +14,35 @@ export class TrolleyController {
     return tryCatch(async () => {
       const { session } = await sessionId(event)
       const { id } = await getRouterParams(event)
-      return this.serviceTrolley.userProductId({
+      return this.serviceTrolley.id({
         id_user: session.id,
         id_trolley: Number(id),
       })
     })
   }
 
+  async mark(event: H3Event): Promise<Trolley> {
+    return tryCatch(async () => {
+      const { session } = await sessionId(event)
+      const { id } = await getQuery(event)
+      let data = (await readBody(event)) as TrolleyMark
+      // console.log("will execute")
+      return this.serviceTrolley.mark(
+        {
+          id_trolley: Number(id),
+          mark: data.mark,
+        },
+        session
+      )
+    })
+  }
+
+  async findAllMark(event: H3Event): Promise<TrolleyProduct[]> {
+    return tryCatch(async () => {
+      const { session } = await sessionId(event)
+      return this.serviceTrolley.findAllMark(session)
+    })
+  }
   async all(event: H3Event): Promise<NewTolleyProps[]> {
     const { session } = await sessionId(event)
     return this.serviceTrolley.all({

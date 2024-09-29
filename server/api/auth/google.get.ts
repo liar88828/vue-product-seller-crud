@@ -1,7 +1,7 @@
 export default oauth.googleEventHandler({
   async onSuccess(event, { user, tokens }) {
     console.log(user)
-    const { password, phone, ...rest } = await userController.id(event)
+    const { password, ...rest } = await userController.id(event)
     await setUserSession(event, {
       user,
       session: rest,

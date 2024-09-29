@@ -6,7 +6,7 @@ export class TrolleyService {
 
   async findTrolley(id_trolley: number): Promise<TrolleyProduct[]> {
     const data = await prisma.trolley.findMany({
-      where: { id: id_trolley },
+      where: { id: id_trolley, id_transaction: null },
       include: { Product: true },
     })
     if (!data) {
@@ -29,6 +29,7 @@ export class TrolleyService {
         where: {
           id_product: id_product,
           id_user: session.id,
+          id_transaction: null,
         },
       })
       if (trolleyDB) {
@@ -113,27 +114,12 @@ export class TrolleyService {
       },
     })
   }
-  // async _all(id: IdTrolley): Promise<TrolleyAllService> {
-  //   const trolleys = await db.trolley.all(id)
-  //   const boxs = trolleys.map((trolley) => trolley.Box.map((box) => box))
-  //   const products = boxs.flatMap((box) =>
-  //     box.map((d) => {
-  //       if (d.Product !== null && d.Product !== undefined) {
-  //         return d.Product
-  //       }
-  //     })
-  //   )
-  //   return {
-  //     trolleys,
-  //     boxs,
-  //     products,
-  //   }
-  // }
+
   async all({
     id_user,
   }: Pick<IdTrolley, "id_user">): Promise<NewTolleyProps[]> {
     return prisma.trolley.findMany({
-      where: { id_user: id_user },
+      where: { id_user: id_user, id_transaction: null },
       include: {
         // Box: true,
         Product: true,
@@ -147,7 +133,7 @@ export class TrolleyService {
 
     return prisma.trolley
       .count({
-        where: { id_user: id_user },
+        where: { id_user: id_user, id_transaction: null },
       })
       .then((data) => {
         if (!data) {
@@ -157,7 +143,29 @@ export class TrolleyService {
       })
   }
 
-  async userProductId({
+  async mark(
+    { id_trolley, mark }: TrolleyMark,
+    session: SessionUser
+  ): Promise<Trolley> {
+    // console.log(mark)
+    const data = await prisma.trolley.update({
+      where: { id: id_trolley, id_user: session.id },
+      data: { mark },
+    })
+
+    return data
+  }
+
+  async findAllMark(session: SessionUser): Promise<TrolleyProduct[]> {
+    return prisma.trolley.findMany({
+      where: { mark: true, id_user: session.id, id_transaction: null },
+      include: {
+        Product: true,
+      },
+    })
+  }
+
+  async id({
     id_trolley,
     id_user,
   }: Omit<IdTrolley, "id_product">): Promise<TrolleyProduct[]> {
@@ -165,6 +173,7 @@ export class TrolleyService {
       where: {
         id: id_trolley,
         id_user: id_user,
+
         // productId: id_product,
       },
       include: {

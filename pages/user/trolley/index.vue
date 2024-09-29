@@ -9,11 +9,13 @@ definePageMeta({
   layout: "user",
 })
 
-const { data, pending, error } = await useFetch(`/api/user/trolley`)
-watch(data, () => {
-  console.log(data.value)
+const { data, pending, error } = await useFetch(`/api/user/trolley`, {
+  key: "all_trolley",
 })
-if (!data.value) {
-  throw new Error("data not found")
-}
+// watch(data, () => {
+//   console.log(data.value)
+// })
+// if (!data.value) {
+//   throw new Error("data not found")
+// }
 </script>

@@ -134,6 +134,7 @@ model Trolley {
     Product        Product      @relation(fields: [id_product], references: [id])
     id_transaction Int?
     Transaction    Transaction? @relation(fields: [id_transaction], references: [id])
+    mark           Boolean?     @default(false)
 }
 
 model Box {
@@ -176,7 +177,7 @@ model Transaction {
     // trolly    Product[]
     // 
     id_buyer  String
-    userBuy   User      @relation(fields: [id_buyer], references: [id])
+    User      User      @relation(fields: [id_buyer], references: [id])
     // 
     id_market Int
     Market    Market    @relation(fields: [id_market], references: [id])

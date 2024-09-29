@@ -81,6 +81,14 @@ export class TransactionController {
       return this.serviceTransaction.allProduct(Number(id), session.id)
     })
   }
+
+  async apply(event: H3Event) {
+    return tryCatch(async () => {
+      const { session } = await getUserSession(event)
+
+      // return this.serviceTransaction.create()
+    })
+  }
 }
 
 export const transactionController = new TransactionController(

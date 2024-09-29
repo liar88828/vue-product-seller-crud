@@ -8,34 +8,33 @@
       />
     </figure>
 
-    <!-- <PageProductModelDescTrolly
-        :side="true"
-        :data="data"
-        v-model:detail="detail"
-      /> -->
-
     <CardBody class="w-2/3">
       <CardHead :title="data.Product?.name" :class="titleStyle">
         <div class="flex gap-2">
           <button
-            @click="handlerDeleteTrolly"
+            @click="() => removeTrolley(data.id)"
             class="btn btn-sm btn-square btn-error btn-outline"
           >
             <IconsTrash />
           </button>
           <!-- @click="handlerAddTrolly" -->
           <button
-            @click="() => handlerMark(data)"
+            @click="
+              () => {
+                data.mark = !data.mark
+                markTrolley({
+                  id_trolley: data.id,
+                  mark: data.mark,
+                })
+              }
+            "
             :class="[
               'btn btn-sm btn-square btn-info btn-outline',
-              foundItem ? 'btn-active' : '',
+              data.mark ? 'btn-active' : '',
             ]"
           >
             <IconsMark />
           </button>
-          <!-- <button class="btn btn-info" @click="() => (addTotal = 'test')">
-        test
-      </button> -->
         </div>
       </CardHead>
       <div v-if="data.Product">
@@ -72,14 +71,13 @@
                       id_trolley: data.id,
                       qty: 0,
                     })
-                    counter++
-                    handlerMark(data, true)
+                    data.qty++
                   }
                 "
               >
                 +
               </button>
-              <span class="">{{ counter }}</span>
+              <span class="">{{ data.qty }}</span>
               <button
                 class="btn btn-square btn-xs"
                 @click="
@@ -89,8 +87,7 @@
                       id_trolley: data.id,
                       qty: 0,
                     })
-                    counter--
-                    handlerMark(data, true)
+                    data.qty--
                   }
                 "
               >
@@ -105,57 +102,10 @@
 </template>
 
 <script lang="ts" setup>
-const detail = ref<boolean>(false)
-const { incrementTrolley, decrementTrolley } = useTrolley()
 const props = defineProps<{
   data: NewTolleyProps
 }>()
-// const detail = defineModel("detail", { required: true })
-
-const addTotal = useState<TolleyMark[]>("add_total")
-const foundItem = computed(() =>
-  addTotal.value.map((i) => i.id_product).includes(props.data.id)
-)
-const handlerMark = (item: NewTolleyProps, count = false) => {
-  if (count) {
-    addTotal.value = addTotal.value.map((i) => {
-      if (i.id_product === item.id) {
-        i.qty = counter.value
-      }
-      return i
-    })
-  } else if (item) {
-    if (foundItem.value) {
-      console.log("mark", item)
-      addTotal.value = addTotal.value.filter((i) => i.id_product !== item.id)
-    } else {
-      console.log("add")
-      addTotal.value.push({
-        id_product: item.id,
-        name: item.Product?.name ?? "",
-        // price: item.price,
-        qty: counter.value,
-      })
-    }
-  }
-}
-
+const { incrementTrolley, decrementTrolley, markTrolley, removeTrolley } =
+  useTrolley()
 const titleStyle = "text-sm sm:text-md md:text-lg font-bold"
-
-const counter = ref<number>(props.data.qty)
-
-const handlerDeleteTrolly = () => {
-  console.log(`delete trolly ${props.data.id}`)
-}
-
-const { id } = useRoute().params
-const handlerAddTrolly = async () => {
-  // console.log(`Add trolly ${props.data.id}`)
-  console.log(`Add trolly ${id}`)
-  // const { data } = await useFetch(`/api/user/trolly/${props.data.id}`, {
-  //   method: "POST",
-  //   body: counter.value,
-  // })
-  // console.log(data)
-}
 </script>

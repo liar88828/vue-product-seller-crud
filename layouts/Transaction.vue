@@ -15,9 +15,7 @@
     </section>
     <div class="flex">
       <main class="container mx-auto mt-3 mb-20 md:mb-10 min-h-screen">
-        <ElHeadTab :items="itemsArray" />
         <slot />
-        <ElNavBottom class="fixed" />
       </main>
     </div>
   </section>

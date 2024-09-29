@@ -35,8 +35,44 @@ export class TransactionService extends TransactionSanitize {
     }
     return transaction
   }
-  async create(data: CreateTransaction) {
-    return db.trans.create(data)
+  async create(
+    data: CreateTransaction,
+    trolley: {
+      id_trolley: number
+      id_market: number
+    }[],
+    session: SessionUser
+  ) {
+    return prisma.$transaction(async (tx) => {
+      const transactionDB = await tx.transaction.create({
+        data: {
+          status: "Pending",
+          discount: 0,
+          dateExp: new Date(30),
+          promoCode: "",
+          id_buyer: session.id,
+          drop_address: data.drop_address,
+          id_market: trolley[0].id_market,
+        },
+      })
+
+      const trolleyDB = await tx.trolley.updateMany({
+        where: {
+          id: {
+            in: [1, 2, 3],
+          },
+        },
+        data: {
+          id_transaction: transactionDB.id,
+          mark: false,
+        },
+      })
+
+      return {
+        trolleyDB,
+        transactionDB,
+      }
+    })
   }
 
   async delete(id: number) {

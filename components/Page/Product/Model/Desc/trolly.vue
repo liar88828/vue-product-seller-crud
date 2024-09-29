@@ -107,8 +107,9 @@ const handlerMark = (item: NewTolleyProps, count = false) => {
       addTotal.value.push({
         id_product: item.id,
         name: item.Product?.name ?? "",
-        // price: item.price,
+        price: 0,
         qty: counter.value,
+        mark: false,
       })
     }
   }
