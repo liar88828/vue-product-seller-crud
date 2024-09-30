@@ -12,10 +12,7 @@ import type { idMarketFind } from "~/types/market/ProfileCompany"
 // public product: ProductMarketController,
 // public serviceShop: ShopServices
 export class MarketController {
-  constructor(
-    private serviceMarket: IMarketService,
-    private sanitizeMarket: IMarketSanitize
-  ) {}
+  constructor(private serviceMarket: IMarketService) {}
 
   async register(event: H3Event): Promise<MarketUser> {
     return tryCatch(async () => {
@@ -235,10 +232,17 @@ export class MarketController {
     })
   }
 
-  async marketIdLess(event: H3Event): Promise<Market> {
+  async idMarket(event: H3Event): Promise<Market> {
     return tryCatch(async () => {
-      const { id } = getRouterParams(event)
+      const { id } = getQuery(event)
       return this.serviceMarket.id(Number(id))
+    })
+  }
+
+  async idMarketStatic(event: H3Event) {
+    return tryCatch(async () => {
+      const { id } = getQuery(event)
+      return this.serviceMarket.idMarketStatic(Number(id))
     })
   }
 
@@ -262,7 +266,4 @@ export class MarketController {
   }
 }
 
-export const marketController = new MarketController(
-  marketService,
-  marketSanitize
-)
+export const marketController = new MarketController(marketService)

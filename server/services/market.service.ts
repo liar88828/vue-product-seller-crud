@@ -1,7 +1,5 @@
+import { type IdStaticMarket } from "~/types/market/ProfileCompany"
 import type { Contact, Market, Product, SocialMedia } from "@prisma/client"
-import { marketSanitize } from "../sanitize/market.sanitize"
-import { prisma } from "~/server/config/prisma"
-import type { SessionUser } from "~/types/globals/session"
 
 export class MarketService {
   constructor(private sanitizeMarket: IMarketSanitize) {}
@@ -10,7 +8,9 @@ export class MarketService {
     const data = await prisma.market.findUnique({
       where: { id_user: session.id },
     })
+    // console.log(data)
     if (!data) {
+      console.error("will error ")
       throw createError({
         statusCode: 404,
         statusMessage: "Market not found please register",
@@ -376,6 +376,23 @@ export class MarketService {
         }
         return d
       })
+  }
+
+  async idMarketStatic(id_market: number): Promise<IdStaticMarket> {
+    return prisma.$transaction(async (tx) => {
+      return {
+        follow: await tx.follow.count({
+          where: {
+            id_market,
+          },
+        }),
+        product: await tx.product.count({
+          where: {
+            id_market,
+          },
+        }),
+      }
+    })
   }
 }
 

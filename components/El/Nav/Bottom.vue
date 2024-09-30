@@ -4,9 +4,10 @@
       v-for="link in linkMenu"
       :key="link.link"
       :to="link.link"
-      :class="`text-primary ${
-        $route.path.includes(link.link) ? ' active' : ''
-      } `"
+      :class="[
+        'text-primary',
+        $route.path.includes(link.link) ? ' active' : '',
+      ]"
     >
       <component :is="link.icon" class="h-6 w-6" />
       <p class="text-xs">{{ link.title }}</p>

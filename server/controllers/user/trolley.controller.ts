@@ -60,57 +60,68 @@ export class TrolleyController {
   // }
 
   async notify(event: H3Event): Promise<number> {
-    const { session } = await getUserSession(event)
-    return this.serviceTrolley.notify({ id_user: session.id })
+    return tryCatch(async () => {
+      const { session } = await getUserSession(event)
+      return this.serviceTrolley.notify({ id_user: session.id })
+    })
   }
 
   async push(event: H3Event): Promise<Trolley> {
-    // let data = await readBody(event)
-    const { session } = await sessionId(event)
-    const { id } = getQuery(event)
-    return this.serviceTrolley.push({ id_product: Number(id) }, session)
+    return tryCatch(async () => {
+      const { session } = await getUserSession(event)
+      const { id } = getQuery(event)
+      return this.serviceTrolley.push({ id_product: Number(id) }, session)
+    })
   }
 
   async add(event: H3Event): Promise<Trolley> {
-    let data = await readBody(event)
-    const { session } = await sessionId(event)
-
-    return this.serviceTrolley.add(data, session)
+    return tryCatch(async () => {
+      let data = await readBody(event)
+      const { session } = await getUserSession(event)
+      return this.serviceTrolley.add(data, session)
+    })
   }
 
   async increment(event: H3Event): Promise<Trolley> {
-    let data = await readBody(event)
-    const { session } = await sessionId(event)
-
-    return this.serviceTrolley.increment(data, session)
+    return tryCatch(async () => {
+      let data = await readBody(event)
+      const { session } = await sessionId(event)
+      return this.serviceTrolley.increment(data, session)
+    })
   }
 
   async decrement(event: H3Event): Promise<Trolley> {
-    let data = await readBody(event)
-    const { session } = await sessionId(event)
+    return tryCatch(async () => {
+      let data = await readBody(event)
+      const { session } = await sessionId(event)
 
-    return this.serviceTrolley.decrement(data, session)
+      return this.serviceTrolley.decrement(data, session)
+    })
   }
 
   async delete(id_trolley: number): Promise<Trolley> {
-    return this.serviceTrolley.delete({ id_trolley })
+    return tryCatch(async () => {
+      return this.serviceTrolley.delete({ id_trolley })
+    })
   }
 
   async homeTrolley(id_user: string, id_trolley: number) {
-    return prisma.trolley.findUnique({
-      where: {
-        id: id_trolley,
-        User: {
-          id: id_user,
+    return tryCatch(async () => {
+      return prisma.trolley.findUnique({
+        where: {
+          id: id_trolley,
+          User: {
+            id: id_user,
+          },
         },
-      },
-      include: {
-        Box: {
-          // include: {
-          //   Product: true,
-          // },
+        include: {
+          Box: {
+            // include: {
+            //   Product: true,
+            // },
+          },
         },
-      },
+      })
     })
   }
 }

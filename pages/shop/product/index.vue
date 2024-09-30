@@ -2,7 +2,6 @@
   <!-- {{ search }} -->
   <!-- {{ store }} -->
   <ElLoading v-if="pending" />
-
   <ElError v-else-if="error || !data" />
   <PageShop v-else :data="data?.products" />
   <ElButtonScroll />

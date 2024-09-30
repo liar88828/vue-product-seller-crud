@@ -9,7 +9,7 @@ export class HistoryService {
         id_market: id_market,
       },
       include: {
-        userBuy: true,
+        User: true,
         Market: true,
         Trolley: {
           include: {
@@ -29,7 +29,7 @@ export class HistoryService {
         },
       },
       include: {
-        userBuy: true,
+        User: true,
         Market: true,
         Trolley: {
           include: {
@@ -45,7 +45,7 @@ export class HistoryService {
     const data = await prisma.transaction.findUnique({
       where: { id, id_market },
       include: {
-        userBuy: true,
+        User: true,
         Market: true,
         Trolley: {
           include: {
@@ -67,7 +67,7 @@ export class HistoryService {
     const data = await prisma.transaction.findUnique({
       where: { id, id_buyer },
       include: {
-        userBuy: true,
+        User: true,
         Market: true,
         Trolley: {
           include: {
@@ -89,7 +89,7 @@ export class HistoryService {
     const data = await prisma.transaction.findMany({
       where: { id_buyer: id_user },
       include: {
-        userBuy: true,
+        User: true,
         Market: true,
         Trolley: {
           include: {

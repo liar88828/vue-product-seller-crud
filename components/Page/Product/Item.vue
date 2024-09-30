@@ -37,7 +37,7 @@
         <!--  -->
         <div class="flex gap-2 flex-row">
           <NuxtLink
-            :to="`/shop/product/${1}`"
+            :to="`/shop/product/${data.id}`"
             class="btn btn-square sm:btn-sm btn-xs"
           >
             <IconsDetail class="size-5" />
@@ -63,10 +63,6 @@
 import type { Product } from "@prisma/client"
 const { pushTrolley } = useTrolley()
 defineProps({
-  // addTrolley: {
-  //   type: Function,
-  //   required: true,
-  // },
   data: {
     type: Object as PropType<Product>,
     required: true,

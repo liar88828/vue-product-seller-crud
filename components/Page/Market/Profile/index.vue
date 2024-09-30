@@ -39,12 +39,12 @@ import type {
 } from "~/types/market/ProfileCompany"
 import Describe from "./Describe.vue"
 import Basics from "./Basics.vue"
-import Contact from "./Contact.vue"
-import Social from "./Social.vue"
+// import Contact from "./Contact.vue"
+// import Social from "./Social.vue"
 import Title from "./Title.vue"
 
-const { data: resContact } = await useFetch("/api/market/profile/info/contact")
-const { data: resSocial } = await useFetch("/api/market/profile/info/social")
+// const { data: resContact } = await useFetch("/api/market/profile/info/contact")
+// const { data: resSocial } = await useFetch("/api/market/profile/info/social")
 // const { data: resAdditional } = await useFetch("/api/market/profile/info/additional")
 
 defineProps<{ data: MarketClient }>()

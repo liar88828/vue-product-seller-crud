@@ -3,12 +3,13 @@
   <PageMarketErrorNotRegister v-else-if="error?.message.includes('market')" />
   <ElError v-else-if="error || !data" />
   <PageMarketProfile v-else :data="data?.market" /> -->
+  hello
 </template>
 
 <script lang="ts" setup>
-definePageMeta({
-  middleware: ["market"],
-})
+// definePageMeta({
+//   middleware: ["market"],
+// })
 
 await navigateTo("/market/profile")
 // definePageMeta({

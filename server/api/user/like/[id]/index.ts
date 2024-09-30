@@ -4,7 +4,7 @@ export default defineEventHandler(async (event) => {
   const data = {
     like: await likeController.id(event),
 
-    toJson(): { like: Like[] } {
+    toJson(): { like: Like | null } {
       return { like: this.like }
     },
   }

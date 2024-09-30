@@ -11,7 +11,7 @@ import type { CreateTransaction } from "../transaction"
 import type { BoxProduct, GetBoxProps } from "../trolley"
 
 export type DataMarket = Transaction & {
-  userBuy: User
+  User: User
   Market: Market
   // Box: BoxProduct[]
   Trolley: (Trolley & {
@@ -20,7 +20,7 @@ export type DataMarket = Transaction & {
 }
 
 export type HistoryDetail = Transaction & {
-  userBuy: User
+  User: User
   Market: Market
   Trolley: Trolley & {
     Product: Product
@@ -31,7 +31,7 @@ export type TBoxProduct = Box & {
   Product: Product | null
 }
 export type TransServer = Transaction & {
-  userBuy: User
+  User: User
   Market: Market
   Trolley: TrolleyProductItem[]
 }
@@ -46,7 +46,7 @@ export type TransClient = TransactionClient & {
   createdAt: string
   dateExp: string
 } & {
-  userBuy: User
+  User: User
   Market: MarketClient
   Trolley: TrolleyProductItem[]
 }
@@ -57,7 +57,7 @@ export type TrolleyProductItem = Trolley & {
 }
 
 export type TrolleyProductTransaction = {
-  userBuy: User
+  User: User
   Market: Market
   Trolley: TrolleyProductItem[]
 }
@@ -69,18 +69,18 @@ export type HistoryClient = TransactionClient & {
   updatedAt: string
   createdAt: string
 } & {
-  userBuy: User
+  User: User
   Market: MarketClient
   Trolley: TrolleyProductItem[]
 }
 
 export type OrderConfirm = Transaction & {
-  userBuy: User
+  User: User
   Market: Market
 }
 
 // export type OrderDetail = Order & {
-//   userBuy: User | null
+//   User: User | null
 //   market: Market
 //   trolly: Product[]
 // }

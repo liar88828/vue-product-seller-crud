@@ -7,7 +7,7 @@ export class TransactionMarketDB {
     const data = await prisma.transaction.findUnique({
       where: { id, id_market },
       include: {
-        userBuy: true,
+        User: true,
         Market: true,
       },
     })
@@ -26,7 +26,7 @@ export class TransactionMarketDB {
   //       id_market,
   //     },
   //     include: {
-  //       userBuy: true,
+  //       User: true,
   //       Market: true,
   //       Box: {
   //         include: {
@@ -49,7 +49,7 @@ export class TransactionMarketDB {
   //   const data = await prisma.transaction.findUnique({
   //     where: { id: id.id, id_market: id.id_market },
   //     include: {
-  //       userBuy: true,
+  //       User: true,
   //       Market: true,
   //       Trolley: {
   //         include: { Product: true },

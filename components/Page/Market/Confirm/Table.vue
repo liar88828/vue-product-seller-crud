@@ -17,11 +17,11 @@
       <tr v-else v-for="item in data" :key="item.id">
         <td>
           <div class="space-y-2">
-            <div class="font-bold">{{ item.userBuy.name }}</div>
+            <div class="font-bold">{{ item.User.name }}</div>
             <div class="text-sm opacity-50">
-              {{ item.userBuy.address }}
+              {{ item.User.address }}
             </div>
-            <div>{{ getPhone(item.userBuy.phone ?? "") }}</div>
+            <div>{{ getPhone(item.User.phone ?? "") }}</div>
           </div>
         </td>
         <td>

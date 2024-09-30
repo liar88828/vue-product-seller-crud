@@ -29,7 +29,7 @@ model User {
 
     // 
     Market Market?
-    Like   Like?
+    Like   Like[]
 
     Preview     Preview[]
     Trolley     Trolley[]
@@ -312,5 +312,5 @@ model Like {
     Product    Product @relation(fields: [id_product], references: [id])
     id_product Int
     User       User    @relation(fields: [id_user], references: [id])
-    id_user    String  @unique
+    id_user    String
 }

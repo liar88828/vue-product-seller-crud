@@ -18,7 +18,7 @@ const dataHistory2: TransServer = {
       mark: false,
     },
   ],
-  userBuy: userProfile,
+  User: userProfile,
   Market: dataCompany,
   discount: 20,
   promoCode: "FASDFSD5756",
@@ -52,7 +52,7 @@ const dataOrder: TransClient = {
       mark: false,
     },
   ],
-  userBuy: userProfile,
+  User: userProfile,
   Market: {
     id_user: "1",
     since: new Date().toDateString(),

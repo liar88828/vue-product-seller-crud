@@ -5,7 +5,7 @@
     <CardHead
       v-for="data in dataPurchase"
       class="bg-error/20"
-      :title="data.userBuy.name ?? ''"
+      :title="data.User.name ?? ''"
     >
       <div>
         <h1>transaction</h1>

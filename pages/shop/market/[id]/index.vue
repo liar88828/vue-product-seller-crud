@@ -1,6 +1,11 @@
-<template>redirect</template>
+<template>
+  <PageProductMarketShop />
+</template>
 
 <script lang="ts" setup>
-const { id } = useRoute().params
-await navigateTo(`/shop/market/home/${id}`)
+definePageMeta({
+  layout: "shop",
+})
+// const { id } = useRoute().params
+// await navigateTo(`/shop/market/home/${id}`)
 </script>

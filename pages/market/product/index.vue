@@ -1,6 +1,6 @@
 <template>
   <ElLoading v-if="pending" />
-  <PageMarketErrorNotRegister v-else-if="error?.message.includes('market')" />
+  <PageMarketErrorNotRegister v-else-if="error?.message" />
   <ErrorNotFound
     v-else-if="data?.products.length === 0"
     :title="'Product is Empty'"

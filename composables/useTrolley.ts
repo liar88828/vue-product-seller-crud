@@ -40,7 +40,7 @@ export const useTrolley = () => {
     },
     pushTrolley: async (id: number) => {
       // console.log(id, "woy")
-      const data = await useFetch("/api/user/trolley/add", {
+      const data = await useFetch("/api/user/trolley/:id", {
         params: {
           id,
         },

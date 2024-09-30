@@ -1,6 +1,6 @@
 <template>
   <ElLoading v-if="pending" />
-  <PageMarketErrorNotRegister v-else-if="error?.message.includes('market')" />
+  <PageMarketErrorNotRegister v-else-if="error?.message" />
   <ErrorNotFound
     v-else-if="data?.confirms.length === 0"
     :title="'Data Confirm is Empty maybe you not have order from user '"

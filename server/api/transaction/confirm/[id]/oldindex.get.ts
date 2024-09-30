@@ -10,7 +10,7 @@ export default defineEventHandler(async (event) => {
     },
     include: {
       Market: true,
-      userBuy: true,
+      User: true,
       Box: true,
     },
   })

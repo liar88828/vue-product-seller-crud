@@ -175,3 +175,8 @@ export type ShopMarket = {
   bestProduct: Product[]
   profile: Market
 }
+
+export type IdStaticMarket = {
+  follow: number
+  product: number
+}
