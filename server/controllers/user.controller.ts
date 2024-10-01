@@ -1,14 +1,8 @@
 import type { User } from "@prisma/client"
 import type { EventHandlerRequest, H3Event } from "h3"
-import { type IUserSanitize, userSanitize } from "../sanitize/user.sanitize"
 
 export class UserController {
-  constructor(
-    private readonly serviceUser: IUserService,
-    // private readonly serviceTransaction: ITransactionService,
-    private readonly trolly: ITrolleyController,
-    private readonly sanitizeUser: IUserSanitize
-  ) {}
+  constructor(private readonly serviceUser: IUserService) {}
 
   detail(event: H3Event<EventHandlerRequest>): Promise<any> {
     throw new Error("Method not implemented.")
@@ -28,18 +22,14 @@ export class UserController {
   }
 
   async create(event: H3Event): Promise<SessionUser> {
-    const { session } = await getUserSession(event)
     let data = await readBody(event)
-
-    data = this.sanitizeUser.sanitize(data)
     return this.serviceUser.signUp(data)
   }
 
-  async update(event: H3Event): Promise<User> {
+  async update(event: H3Event): Promise<UserPublic> {
     const { session } = await getUserSession(event)
     let data = await readBody(event)
-    data = this.sanitizeUser.sanitize(data)
-    return this.serviceUser.update(session.id, data)
+    return this.serviceUser.update(session, data)
   }
 
   async delete(event: H3Event): Promise<User> {
@@ -53,21 +43,13 @@ export class UserController {
     return this.serviceUser.delete(session.id)
   }
 
-  async profileId(event: H3Event): Promise<User> {
-    try {
+  async idUserPublic(event: H3Event): Promise<UserPublic> {
+    return tryCatch(async () => {
       const { session } = await getUserSession(event)
-      // console.log(session)
-      return this.serviceUser.id(session.id)
-    } catch (e) {
-      await clearUserSession(event)
-      throw createError({ statusCode: 404, statusMessage: "User not found" })
-    }
+      return this.serviceUser.idUserPublic(session.id)
+    })
   }
 }
 
-export const userController = new UserController(
-  userService,
-  // transactionService,
-  trolleyController,
-  userSanitize
-)
+export const userController = new UserController(userService)
+export type IUserController = UserController

@@ -11,9 +11,9 @@ export class TransactionController {
     return this.serviceTransaction.id(id)
   }
 
-  async createTrans(data: Transaction) {
-    return db.trans.create(data)
-  }
+  // async createTrans(data: Transaction) {
+  //   return db.trans.create(data)
+  // }
 
   // change in class MarketOwner
   // async confirmTrans(data: Transaction) {
@@ -82,11 +82,12 @@ export class TransactionController {
     })
   }
 
-  async apply(event: H3Event) {
+  async checkout(event: H3Event) {
     return tryCatch(async () => {
       const { session } = await getUserSession(event)
+      const body = await readBody(event)
 
-      // return this.serviceTransaction.create()
+      return this.serviceTransaction.checkout(body, session)
     })
   }
 }

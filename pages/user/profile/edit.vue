@@ -1,9 +1,13 @@
 <template>
-  <PageProfileEditUser :data="userProfile" />
+  <ElLoading v-if="pending" />
+  <ElError v-else-if="error || !data" />
+  <PageProfileEdit v-else :data="data.user" :onEdit="editUser" />
 </template>
 <script lang="ts" setup>
 definePageMeta({
   layout: "user",
 })
-import { userProfile } from "~/assets/example/user/dataUser"
+
+const { getUserId, editUser } = useUser()
+const { data, pending, error } = await getUserId()
 </script>

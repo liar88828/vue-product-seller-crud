@@ -1,9 +1,9 @@
 export default defineEventHandler(async (event) => {
   const data = {
-    trolly: await transactionController.apply(event),
-    toJson(): { trolleys: TrollyAllService } {
+    checkout: await transactionController.checkout(event),
+    toJson() {
       return {
-        trolleys: this.trolly,
+        checkout: this.checkout,
       }
     },
   }

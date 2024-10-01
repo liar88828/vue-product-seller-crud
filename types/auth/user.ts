@@ -1,3 +1,4 @@
+import type { User } from "@prisma/client"
 import type { z } from "zod"
 
 export type SignUpProps = {
@@ -8,7 +9,7 @@ export type SignUpProps = {
 }
 
 export type SignUpErrorZod = z.inferFlattenedErrors<
-  typeof signUp
+  typeof zodUser.signUp
 >["fieldErrors"]
 
 export type SignInProps = {
@@ -22,5 +23,10 @@ export type ErrZod<T> = {
   msg: string
   data: T
 }
+
+export type UserPublic = Omit<
+  User,
+  "password" | "OTP" | "createMarket" | "activeOnline"
+>
 
 export type GetTry<T> = ErrZod<T>

@@ -3,9 +3,7 @@
     <h1 class="text-lg font-semibold">Product List</h1>
     <!-- Data trolley mark -->
     <div class="overflow-y-scroll h-52 space-y-3 p-1">
-      <ElLoading v-if="pending" />
-      <ErrorNotFound v-else-if="!data || error" />
-      <section v-else class="" v-for="item in data.trolley">
+      <section class="" v-for="item in data">
         <div class="rounded-lg p-1 grid grid-cols-6 gap-2 bg-base-200">
           <div class="col-span-2">
             <img
@@ -31,6 +29,5 @@
 </template>
 
 <script setup lang="ts">
-const { getMarkTrolley } = useTrolley()
-const { data, pending, error } = await getMarkTrolley()
+defineProps<{ data: TrolleyProduct[] }>()
 </script>

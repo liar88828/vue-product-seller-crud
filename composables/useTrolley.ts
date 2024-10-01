@@ -98,7 +98,7 @@ export const useTrolley = () => {
       // console.log(data.data.value?.trolly)
       return data
     },
-    calculateTrolley: (data: NewTolleyProps[]) => {
+    calculateTrolley: (data: TrolleyProduct[]) => {
       return computed(() =>
         data.reduce((a, b): number => {
           if (b.mark) {
@@ -108,6 +108,7 @@ export const useTrolley = () => {
         }, 0)
       ).value
     },
+
     getMarkTrolley: async () => {
       const data = await useFetch("/api/user/trolley/mark", {
         method: "GET",

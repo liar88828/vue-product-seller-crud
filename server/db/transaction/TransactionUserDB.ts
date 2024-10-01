@@ -25,20 +25,20 @@ export class TransactionUserDB {
     }))
   }
 
-  async wantBuy({ data: { box, data }, id_user, id_trolly }: WantBuyProps) {
-    await this.check(id_user)
-    const transaction = await prisma.transaction.create({
-      data,
-    })
+  // async wantBuy({ data: { box, data }, id_user, id_trolly }: WantBuyProps) {
+  //   await this.check(id_user)
+  //   const transaction = await prisma.transaction.create({
+  //     data,
+  //   })
 
-    const packages = await prisma.box.createMany({
-      data: this.loopBox(transaction.id, box, id_trolly),
-    })
-    return {
-      packages,
-      transaction,
-    }
-  }
+  //   const packages = await prisma.box.createMany({
+  //     data: this.loopBox(transaction.id, box, id_trolly),
+  //   })
+  //   return {
+  //     packages,
+  //     transaction,
+  //   }
+  // }
 
   async id({ id, id_buyer }: IdUserTrans) {
     return prisma.transaction.findUnique({
@@ -75,9 +75,9 @@ export class TransactionUserDB {
     })
   }
 
-  async create(data: CreateTransaction) {
-    return prisma.transaction.create({ data })
-  }
+  // async create(data: CreateTransaction) {
+  //   return prisma.transaction.create({ data })
+  // }
 
   async delete({ id, id_buyer }: IdUserTrans) {
     return prisma.transaction.findMany({

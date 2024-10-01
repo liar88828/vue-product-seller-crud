@@ -5,7 +5,7 @@
     v-else-if="data?.confirms.length === 0"
     :title="'Data Confirm is Empty maybe you not have order from user '"
     :code="404"
-    :linkText="'Register'"
+    :linkTitle="'Register'"
     link="/market/profile"
   />
   <ElError v-else-if="error || !data" />

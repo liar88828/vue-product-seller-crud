@@ -1,4 +1,5 @@
 import type { Market } from "@prisma/client"
+import { type TransactionCheckoutClient } from "~/types/transaction"
 
 export class TransactionService extends TransactionSanitize {
   async id(id: number) {
@@ -35,31 +36,26 @@ export class TransactionService extends TransactionSanitize {
     }
     return transaction
   }
-  async create(
-    data: CreateTransaction,
-    trolley: {
-      id_trolley: number
-      id_market: number
-    }[],
-    session: SessionUser
-  ) {
+  async checkout(data: TransactionCheckoutClient, session: SessionUser) {
     return prisma.$transaction(async (tx) => {
+      const oneDay = new Date(Date.now() + 24 * 60 * 60 * 1000)
+
       const transactionDB = await tx.transaction.create({
         data: {
-          status: "Pending",
+          status: "PENDING",
           discount: 0,
-          dateExp: new Date(30),
+          dateExp: oneDay,
           promoCode: "",
           id_buyer: session.id,
-          drop_address: data.drop_address,
-          id_market: trolley[0].id_market,
+          drop_address: data.transaction.drop_address,
+          id_market: data.trolley[0].id_market,
         },
       })
 
       const trolleyDB = await tx.trolley.updateMany({
         where: {
           id: {
-            in: [1, 2, 3],
+            in: data.trolley.map((d) => d.id_trolley),
           },
         },
         data: {
@@ -67,7 +63,7 @@ export class TransactionService extends TransactionSanitize {
           mark: false,
         },
       })
-
+      console.log(trolleyDB, transactionDB)
       return {
         trolleyDB,
         transactionDB,

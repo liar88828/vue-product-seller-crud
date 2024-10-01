@@ -1,8 +1,8 @@
 import type { User } from "@prisma/client"
-import { prisma } from "~/server/config/prisma"
-import { randomOTP } from "~/server/utils/randomId"
+import type { UserUpdate } from "~/types/user/ControlCreateUser"
 
 export class UserService {
+  constructor(private readonly sanitizeUser: IUserSanitize) {}
   async first(id: string): Promise<User> {
     id = zods.id.string.parse(id)
     const data = await db.user.first()
@@ -15,16 +15,30 @@ export class UserService {
 
   async id(id: string): Promise<User> {
     id = zods.id.string.parse(id)
-    const data = await db.user.findId(id)
-    if (!data) {
-      throw createError({ statusCode: 404, statusMessage: "User not found" })
-    }
-    data.password = ""
-    console.log(data, "data user")
-    return data
+    return db.user.findId(id).then((data) => {
+      if (!data) {
+        throw createError({ statusCode: 404, statusMessage: "User not found" })
+      }
+      console.log(data, "data user")
+      return data
+    })
+  }
+
+  async idUserPublic(id: string): Promise<UserPublic> {
+    id = zods.id.string.parse(id)
+    return db.user.findId(id).then((data) => {
+      if (!data) {
+        throw createError({ statusCode: 404, statusMessage: "User not found" })
+      }
+      const { password, activeOnline, createMarket, OTP, ...rest } = data
+      console.log(rest, "data user")
+      return rest
+    })
   }
 
   async signUp(data: Omit<SignUpProps, "confPass">): Promise<SessionUser> {
+    data = this.sanitizeUser.sanitize({ ...data, phone: "", address: "" })
+
     console.log(data, "sign up")
     return prisma.$transaction(async (tx) => {
       const user = await tx.user.create({
@@ -43,11 +57,10 @@ export class UserService {
     })
   }
 
-  async update(id: string, data: UserCreate): Promise<User> {
-    data = zods.user.create.parse(data)
-    id = zods.id.string.parse(id)
+  async update({ id }: SessionUser, data: UserUpdate): Promise<UserPublic> {
+    // data = this.sanitizeUser.sanitize(data)
+    data = zods.user.update.parse(data)
     const res = await db.user.update(id, data)
-    res.password = ""
     return res
   }
 
@@ -63,5 +76,5 @@ export class UserService {
   }
 }
 
-export const userService = new UserService()
+export const userService = new UserService(userSanitize)
 export type IUserService = UserService

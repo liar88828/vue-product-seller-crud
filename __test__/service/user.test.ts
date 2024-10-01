@@ -14,7 +14,7 @@ const testUser: SignUpProps = {
 let userId = ""
 
 const testUserService = test.extend({
-  userService: new UserService(),
+  userService: new UserService(userSanitize),
 })
 
 describe("test user service", async () => {

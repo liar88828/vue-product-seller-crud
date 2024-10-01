@@ -1,17 +1,25 @@
 import type { User } from "@prisma/client"
-import { prisma } from "~/server/config/prisma";
+import { prisma } from "~/server/config/prisma"
+import type { UserUpdate } from "~/types/user/ControlCreateUser"
 
 class UserMutation {
   private async create(data: UserCreate): Promise<User> {
     return prisma.user.create({ data })
   }
 
-  async update(id: string, data: UserCreate): Promise<User> {
+  async update(id: string, data: UserUpdate): Promise<UserPublic> {
     const res = await prisma.user.update({
+      select: {
+        address: true,
+        name: true,
+        email: true,
+        phone: true,
+        id: true,
+        role: true,
+      },
       where: { id },
       data,
     })
-    res.password = ""
     return res
   }
 }

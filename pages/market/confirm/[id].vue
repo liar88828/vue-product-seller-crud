@@ -1,17 +1,19 @@
 <template>
   <ElLoadingBounce v-if="pending" />
   <!-- @vue-expect-error -->
-  <PageTransactionPay :data="data?.market" :company="data?.confirm">
+  <PageTransactionDetail
+    v-else="!data"
+    :data="data?.market"
+    :company="data?.confirm"
+  >
     <button class="btn btn-primary w-full" @click="onConfirm">Confirm</button>
     <button class="btn btn-error w-fill" @click="onDelete">Reject</button>
-  </PageTransactionPay>
+  </PageTransactionDetail>
 </template>
 
 <script lang="ts" setup>
 definePageMeta({
   middleware: ["market"],
-})
-definePageMeta({
   layout: "market",
 })
 

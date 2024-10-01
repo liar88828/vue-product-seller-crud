@@ -46,11 +46,6 @@ export type TolleyProps = Trolley & {
   Box: BoxProductTrolly[]
 }
 
-export type NewTolleyProps = Trolley & {
-  // Box: Box[]
-  Product: Product
-}
-
 export type TrollyAllService = {
   trolleys: Trolley[]
   boxs: TolleyProps["Box"][]

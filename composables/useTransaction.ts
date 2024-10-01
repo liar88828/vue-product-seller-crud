@@ -1,11 +1,10 @@
-export const useUseTransaction = () => {
+export const useTransaction = () => {
   return {
-    transactionApply: async (item: number) => {
-      const data = await useFetch("/api/transaction/checkout", {
+    checkout: async (data: TransactionCheckoutClient) => {
+      return useFetch("/api/transaction/checkout", {
         method: "POST",
-        body: {},
+        body: data,
       })
-      return data
     },
   }
 }

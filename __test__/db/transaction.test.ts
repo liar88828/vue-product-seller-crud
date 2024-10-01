@@ -62,27 +62,27 @@ const findTransaction = await transaction.id(0).then((data) => {
 // })
 console.log(findTransaction, `this find is ${findTransaction}`)
 
-testTransactionDb.skipIf(!findTransaction)(
-  "transaction can be create ",
-  async ({ transaction }) => {
-    console.log(userFound)
-    console.log("will execute ")
+// testTransactionDb.skipIf(!findTransaction)(
+//   "transaction can be create ",
+//   async ({ transaction }) => {
+//     console.log(userFound)
+//     console.log("will execute ")
 
-    const test = await transaction.create({
-      dateExp: new Date(),
-      discount: 0,
-      id_buyer: testTransaction.id_user,
-      id_market: 1,
-      promoCode: "FASDFSD5756",
-      drop_address: testTransaction.drop_address,
-      status: testTransaction.status,
-      //@ts-expect-error
-      id: testTransaction.id,
-    })
+//     const test = await transaction.create({
+//       dateExp: new Date(),
+//       discount: 0,
+//       id_buyer: testTransaction.id_user,
+//       id_market: 1,
+//       promoCode: "FASDFSD5756",
+//       drop_address: testTransaction.drop_address,
+//       status: testTransaction.status,
+//       //@ts-expect-error
+//       id: testTransaction.id,
+//     })
 
-    expect(test).toBeDefined()
-  }
-)
+//     expect(test).toBeDefined()
+//   }
+// )
 console.log(findTransaction, "find transaction")
 testTransactionDb.skipIf(findTransaction)(
   "transaction can be find",
@@ -101,26 +101,26 @@ testTransactionDb.skipIf(findTransaction)(
   }
 )
 
-testTransactionDb.skip(
-  "transaction can be update ",
-  async ({ transaction }) => {
-    const test = await transaction.update(0, {
-      dateExp: new Date(),
-      discount: 0,
-      id_buyer: testTransaction.id_user,
-      id_market: 1,
-      promoCode: "FASDFSD5756",
-      status: "Pending",
-      drop_address: testTransaction.drop_address,
-      // id_status: "Pending update",
-    })
+// testTransactionDb.skip(
+//   "transaction can be update ",
+//   async ({ transaction }) => {
+//     const test = await transaction.update(0, {
+//       dateExp: new Date(),
+//       discount: 0,
+//       id_buyer: testTransaction.id_user,
+//       id_market: 1,
+//       promoCode: "FASDFSD5756",
+//       status: "Pending",
+//       drop_address: testTransaction.drop_address,
+//       // id_status: "Pending update",
+//     })
 
-    expect(test).toBeDefined()
-    // assert.include(test, {
-    //   id_status: "Pending update",
-    // })
-  }
-)
+//     expect(test).toBeDefined()
+//     // assert.include(test, {
+//     //   id_status: "Pending update",
+//     // })
+//   }
+// )
 
 testTransactionDb.skip(
   "transaction can be find after update",
