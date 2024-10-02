@@ -9,23 +9,14 @@
     link="/market/profile"
   />
   <ElError v-else-if="error || !data" />
-  <PageMarketConfirm v-else :data="data.confirms" />
+  <PageTransactionMarket v-else :data="data.confirms" />
 </template>
 
 <script lang="ts" setup>
 definePageMeta({
   middleware: ["market"],
-})
-definePageMeta({
   layout: "market",
 })
 
-const { data, pending, error } = await useFetch("/api/transaction/confirm")
-console.log(error?.value?.message)
-// watch(data, () => {
-//   console.log(data.value)
-// })
-// if (!data.value) {
-//   throw new Error("data not found")
-// }
+const { data, pending, error } = await useConfirm().getData()
 </script>

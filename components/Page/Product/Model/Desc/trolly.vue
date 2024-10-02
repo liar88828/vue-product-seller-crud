@@ -81,7 +81,7 @@
 
 <script setup lang="ts">
 const props = defineProps<{
-  data: NewTolleyProps
+  data: TrolleyProduct
   detail?: boolean
 }>()
 // const detail = defineModel("detail", { required: true })
@@ -90,7 +90,7 @@ const addTotal = useState<TolleyMark[]>("add_total")
 const foundItem = computed(() =>
   addTotal.value.map((i) => i.id_product).includes(props.data.id)
 )
-const handlerMark = (item: NewTolleyProps, count = false) => {
+const handlerMark = (item: TrolleyProduct, count = false) => {
   if (count) {
     addTotal.value = addTotal.value.map((i) => {
       if (i.id_product === item.id) {

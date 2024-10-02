@@ -2,7 +2,7 @@ export type ProductTotal = {
   totalProduct: number
   totalSend: number
   totalPay: number
-  data: NewTolleyProps[]
+  data: TrolleyProduct[]
 }
 export type TolleyMark = {
   id_product: number

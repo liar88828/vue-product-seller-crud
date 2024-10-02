@@ -62,3 +62,4 @@ export type TrolleyProduct = Trolley & {
 }
 export type TrolleyMark = Pick<TrolleyCreateClient, "id_trolley" | "mark">
 export type TrolleyCounter = Omit<TrolleyCreateClient, "mark">
+export type TransactionServer = Transaction

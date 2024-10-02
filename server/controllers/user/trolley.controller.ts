@@ -1,13 +1,12 @@
-import type { Box, Trolley } from "@prisma/client"
+import type { Trolley } from "@prisma/client"
 import type { H3Event } from "h3"
-import type { TrolleyMark, TrolleyProduct } from "~/types/trolley"
 
 export class TrolleyController {
   constructor(private serviceTrolley: ITrolleyService) {}
 
   async id(id_user: string, id_trolley: number): Promise<TrolleyProduct[]> {
     // const trolley = await db.trolley.id(id_user)
-    return this.serviceTrolley.findTrolley(id_trolley)
+    return this.serviceTrolley.findTrolleyProduct(id_trolley)
   }
 
   async trolleyId(event: H3Event): Promise<BoxProduct[]> {
@@ -43,7 +42,7 @@ export class TrolleyController {
       return this.serviceTrolley.findAllMark(session)
     })
   }
-  async all(event: H3Event): Promise<NewTolleyProps[]> {
+  async all(event: H3Event): Promise<TrolleyProduct[]> {
     const { session } = await sessionId(event)
     return this.serviceTrolley.all({
       // id_trolley: session.id,

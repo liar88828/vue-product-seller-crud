@@ -4,7 +4,23 @@ export class TrolleyService {
   // and not add transaction
   constructor(private sanitizeTrolley: ITrolleySanitize) {}
 
-  async findTrolley(id_trolley: number): Promise<TrolleyProduct[]> {
+  async findTrolleyProductByIdTransaction(
+    id_transaction: number
+  ): Promise<TrolleyProduct[]> {
+    const data = await prisma.trolley.findMany({
+      where: { id_transaction },
+      include: { Product: true },
+    })
+    if (!data) {
+      throw createError({
+        statusCode: 404,
+        statusMessage: "Trolley not found",
+      })
+    }
+    return data
+  }
+
+  async findTrolleyProduct(id_trolley: number): Promise<TrolleyProduct[]> {
     const data = await prisma.trolley.findMany({
       where: { id: id_trolley, id_transaction: null },
       include: { Product: true },
@@ -117,7 +133,7 @@ export class TrolleyService {
 
   async all({
     id_user,
-  }: Pick<IdTrolley, "id_user">): Promise<NewTolleyProps[]> {
+  }: Pick<IdTrolley, "id_user">): Promise<TrolleyProduct[]> {
     return prisma.trolley.findMany({
       where: { id_user: id_user, id_transaction: null },
       include: {

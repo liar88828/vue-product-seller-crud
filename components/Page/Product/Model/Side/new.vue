@@ -18,6 +18,6 @@
 </template>
 
 <script lang="ts" setup>
-defineProps<{ item: NewTolleyProps }>()
+defineProps<{ item: TrolleyProduct }>()
 const detail = ref<boolean>(false)
 </script>

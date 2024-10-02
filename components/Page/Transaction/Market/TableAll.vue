@@ -17,6 +17,9 @@
       <tr v-else v-for="item in data" :key="item.id">
         <td>
           <div class="space-y-2">
+            <p class="badge badge-outline">
+              {{ item.status }}
+            </p>
             <div class="font-bold">{{ item.User.name }}</div>
             <div class="text-sm opacity-50">
               {{ item.User.address }}
@@ -44,19 +47,19 @@
             <ElError v-if="!box.Product" text="error" />
             <div v-else class="space-y-1">
               <div class="font-bold">{{ box.Product.name }}</div>
-              <div class="text-sm opacity-50">{{ box.Product.brand }}</div>
+              <!-- <div class="text-sm opacity-50">{{ box.Product.brand }}</div> -->
               <div class="">{{ getRupiah(box.Product.price) }}</div>
+              <div class="">qty : {{ box.qty }}</div>
             </div>
           </div>
         </td>
         <td class="space-y-2">
-          <p>
-            <!-- get total price and qty -->
-            {{ getRupiah(totalProduct) }}
-          </p>
-        </td>
-
-        <td>
+          <div class="">
+            <p>
+              <!-- get total price and qty -->
+              {{ getRupiah(totalProduct) }}
+            </p>
+          </div>
           <NuxtLink
             class="btn btn-outline btn-xs"
             :to="`/market/confirm/${item.id}`"

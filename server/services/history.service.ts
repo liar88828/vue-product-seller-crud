@@ -41,6 +41,26 @@ export class HistoryService {
     })
   }
 
+  async allHistory(session: SessionUser): Promise<HistoryServer[]> {
+    return prisma.transaction.findMany({
+      where: {
+        Market: {
+          id_user: session.id,
+        },
+      },
+      include: {
+        User: true,
+        Market: true,
+        Trolley: {
+          include: {
+            Product: true,
+          },
+        },
+      },
+      take: 100,
+    })
+  }
+
   async detailId({ id, id_market }: IdMarketTrans): Promise<HistoryServer> {
     const data = await prisma.transaction.findUnique({
       where: { id, id_market },

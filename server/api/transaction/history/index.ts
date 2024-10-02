@@ -1,12 +1,10 @@
 export default defineEventHandler(async (event) => {
   const data = {
     // histories: await control.trans.market.all(event),
-    histories: await historyController.all(event),
+    histories: await historyController.allHistory(event),
 
-    toJson(): {
-      histories: HistoryServer[]
-    } {
-      return { histories: this.histories }
+    toJson(): HistoryServer[] {
+      return this.histories
     },
   }
   return data

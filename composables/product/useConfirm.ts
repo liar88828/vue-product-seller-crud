@@ -1,23 +1,33 @@
-export const useConfirm = (
-  id: string | string[],
-  refresh: (opts?: any) => Promise<void>
-) => {
-  const onDelete = async () => {
-    await useFetch(`/api/market/confirm/${id}`, {
-      method: "DELETE",
-    })
-    refresh()
-  }
-
-  const onConfirm = async () => {
-    await useFetch(`/api/market/confirm/${id}`, {
-      method: "PUT",
-    })
-    refresh()
-  }
+export const useConfirm = () => {
+  const refreshConfirmId = () => refreshNuxtData("confirm_id")
+  const refreshConfirmData = () => refreshNuxtData("confirm_data")
 
   return {
-    onDelete,
-    onConfirm,
+    onReject: async (id: string | string[]) =>
+      useFetch(`/api/transaction/confirm/${id}`, {
+        method: "DELETE",
+      }).then((data) => {
+        refreshConfirmId()
+        return data
+      }),
+
+    onConfirm: async (id: string | string[]) =>
+      useFetch(`/api/transaction/confirm/${id}`, {
+        method: "PUT",
+      }).then((data) => {
+        refreshConfirmId()
+        return data
+      }),
+
+    getDataId: async (id: string | string[]) =>
+      useFetch(`/api/transaction/confirm/${id}`, {
+        method: "GET",
+        key: "confirm_id",
+      }),
+
+    getData: async () =>
+      useFetch("/api/transaction/confirm", {
+        key: "confirm_data",
+      }),
   }
 }

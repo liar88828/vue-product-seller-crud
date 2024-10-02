@@ -190,6 +190,7 @@ model Transaction {
     // Package   Package[]
     Box       Box[]
     Trolley   Trolley[]
+    total     Int
 }
 
 // model Status {

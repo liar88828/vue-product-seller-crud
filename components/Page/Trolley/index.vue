@@ -11,5 +11,5 @@ import Total from "./Total.vue"
 import Trash from "~/components/Icons/Trash.vue"
 import Item from "./Item.vue"
 
-defineProps<{ data: NewTolleyProps[] }>()
+defineProps<{ data: TrolleyProduct[] }>()
 </script>

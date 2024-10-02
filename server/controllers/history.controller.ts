@@ -13,10 +13,10 @@ export class HistoryController {
     })
   }
 
-  async all(event: H3Event): Promise<HistoryServer[]> {
+  async allHistory(event: H3Event): Promise<HistoryServer[]> {
     const { session } = await getUserSession(event)
     const { id_market, id_transaction } = getRouterParams(event)
-    return this.serviceHistory.marketAll(session) // maybe change
+    return this.serviceHistory.allHistory(session) // maybe change
   }
   async userDelete(event: H3Event) {
     const { session } = await getUserSession(event)

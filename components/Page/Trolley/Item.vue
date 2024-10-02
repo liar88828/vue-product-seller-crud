@@ -103,7 +103,7 @@
 
 <script lang="ts" setup>
 const props = defineProps<{
-  data: NewTolleyProps
+  data: TrolleyProduct
 }>()
 const { incrementTrolley, decrementTrolley, markTrolley, removeTrolley } =
   useTrolley()

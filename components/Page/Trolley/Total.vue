@@ -33,7 +33,7 @@
 
 <script lang="ts" setup>
 defineProps<{
-  data: NewTolleyProps[]
+  data: TrolleyProduct[]
 }>()
 const { calculateTrolley } = useTrolley()
 </script>

@@ -1,7 +1,9 @@
 <template>
   <h3 class="nota-title">
     <IconsCardBoardClose />
-    <spam>{{ data.name }}</spam>
+
+    <span>{{ data.name }}</span>
+    <slot />
   </h3>
   <div class="flex justify-between">
     <div class="w-2/3">
@@ -13,11 +15,13 @@
         <ElError v-if="!data.address" text="error" />
         <div class="flex flex-col">
           <div class="font-medium">Email</div>
-          <div>{{ data.Contact?.email ?? "" }}</div>
+          test dev
+          <!-- <div>{{ data.Contact?.email ?? "" }}</div> -->
         </div>
         <div class="flex flex-col">
           <div class="font-medium">Phone</div>
-          <div>{{ getPhone(data.Contact?.phone) }}</div>
+          test dev
+          <!-- <div>{{ getPhone(data.Contact?.phone) }}</div> -->
         </div>
       </div>
     </div>
@@ -33,7 +37,7 @@
 
 <script setup lang="ts">
 defineProps<{
-  data: MarketServerFullClient
+  data: MarketClient
   fullUrl: any
 }>()
 

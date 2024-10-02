@@ -1,9 +1,9 @@
-import { confirmController } from "~/server/controllers/confirm.controller"
+import { type TransactionServer } from "~/types/trolley"
 
 export default defineEventHandler(async (event) => {
   const data = {
-    confirm: await confirmController.id(event),
-    toJson() {
+    confirm: await confirmController.marketFindIdTransaction(event),
+    toJson(): TransactionServer {
       return this.confirm
     },
   }

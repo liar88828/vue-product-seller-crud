@@ -1,16 +1,46 @@
 import type { H3Event } from "h3"
-import type { IConfirmService } from "../services/confirm.service"
-import { getIdMarket } from "~/server/services/market.service"
 export class ConfirmController {
-  constructor(private serviceConfirm: IConfirmService) {}
+  constructor(
+    private serviceConfirm: IConfirmService,
+    private serviceTrolley: ITrolleyService
+  ) {}
 
-  async id(event: H3Event) {
+  private async findTrolleyByIdTransaction(
+    event: H3Event
+  ): Promise<TrolleyProduct[]> {
     const { id } = getRouterParams(event)
     const { session } = await getUserSession(event)
-    const { id: id_market } = await getIdMarket(session)
-    await this.serviceConfirm.id({
-      id: Number(id),
-      id_market,
+    return this.serviceTrolley.findTrolleyProductByIdTransaction(Number(id))
+  }
+  async marketFindIdTransaction(
+    event: H3Event
+  ): Promise<TransactionConfirmServer> {
+    return tryCatch(async () => {
+      const { id } = getRouterParams(event)
+      const { session } = await getUserSession(event)
+      return prisma.transaction
+        .findUnique({
+          include: {
+            Market: true,
+            Trolley: {
+              include: {
+                Product: true,
+              },
+            },
+          },
+          where: {
+            id: Number(id),
+          },
+        })
+        .then((data) => {
+          if (!data) {
+            throw createError({
+              statusCode: 404,
+              statusMessage: "Confirm Transaction id not found",
+            })
+          }
+          return data
+        })
     })
   }
 
@@ -28,14 +58,14 @@ export class ConfirmController {
     )
   }
 
-  async all(event: H3Event): Promise<DataMarket[]> {
+  async allConfirm(event: H3Event): Promise<TransServer[]> {
     const { session } = await getUserSession(event)
     const { id } = await getIdMarket(session)
-    return this.serviceConfirm.marketAllConfirm(
-      id
-      // session
-    )
+    return this.serviceConfirm.marketAllConfirm(id)
   }
 }
 
-export const confirmController = new ConfirmController(confirmService)
+export const confirmController = new ConfirmController(
+  confirmService,
+  trolleyService
+)

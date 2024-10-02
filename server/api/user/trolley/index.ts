@@ -1,7 +1,7 @@
 export default defineEventHandler(async (event) => {
   const data = {
     trolleys: await trolleyController.all(event),
-    toJson(): { trolleys: NewTolleyProps[] } {
+    toJson(): { trolleys: TrolleyProduct[] } {
       return {
         trolleys: this.trolleys,
       }
