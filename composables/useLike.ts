@@ -2,7 +2,7 @@ export const useLike = () => {
   const refreshLike = () => refreshNuxtData("like_product_id")
 
   return {
-    likeProduct: async (id_product: number) => {
+    add: async (id_product: number) => {
       return useFetch("/api/user/like/:id", {
         method: "POST",
         params: {
@@ -13,7 +13,7 @@ export const useLike = () => {
         return data
       })
     },
-    findProduct: async (id_product: number) => {
+    findId: async (id_product: number) => {
       return useFetch("/api/user/like/:id", {
         key: "like_product_id",
         method: "GET",
@@ -21,6 +21,10 @@ export const useLike = () => {
           id: id_product,
         },
       })
+    },
+
+    findAll: async () => {
+      return await useFetch("/api/user/like")
     },
   }
 }

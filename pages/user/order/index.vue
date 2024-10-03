@@ -1,19 +1,22 @@
 <template>
   <ElLoading v-if="pending" />
+  <PageMarketErrorNotRegister v-else-if="error?.message" />
+  <ErrorNotFound
+    v-else-if="data?.orders.length === 0"
+    :title="'Data Confirm is Empty maybe you not have order from user '"
+    :code="404"
+    :linkTitle="'Register'"
+    link="/market/profile"
+  />
   <ElError v-else-if="error || !data" />
-  <PageMarketConfirm v-else :data="data.orders" />
+  <PageTransactionMarket v-else :data="data.orders" />
 </template>
 
 <script lang="ts" setup>
 definePageMeta({
+  // middleware: ["user"],
   layout: "user",
 })
-// import { dataOrders } from "~/assets/example/transaction/dataOrder"
-const { data, pending, error } = await useFetch("/api/transaction/order/user")
-watch(data, () => {
-  console.log(data.value)
-})
-if (!data.value) {
-  throw new Error("data not found")
-}
+
+const { data, pending, error } = await useOrderUser().findAll()
 </script>

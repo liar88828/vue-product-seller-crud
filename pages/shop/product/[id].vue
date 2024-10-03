@@ -1,26 +1,3 @@
-<script setup lang="ts">
-definePageMeta({
-  layout: "shop",
-})
-
-// defineMid
-// import { dataProductDetailServer } from "~/assets/example/product/dataProduct"
-// import type { ProductDetail } from "~/types/product/item"
-
-const { id } = useRoute().params
-const { data, error, pending } = await useFetch("/api/product/:id", {
-  params: {
-    id: id,
-  },
-})
-watch(data, () => {
-  // console.log(data.value)
-})
-if (!data.value) {
-  throw new Error("data not found")
-}
-</script>
-
 <template>
   <Suspense>
     <template #fallback>Loading.....</template>
@@ -31,3 +8,10 @@ if (!data.value) {
     </template>
   </Suspense>
 </template>
+<script setup lang="ts">
+definePageMeta({
+  layout: "shop",
+})
+const { id } = useRoute().params
+const { data, error, pending } = await useProduct().shopId(id)
+</script>

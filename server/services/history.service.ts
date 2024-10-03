@@ -1,12 +1,10 @@
 export class HistoryService {
-  async marketAllConfirm(
-    id_market: number
-    // session: SessionUser
-  ): Promise<HistoryServer[]> {
+  async marketAll(session: SessionUser): Promise<HistoryServer[]> {
     return prisma.transaction.findMany({
       where: {
-        status: "PENDING",
-        id_market: id_market,
+        Market: {
+          id_user: session.id,
+        },
       },
       include: {
         User: true,
@@ -21,12 +19,10 @@ export class HistoryService {
     })
   }
 
-  async marketAll(session: SessionUser): Promise<HistoryServer[]> {
+  async userAll(session: SessionUser): Promise<HistoryServer[]> {
     return prisma.transaction.findMany({
       where: {
-        Market: {
-          id_user: session.id,
-        },
+        id_buyer: session.id,
       },
       include: {
         User: true,
@@ -64,6 +60,31 @@ export class HistoryService {
   async detailId({ id, id_market }: IdMarketTrans): Promise<HistoryServer> {
     const data = await prisma.transaction.findUnique({
       where: { id, id_market },
+      include: {
+        User: true,
+        Market: true,
+        Trolley: {
+          include: {
+            Product: true,
+          },
+        },
+      },
+    })
+    if (!data) {
+      throw createError({
+        statusCode: 404,
+        statusMessage: "Order not found",
+      })
+    }
+    return data
+  }
+
+  async userId(id: number, session: SessionUser): Promise<HistoryServer> {
+    const data = await prisma.transaction.findUnique({
+      where: {
+        id,
+        id_buyer: session.id,
+      },
       include: {
         User: true,
         Market: true,

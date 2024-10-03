@@ -18,6 +18,6 @@ import Filter from "./Filter.vue"
 const props = defineProps<{
   data: Product[]
 }>()
-const { filter, store } = useShop()
+const { filter } = useShop()
 const newData = filter(props.data)
 </script>

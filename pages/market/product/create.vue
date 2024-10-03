@@ -43,9 +43,7 @@
       {{ store.msg }}
     </p>
 
-    <button @click="handleSubmit" class="btn btn-info btn-outline">
-      Submit
-    </button>
+    <button @click="onCreate" class="btn btn-info btn-outline">Submit</button>
 
     <NuxtLink to="/market/product" class="btn btn-outline"> Back</NuxtLink>
   </CardWrap>
@@ -56,5 +54,5 @@ definePageMeta({
   middleware: ["market"],
   layout: "market",
 })
-const { store, handleSubmit } = useProductCreate()
+const { store, onCreate } = useProduct()
 </script>

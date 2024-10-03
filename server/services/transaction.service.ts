@@ -36,7 +36,10 @@ export class TransactionService extends TransactionSanitize {
     }
     return transaction
   }
-  async checkout(data: TransactionCheckoutClient, session: SessionUser) {
+  async checkout(
+    data: TransactionCheckoutClient,
+    session: SessionUser
+  ): Promise<{ transactionDB: TransactionServer }> {
     return prisma.$transaction(async (tx) => {
       const oneDay = new Date(Date.now() + 24 * 60 * 60 * 1000)
 

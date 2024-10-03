@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts" setup>
-const { data, error, pending } = await useFetch("/api/transaction/history")
+const { data, error, pending } = await useHistoryMarket().findAll()
 definePageMeta({
   middleware: ["market"],
   layout: "market",

@@ -84,3 +84,5 @@ export type SearchProduct = {
   category: string
   search: string
 }
+
+export type ProductClient = Product

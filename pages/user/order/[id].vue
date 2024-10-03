@@ -1,19 +1,19 @@
 <template>
-  <ElLoading v-if="pending" />
-  <ElError v-else-if="error || !data" />
-  <PageTransactionOrder v-else :data="data.orders" />
+  <ElLoadingBounce v-if="pending" />
+  <ElError v-else-if="!data" />
+  <PageTransactionMarketDetail
+    v-else="!data"
+    :data="data.order"
+    @confirm-transaction="() => {}"
+    @reject-transaction="() => {}"
+  />
 </template>
 
 <script lang="ts" setup>
 definePageMeta({
-  layout: "user",
+  middleware: ["market"],
+  layout: "market",
 })
-// const { id } = useRoute().params
-const { data, pending, error } = await useFetch(`/api/transaction/order/user`)
-watch(data, () => {
-  console.log(data.value)
-})
-if (!data.value) {
-  throw new Error("data not found")
-}
+const { id } = useRoute().params
+const { data, pending } = await useOrderUser().findId(id)
 </script>

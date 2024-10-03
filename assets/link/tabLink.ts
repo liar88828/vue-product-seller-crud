@@ -9,7 +9,7 @@ export const UserLink = [
 export const MarketLink = [
   { title: "Profile", link: "/market/profile" },
   { title: "Product", link: "/market/product" },
-  { title: "Confirm", link: "/market/confirm" },
+  { title: "Order", link: "/market/order" },
   { title: "History", link: "/market/history" },
   { title: "Static", link: "/market/static" },
 ]

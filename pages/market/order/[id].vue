@@ -1,23 +1,20 @@
 <template>
   <ElLoadingBounce v-if="pending" />
-  <!-- <PageTransactionPay :data="data?.market" :company="data?.confirm">
-    <button class="btn btn-primary w-full" @click="()=>onConfirm">Confirm</button>
-    <button class="btn btn-error w-fill" @click="()=>onDelete">Reject</button>
-  </PageTransactionPay> -->
+  <ElError v-else-if="!data" />
+  <PageTransactionMarketDetail
+    v-else="!data"
+    :data="data.order"
+    @confirm-transaction="() => onConfirm(id)"
+    @reject-transaction="() => onReject(id)"
+  />
 </template>
 
 <script lang="ts" setup>
-import { useConfirm } from "~/composables/product/useConfirm"
-// import { dataOrders } from "~/assets/example/transaction/dataOrder"
-// import { dataCompany } from "~/assets/example/user/dataCompany"
-const { id } = useRoute().params
-const { data, refresh, pending } = await useFetch(`/api/market/confirm/${id}`)
-const { onReject, onConfirm } = useConfirm()
-
-watch(data, () => {
-  console.log(data.value)
+definePageMeta({
+  middleware: ["market"],
+  layout: "market",
 })
-if (!data.value) {
-  throw new Error("data not found")
-}
+const { id } = useRoute().params
+const { getDataId, onConfirm, onReject } = useOrderMarket()
+const { data, pending } = await getDataId(id)
 </script>

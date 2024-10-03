@@ -41,17 +41,17 @@ import type { Product } from "@prisma/client"
 import { useLike } from "~/composables/useLike"
 const props = defineProps<{ data: Product }>()
 const { pushTrolley } = useTrolley()
-const { findProduct, likeProduct } = useLike()
+const { findId, add } = useLike()
 const {
   data: dataLike,
   pending: likePending,
   error: errorLike,
-} = await findProduct(props.data.id)
+} = await findId(props.data.id)
 const isPending = ref(false)
 
 const onLike = () => {
   console.log("is like")
-  likeProduct(props.data.id)
+  add(props.data.id)
 }
 
 const onPush = async (id: number) => {

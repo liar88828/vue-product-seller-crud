@@ -5,9 +5,9 @@
     <!--    <Image :data="data.dataImage" />-->
   </div>
   <div class="md:space-y-5 space-y-2">
-    <Desc :data="data" />
+    <!-- <Desc :data="data" />
     <Spec :data="data.Spec" :id="data.id" />
-    <Tech :data="data.Tech" :id="data.id" />
+    <Tech :data="data.Tech" :id="data.id" /> -->
   </div>
   <NuxtLink to="/market/product" class="btn btn-info"> Back </NuxtLink>
 </template>
@@ -18,6 +18,6 @@ import Spec from "./Spec.vue"
 import Tech from "./Tech.vue"
 
 defineProps<{
-  data: ProductItemServer
+  data: ProductClient
 }>()
 </script>

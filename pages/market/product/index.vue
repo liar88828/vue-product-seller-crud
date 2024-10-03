@@ -18,12 +18,5 @@ definePageMeta({
   middleware: ["market"],
   layout: "market",
 })
-const { error, data, pending } = await useFetch("/api/product/market")
-// console.log(error.value?.message, "--:error bos")
-// watch(data, () => {
-//   console.log(data.value)
-// })
-// if (!data.value) {
-//   throw new Error("data not found")
-// }
+const { error, data, pending } = await useProduct().marketAll()
 </script>

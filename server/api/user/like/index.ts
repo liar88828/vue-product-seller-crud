@@ -1,11 +1,11 @@
-import type { Like } from "@prisma/client"
-
 export default defineEventHandler(async (event) => {
   const data = {
-    like: await likeController.all(event),
+    likes: await likeController.findAllProductLike(event),
 
-    toJson(): { likes: Like[] } {
-      return { likes: this.like }
+    toJSON(): { likes: LikeProduct[] } {
+      return {
+        likes: this.likes,
+      }
     },
   }
   return data
