@@ -1,19 +1,21 @@
 <template>
   <div class="join w-full">
     <input
-      class="input-sm sm:input input-bordered join-item w-full"
+      class="input-sm input input-bordered join-item w-full"
       placeholder="Message ..."
       v-model="message"
     />
-    <button class="btn join-item btn-info btn-sm sm:btn-md" @click="onSend">
-      <IconsSend class="icons" />
-    </button>
+
     <button
-      class="btn join-item btn-primary btn-sm sm:btn-md"
+      class="btn join-item btn-sm sm:btn-md"
       v-if="!isFullscreen"
       @click="toggleFullscreen"
     >
-      <IconsFull class="icons" />
+      <IconsFull class="size-5" />
+    </button>
+    <!--  -->
+    <button class="btn join-item btn-sm sm:btn-md btn-info" @click="onSend">
+      <IconsSend class="size-5" />
     </button>
   </div>
 </template>

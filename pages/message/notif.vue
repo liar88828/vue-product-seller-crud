@@ -1,11 +1,9 @@
 <template>
   <ElLoading v-if="pending" />
   <ElError v-else-if="error || !data" />
-  <PageMessageList v-else :notify="data?.notify" :count="data?.count" />
+  <!-- <PageMessageList v-else :="data?.count" :count="data?.count" /> -->
 </template>
 <script lang="ts" setup>
-// import { countUnRead, dataNotifies } from "~/assets/example/message/dataMessage"
-
 const { data, error, pending } = await useFetch(`/api/message/`)
 watch(data, () => {
   console.log(data.value)

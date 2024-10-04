@@ -1,7 +1,7 @@
 <template>
   <ElLoading v-if="pending" />
   <ElError v-else-if="error || !data" />
-  <PageShop v-else :data="data?.products" />
+  <PageShopProductHome v-else :data="data?.products" />
   <ElButtonScroll />
 </template>
 

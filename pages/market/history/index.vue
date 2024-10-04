@@ -1,7 +1,7 @@
 <template>
   <ElLoading v-if="pending" />
   <ElError v-else-if="error || !data" />
-  <PageTransactionMarket v-else :data="data.histories" />
+  <PageHistoryMarket v-else :data="data.histories" />
 </template>
 
 <script lang="ts" setup>

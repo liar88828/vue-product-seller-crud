@@ -1,7 +1,7 @@
 <template>
   <ElLoading v-if="pending" />
   <ElError v-else-if="error || !data" />
-  <PageProductMarketEdit v-else :data="data?.product" />
+  <PageProductEdit v-else :data="data?.product" />
 </template>
 
 <script lang="ts" setup>

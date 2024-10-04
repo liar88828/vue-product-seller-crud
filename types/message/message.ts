@@ -3,20 +3,26 @@ import type { User } from "@prisma/client"
 export type MessageContact = {
   name: string
   time: Date
-  msg: MessageList["msg"]
+  msg: MessageListServer["msg"]
   img: string
   id: string
-  message: MessageList[]
+  message: MessageListServer[]
   read: boolean
 }
 
-export type MessageList = {
+export type MessageListServer = {
   name: string
   time: Date
   msg: string
   id: string
 }
 
+export type MessageListClient = {
+  name: string
+  time: Date | string
+  msg: string
+  id: string
+}
 export type ContactList = {
   id: string
   name: string

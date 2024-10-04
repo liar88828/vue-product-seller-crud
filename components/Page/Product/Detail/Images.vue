@@ -4,13 +4,13 @@
       alt="Headphone"
       class="rounded-xl object-cover w-full aspect-square shadow-lg"
       height="600"
-      :src="data.image ?? 'https://picsum.photos/220'"
+      :src="imageRender"
       width="600"
     />
 
     <div class="flex gap-4">
-      <!-- <button
-        v-for="d in 1"
+      <button
+        v-for="d in data"
         class="border hover:border-gray-900 rounded-lg overflow-hidden transition-colors shadow-lg"
         @click="selectImage = d.img"
       >
@@ -22,19 +22,18 @@
           width="100"
         />
         <span class="sr-only">{{ d.title }}</span>
-      </button> -->
+      </button>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
 // import type { DataImage } from "~/assets/example/product/image"
-import type { Product } from "@prisma/client"
 import { useImageSelect } from "~/composables/useImageSelect"
+import type { ProductDetailServer } from "~/types/product/item"
 
-const props = defineProps<{ data: Product }>()
-// const { imageRender, selectImage } = useImageSelect(props.data.Img)
-
+const props = defineProps<{ data: ProductDetailServer["detail"]["Img"] }>()
+const { imageRender, selectImage } = useImageSelect(props.data)
 // const selectImage = ref("")
 // const imageRender = computed(() => {
 //   if (selectImage.value === "") {

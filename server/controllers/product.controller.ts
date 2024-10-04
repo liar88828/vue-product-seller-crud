@@ -53,7 +53,9 @@ export class ProductController extends ReviewController {
   async bestProduct(): Promise<Product[]> {
     return prisma.product.findMany({
       take: 100,
-      orderBy: { sold: "desc" },
+      orderBy: {
+        // sold: "desc"
+      },
     })
   }
   // the market

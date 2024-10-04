@@ -136,7 +136,7 @@ import NotComplete from "./NotComplete.vue"
 definePageMeta({
   layout: "transaction",
 })
-const { data: userData } = await useUser().getUserBySession()
+const { data: userData } = await useUser().findUserBySession()
 const { calculateTrolley, getMarkTrolley } = useTrolley()
 const { data, pending, error } = await getMarkTrolley()
 

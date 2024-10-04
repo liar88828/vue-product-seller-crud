@@ -7,14 +7,7 @@
 
 <script lang="ts" setup>
 definePageMeta({
-  // middleware: ["market"],
   layout: "market",
 })
-
-const { data, pending, error } = await useFetch("/api/market/profile")
-// console.log(data)
-// const { session } = useUserSession()
-// if (session.value.session.createMarket) {
-//   throw navigateTo("/market/profile/create")
-// }
+const { data, pending, error } = await useMarket().findBySession()
 </script>

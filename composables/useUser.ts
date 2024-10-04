@@ -3,9 +3,10 @@ export const useUser = () => {
   const router = useRouter()
 
   return {
-    getUserById: async (id_user: string) =>
-      useFetch(`/api/user/profile/${id_user}`, {}),
-    getUserBySession: async () => {
+    findUserById: async (id_user: string) => {
+      return useFetch(`/api/user/profile/${id_user}`, {})
+    },
+    findUserBySession: async () => {
       return useFetch("/api/user/profile")
     },
     editUser: async (data: UserUpdate): Promise<any> =>

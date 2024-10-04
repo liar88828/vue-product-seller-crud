@@ -29,7 +29,7 @@ export const dataLink = [
       },
       {
         title: "Trolly",
-        link: "/user/trolly",
+        link: "/user/trolley",
         sub: [],
       },
       {

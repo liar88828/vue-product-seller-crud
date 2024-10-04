@@ -10,7 +10,7 @@
     link="/market/product/create"
   />
   <ElError v-else-if="error || !data" />
-  <PageMarketProduct v-else :data="data.products" />
+  <PageProductMarket v-else :data="data.products" />
 </template>
 
 <script lang="ts" setup>

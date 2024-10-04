@@ -1,6 +1,6 @@
 import type {
-  MarketServer,
   MarketServerFullNull,
+  MarketUpdate,
 } from "~/types/market/ProfileCompany"
 import type { Market } from "@prisma/client"
 import { MarketTestDB } from "./MarketTestDB"
@@ -11,7 +11,7 @@ class MarketUserDB extends MarketTestDB {}
 class MarketOwnerDB extends MarketUserDB {
   async update(
     id_market: number,
-    data: Omit<MarketServer, "id_user">
+    data: Omit<MarketUpdate, "id_user">
   ): Promise<Market> {
     return prisma.market.update({
       where: { id: id_market },

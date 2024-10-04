@@ -9,13 +9,5 @@ definePageMeta({
   layout: "user",
 })
 
-const { data, pending, error } = await useFetch(`/api/user/trolley`, {
-  key: "all_trolley",
-})
-// watch(data, () => {
-//   console.log(data.value)
-// })
-// if (!data.value) {
-//   throw new Error("data not found")
-// }
+const { data, pending, error } = await useTrolley().findAll()
 </script>

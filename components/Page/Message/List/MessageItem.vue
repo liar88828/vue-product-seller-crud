@@ -15,7 +15,10 @@
             {{ data.type }}
           </p>
         </div>
-        <NuxtLink :to="data.link" class="btn btn-outline btn-xs self-end">
+        <NuxtLink
+          :to="`/message/${data.id}`"
+          class="btn btn-outline btn-xs self-end"
+        >
           Reply
         </NuxtLink>
       </div>
@@ -26,25 +29,17 @@
               {{ showText ? getTextSplit(props.data.msg, 25) : props.data.msg }}
             </button>
           </p>
-
           <span class="text-xs sm:text-sm">{{ getDate(data.time) }}</span>
         </div>
-        <!-- <NuxtLink :to="data.link" class="btn btn-outline btn-sm self-end">
-          Reply
-        </NuxtLink> -->
       </CardActionBetween>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import type { NotifyMessageServer } from "~/types/message/notify"
 const props = defineProps<{
   data: NotifyMessageClient
 }>()
 
 const showText = ref(true)
-// const text = computed(() =>
-//   showText ? getTextSplit(props.data.msg, 25) : props.data.msg
-// )
 </script>

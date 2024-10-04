@@ -1,5 +1,4 @@
 import type { StoreBase } from "~/types/globals/store"
-import type { MarketServer } from "~/types/market/ProfileCompany"
 
 export const useMarketProfile = () => {
   const { fetch } = useUserSession()

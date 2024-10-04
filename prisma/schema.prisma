@@ -28,9 +28,8 @@ model User {
     // Like    Like[]
 
     // 
-    Market Market?
-    Like   Like[]
-
+    Market      Market?
+    Like        Like[]
     Preview     Preview[]
     Trolley     Trolley[]
     Transaction Transaction[]

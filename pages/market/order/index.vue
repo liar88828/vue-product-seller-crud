@@ -9,7 +9,7 @@
     link="/market/profile"
   />
   <ElError v-else-if="error || !data" />
-  <PageTransactionMarket v-else :data="data.confirms" />
+  <PageMarketOrder v-else :data="data.confirms" />
 </template>
 
 <script lang="ts" setup>

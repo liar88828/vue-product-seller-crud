@@ -1,34 +1,32 @@
 <!-- Main Chat List -->
 <template>
-  <CardParent :title="'Message'" :class="'bg-base-100/85'">
-    <template #rightSlot>
-      <Filter :data="notify" />
-
-      <!-- <Search :newMessage="count" /> -->
-    </template>
-    <!-- <template #filter>
-      <div class="flex gap-5 justify-end">
+  <section class="">
+    <div class="flex justify-between items-center gap-2 py-2">
+      <h1 class="font-bold text-lg">Message</h1>
+      <div class="flex flex-wrap gap-1 justify-end">
+        <ElSelectMessage v-model:select="store.value" />
       </div>
-    </template> -->
-    <MessageItem
-      v-for="dataList in newData"
-      :data="dataList"
-      :key="dataList.name"
-    />
+    </div>
+    <div class="space-y-2">
+      <MessageItem
+        v-for="dataList in newData"
+        :data="dataList"
+        :key="dataList.name"
+      />
+    </div>
     <div class="flex justify-center pt-5">
       <ElPagination :keys="keys" :total="10" />
     </div>
-  </CardParent>
+  </section>
 </template>
 
 <script lang="ts" setup>
-import Filter from "./Filter.vue"
 import { useList } from "~/composables/message/useList"
 import MessageItem from "./MessageItem.vue"
-const { filter, keys } = useList()
-const newData = computed(() => filter(props.notify))
 const props = defineProps<{
-  notify: NotifyMessageClient[]
-  count: number
+  list: NotifyMessageClient[]
 }>()
+const { filter, keys } = useList()
+const newData = computed(() => filter(props.list))
+const { store } = useList()
 </script>

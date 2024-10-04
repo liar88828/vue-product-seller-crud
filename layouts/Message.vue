@@ -3,7 +3,7 @@
     <section class="navbar bg-base-100 shadow h-16">
       <div class="flex-none">
         <button class="btn btn-ghost btn-square" @click="router.back()">
-          <IconsHome class="icons" />
+          <IconsBack class="icons" />
         </button>
       </div>
       <div class="flex-1 gap-2 items-center justify-center pr-1">

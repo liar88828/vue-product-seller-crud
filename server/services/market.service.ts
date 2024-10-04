@@ -1,10 +1,9 @@
-import { type IdStaticMarket } from "~/types/market/ProfileCompany"
-import type { Contact, Market, Product, SocialMedia } from "@prisma/client"
+import type { Contact, Product, SocialMedia } from "@prisma/client"
 
 export class MarketService {
   constructor(private sanitizeMarket: IMarketSanitize) {}
 
-  async findProfile(session: SessionUser): Promise<Market> {
+  async findProfile(session: SessionUser): Promise<MarketServer> {
     const data = await prisma.market.findUnique({
       where: { id_user: session.id },
     })
@@ -26,7 +25,7 @@ export class MarketService {
   }
 
   async register(
-    data: MarketServer,
+    data: MarketCreate,
     session: SessionUser
   ): Promise<MarketUser> {
     // data.id_user = session.id
@@ -71,7 +70,7 @@ export class MarketService {
     })
   }
 
-  async id(id: number): Promise<Market> {
+  async id(id: number): Promise<MarketServer> {
     id = zods.id.number.parse(id)
     return prisma.market
       .findUnique({
@@ -148,12 +147,11 @@ export class MarketService {
   //   return db.market.updateProfile(id_market, data)
   // }
 
-  async findProfileEdit(id_user: string): Promise<MarketServiceSingleNull> {
-    id_user = zods.id.string.parse(id_user)
-    console.log("id_market-----", id_user)
-
+  async findProfileFull(
+    session: SessionUser
+  ): Promise<MarketServiceSingleNull> {
     const market = await prisma.market
-      .findUnique({ where: { id_user } })
+      .findUnique({ where: { id_user: session.id } })
       .then((data) => {
         if (!data) {
           throw createError({
@@ -219,7 +217,7 @@ export class MarketService {
   async ownerFindFullSingle(id: number): Promise<MarketServiceSingleNull> {
     id = zods.id.number.parse(id)
 
-    const market: RequiredProperty<Market> = await prisma.market
+    const market: RequiredProperty<MarketServer> = await prisma.market
       .findUnique({
         where: { id },
       })
@@ -254,9 +252,9 @@ export class MarketService {
   }
 
   async ownerCreate(
-    data: RequiredProperty<MarketServer>,
+    data: RequiredProperty<MarketCreate>,
     session: SessionUser
-  ): Promise<{ market: Market; user: SessionUser }> {
+  ): Promise<{ market: MarketServer; user: SessionUser }> {
     data = this.sanitizeMarket.sanitize(data, session)
     // data = zods.market.registerServer.parse(data)
 
@@ -278,7 +276,7 @@ export class MarketService {
       })
       // const follow = await tx.follow.create({ data: {} })
 
-      const sanitize: Omit<Market, "id"> = {
+      const sanitize: Omit<MarketServer, "id"> = {
         name: data.name,
         industry: data.industry,
         address: data.address,

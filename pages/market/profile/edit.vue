@@ -9,13 +9,5 @@ definePageMeta({
   middleware: ["market"],
   layout: "market",
 })
-// import { dataCompany } from "~/assets/example/user/dataCompany"
-
-const { data, error, pending } = await useFetch("/api/market/profile/edit")
-watch(data, () => {
-  // console.log(data.value)
-})
-if (!data.value) {
-  throw new Error("data not found")
-}
+const { data, error, pending } = await useMarket().findBySession()
 </script>

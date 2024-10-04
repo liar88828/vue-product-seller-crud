@@ -4,7 +4,7 @@
     <template #default>
       <ElLoading v-if="pending" />
       <ElError v-else-if="error || !data" />
-      <PageProductDetail v-else :data="data.product" />
+      <PageShopProductDetail v-else :data="data.product" />
     </template>
   </Suspense>
 </template>

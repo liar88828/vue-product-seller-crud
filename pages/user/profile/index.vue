@@ -1,23 +1,27 @@
 <template>
   <ElLoading v-if="pending" />
   <ElError v-else-if="error || !data" />
-  <PageProfileUser v-else :data="data?.user" />
+  <PageProfile v-else :data="data?.user" />
 </template>
 <script lang="ts" setup>
-// definePageMeta({
-//   middleware: ["market"],
-// })
 definePageMeta({
   layout: "user",
 })
 const { clear } = useUserSession()
-const { data, pending, error } = await useFetch("/api/user/profile", {
-  onResponseError: async ({ error, response }) => {
-    console.log(response.statusText, "response")
-    if (response.statusText.includes("not found")) {
+
+const { data, error, pending } = await useUser()
+  .findUserBySession()
+  .then((data) => {
+    if (!data.error.value) {
+      return data
+    }
+    if (data.error.value.statusText === undefined) {
+      return data
+    }
+    if (data.error.value.statusText.includes("not found")) {
       console.log("not found")
       clear()
     }
-  },
-})
+    return data
+  })
 </script>

@@ -46,11 +46,17 @@ export type MarketServerValid = RequiredProperty<MarketServerFullNull>
 type test = IfEquals<MarketServerValid, ProfileMarket, "save", "different">
 // const Test: test = "different"
 
-export type MarketServer = Omit<
+export type MarketServer = Market
+
+export type MarketCreate = Omit<
   Market,
   "id" | "id_contact" | "id_socialMedia" | "id_follow" | "create"
 >
 
+export type MarketUpdate = Omit<
+  Market,
+  "id" | "id_contact" | "id_socialMedia" | "id_follow" | "create" | "id_user"
+>
 export type MarketRegisterClient = Omit<
   Market,
   "id" | "id_contact" | "id_socialMedia" | "id_follow" | "create" | "id_user"

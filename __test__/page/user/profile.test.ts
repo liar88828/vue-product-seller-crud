@@ -1,6 +1,6 @@
 import { expect, test } from "vitest"
 import { userProfile } from "~/assets/example/user/dataUser"
-import Profile from "~/components/Page/Profile/User/index.vue"
+import Profile from "~/components/Page/Profile/index.vue"
 import CardBody from "~/components/Card/Body/index.vue"
 import Card from "~/components/Card/index.vue"
 import { mount } from "@vue/test-utils"

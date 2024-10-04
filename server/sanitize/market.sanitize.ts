@@ -1,20 +1,21 @@
 import type { Market } from "@prisma/client"
 import type { RequiredProperty } from "~/types/globals/generic"
 import type {
+  MarketCreate,
   MarketRegisterServer,
-  MarketServer,
+  MarketUpdate,
 } from "~/types/market/ProfileCompany"
 
 export class MarketSanitize {
   sanitize(
-    data: RequiredProperty<MarketServer>,
+    data: RequiredProperty<MarketCreate>,
     session: SessionUser
-  ): RequiredProperty<MarketServer> {
+  ): RequiredProperty<MarketCreate> {
     return MarketSanitize.sanitizeStatic(data, session)
   }
 
   static sanitizeStatic(
-    data: RequiredProperty<MarketServer>,
+    data: RequiredProperty<MarketCreate>,
     session: SessionUser
   ): RequiredProperty<MarketRegisterServer> {
     return {
@@ -30,7 +31,7 @@ export class MarketSanitize {
     }
   }
 
-  updateMarketProfile(data: MarketServer): MarketServer {
+  updateMarketProfile(data: MarketUpdate): MarketUpdate {
     return {
       address: data.address,
       name: data.name,
@@ -40,7 +41,6 @@ export class MarketSanitize {
       mission: data.mission,
       since: new Date(data.since),
       vision: data.vision,
-      id_user: "",
       // id_user: data.id_user,
       // id_user: data.id_user,
     }

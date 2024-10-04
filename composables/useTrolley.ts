@@ -2,6 +2,7 @@ import type { TrolleyCounter, TrolleyCreateClient } from "~/types/trolley"
 
 export const useTrolley = () => {
   const refreshTrollyNotify = () => refreshNuxtData("trolley_notify")
+  const refreshTrollyAll = () => refreshNuxtData("trolley_all")
   const refreshTrollyTotal = () => refreshNuxtData("trolley_total")
 
   const addTotal = useState<TolleyMark[]>("add_total")
@@ -12,7 +13,7 @@ export const useTrolley = () => {
   // )
 
   return {
-    getTrolleyId: async (id: number) => {
+    findId: async (id: number) => {
       const data = await useFetch("/api/user/trolley/:id", {
         params: {
           id,
@@ -21,9 +22,10 @@ export const useTrolley = () => {
       })
       return data
     },
-    getTrolley: async () => {
+    findAll: async () => {
       const data = await useFetch("/api/user/trolley/", {
         method: "GET",
+        key: "all_trolley",
       })
       return data
     },
@@ -36,6 +38,7 @@ export const useTrolley = () => {
         body: item,
       })
       refreshTrollyNotify()
+      refreshTrollyAll()
       return data
     },
     pushTrolley: async (id: number) => {
@@ -47,6 +50,8 @@ export const useTrolley = () => {
         method: "POST",
       })
       refreshTrollyNotify()
+      refreshTrollyAll()
+
       return data
     },
     removeTrolley: async (id_trolley: number) => {
@@ -56,6 +61,7 @@ export const useTrolley = () => {
         },
         method: "DELETE",
       })
+      refreshTrollyAll()
       refreshTrollyNotify()
       return data
     },
@@ -71,6 +77,7 @@ export const useTrolley = () => {
       })
       refreshTrollyNotify()
       refreshTrollyTotal()
+      refreshTrollyAll()
 
       return data
     },
@@ -81,6 +88,7 @@ export const useTrolley = () => {
       })
       refreshTrollyNotify()
       refreshTrollyTotal()
+      refreshTrollyAll()
 
       return data
     },
@@ -95,6 +103,8 @@ export const useTrolley = () => {
         body: item,
       })
       refreshTrollyTotal()
+      refreshTrollyAll()
+
       // console.log(data.data.value?.trolly)
       return data
     },

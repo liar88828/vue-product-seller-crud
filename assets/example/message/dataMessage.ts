@@ -1,6 +1,6 @@
-import type { MessageContact, MessageList } from "~/types/message/message"
+import type { MessageContact, MessageListServer } from "~/types/message/message"
 import type { NotifyMessageServer } from "~/types/message/notify"
-export const dataChat1: MessageList[] = [
+export const dataChat1: MessageListServer[] = [
   {
     name: "Alex",
     msg: "Hello",

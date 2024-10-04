@@ -1,5 +1,5 @@
 <template>
-  <PageTransactionTrolly :data="dataProducts" />
+  <PageTransactionTrolley :data="dataProducts" />
 </template>
 
 <script lang="ts" setup>

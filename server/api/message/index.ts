@@ -6,11 +6,9 @@ export default defineEventHandler(async (event) => {
   // return { count: countUnRead, notify: dataNotifies }
   const data = {
     count: countUnRead,
-    notify: dataNotifies,
     toJson() {
       return {
         count: this.count,
-        notify: this.notify,
       }
     },
   }

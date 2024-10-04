@@ -24,7 +24,7 @@ const { loggedIn, clear } = useUserSession()
       </div>
       <div class="card-body flex flex-row justify-between" v-if="loggedIn">
         <ElTheme />
-        <NuxtLink to="/user/trolly" class="btn btn-primary btn-square">
+        <NuxtLink to="/user/trolley" class="btn btn-primary btn-square">
           <IconsTrolley />
         </NuxtLink>
         <button @click="() => clear()" class="btn btn-info btn-square">

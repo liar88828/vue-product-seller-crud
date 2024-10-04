@@ -9,7 +9,7 @@
     link="/market/profile"
   />
   <ElError v-else-if="error || !data" />
-  <PageTransactionMarket v-else :data="data.orders" />
+  <PageOrderUser v-else :data="data.orders" />
 </template>
 
 <script lang="ts" setup>

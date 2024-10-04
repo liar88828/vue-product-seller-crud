@@ -20,7 +20,7 @@
       <h1>Add A New Specification</h1>
       <div class="join">
         <input
-          v-model="getText.title"
+          v-model="store.title"
           placeholder="Add title"
           class="input input-bordered join-item w-full"
         />
@@ -28,7 +28,7 @@
           <IconsPlus class="icons" />
         </button>
       </div>
-      <textarea v-model="getText.text" class="textarea-edit"></textarea>
+      <textarea v-model="store.text" class="textarea-edit"></textarea>
 
       <div
         class="grid gap-2 border p-2 rounded"
@@ -54,14 +54,15 @@
 </template>
 
 <script setup lang="ts">
-import { useProductTech } from "~/composables/product/useProductTech"
-import type { ProductItem } from "~/types/product/item"
+import { useTech } from "~/composables/market/product/edit/useTech"
 
 const props = defineProps<{
-  data: ProductItem["desc_tech"]
+  data: ProductItemServer["Tech"]
+  id: ProductItemServer["id"]
 }>()
 
-const { getText, refEdit, multiple, onAdd, onDelete, onSave } = useProductTech(
-  props.data
+const { store, refEdit, multiple, onAdd, onDelete, onSave } = useTech(
+  props.data,
+  props.id
 )
 </script>

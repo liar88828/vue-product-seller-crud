@@ -1,27 +1,25 @@
 <template>
-  <ElNavChat class="z-20 fixed">
+  <!-- <ElNavChat class="z-20 fixed">
     <PageMessageChatSearch />
-  </ElNavChat>
-  <div class="container bg-base-300 min-h-screen">
-    <!-- @vue-expect-error -->
-    <PageChat :data="data?.chat" />
-  </div>
+  </ElNavChat> -->
+  <ElLoading v-if="pending" />
+  <ElError v-else-if="error || !data" />
+  <!-- @vue-ignore -->
+  <NuxtLayout v-else name="chat" :data="data.chat">
+    <div class="bg-base-300 min-h-screen">
+      <!-- @vue-ignore -->
+      <PageMessageChat :data="data?.chat" />
+    </div>
+  </NuxtLayout>
 </template>
 
 <script lang="ts" setup>
 definePageMeta({
-  layout: "message",
+  layout: false,
 })
-
 // import { dataChat1 } from "~/assets/example/message/dataMessage"
 const { id } = useRoute().params
-const { data } = await useFetch(`/api/message/${id}`)
-watch(data, () => {
-  console.log(data.value)
-})
-if (!data.value) {
-  throw new Error("data not found")
-}
+const { data, pending, error } = await useMessage().findId(id)
 </script>
 
 <style>

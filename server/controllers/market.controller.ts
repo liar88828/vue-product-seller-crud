@@ -1,11 +1,5 @@
 import type { H3Event } from "h3"
-import type {
-  Additional,
-  Contact,
-  Market,
-  Product,
-  SocialMedia,
-} from "@prisma/client"
+import type { Additional, Contact, Product, SocialMedia } from "@prisma/client"
 import type { idMarketFind } from "~/types/market/ProfileCompany"
 
 // public user: MarketUserController,
@@ -30,17 +24,17 @@ export class MarketController {
     })
   }
 
-  async findProfile(event: H3Event): Promise<Market> {
+  async findProfile(event: H3Event): Promise<MarketServer> {
     return tryCatch(async () => {
       const { session } = await getUserSession(event)
       return this.serviceMarket.findProfile(session)
     })
   }
 
-  async findProfileEdit(event: H3Event): Promise<MarketServiceSingle> {
+  async findProfileFull(event: H3Event): Promise<MarketServiceSingle> {
     return tryCatch(async () => {
       const { session } = await getUserSession(event)
-      return this.serviceMarket.findProfileEdit(session.id)
+      return this.serviceMarket.findProfileFull(session)
     })
   }
 
@@ -67,7 +61,9 @@ export class MarketController {
     })
   }
 
-  async productMarket(event: H3Event): Promise<Product & { market: Market }> {
+  async productMarket(
+    event: H3Event
+  ): Promise<Product & { market: MarketServer }> {
     return tryCatch(async () => {
       const { id } = getRouterParams(event)
       return prisma.product.findUnique({
@@ -119,7 +115,7 @@ export class MarketController {
     })
   }
 
-  private async marketCreate(event: H3Event): Promise<Market> {
+  private async marketCreate(event: H3Event): Promise<MarketServer> {
     return tryCatch(async () => {
       const { session } = await getUserSession(event)
       let body = await readBody(event)
@@ -134,7 +130,7 @@ export class MarketController {
     })
   }
 
-  async info(event: H3Event): Promise<Market> {
+  async info(event: H3Event): Promise<MarketServer> {
     return tryCatch(async () => {
       const { session } = await getUserSession(event)
 
@@ -232,7 +228,7 @@ export class MarketController {
     })
   }
 
-  async idMarket(event: H3Event): Promise<Market> {
+  async idMarket(event: H3Event): Promise<MarketServer> {
     return tryCatch(async () => {
       const { id } = getQuery(event)
       return this.serviceMarket.id(Number(id))

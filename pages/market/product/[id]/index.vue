@@ -1,7 +1,7 @@
 <template>
   <ElLoading v-if="pending" />
   <ElError v-else-if="error || !data" />
-  <PageProductMarketDetail v-else :data="data.product" />
+  <PageProductDetail v-else :data="data.product" />
   <NuxtLink :to="`/market/product/${id}/edit`" class="btn btn-info w-full mt-5">
     Edit
   </NuxtLink>

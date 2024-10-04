@@ -8,6 +8,6 @@ definePageMeta({
   layout: "user",
 })
 
-const { getUserBySession, editUser } = useUser()
-const { data, pending, error } = await getUserBySession()
+const { findUserBySession, editUser } = useUser()
+const { data, pending, error } = await findUserBySession()
 </script>

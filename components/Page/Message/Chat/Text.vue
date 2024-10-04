@@ -1,5 +1,5 @@
 <template>
-  <div :class="`chat ${position ? 'chat-start' : 'chat-end'}`">
+  <div :class="`chat ${position ? 'chat-start' : 'chat-end'}  `">
     <!-- <div class="chat-image avatar">
       <div class="w-10 rounded-full">
         <img
@@ -19,10 +19,10 @@
 </template>
 
 <script lang="ts" setup>
-import type { MessageList } from "~/types/message/message"
+import type { MessageListClient } from "~/types/message/message"
 
 const { data, user } = defineProps<{
-  data: MessageList
+  data: MessageListClient
   user: { name: string }
 }>()
 

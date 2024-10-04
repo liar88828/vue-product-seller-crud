@@ -9,7 +9,7 @@
     :linkTitle="'Go Shop'"
     :link="`/shop`"
   />
-  <PageTransactionLike v-else :data="data.likes" />
+  <PageLike v-else :data="data.likes" />
 </template>
 
 <script lang="ts" setup>

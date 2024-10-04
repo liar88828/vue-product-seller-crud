@@ -1,7 +1,7 @@
 <template>
   <ElLoadingBounce v-if="pending" />
   <ElError v-else-if="!data" />
-  <PageTransactionMarketDetail
+  <PageMarketOrderDetail
     v-else="!data"
     :data="data.order"
     @confirm-transaction="() => onConfirm(id)"
