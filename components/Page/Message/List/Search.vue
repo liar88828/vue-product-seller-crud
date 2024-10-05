@@ -6,11 +6,12 @@
       placeholder="Search Name ...."
       v-model="store.name"
     />
-    <ElIndicator :count="newMessage">
+    <div class="indicator">
+      <span class="indicator-item badge badge-primary mr-6">{{ newMessage }}</span>
       <div class="join-item btn btn-sm">
         <IconsBell class="icons" />
       </div>
-    </ElIndicator>
+    </div>
   </div>
 </template>
 

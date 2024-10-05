@@ -4,7 +4,7 @@ export const useHistoryMarket = () => {
       return useFetch("/api/market/history")
     },
     findId: async (id: string | string[]) => {
-      return useFetch("/api/market/history/:id")
+      return useFetch(`/api/market/history/${id}`)
     },
   }
 }

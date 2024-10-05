@@ -8,7 +8,7 @@ class UserController {
     protected serviceMarket: IMarketService
   ) {}
 
-  async userFindId(event: H3Event): Promise<TransactionConfirmServer> {
+  async userOrderId(event: H3Event): Promise<TransactionConfirmServer> {
     return tryCatch(async () => {
       const { id } = getRouterParams(event)
       const { session } = await getUserSession(event)
@@ -39,7 +39,7 @@ class UserController {
     })
   }
 
-  async userFindAll(event: H3Event): Promise<HistoryServer[]> {
+  async userOrderAll(event: H3Event): Promise<HistoryServer[]> {
     const { session } = await getUserSession(event)
     return this.serviceOrder.userFindAll(session)
   }
@@ -92,7 +92,12 @@ export class OrderController extends UserController {
   }
 
   // market
-  async marketOrderFindId(event: H3Event): Promise<TransactionConfirmServer> {
+  async marketOrderAll(event: H3Event): Promise<TransServer[]> {
+    const { session } = await getUserSession(event)
+    const { id } = await getIdMarket(session)
+    return this.serviceOrder.orderConfirmAll(id)
+  }
+  async marketOrderId(event: H3Event): Promise<TransactionConfirmServer> {
     return tryCatch(async () => {
       const { id } = getRouterParams(event)
       const { session } = await getUserSession(event)
@@ -136,11 +141,6 @@ export class OrderController extends UserController {
     )
   }
 
-  async marketOrderFindAll(event: H3Event): Promise<TransServer[]> {
-    const { session } = await getUserSession(event)
-    const { id } = await getIdMarket(session)
-    return this.serviceOrder.orderConfirmAll(id)
-  }
   //
 
   // async marketAll(event: H3Event): Promise<DataMarket[]> {

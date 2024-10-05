@@ -2,7 +2,7 @@
   <ElLoadingBounce v-if="pending" />
   <ElError v-else-if="!data" />
   <PageOrderUserDetail
-    v-else="!data"
+    v-else
     :data="data.order"
     @confirm-transaction="() => {}"
     @reject-transaction="() => {}"

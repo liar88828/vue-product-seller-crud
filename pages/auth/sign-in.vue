@@ -81,11 +81,9 @@
 <script lang="ts" setup>
 definePageMeta({
   layout: "auth",
+  middleware: "auth",
 })
-const { loggedIn } = useUserSession()
-if (loggedIn.value) {
-  await navigateTo("/home")
-}
+
 // const { clear, fetch, loggedIn, session, user, signIn } = useAuthStore()
 const { store, handleSubmit } = useSignIn()
 </script>

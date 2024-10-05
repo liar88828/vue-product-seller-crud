@@ -1,9 +1,9 @@
 export default defineEventHandler(async (event) => {
   // confirm: await db.trans.market.allDetail(Number(id)),
   const data = {
-    confirms: await orderController.marketOrderFindAll(event),
-    toJson(): TransServer[] {
-      return this.confirms
+    orders: await orderController.marketOrderAll(event),
+    toJson(): { orders: TransServer[] } {
+      return { orders: this.orders }
     },
   }
   return data

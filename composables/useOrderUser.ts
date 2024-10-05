@@ -4,9 +4,7 @@ export const useOrderUser = () => {
       return useFetch(`/api/user/order/`)
     },
     findId: async (id: string | string[]) => {
-      return useFetch(`/api/user/order/:id`, {
-        params: { id },
-      })
+      return useFetch(`/api/user/order/${id}`)
     },
   }
 }

@@ -1,8 +1,0 @@
-<template>
-  <div class="indicator">
-    <span class="indicator-item badge badge-secondary"></span>
-    <div class="grid w-32 h-32 bg-base-300 place-items-center">content</div>
-  </div>
-</template>
-
-<script lang="ts" setup></script>

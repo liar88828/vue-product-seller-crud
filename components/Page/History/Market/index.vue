@@ -105,7 +105,7 @@
             </div>
             <NuxtLink
               class="btn btn-outline btn-xs"
-              :to="`/market/confirm/${item.id}`"
+              :to="`/market/history/${item.id}`"
             >
               details
             </NuxtLink>

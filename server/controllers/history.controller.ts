@@ -60,6 +60,20 @@ export class HistoryController extends User {
     const { id_market, id_transaction } = getRouterParams(event)
     return this.serviceHistory.allHistory(session) // maybe change
   }
+  async marketHistoryAll(event: H3Event): Promise<HistoryServer[]> {
+    const { session } = await getUserSession(event)
+    const { id_market, id_transaction } = getRouterParams(event)
+    return this.serviceHistory.allHistory(session) // maybe change
+  }
+  async marketHistoryId(event: H3Event): Promise<HistoryServer> {
+    const { id } = getRouterParams(event)
+    const { session } = await getUserSession(event)
+    const market = await getIdMarket(session)
+    return this.serviceHistory.detailId({
+      id_market: market.id,
+      id: Number(id),
+    })
+  }
 }
 
 export const historyController = new HistoryController(historyService)

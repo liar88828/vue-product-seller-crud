@@ -1,12 +1,11 @@
 <template>
   <ElLoading v-if="pending" />
-  <PageMarketErrorNotRegister v-else-if="error?.message" />
   <ErrorNotFound
     v-else-if="data?.orders.length === 0"
-    :title="'Data Confirm is Empty maybe you not have order from user '"
+    :title="'You not make order '"
     :code="404"
-    :linkTitle="'Register'"
-    link="/market/profile"
+    :linkTitle="'shop'"
+    link="/shop/product"
   />
   <ElError v-else-if="error || !data" />
   <PageOrderUser v-else :data="data.orders" />

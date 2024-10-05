@@ -11,7 +11,7 @@
           <div class="text-center space-y-2">
             <h1 class="auth-h">Verify Your Email</h1>
             <p>Please enter the code on just sent to your email</p>
-            <h2 class="text-lg font-medium">asdas</h2>
+            <!-- <h2 class="text-lg font-medium">asdas</h2> -->
           </div>
 
           <form @submit.prevent="handleSubmit" class="my-3">

@@ -17,6 +17,7 @@
 </template>
 
 <script lang="ts" setup>
+import Review from "./Review.vue"
 const { id } = useRoute().params
 const { data, pending, error } = useFetch(`/api/product/preview/:id`, {
   params: {

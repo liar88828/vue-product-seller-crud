@@ -1,8 +1,8 @@
 <template>
   <ElLoadingBounce v-if="pending" />
-  <ElError v-else-if="!data" />
-  <PageMarketOrderDetail
-    v-else="!data"
+  <ElError v-else-if="error || !data" />
+  <PageOrderMarketDetail
+    v-else
     :data="data.order"
     @confirm-transaction="() => onConfirm(id)"
     @reject-transaction="() => onReject(id)"
@@ -16,5 +16,5 @@ definePageMeta({
 })
 const { id } = useRoute().params
 const { getDataId, onConfirm, onReject } = useOrderMarket()
-const { data, pending } = await getDataId(id)
+const { data, pending, error } = await getDataId(id)
 </script>

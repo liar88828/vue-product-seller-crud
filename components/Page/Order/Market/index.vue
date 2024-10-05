@@ -99,7 +99,7 @@
             </div>
             <NuxtLink
               class="btn btn-outline btn-xs"
-              :to="`/market/confirm/${item.id}`"
+              :to="`/market/order/${item.id}`"
             >
               details
             </NuxtLink>

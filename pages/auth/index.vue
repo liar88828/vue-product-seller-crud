@@ -3,14 +3,6 @@
     <CardBody>
       <PageAuthBack :back="false" />
 
-      <!-- <div class="flex items-center justify-center">
-        <NuxtImg
-          src="/img/shopease-white.png"
-          class="w-16 h-16 lg:w-32 lg:h-32"
-        />
-        <h1 class="card-title lg:text-3xl">ShopEase</h1>
-      </div> -->
-
       <div class="lg:flex lg:gap-20 mt-5">
         <!--  -->
         <figure class="lg:w-1/2">
@@ -52,9 +44,6 @@
 </template>
 
 <script lang="ts" setup>
-// function enableCustomLayout() {
-//   setPageLayout("auth")
-// }
 definePageMeta({
   layout: "auth",
 })

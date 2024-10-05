@@ -17,12 +17,12 @@
       <Total :data="data" />
       <div class="grid grid-cols-1 gap-2">
         <button @click="clickImage" class="btn btn-info">Save Image</button>
-        <button class="btn btn-primary" @click="$emit('confirmTransaction')">
+        <!-- <button class="btn btn-primary" @click="$emit('confirmTransaction')">
           Confirm
         </button>
         <button class="btn btn-error" @click="$emit('rejectTransaction')">
           Reject
-        </button>
+        </button> -->
       </div>
     </CardInit>
   </div>

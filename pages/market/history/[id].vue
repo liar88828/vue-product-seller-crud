@@ -2,7 +2,7 @@
   <ElLoadingBounce v-if="pending" />
   <ElError v-else-if="!data" />
   <PageHistoryMarketDetail
-    v-else="!data"
+    v-else
     :data="data.history"
     @confirm-transaction="() => onConfirm(id)"
     @reject-transaction="() => onReject(id)"
