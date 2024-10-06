@@ -7,15 +7,8 @@
     :link="'/product?category=best-seller'"
     :title="'Best Seller'"
   />
-
-  <!-- <PageProductFlex
-    v-else
-    :data="data.bestSeller"
-    title="Best Sellers"
-    link="/product?category=best-seller"
-  /> -->
 </template>
 
 <script lang="ts" setup>
-const { data, pending, error } = await useFetch("/api/product/best-seller")
+const { data, pending, error } = await useProduct().bestSeller()
 </script>

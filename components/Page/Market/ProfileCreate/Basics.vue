@@ -77,11 +77,5 @@
 </template>
 
 <script lang="ts" setup>
-const { store, handleSubmit } = useMarketProfile()
-const { session } = useUserSession()
-if (session.value) {
-  if (session.value.session.createMarket) {
-    await navigateTo("/market/profile")
-  }
-}
+const { store, handleSubmit } = useMarketCreate()
 </script>

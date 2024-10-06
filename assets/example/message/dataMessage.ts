@@ -1,6 +1,6 @@
-import type { MessageContact, MessageListServer } from "~/types/message/message"
-import type { NotifyMessageServer } from "~/types/message/notify"
-export const dataChat1: MessageListServer[] = [
+import type { MessageContact, MessageChatServer } from "~/types/message/message"
+import type { MessageListServer } from "~/types/message/notify"
+export const dataChat1: MessageChatServer[] = [
   {
     name: "Alex",
     msg: "Hello",
@@ -88,7 +88,7 @@ export const countUnRead = dataMessages.filter(
   (item) => item.read === false
 ).length
 
-const dataNotify: NotifyMessageServer = {
+const dataNotify: MessageChatServer = {
   type: "Message",
   name: "John",
   link: "/message/1",
@@ -98,7 +98,7 @@ const dataNotify: NotifyMessageServer = {
   img: "https://picsum.photos/63",
   msg: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
 }
-const dataTransaction: NotifyMessageServer = {
+const dataTransaction: MessageChatServer = {
   type: "Transaction",
   name: "Alex",
   link: "/product/look/1",
@@ -109,7 +109,7 @@ const dataTransaction: NotifyMessageServer = {
   msg: "Your order has been confirmed",
 }
 
-const dataTransactionSuccess: NotifyMessageServer = {
+const dataTransactionSuccess: MessageChatServer = {
   type: "Transaction",
   name: "Alex",
   link: "/product/look/1",
@@ -120,7 +120,7 @@ const dataTransactionSuccess: NotifyMessageServer = {
   msg: "Your order has been taken",
 }
 
-const dataConfirmProduct: NotifyMessageServer = {
+const dataConfirmProduct: MessageChatServer = {
   type: "Confirm",
   name: "Sarah",
   link: "/market/confirm",
@@ -131,14 +131,14 @@ const dataConfirmProduct: NotifyMessageServer = {
   msg: "Confirm product order",
 }
 
-export const dataNotifies: NotifyMessageServer[] = [
+export const dataNotifies: MessageChatServer[] = [
   dataNotify,
   dataTransaction,
   dataTransactionSuccess,
   dataConfirmProduct,
 ]
 
-export const dataNotifyExample: NotifyMessageServer = {
+export const dataNotifyExample: MessageChatServer = {
   type: "Message",
   name: "John",
   link: "/message/1",

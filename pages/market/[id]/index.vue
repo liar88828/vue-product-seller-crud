@@ -1,24 +1,7 @@
 <template>
-  <NuxtLayout name="market">
-    <!-- <h1>hellos</h1> -->
-    <ElLoading v-if="pending" />
-    <ElError v-else-if="error || !data" />
-    <Index v-else :data="data.market" />
-  </NuxtLayout>
+  <Index />
 </template>
 
 <script lang="ts" setup>
-definePageMeta({
-  middleware: ["market"],
-})
-definePageMeta({
-  layout: "market",
-})
 import Index from "~/pages/market/profile/index.vue"
-
-const { id } = useRoute().params
-const { data, pending, error } = await useFetch(`/api/market/profile/:id`, {
-  params: { id },
-  method: "GET",
-})
 </script>

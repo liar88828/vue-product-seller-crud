@@ -112,8 +112,8 @@
 
 <script lang="ts" setup>
 const { data } = defineProps<{ data: TransClient[] }>()
-const { store } = useMarket()
 
+const { store } = useMarket()
 const totalProduct = computed(() =>
   data
     .flatMap((t) => t.Trolley)

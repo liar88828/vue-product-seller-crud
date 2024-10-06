@@ -10,5 +10,5 @@
 </template>
 
 <script lang="ts" setup>
-const { data, pending, error } = await useFetch("/api/product/new-product")
+const { data, pending, error } = await useProduct().newProduct()
 </script>

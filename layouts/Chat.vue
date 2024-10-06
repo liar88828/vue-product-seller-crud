@@ -32,7 +32,7 @@ import Send from "~/components/Icons/Send.vue"
 const router = useRouter()
 
 const props = defineProps<{
-  data: MessageListClient[]
+  data: MessageChatClient[]
 }>()
 
 const { isFullscreen, message, scrollToBottom, onSend, toggleFullscreen } =

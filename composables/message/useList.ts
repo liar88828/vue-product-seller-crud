@@ -1,7 +1,7 @@
 import type { keyPage } from "~/types/globals/Pagination"
 import type {
   FilterMessage,
-  NotifyMessageServer,
+  MessageListServer,
   TypeMessage,
 } from "~/types/message/notify"
 const exData: FilterMessage = { value: "Select", name: "" }

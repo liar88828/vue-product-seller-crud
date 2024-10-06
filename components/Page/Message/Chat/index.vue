@@ -34,10 +34,9 @@ import { watch, nextTick } from "vue"
 import Minimize from "./Minimize.vue"
 import Send from "./Send.vue"
 import Text from "./Text.vue"
-import type { MessageListClient } from "~/types/message/message"
 
 const props = defineProps<{
-  data: MessageListClient[]
+  data: MessageChatClient[]
 }>()
 
 const { isFullscreen, message, scrollToBottom, onSend, toggleFullscreen } =

@@ -24,9 +24,9 @@
 import { useList } from "~/composables/message/useList"
 import MessageItem from "./MessageItem.vue"
 const props = defineProps<{
-  list: NotifyMessageClient[]
+  data: MessageListClient[]
 }>()
 const { filter, keys } = useList()
-const newData = computed(() => filter(props.list))
+const newData = computed(() => filter(props.data))
 const { store } = useList()
 </script>

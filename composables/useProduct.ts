@@ -3,8 +3,6 @@ import type { ProductMarketCreate } from "~/types/product/data.db"
 
 export const useProduct = () => {
   type Type = ProductMarketCreate
-  const { session } = useUserSession()
-
   const store = reactive<StoreBase<Type>>({
     pending: false,
     error: {
@@ -121,5 +119,15 @@ export const useProduct = () => {
       }
     },
     store,
+
+    bestSeller: async () => {
+      return useFetch("/api/product/best-seller")
+    },
+    newProduct: async () => {
+      return useFetch("/api/product/new-product")
+    },
+    trending: async () => {
+      return useFetch("/api/product/trending")
+    },
   }
 }

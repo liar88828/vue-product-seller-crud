@@ -9,5 +9,5 @@
   />
 </template>
 <script lang="ts" setup>
-const { data, pending, error } = await useFetch("/api/product/trending")
+const { data, pending, error } = await useProduct().trending()
 </script>

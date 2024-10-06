@@ -1,7 +1,7 @@
 <template>
   <ElLoading v-if="pending" />
   <ElError v-else-if="error || !data" />
-  <PageMessageList v-else :list="data.list" />
+  <PageMessageList v-else :data="data.list" />
 </template>
 <script lang="ts" setup>
 definePageMeta({

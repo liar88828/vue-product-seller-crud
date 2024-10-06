@@ -1,9 +1,20 @@
-// import type { Product, User } from "@prisma/client"
-
-// export type OrderProps = {
-//   id: string
-//   status: string
-//   trolly: Product[]
-//   userBuy: User
-//   dateBuy: Date
-// }
+export type MessageListServer = {
+  type: TypeMessage
+  name: string
+  link: string
+  time: Date
+  id: string
+  read: boolean
+  img: string
+  msg: string
+}
+export type MessageListClient = {
+  type: TypeMessage
+  name: string
+  link: string
+  time: Date | string
+  id: string
+  read: boolean
+  img: string
+  msg: string
+}

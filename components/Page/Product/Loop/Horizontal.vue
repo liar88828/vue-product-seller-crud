@@ -1,8 +1,12 @@
 <template>
   <div class="">
-    <PageProductTitle :title="'New Products'">
+    <section class="flex justify-between mb-2">
+      <div class="text-lg font-bold">
+        <!-- {{ title }} -->
+        New Products
+      </div>
       <button @click="() => {}" class="btn btn-sm">See more</button>
-    </PageProductTitle>
+    </section>
     <div class="flex flex-row gap-2 overflow-x-auto">
       <PageProductItem v-for="item in data" :data="item" :isFlex="true" />
     </div>

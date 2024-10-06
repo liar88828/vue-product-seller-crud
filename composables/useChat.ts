@@ -15,7 +15,7 @@ export const useChat = () => {
     message,
     toggleFullscreen,
     scrollToBottom,
-    onSend: (data: MessageListClient[]): void => {
+    onSend: (data: MessageChatClient[]): void => {
       if (message.value.trim() !== "") {
         data.push({
           id: (data.length + 1).toString(),
