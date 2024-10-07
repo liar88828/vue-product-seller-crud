@@ -19,12 +19,9 @@
 </template>
 
 <script lang="ts" setup>
-import type { MessageChatClient } from "~/types/message/message"
-
-const { data, user } = defineProps<{
+const { data, name } = defineProps<{
   data: MessageChatClient
-  user: { name: string }
+  name: string
 }>()
-
-const position = computed(() => user.name === data.name)
+const position = useMessage().position(name, data)
 </script>

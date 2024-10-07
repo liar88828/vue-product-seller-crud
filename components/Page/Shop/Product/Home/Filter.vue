@@ -1,9 +1,6 @@
 <template>
-  <div class="h-full bg-base-100 rounded-lg">
-    <ul
-      ref="size"
-      class="menu md:menu-vertical menu-horizontal rounded w-full flex justify-between md:space-y-2"
-    >
+  <div class="bg-base-100 rounded-lg shadow">
+    <ul ref="size" class="menu menu-horizontal flex justify-between">
       <li class="bg-base-200 rounded-lg">
         <ElModalFilter />
       </li>
@@ -19,32 +16,10 @@ import { staticLink } from "~/assets/link/shopLink"
 
 const size = ref<HTMLUListElement>()
 const getData = ref<boolean>(false)
-const { store } = useShop()
 
-onMounted(() => {
-  // getData.value = size.value?.clientWidth ?? 0
-  // console.log(getData.value)
-
-  if (size.value) {
-    // console.log("is mobile", size.value.clientWidth)
-    // console.log("is mobile")
-    // console.log(size.value.clientWidth < 183 ? true : false)
-    // getData.value = size.value.clientWidth <= 183
-    // console.log(size.value.clientWidth)
-    getData.value = size.value.clientWidth >= 640 //382
-  }
-
-  // computed(() => {
-  // })
-})
-
-onMounted(() => {
-  if (size.value) {
-    // console.log("is mounted")
-    // console.log(size.value.clientWidth <= 183 ? true : false)
-  }
-})
-// const sizeValue = computed(() => size.value?.clientWidth ?? 0)
-// console.log(sizeValue.value)
-// console.log(setSize.value)
+// onMounted(() => {
+//   if (size.value) {
+//     getData.value = size.value.clientWidth >= 640 //382
+//   }
+// })
 </script>

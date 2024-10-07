@@ -1,6 +1,9 @@
 <template>
-  <button onclick="// noinspection JSUnresolvedReference
-my_modal_chat.showModal()" class="btn btn-outline">
+  <button
+    onclick="// noinspection JSUnresolvedReference
+my_modal_chat.showModal()"
+    class="btn btn-outline"
+  >
     <IconsPersonGroup class="icons" /> Chat
   </button>
   <dialog id="my_modal_chat" class="modal">
@@ -12,7 +15,7 @@ my_modal_chat.showModal()" class="btn btn-outline">
         <div class="p-2 join w-full">
           <input
             type="text"
-            v-model="searchName"
+            v-model="storeNameContact"
             placeholder="Search Name ....."
             class="input input-bordered input-sm sm:input-md join-item w-full"
           />
@@ -24,7 +27,10 @@ my_modal_chat.showModal()" class="btn btn-outline">
 
         <div class="h-[68vh] overflow-y-scroll shadow">
           <ul class="menu menu-sm sm:menu-lg">
-            <li v-for="data in filterName" :key="data.title">
+            <li
+              v-for="data in searchContact(contactPeople).value"
+              :key="data.title"
+            >
               <NuxtLink
                 :to="data.link"
                 :class="`${$route.path.includes(data.link) ? 'active' : ''}
@@ -86,14 +92,7 @@ const dataFilter = {
     max: 0,
   },
 }
-// console.log(isMore(filterCase.price.max.toString()))
-import { chatPeople } from "~/assets/example/user/chat"
+import { contactPeople } from "~/assets/example/message/contact"
 
-const searchName = ref("")
-const filterName = computed(() =>
-  chatPeople.filter((d) => {
-    // console.log(d.title.toLowerCase().includes(searchName.value.toLowerCase()))
-    return d.title.toLowerCase().includes(searchName.value.toLowerCase())
-  })
-)
+const { searchContact, storeNameContact } = useMessage()
 </script>

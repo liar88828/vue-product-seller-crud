@@ -2,7 +2,16 @@
   <section class="min-h-screen bg-base-300 w-screen">
     <section class="navbar bg-base-100 shadow h-16">
       <div class="flex-none">
-        <button class="btn btn-ghost btn-square" @click="router.back()">
+        <button
+          class="btn btn-ghost btn-square"
+          @click="
+            () => {
+              $route.path === '/user/profile'
+                ? router.push('/home')
+                : router.back()
+            }
+          "
+        >
           <IconsBack class="icons" />
         </button>
       </div>
@@ -14,10 +23,10 @@
       </div>
     </section>
     <div class="flex">
+      <ElNavBottom class="fixed" />
       <main class="container mx-auto mt-3 mb-20 md:mb-10 min-h-screen">
         <ElHeadTab :items="itemsArray" />
         <slot />
-        <ElNavBottom class="fixed" />
       </main>
     </div>
   </section>

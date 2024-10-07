@@ -39,6 +39,7 @@ export default defineNuxtConfig({
         "server/config/**",
         "utils/**",
         "types/**",
+        "assets/example/**",
       ],
       // presets: [
       //   {

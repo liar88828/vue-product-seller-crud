@@ -9,7 +9,7 @@
     </figure>
     <CardBody :class="'w-3/4'">
       <CardHead :title="data.name">
-        <UnRead :read="data.read" />
+        <!-- <UnRead :read="data.read" /> -->
       </CardHead>
       <CardActionBetween class="flex-nowrap">
         <div class="">
@@ -27,8 +27,6 @@
 </template>
 
 <script lang="ts" setup>
-import type { MessageContact } from "~/types/message/message"
-
 defineProps<{
   data: MessageContact
 }>()

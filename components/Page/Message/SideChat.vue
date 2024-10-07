@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import { chatPeople } from "~/assets/example/user/chat"
+import { contactPeople } from "~/assets/example/message/contact"
 
 const searchName = ref("")
 const filterName = computed(() =>
-  chatPeople.filter((d) => {
+  contactPeople.filter((d) => {
     // console.log(d.title.toLowerCase().includes(searchName.value.toLowerCase()))
     return d.title.toLowerCase().includes(searchName.value.toLowerCase())
   })

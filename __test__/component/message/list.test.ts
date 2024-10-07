@@ -8,11 +8,11 @@ describe("Test Message List", () => {
   test("SUCCESS : it can be tested Message List", async () => {
     const component = mount(Index, {
       props: {
-        data: exampleMessageList,
+        data: [exampleMessageList],
       },
     })
 
-    expect(component.text()).toContain(exampleMessageList[0].name)
+    expect(component.text()).toContain(exampleMessageList.name)
     // expect(component.text()).toContain(exampleMessageList[1].name)
   })
 })

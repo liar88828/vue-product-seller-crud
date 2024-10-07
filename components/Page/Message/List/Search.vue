@@ -7,7 +7,9 @@
       v-model="store.name"
     />
     <div class="indicator">
-      <span class="indicator-item badge badge-primary mr-6">{{ newMessage }}</span>
+      <span class="indicator-item badge badge-primary mr-6">{{
+        newMessage
+      }}</span>
       <div class="join-item btn btn-sm">
         <IconsBell class="icons" />
       </div>
@@ -16,10 +18,7 @@
 </template>
 
 <script setup lang="ts">
-import { useList } from "~/composables/message/useList"
-
-const { store } = useList()
-
+const { store } = useMessage()
 defineProps<{
   newMessage: number
 }>()

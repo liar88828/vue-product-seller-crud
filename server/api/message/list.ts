@@ -1,12 +1,9 @@
-import { countUnRead, dataNotifies } from "~/assets/example/message/dataMessage"
+import { exampleMessageListItem } from "~/assets/example/message/list"
 
 export default defineEventHandler(async (event) => {
-  // const message = await prisma.
-
-  // return { count: countUnRead, notify: dataNotifies }
   const data = {
-    list: dataNotifies,
-    toJson() {
+    list: exampleMessageListItem,
+    toJson(): MessageListServer[] {
       return this.list
     },
   }

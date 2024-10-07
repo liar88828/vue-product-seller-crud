@@ -38,7 +38,7 @@
 
 <script lang="ts" setup>
 const props = defineProps<{
-  data: NotifyMessageClient
+  data: MessageListClient
 }>()
 
 const showText = ref(true)

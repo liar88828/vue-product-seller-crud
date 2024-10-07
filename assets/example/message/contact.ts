@@ -1,4 +1,10 @@
-export const chatPeople = [
+export type MessageContactPeople = {
+  title: string
+  link: string
+  img: string
+}
+
+export const contactPeople: MessageContactPeople[] = [
   {
     title: "Alex",
     link: "/#",

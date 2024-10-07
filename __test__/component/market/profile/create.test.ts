@@ -1,7 +1,7 @@
 // @vitest-environment nuxt
 import { mount } from "@vue/test-utils"
 import { describe, expect, test } from "vitest"
-import Index from "~/components/Page/Market/ProfileCreate/Basics.vue"
+import Index from "~/components/Page/Market/ProfileCreate/index.vue"
 import { exampleMarket } from "~/assets/example/market"
 
 describe("Test Market profile create", () => {

@@ -12,12 +12,7 @@
       :toggleFullscreen="toggleFullscreen"
     />
 
-    <Text
-      class=""
-      v-for="message in data"
-      :data="message"
-      :user="{ name: 'Alex' }"
-    />
+    <Text class="" v-for="message in data" :data="message" :name="'Alex'" />
   </div>
   <div class="fixed right-0 left-0 bottom-0 p-2 bg-base-100">
     <Send

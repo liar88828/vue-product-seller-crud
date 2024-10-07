@@ -21,12 +21,10 @@
 </template>
 
 <script lang="ts" setup>
-import { useList } from "~/composables/message/useList"
 import MessageItem from "./MessageItem.vue"
 const props = defineProps<{
   data: MessageListClient[]
 }>()
-const { filter, keys } = useList()
+const { filter, keys, store } = useMessage()
 const newData = computed(() => filter(props.data))
-const { store } = useList()
 </script>

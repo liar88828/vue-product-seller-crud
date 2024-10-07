@@ -1,7 +1,7 @@
 <template>
   <ElLoading v-if="pending" />
   <ElError v-else-if="error || !data" />
-  <PageMarketBox v-else :market="data.marketStatic.market">
+  <PageMarketBox v-else :data="data.marketStatic.market">
     <PageStatics :static="data.marketStatic.static" />
   </PageMarketBox>
 </template>
