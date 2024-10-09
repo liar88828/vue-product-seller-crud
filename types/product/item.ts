@@ -76,6 +76,7 @@ export type ProductItemServer = Product & {
   Desc: Desc[]
   Img: Image[]
 }
+export type ProductServer = Product
 // --------
 type test = IfEquals<ProductItem, ProductItemServer, "save", "different">
 const Test: test = "different"

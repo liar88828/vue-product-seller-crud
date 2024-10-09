@@ -36,13 +36,19 @@
         <td>
           {{ formatNumber(item.stock) }}
         </td>
-        <th>
+        <th class="space-x-2">
           <NuxtLink
             class="btn sm:btn-outline btn-sm btn-square"
             :to="`/market/product/${item.id}`"
           >
             <IconsDetail class="h-5 w-5" />
             <!-- <span class="hidden sm:block">Detail</span> -->
+          </NuxtLink>
+          <NuxtLink
+            class="btn sm:btn-outline btn-sm btn-square"
+            :to="`/market/product/${item.id}/edit`"
+          >
+            <IconsEdit class="h-5 w-5" />
           </NuxtLink>
         </th>
       </tr>

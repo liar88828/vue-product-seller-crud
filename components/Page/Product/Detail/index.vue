@@ -10,6 +10,7 @@
 </template>
 
 <script setup lang="ts">
+import type { ProductItemServer } from "~/types/product/item"
 import Desc from "./Desc.vue"
 import Images from "./Images.vue"
 import Spec from "./Spec.vue"

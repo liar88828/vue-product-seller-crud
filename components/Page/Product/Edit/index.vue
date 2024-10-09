@@ -1,23 +1,32 @@
 <template>
-  <div
-    class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto py-5 sm:py-12 md:px-4"
-  >
-    <!--    <Image :data="data.dataImage" />-->
-  </div>
-  <div class="md:space-y-5 space-y-2">
-    <!-- <Desc :data="data" />
-    <Spec :data="data.Spec" :id="data.id" />
-    <Tech :data="data.Tech" :id="data.id" /> -->
-  </div>
-  <NuxtLink to="/market/product" class="btn btn-info"> Back </NuxtLink>
+  <CardWrap title="Update Product">
+    <p>Update product page will be here</p>
+    <form action="" class="space-y-2 w-full">
+      <ElInput types="text" title="Name" v-model:input="data.name" />
+      <ElInput types="text" title="Brand" v-model:input="data.brand" />
+      <ElInput types="number" title="Price" v-model:input="data.price" />
+      <ElInput types="number" title="Stock" v-model:input="data.stock" />
+      <ElInput types="type" title="Type" v-model:input="data.type" />
+      <ElTextarea :title="'Description'" v-model:textarea="data.description">
+      </ElTextarea>
+    </form>
+
+    <button @click="() => handleEdit(data)" class="btn btn-info btn-outline">
+      Submit
+    </button>
+
+    <NuxtLink to="/market/product" class="btn btn-outline"> Back</NuxtLink>
+  </CardWrap>
 </template>
 
-<script setup lang="ts">
-import Desc from "./Desc.vue"
-import Spec from "./Spec.vue"
-import Tech from "./Tech.vue"
+<script lang="ts" setup>
+definePageMeta({
+  middleware: ["market"],
+  layout: "market",
+})
+const { data } = defineProps<{ data: ProductClient }>()
 
-defineProps<{
-  data: ProductClient
-}>()
+const handleEdit = async (product: ProductClient) => {
+  await useProduct().onEdit(product, data.id)
+}
 </script>

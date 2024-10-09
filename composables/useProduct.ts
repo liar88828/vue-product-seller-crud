@@ -83,6 +83,7 @@ export const useProduct = () => {
     marketId: async (id: string | string[]) => {
       return useFetch(`/api/product/market/${id}`)
     },
+
     storeEdit: reactive<ProductClient>({
       brand: "",
       description: "",
@@ -96,12 +97,21 @@ export const useProduct = () => {
       type: "",
       sold: 0,
     }),
-    onEdit: async (store: ProductClient, id: string | string[]) => {
-      const dataValid = zods.product.create.parse(store)
-      const res = await useFetch(`/api/market/product/${id}`, {
-        method: "PUT",
-        body: dataValid,
-      })
+    onEdit: async (store: ProductClient, id: number) => {
+      try {
+        const dataValid = zods.product.create.parse(store)
+        const res = await useFetch(`/api/product/market/${id}`, {
+          method: "PUT",
+          body: dataValid,
+        })
+        if (res.error.value) {
+          console.log(res.error.value)
+          // console.error(res.data.value)
+        }
+        await navigateTo("/market/product")
+      } catch (e) {
+        console.log(e)
+      }
     },
 
     onCreate: async () => {

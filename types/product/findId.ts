@@ -20,7 +20,7 @@ export type IdProduct = {
 }
 
 export type FindIdProductCurrentMarket = {
-  id: number
+  id_product: number
   id_market: number
   id_user: string
 }

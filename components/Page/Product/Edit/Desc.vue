@@ -72,6 +72,7 @@
 
 <script setup lang="ts">
 import { useDesc } from "~/composables/market/product/edit/useDesc"
+import type { ProductItemServer } from "~/types/product/item"
 
 const props = defineProps<{ data: ProductItemServer }>()
 const { store, multiple, refEdit, onAdd, onDelete, onSave } = useDesc(

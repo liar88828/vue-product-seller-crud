@@ -1,4 +1,5 @@
 import type { Desc } from "@prisma/client"
+import type { ProductItemServer } from "~/types/product/item"
 
 export const useDesc = (
   data: ProductItemServer["Desc"],

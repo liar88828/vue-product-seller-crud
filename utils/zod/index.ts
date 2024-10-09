@@ -15,7 +15,7 @@ export const idValid = z.object({
 }) satisfies ZodType<IdValid>
 
 export const MarketProductID = z.object({
-  id: z.number().min(1),
+  id_product: z.number().min(1),
   id_user: z.string().uuid(),
   id_market: z.number().min(1),
 }) satisfies ZodType<FindIdProductCurrentMarket>

@@ -55,10 +55,11 @@
 
 <script setup lang="ts">
 import { useTech } from "~/composables/market/product/edit/useTech"
+import type { ProductItemServer } from "~/types/product/item"
 
 const props = defineProps<{
   data: ProductItemServer["Tech"]
-  id: ProductItemServer["id"]
+  id: number
 }>()
 
 const { store, refEdit, multiple, onAdd, onDelete, onSave } = useTech(

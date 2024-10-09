@@ -1,4 +1,5 @@
 import type { Product } from "@prisma/client"
+import type { ProductItemServer } from "~/types/product/item"
 
 export class ProductService extends ProductSanitize {
   // current = new ProductCurrentMarketServices()
@@ -112,11 +113,31 @@ export class ProductService extends ProductSanitize {
     return data
   }
 
-  async ownerId(id: FindIdProductCurrentMarket): Promise<ProductItemServer> {
-    id = zods.id.marketProduct.parse(id)
+  async ownerId(id: FindIdProductCurrentMarket): Promise<ProductServer> {
+    const { id_product, id_market } = zods.id.marketProduct.parse(id)
     const product = await prisma.product
       .findUnique({
-        where: id,
+        where: { id: id_product, id_market },
+      })
+      .then((data) => {
+        if (!data) {
+          throw createError({
+            statusCode: 404,
+            statusMessage: "Product is Not Found",
+          })
+        }
+        return data
+      })
+
+    return product
+  }
+  async ownerDetail(
+    id: FindIdProductCurrentMarket
+  ): Promise<ProductItemServer> {
+    const { id_product, id_market } = zods.id.marketProduct.parse(id)
+    const product = await prisma.product
+      .findUnique({
+        where: { id: id_product, id_market },
         include: {
           Spec: { include: { List: true } },
           Tech: true,
@@ -135,6 +156,20 @@ export class ProductService extends ProductSanitize {
       })
 
     return product
+  }
+
+  async marketEdit(data: ProductClient, id: number): Promise<ProductServer> {
+    return prisma.product.update({
+      where: { id },
+      data: {
+        name: data.name,
+        brand: data.brand,
+        price: data.price,
+        stock: data.stock,
+        type: data.type,
+        description: data.description,
+      },
+    })
   }
 
   async ownerCreate(

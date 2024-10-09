@@ -4,6 +4,7 @@ import type { Market, Product } from "@prisma/client"
 import type {
   ProductDetailServer,
   ProductItemServer,
+  ProductServer,
 } from "~/types/product/item"
 import { statics } from "./ProductStatic"
 
@@ -88,7 +89,7 @@ export class ProductDB {
     return data
   }
 
-  async detail(id: number): Promise<ProductItemServer> {
+  async detail(id: number): Promise<ProductServer> {
     const data = await prisma.product.findUnique({
       include: {
         Spec: {

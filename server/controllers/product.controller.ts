@@ -1,6 +1,7 @@
 import type { Product } from "@prisma/client"
 import type { H3Event } from "h3"
 import { getIdMarket } from "../services/market.service"
+import { type ProductItemServer } from "~/types/product/item"
 
 export class ProductController extends ReviewController {
   constructor(
@@ -171,18 +172,43 @@ export class ProductController extends ReviewController {
     return this.serviceProduct.marketAll(Number(id))
   }
 
-  async marketId(event: H3Event): Promise<ProductItemServer> {
+  async marketId(event: H3Event): Promise<ProductServer> {
     const { session } = await getUserSession(event)
     const { id } = getRouterParams(event)
     const { id: id_market } = await getIdMarket(session)
 
     const data = await this.serviceProduct.ownerId({
-      id: Number(id),
+      id_product: Number(id),
       id_market: id_market,
       id_user: session.id,
     })
+    // console.log(data)
     return data
   }
+
+  async marketDetail(event: H3Event): Promise<ProductItemServer> {
+    const { session } = await getUserSession(event)
+    const { id } = getRouterParams(event)
+    const { id: id_market } = await getIdMarket(session)
+
+    const data = await this.serviceProduct.ownerDetail({
+      id_product: Number(id),
+      id_market: id_market,
+      id_user: session.id,
+    })
+    // console.log(data)
+    return data
+  }
+
+  async marketEdit(event: H3Event): Promise<ProductItemServer> {
+    return tryCatch(async () => {
+      const { id } = getRouterParams(event)
+      const data = await readBody(event)
+      console.log(data)
+      return this.serviceProduct.marketEdit(data, Number(id))
+    })
+  }
+
   async marketDelete(event: H3Event) {
     return tryCatch(async () => {
       const { id } = getRouterParams(event)

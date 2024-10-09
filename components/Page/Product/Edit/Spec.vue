@@ -93,12 +93,13 @@
 </template>
 
 <script setup lang="ts">
+import type { ProductItemServer } from "~/types/product/item"
 import Titles from "./Titles.vue"
 import { useSpec } from "~/composables/market/product/edit/useSpec"
 
 const props = defineProps<{
   data: ProductItemServer["Spec"]
-  id: ProductItemServer["id"]
+  id: ProductServer["id"]
 }>()
 
 const {
