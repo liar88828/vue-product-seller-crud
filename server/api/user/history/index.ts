@@ -1,14 +1,14 @@
-import type { Transaction } from "@prisma/client";
+import type { HistoryServer } from "~/types/market/order"
 
 export default defineEventHandler(async (event) => {
-  const { session } =  await getUserSession(event)
   const data = {
-	histories: await control.trans.user.all(session.id),
-	toJson(): { histories: Transaction[] } {
-	  return {
-		histories: this.histories
-	  }
-	},
+    histories: await historyController.userAll(event),
+
+    toJson(): { histories: HistoryServer[] } {
+      return {
+        histories: this.histories,
+      }
+    },
   }
   return data
 })

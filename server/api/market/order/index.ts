@@ -1,11 +1,9 @@
-// Can see all order of user want buy
-
-// find by market id from session id
 export default defineEventHandler(async (event) => {
+  // confirm: await db.trans.market.allDetail(Number(id)),
   const data = {
-    data: await control.trans.market.allProduct(event),
-    toJson() {
-      return this.data
+    orders: await orderController.marketOrderAll(event),
+    toJson(): { orders: TransServer[] } {
+      return { orders: this.orders }
     },
   }
   return data

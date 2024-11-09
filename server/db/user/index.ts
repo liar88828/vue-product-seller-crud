@@ -1,77 +1,25 @@
 import type { User } from "@prisma/client"
-import type { SignUpProps } from "~/types/auth/user"
-import type { UserAll, UserCreate } from "~/types/user/ControlCreateUser"
 import { prisma } from "~/server/config/prisma"
-import { randomOTP } from "~/server/utils/randomId"
+import type { UserUpdate } from "~/types/user/ControlCreateUser"
 
 class UserMutation {
-  async signUp({
-    name,
-    email,
-    password,
-  }: Omit<SignUpProps, "confPass">): Promise<SessionUser> {
-    return prisma.$transaction(async (tx) => {
-      const trolly = await tx.trolly.create({
-        data: {},
-      })
-
-      const follow = await tx.follow.create({
-        data: {},
-      })
-
-      const like = await tx.like.create({
-        data: {},
-      })
-
-      const market = await tx.market.create({
-        data: {},
-      })
-
-      const Role = await tx.role.upsert({
-        where: { id: "USER" },
-        create: { id: "USER" },
-        update: { id: "USER" },
-      })
-
-      const user = await tx.user.create({
-        data: {
-          name,
-          email,
-          password,
-          OTP: randomOTP,
-          id_market: market.id,
-          id_like: like.id,
-          id_trolly: trolly.id,
-          id_follow: follow.id,
-          id_role: Role.id,
-          createMarket: false,
-        },
-      })
-      user.password = ""
-      return user
-    })
-  }
-
-  async create(data: UserCreate): Promise<User> {
+  private async create(data: UserCreate): Promise<User> {
     return prisma.user.create({ data })
   }
 
-  async delete(id: string): Promise<User> {
-    const res = await prisma.user.delete({
-      where: {
-        id,
-      },
-    })
-    res.password = ""
-    return res
-  }
-
-  async update(id: string, data: UserCreate): Promise<User> {
+  async update(id: string, data: UserUpdate): Promise<UserPublic> {
     const res = await prisma.user.update({
+      select: {
+        address: true,
+        name: true,
+        email: true,
+        phone: true,
+        id: true,
+        role: true,
+      },
       where: { id },
       data,
     })
-    res.password = ""
     return res
   }
 }
@@ -94,14 +42,14 @@ export class UserDB extends UserMutation {
     return prisma.user
       .findMany({
         include: {
-          Follow: true,
+          // Follow: true,
           Market: true,
-          MessageList: true,
-          Preview: true,
-          Product: true,
-          Role: true,
+          // MessageList: true,
+          // Preview: true,
+          // Product: true,
+          // Role: true,
           Transaction: true,
-          Trolly: true,
+          // Trolley: true,
           _count: true,
         },
       })

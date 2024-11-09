@@ -1,7 +1,7 @@
 <template>
-  <h2 :class="[' card-title ', props.class]">
+  <h1 :class="[' card-title ', props.class]">
     <slot />
-  </h2>
+  </h1>
 </template>
 
 <script lang="ts" setup>

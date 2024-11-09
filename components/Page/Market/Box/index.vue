@@ -1,25 +1,35 @@
 <template>
-  <CardInit class="card-compact bg-base-100/70">
-    <CardHeadTitle title="Market" :class="'text-xl sm:text-2xl font-bold'" />
-    <Image>
-      <Desc :data="data">
+  <h1 title="Market" :class="'text-xl sm:text-2xl font-bold'" />
+  <Image>
+    <div class="flex flex-row justify-between h-full">
+      <div class="flex-auto">
         <h2 class="text-md sm:text-xl md:text-2xl font-bold mb-2">
           {{ data.name }}
         </h2>
-        <Static :static="static" />
-      </Desc>
-    </Image>
-  </CardInit>
+      </div>
+      <div class="flex flex-row gap-2">
+        <NuxtLink
+          :to="`#`"
+          class="btn sm:btn-outline btn-sm btn-square sm:btn-md flex-nowrap flex"
+        >
+          <IconsPersonAdd class="size-5" />
+        </NuxtLink>
+        <NuxtLink
+          :to="`/shop/market/${data.id}`"
+          class="btn btn-info btn-sm sm:btn-md flex-nowrap flex btn-square"
+        >
+          <IconsMarket class="w-5 h-5" />
+        </NuxtLink>
+      </div>
+    </div>
+    <slot />
+  </Image>
 </template>
 
 <script lang="ts" setup>
-import Desc from "./Desc.vue"
-import Static from "./Static.vue"
 import Image from "./Image.vue"
-import type { Market } from "@prisma/client"
-import type { MarketStatic } from "~/types/market/ProfileCompany"
+
 defineProps<{
-  data: Market
-  static: MarketStatic
+  data: MarketClient
 }>()
 </script>

@@ -3,12 +3,11 @@
 // just find market
 // and return all product and product market
 
-import type { MarketServerFullNull } from "~/types/market/ProfileCompany"
-
 export default defineEventHandler(async (event) => {
   const data = {
-    market: await control.market.user.id(event),
-    toJson(): { market: MarketServerFullNull } {
+    market: await marketController.fullSingleId(event),
+
+    toJson(): { market: MarketServiceSingle } {
       return {
         market: this.market,
       }

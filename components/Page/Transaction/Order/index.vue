@@ -2,19 +2,16 @@
   <CardInit>
     <Option :data="data" />
     <!-- @vue-skip -->
-    <CardTable v-for="data in filterStatus" :key="data.id" :data="data">
-      <Tables :products="data.trolly" />
+    <CardTable :data="data">
+      <Tables :data="item" v-for="item in data" :key="item.id" />
     </CardTable>
   </CardInit>
 </template>
 
 <script lang="ts" setup>
-//@ts-check
-import type { DataMarket, TransProps } from "~/types/market/order"
 import Option from "./Option.vue"
 import Tables from "./Tables.vue"
+import type { TransClient } from "~/types/market/order"
 
-const props = defineProps<{ data: TransProps[] }>()
-const { filter } = useOrder()
-const filterStatus = computed(() => filter(props.data))
+defineProps<{ data: TransClient[] }>()
 </script>

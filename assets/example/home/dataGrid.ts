@@ -7,7 +7,7 @@ export const dataGrid1: DataBoxProps = {
   title: "Fresh",
   slogans: "Healthy Choices, Delicious",
   description: "If a dog chews shoes whose shoes does he choose?",
-  color: "bg-blue-200",
+  color: "text-blue-200",
   // color: {
   //   bg: "bg-blue-200",
   //   dis: "text-[#42bef8]",
@@ -22,7 +22,7 @@ export const dataGrid2: DataBoxProps = {
   title: "Natural",
   slogans: "Good Choice & Price ",
   description: "If a dog chews shoes whose shoes does he choose?",
-  color: "bg-yellow-200",
+  color: "text-yellow-200",
   // color: {
   //   bg: "bg-yellow-200",
   //   dis: "text-[#7fffd4]",

@@ -1,25 +1,27 @@
 <template>
-  <NuxtLayout name="profile">
-    <div v-if="pending">Loading ...</div>
-    <div v-else-if="error || !data?.user">Error</div>
-    <PageProfileUser v-else :data="data?.user" />
-  </NuxtLayout>
+  <ElLoading v-if="pending" />
+  <ElError v-else-if="error || !data" />
+  <PageProfile v-else :data="data?.user" />
 </template>
 <script lang="ts" setup>
-const { loggedIn } = useUserSession()
-console.log(loggedIn)
-if (!loggedIn) {
-  await navigateTo("/auth/sign-in")
-}
-const { data, pending, error } = await useFetch("/api/user/profile", {
-  onResponseError: async ({ error, response }) => {
-    if (error) {
-      console.error(error.message, "error message")
-      await navigateTo("/auth/sign-in")
-    }
-  },
+definePageMeta({
+  layout: "user",
 })
-if (!data.value) {
-  throw createError({ statusCode: 404, statusMessage: "Page Not Found" })
-}
+const { clear } = useUserSession()
+
+const { data, error, pending } = await useUser()
+  .findUserBySession()
+  .then((data) => {
+    if (!data.error.value) {
+      return data
+    }
+    if (data.error.value.statusText === undefined) {
+      return data
+    }
+    if (data.error.value.statusText.includes("not found")) {
+      console.log("not found")
+      clear()
+    }
+    return data
+  })
 </script>

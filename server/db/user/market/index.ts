@@ -1,26 +1,20 @@
 import type {
-  MarketServer,
   MarketServerFullNull,
+  MarketUpdate,
 } from "~/types/market/ProfileCompany"
-import type { Market, User } from "@prisma/client"
+import type { Market } from "@prisma/client"
 import { MarketTestDB } from "./MarketTestDB"
 import { prisma } from "~/server/config/prisma"
 
 class MarketUserDB extends MarketTestDB {}
 
 class MarketOwnerDB extends MarketUserDB {
-  async update(id_market: number, data: MarketServer): Promise<Market> {
+  async update(
+    id_market: number,
+    data: Omit<MarketUpdate, "id_user">
+  ): Promise<Market> {
     return prisma.market.update({
       where: { id: id_market },
-      data: data,
-      include: {
-        User: true,
-      },
-    })
-  }
-
-  async create(data: MarketServer) {
-    return prisma.market.create({
       data: data,
       include: {
         User: true,
@@ -67,8 +61,8 @@ export class MarketDB extends MarketOwnerDB {
     return data
   }
 
-  async findFull(id: number): Promise<MarketServerFullNull | null> {
-    return prisma.market.findUnique({
+  async findFull(id: number): Promise<MarketServerFullNull> {
+    const res = await prisma.market.findUnique({
       where: { id },
       include: {
         User: true,
@@ -77,5 +71,12 @@ export class MarketDB extends MarketOwnerDB {
         Additional: true,
       },
     })
+    if (!res) {
+      throw createError({
+        statusCode: 404,
+        statusMessage: "Market not found",
+      })
+    }
+    return res
   }
 }

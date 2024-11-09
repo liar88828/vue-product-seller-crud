@@ -4,16 +4,6 @@ export type NotifyProps = {
   count?: number
   read?: boolean
 }
-export type NotifyMessage = {
-  type: TypeMessage
-  name: string
-  link: string
-  time: Date
-  id: string
-  read: boolean
-  img: string
-  msg: string
-}
 
 export type TypeMessage =
   | "Message"

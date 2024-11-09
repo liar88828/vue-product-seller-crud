@@ -51,7 +51,7 @@
                 ]"
               >
                 <ElLoading v-if="store.pending" />
-                <span v-else>Sign Up</span>
+                <span v-else>Sign In</span>
               </button>
 
               <p class="text-error text-lg text-center">
@@ -79,14 +79,11 @@
 </template>
 
 <script lang="ts" setup>
-import { useSignIn } from "~/composables/auth/useSignIn"
 definePageMeta({
   layout: "auth",
+  middleware: "auth",
 })
-const { loggedIn } = useUserSession()
-if (loggedIn.value) {
-  await navigateTo("/home")
-}
+
 // const { clear, fetch, loggedIn, session, user, signIn } = useAuthStore()
 const { store, handleSubmit } = useSignIn()
 </script>

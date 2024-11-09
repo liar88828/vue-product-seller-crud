@@ -1,5 +1,5 @@
 export default (
-  data: Date,
+  data: string | Date,
   type: "full" | "long" | "medium" | "short" | undefined = "full"
 ) => {
   if (typeof data === "undefined") {

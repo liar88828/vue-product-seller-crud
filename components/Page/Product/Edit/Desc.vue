@@ -5,17 +5,19 @@
       <h1 v-if="!refEdit" class="product-desc-h">
         {{ data.name }}
       </h1>
-      <textarea v-else v-model="data.name" class="textarea-edit"></textarea>
+      <div v-else>
+        <p class="product-desc-h">Title</p>
+        <textarea v-model="data.name" class="textarea-edit"></textarea>
+      </div>
 
       <!-- Description -->
       <p v-if="!refEdit" class="product-desc-p">
         {{ data.description }}
       </p>
-      <textarea
-        v-else
-        v-model="data.description"
-        class="textarea-edit"
-      ></textarea>
+      <div v-else>
+        <p class="product-desc-p">Description</p>
+        <textarea v-model="data.description" class="textarea-edit"></textarea>
+      </div>
     </div>
 
     <!-- Specifications -->
@@ -23,29 +25,37 @@
       <div
         v-if="!refEdit"
         class="product-desc-li"
-        v-for="item in data.desc"
-        :key="item"
+        v-for="item in data.Desc"
+        :key="item.text"
       >
         <IconsCheck class="w-5 h-5 fill-primary" />
 
-        <span>{{ item }}</span>
+        <span>{{ item.text }}</span>
       </div>
     </div>
 
     <!-- Multi Form -->
     <div v-if="refEdit" class="grid gap-4">
+      <!-- input -->
       <div class="join">
         <input
-          v-model="getText"
+          v-model="store.text"
           placeholder="Add Text"
           class="input input-bordered join-item w-full"
         />
+        <!-- add -->
         <button @click="onAdd" class="btn btn-primary join-item">
           <IconsPlus class="icons" />
         </button>
       </div>
+      <!-- end input -->
+
+      <!-- loop -->
       <div class="join" v-for="(d, index) in multiple">
-        <input :placeholder="d" class="input join-item w-full" />
+        <input
+          :placeholder="d.text"
+          class="input join-item w-full input-disabled"
+        />
         <button class="btn btn-error join-item">
           <IconsTrash class="icons" @click="onDelete(index)" />
         </button>
@@ -61,10 +71,12 @@
 </template>
 
 <script setup lang="ts">
-import { useProductDesc } from "~/composables/product/useProductDesc"
-import type { ProductItem } from "~/types/product/item"
-const props = defineProps<{ data: ProductItem }>()
-const { getText, multiple, refEdit, onAdd, onDelete, onSave } = useProductDesc(
-  props.data.desc
+import { useDesc } from "~/composables/market/product/edit/useDesc"
+import type { ProductItemServer } from "~/types/product/item"
+
+const props = defineProps<{ data: ProductItemServer }>()
+const { store, multiple, refEdit, onAdd, onDelete, onSave } = useDesc(
+  props.data.Desc,
+  props.data.id
 )
 </script>

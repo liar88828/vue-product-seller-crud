@@ -11,6 +11,9 @@
 </template>
 
 <script lang="ts" setup>
+definePageMeta({
+  layout: "user",
+})
 await navigateTo("/home")
 
 const { data, pending, error } = await useFetch("/api/test", {

@@ -1,6 +1,6 @@
 import { mount } from "@vue/test-utils"
 import { expect, test } from "vitest"
-import { dataOrders } from "~/assets/example/transaction/dataOrder"
+import { dataOrdersClient } from "~/assets/example/transaction/dataOrder"
 import History from "~/components/Page/Transaction/Order/index.vue"
 
 test.skip("it can be tested history", async () => {
@@ -10,7 +10,7 @@ test.skip("it can be tested history", async () => {
     },
     props: {
       // products: dataOrders,
-      data: dataOrders,
+      data: dataOrdersClient,
     },
   })
 

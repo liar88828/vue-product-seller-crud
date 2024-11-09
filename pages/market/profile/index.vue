@@ -1,22 +1,14 @@
 <template>
-  <NuxtLayout name="market">
-    <ElLoading v-if="pending"/>
-    <ElError v-else-if="error || !data"/>
-    <!-- @vue-expect-error -->
-    <PageProfileMarket v-else :data="data?.market"/>
-  </NuxtLayout>
+  <ElLoading v-if="pending" />
+  <ErrorNotRegister v-else-if="error" />
+  <ElError v-else-if="!data" />
+  <PageMarketProfile v-else :data="data?.market" />
 </template>
+
 <script lang="ts" setup>
-
-import { definePageMeta } from "#imports";
-
-const { data, pending, error } = await useFetch("/api/market/profile")
-
-// const { session } = useUserSession()
-// if (session.value.session.createMarket) {
-//   throw navigateTo("/market/profile/create")
-// }
 definePageMeta({
-  middleware: ['market']
+  middleware: ["market"],
+  layout: "market",
 })
+const { data, pending, error } = await useMarket().findBySession()
 </script>

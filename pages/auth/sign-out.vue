@@ -28,5 +28,10 @@
 </template>
 
 <script lang="ts" setup>
+definePageMeta({
+  layout: "auth",
+  middleware: "auth",
+})
+
 // const img = useImage()
 </script>

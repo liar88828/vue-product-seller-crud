@@ -1,4 +1,4 @@
-import type { GetTry, SignInProps } from "~/types/auth/user"
+import type { SignInProps } from "~/types/auth/user"
 import type { StoreBase } from "~/types/globals/store"
 // send to database
 // if found will redirect

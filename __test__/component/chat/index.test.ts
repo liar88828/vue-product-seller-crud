@@ -1,5 +1,5 @@
 // @vitest-environment nuxt
-import Back from "~/components/Page/Chat/index.vue"
+import Back from "~/components/Page/Message/Chat/index.vue"
 import { mount } from "@vue/test-utils"
 import { describe, expect, test } from "vitest"
 import { dataMessages } from "~/assets/example/message/dataMessage"

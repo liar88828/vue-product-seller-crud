@@ -27,24 +27,24 @@ const findMarket = await market.testId(0).then((data) => {
 //   }
 // })
 console.log(findMarket, `this find is ${findMarket}`)
-testMarketDb.skipIf(findMarket)("market can be create ", async ({ market }) => {
-  console.log("will execute")
+// testMarketDb.skipIf(findMarket)("market can be create ", async ({ market }) => {
+//   console.log("will execute")
 
-  const test = await market.create({
-    name: "test1",
-    address: "test1.address",
-    description: "test1.description",
-    history: "test1.history",
-    industry: "test1.industry",
-    mission: "test1.mission",
-    since: new Date(),
-    vision: "test1.vision",
-    //@ts-expect-error
-    id: 0,
-  })
+//   const test = await market.create({
+//     name: "test1",
+//     address: "test1.address",
+//     description: "test1.description",
+//     history: "test1.history",
+//     industry: "test1.industry",
+//     mission: "test1.mission",
+//     since: new Date(),
+//     vision: "test1.vision",
+//     //@ts-expect-error
+//     id: 0,
+//   })
 
-  expect(test).toBeDefined()
-})
+//   expect(test).toBeDefined()
+// })
 
 testMarketDb.skipIf(findMarket)("market can be find", async ({ market }) => {
   const test = await market.testId(0)

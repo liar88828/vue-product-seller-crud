@@ -1,16 +1,20 @@
 <template>
-  <NuxtLayout name="profile">
-    <!-- @vue-expect-error -->
-    <PageTransactionOrder :data="data.order" />
-  </NuxtLayout>
+  <ElLoadingBounce v-if="pending" />
+  <ElError v-else-if="!data" />
+  <PageHistoryUserDetail
+    v-else="!data"
+    :data="data.history"
+    @confirm-transaction="() => {}"
+    @reject-transaction="() => {}"
+  />
 </template>
 
 <script lang="ts" setup>
-const { data } = await useFetch("/api/user/history")
-watch(data, () => {
-  console.log(data.value)
+definePageMeta({
+  middleware: ["market"],
+  layout: "market",
 })
-if (!data.value) {
-  throw new Error("data not found")
-}
+const { id } = useRoute().params
+const { onConfirm, onReject } = useOrderMarket()
+const { data, pending } = await useHistoryUser().findId(id)
 </script>

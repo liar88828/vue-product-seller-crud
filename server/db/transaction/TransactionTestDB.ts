@@ -25,9 +25,9 @@ export class TransactionTestDB {
     return data
   }
 
-  async create(data: CreateTransaction): Promise<Transaction> {
-    return prisma.transaction.create({ data })
-  }
+  // async create(data: CreateTransaction): Promise<Transaction> {
+  //   return prisma.transaction.create({ data })
+  // }
 
   async update(id: number, data: CreateTransaction): Promise<Transaction> {
     return prisma.transaction.update({

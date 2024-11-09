@@ -1,7 +1,8 @@
-import { describe, expect, test } from "vitest"
+import { registerEndpoint } from "@nuxt/test-utils/runtime"
+import { test } from "vitest"
 
-describe("test auth api", () => {
-  test("it can be tested", async () => {
-    expect(1).toBe(1)
-  })
+test("test endpoint", async () => {
+  registerEndpoint("/api/", () => ({
+    test: "test-field",
+  }))
 })

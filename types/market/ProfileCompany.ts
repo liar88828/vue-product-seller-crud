@@ -46,10 +46,33 @@ export type MarketServerValid = RequiredProperty<MarketServerFullNull>
 type test = IfEquals<MarketServerValid, ProfileMarket, "save", "different">
 // const Test: test = "different"
 
-export type MarketServer = Omit<
+export type MarketServer = Market
+
+export type MarketCreate = Omit<
   Market,
-  "id" | "id_contact" | "id_socialMedia" | "id_follow" | "id_user" | "create"
+  "id" | "id_contact" | "id_socialMedia" | "id_follow" | "create"
 >
+
+export type MarketUpdate = Omit<
+  Market,
+  "id" | "id_contact" | "id_socialMedia" | "id_follow" | "create" | "id_user"
+>
+export type MarketRegisterClient = Omit<
+  Market,
+  "id" | "id_contact" | "id_socialMedia" | "id_follow" | "create" | "id_user"
+>
+
+export type MarketRegisterServer = Omit<
+  Market,
+  "id" | "id_contact" | "id_socialMedia" | "id_follow" | "create"
+>
+
+export type MarketClientFullNull = MarketClient & {
+  Contact: Contact | null
+  SocialMedia: SocialMedia | null
+  // Additional: Additional[]
+  // marketStatic: MarketStatic
+}
 export type MarketServerFullNull = Market & {
   Contact: Contact | null
   SocialMedia: SocialMedia | null
@@ -64,17 +87,51 @@ export type MarketServerFull = Market & {
   // marketStatic: MarketStatic
 }
 
+export type MarketServerFullClient = MarketClient & {
+  Contact: Contact
+  SocialMedia: SocialMedia
+  // Additional: Additional[]
+  // marketStatic: MarketStatic
+}
+
+export type MarketClient = Omit<Market, "since"> & {
+  since: Date | string
+}
+
+export type MarketClientFull = MarketClient & {
+  Contact: Contact
+  SocialMedia: SocialMedia
+  // Additional: Additional[]
+  // marketStatic: MarketStatic
+}
+
 export type MarketProps = Market & {
   Contact: Contact | null
   SocialMedia: SocialMedia | null
   // Additional: Additional[]
   marketStatic: MarketStatic
 }
+export type StaticServer = {
+  market: Market
+  static: MarketStatic
+}
+
+export type StaticClient = {
+  market: MarketClient
+  static: MarketStatic
+}
 
 export type MarketStatic = {
   follow: number
   product: number
   since: Date
+  response: string
+}
+
+export type MarketStaticClient = {
+  follow: number
+  product: number
+  since: string
   response: string
 }
 export type DataMarketDesc = Market & {
@@ -86,9 +143,7 @@ export type DataMarketDesc = Market & {
 
 export type Remove<T> = Omit<T, "id">
 
-export type MarketUser = Market & {
-  User: User
-}
+export type MarketUser = { market: Market; user: User }
 
 export type MarketServiceSingleNull = {
   Market: Market | null
@@ -102,6 +157,14 @@ export type MarketServiceSingle = {
   SocialMedia: SocialMedia
   // Additional: Additional[]
 }
+
+export type MarketServiceSingleClient = {
+  Market: MarketClient
+  Contact: Contact
+  SocialMedia: SocialMedia
+  // Additional: Additional[]
+}
+
 export type UpdateSocial = Omit<MarketServiceSingle["SocialMedia"], "id">
 export type UpdateContact = Omit<MarketServiceSingle["Contact"], "id">
 export type UpdateMarket = Omit<
@@ -117,4 +180,9 @@ export type ShopMarket = {
   newProduct: Product[]
   bestProduct: Product[]
   profile: Market
+}
+
+export type IdStaticMarket = {
+  follow: number
+  product: number
 }

@@ -1,7 +1,7 @@
-export const ProductLink = [
+export const UserLink = [
   { title: "Profile", link: "/user/profile" },
   { title: "Like", link: "/user/like" },
-  { title: "Trolly", link: "/user/trolly" },
+  { title: "Trolley", link: "/user/trolley" },
   { title: "Order", link: "/user/order" },
   { title: "History", link: "/user/history" },
 ]
@@ -9,7 +9,7 @@ export const ProductLink = [
 export const MarketLink = [
   { title: "Profile", link: "/market/profile" },
   { title: "Product", link: "/market/product" },
-  { title: "Confirm", link: "/market/confirm" },
+  { title: "Order", link: "/market/order" },
   { title: "History", link: "/market/history" },
   { title: "Static", link: "/market/static" },
 ]

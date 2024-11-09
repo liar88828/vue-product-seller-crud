@@ -1,6 +1,7 @@
 <script lang="ts" setup>
-import type { ProductDetail } from "~/types/product/item"
-defineProps<{ data: ProductDetail["detail"] }>()
+import type { ProductDetailServer } from "~/types/product/item"
+
+defineProps<{ data: ProductDetailServer["detail"] }>()
 </script>
 <template>
   <CardInit class="card-normal bg-base-100/70" :bg="false">
@@ -17,6 +18,5 @@ defineProps<{ data: ProductDetail["detail"] }>()
     <ul class="product-desc-li-p" v-for="item in data.Desc" :key="item.text">
       <li>{{ item.text }}</li>
     </ul>
-    <slot />
   </CardInit>
 </template>

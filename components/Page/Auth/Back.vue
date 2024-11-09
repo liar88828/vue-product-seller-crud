@@ -17,7 +17,7 @@
 
 <script lang="ts" setup>
 defineProps({
-  link: { type: String, required: true, default: "#" },
+  link: { type: String, required: false, default: "#" },
   back: { type: Boolean, required: false, default: true },
 })
 </script>

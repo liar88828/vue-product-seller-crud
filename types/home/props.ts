@@ -9,10 +9,10 @@ export type HomeApi = {
 }
 
 export type HomeProps = {
-  category: ItemIcons[]
-  adv: AdvProps
-  adv2: AdvProps
+  // category: ItemIcons[]
+  // adv: AdvProps
+  // adv2: AdvProps
   bestSellers: Product[]
-  trending: Product[]
-  newProducts: Product[]
+  // trending: Product[]
+  // newProducts: Product[]
 }

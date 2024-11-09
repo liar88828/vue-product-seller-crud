@@ -1,8 +1,13 @@
 <template>
-  <NuxtLayout name="profile">
-    <PageProfileEditUser :data="userProfile" />
-  </NuxtLayout>
+  <ElLoading v-if="pending" />
+  <ElError v-else-if="error || !data" />
+  <PageProfileEdit v-else :data="data.user" :onEdit="editUser" />
 </template>
 <script lang="ts" setup>
-import { userProfile } from "~/assets/example/user/dataUser"
+definePageMeta({
+  layout: "user",
+})
+
+const { findUserBySession, editUser } = useUser()
+const { data, pending, error } = await findUserBySession()
 </script>

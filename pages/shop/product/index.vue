@@ -1,22 +1,14 @@
 <template>
-  <!-- {{ search }} -->
-  <!-- {{ store }} -->
-  <PageShop :dataProducts="newData" />
-
+  <ElLoading v-if="pending" />
+  <ElError v-else-if="error || !data" />
+  <PageShopProductHome v-else :data="data?.products" />
   <ElButtonScroll />
 </template>
 
 <script lang="ts" setup>
-// import type { Product } from "@prisma/client"
-// import { dataProducts } from "~/assets/example/product/dataProduct"
-// const { search } = useSearch()
-// console.log(search.value, "from shop")
+definePageMeta({
+  layout: "shop",
+})
 
-const { data } = await useFetch("/api/product")
-
-const { filter, store } = useShop()
-if (!data.value) {
-  throw createError({ statusCode: 404, statusMessage: "Page Not Found" })
-}
-const newData = filter(data.value?.products)
+const { data, pending, error } = await useProduct().shopAll()
 </script>

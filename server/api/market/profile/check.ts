@@ -3,9 +3,11 @@
 // and find market from session user
 // return market profile
 
+import type { idMarketFind } from "~/types/market/ProfileCompany"
+
 export default defineEventHandler(async (event) => {
   const data = {
-    market: await control.market.owner.idMarketFind(event),
+    market: await marketController.getMarketId(event),
     toJson(): { market: idMarketFind } {
       return {
         market: this.market,

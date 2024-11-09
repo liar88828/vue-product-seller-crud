@@ -8,43 +8,55 @@
        {{ data.title }}
       </p> -->
     </CardHeadTitle>
+    <!-- grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 md:gap-7 mt-4 -->
     <div
-      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 md:gap-7 mt-4"
+      class="
+      "
     >
       <div v-if="!refEdit" v-for="item in data" :key="item.title">
         <h3 class="text-md sm:text-lg font-bold">{{ item.title }}</h3>
         <ul class="flex flex-wrap sm:flex-none gap-2 list-inside list-disc">
-          <li v-for="data in item.list" class="text-sm sm:text-md">
-            {{ data }}
+          <li v-for="data in item.List" class="text-sm sm:text-md">
+            <span>{{ data.specTitle }}</span> : <span>{{ data.text }}</span>
           </li>
         </ul>
       </div>
 
       <!-- Multi Form -->
-      <div v-if="refEdit" class="grid gap-4">
+      <div v-if="refEdit" class="grid gap-4 w-full">
         <h1>Add A New Specification</h1>
 
-        <div class="grid gap-2 border p-2 rounded">
+        <div class="grid gap-2 border p-2 rounded w-full">
+          <!-- title -->
+
           <ElInputEdit
             place="Add Title Specification"
-            v-model:title="getText.title"
+            v-model:title="store.title"
             :handler="onAddItem"
             btn="btn-primary"
           >
             <IconsPlus class="icons" />
           </ElInputEdit>
 
-          <ElInputEdit
-            place="Add Specification"
-            v-for="(item, index) in getText.list"
-            v-model:title="getText.list[index]"
-            :handler="onDeleteItem"
-            btn="btn-error"
-          >
-            <IconsTrash class="icons" />
-          </ElInputEdit>
+          <!-- list  -->
+          <div class="grid grid-cols-2" v-for="(item, index) in store.List">
+            <ElInputEdit
+              place="Title Specification"
+              v-model:title="item.specTitle"
+              :handler="() => {}"
+            >
+            </ElInputEdit>
+            <ElInputEdit
+              place="Add Description "
+              v-model:title="item.text"
+              :handler="onDeleteItem"
+              btn="btn-error"
+            >
+              <IconsTrash class="icons" />
+            </ElInputEdit>
+          </div>
           <!--  -->
-          <button @click="onAdd" class="btn btn-accent">Save</button>
+          <button @click="onAdd" class="btn btn-accent">Add</button>
           <!--  -->
         </div>
 
@@ -64,32 +76,34 @@
               </button>
             </div>
           </Titles>
-          <div v-for="data in item.list" class="text-sm sm:text-md">
-            {{ data }}
+          <div v-for="i in item.List" class="text-sm sm:text-md">
+            <p>title : {{ i.specTitle }}</p>
+            <p>desc : {{ i.text }}</p>
           </div>
         </div>
       </div>
     </div>
-
     <!-- Button -->
     <button v-if="!refEdit" class="btn btn-info" @click="refEdit = !refEdit">
       Edit
     </button>
     <button v-else @click="onSave" class="btn btn-success">Save</button>
   </CardInit>
+  {{ store }}
 </template>
 
 <script setup lang="ts">
-import type { ProductItem } from "~/types/product/item"
+import type { ProductItemServer } from "~/types/product/item"
 import Titles from "./Titles.vue"
-import { useProductSpec } from "~/composables/product/useProductSpec"
+import { useSpec } from "~/composables/market/product/edit/useSpec"
 
 const props = defineProps<{
-  data: ProductItem["desc_spec"]
+  data: ProductItemServer["Spec"]
+  id: ProductServer["id"]
 }>()
 
 const {
-  getText,
+  store,
   multiple,
   refEdit,
   onAddItem,
@@ -97,5 +111,5 @@ const {
   onAdd,
   onDelete,
   onSave,
-} = useProductSpec(props.data)
+} = useSpec(props.data, props.id)
 </script>

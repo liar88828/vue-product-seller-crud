@@ -1,7 +1,7 @@
 import { mount } from "@vue/test-utils"
 import { expect, test } from "vitest"
 import { dataProducts } from "~/assets/example/product/dataProduct"
-import Like from "~/pages/user/like.vue"
+import Like from "~/pages/user/like/index.vue"
 
 test.skip("it can be tested like", async () => {
   const component = mount(Like, {

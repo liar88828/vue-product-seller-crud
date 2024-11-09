@@ -29,8 +29,8 @@
       <ElInput
         types="type"
         title="Type"
-        v-model:input="store.data.id_type"
-        :err="store.error.id_type"
+        v-model:input="store.data.type"
+        :err="store.error.type"
       />
 
       <ElTextarea
@@ -43,14 +43,16 @@
       {{ store.msg }}
     </p>
 
-    <button @click="handleSubmit" class="btn btn-info btn-outline">
-      Submit
-    </button>
+    <button @click="onCreate" class="btn btn-info btn-outline">Submit</button>
 
     <NuxtLink to="/market/product" class="btn btn-outline"> Back</NuxtLink>
   </CardWrap>
 </template>
 
 <script lang="ts" setup>
-const { store, handleSubmit } = useProductCreate()
+definePageMeta({
+  middleware: ["market"],
+  layout: "market",
+})
+const { store, onCreate } = useProduct()
 </script>

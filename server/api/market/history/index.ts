@@ -1,14 +1,10 @@
-import type { DataMarket } from "~/types/market/order"
-
 export default defineEventHandler(async (event) => {
   const data = {
-	histories: await control.trans.market.all(event),
+    histories: await historyController.marketHistoryAll(event),
 
-	toJson(): {
-	  histories: DataMarket[] // TransProps
-	} {
-	  return { histories: this.histories }
-	},
+    toJson(): HistoryServer[] {
+      return this.histories
+    },
   }
   return data
 })

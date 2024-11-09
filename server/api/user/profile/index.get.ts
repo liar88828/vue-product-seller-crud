@@ -1,9 +1,7 @@
-import type { User } from "@prisma/client"
-
 export default defineEventHandler(async (event) => {
   const data = {
-    user: await control.user.profile.id(event),
-    toJson(): { user: User } {
+    user: await userController.idUserPublic(event),
+    toJson(): { user: UserPublic } {
       return { user: this.user }
     },
   }

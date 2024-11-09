@@ -5,7 +5,7 @@
 
 export default defineEventHandler(async (event) => {
   const data = {
-    market: await control.market.owner.update(event),
+    market: await marketController.marketUpdate(event),
     toJson(): { market: MarketServiceSingle } {
       return {
         market: this.market,

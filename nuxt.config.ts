@@ -1,33 +1,45 @@
 /* v8 ignore next 3 */
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  ignore: [
+    "**/*.test.*",
+    "**/.idea/*",
+    "**/.nuxt/*",
+    "**/.*ignore",
+    "**__test__/*",
+    "**vitest.config.ts",
+    "**coverage*",
+  ],
   vite: {
-    // esbuild: {
-    //   tsconfigRaw: {
-    //     compilerOptions: {
-    //       useDefineForClassFields: false,
-    //     },
-    //   },
-    // },
+    esbuild: {
+      tsconfigRaw: {
+        // compilerOptions: {
+        //   useDefineForClassFields: false,
+        // },
+        // exclude: ["**/__test__/**", "vitest.config.ts"],
+      },
+    },
   },
   // devtools: { enabled: true },
   css: ["@/assets/main/style.css"],
 
   // 4. Integrate with Nitro
   imports: {
-    dirs: ["composables/**", "utils/**", "types/**"],
+    dirs: ["composables/**", "utils/**", "types/**", "assets/**"],
   },
   nitro: {
     imports: {
       dirs: [
         "./server/services/**",
-        "./server/controllers/**",
+        "server/controllers/**",
+        "server/sanitize/**",
         "./server/db/**",
-        "./server/lib/**",
-        "./server/utils/**",
-        // "./server/config",
+        "server/lib/**",
+        "server/utils/**",
+        "server/config/**",
         "utils/**",
         "types/**",
+        "assets/example/**",
       ],
       // presets: [
       //   {

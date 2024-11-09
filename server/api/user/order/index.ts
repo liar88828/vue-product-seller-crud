@@ -1,9 +1,10 @@
 export default defineEventHandler(async (event) => {
-  const { session } = await getUserSession(event)
   const data = {
-    order: control.trans.user.all(session.id),
-    toJson() {
-      return this.order
+    orders: await orderController.userOrderAll(event),
+    toJson(): { orders: HistoryServer[] } {
+      return {
+        orders: this.orders,
+      }
     },
   }
   return data

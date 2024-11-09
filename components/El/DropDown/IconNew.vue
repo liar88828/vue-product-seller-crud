@@ -1,22 +1,12 @@
 <template>
-  <div
-    :tabindex="index"
-    role="button"
-    class="btn btn-ghost btn-sm btn-square ml-5"
-  >
-    <div :class="['indicator']">
-      <slot />
-      <span :class="['badge badge-sm indicator-item badge-primary']">
-        {{ indicator }}
-      </span>
-    </div>
+  <div class="indicator">
+    <slot />
+    <span class="badge badge-xs sm:badge-sm indicator-item badge-primary mr-1">
+      <p>{{ pending ? 0 : data?.notify }}</p>
+    </span>
   </div>
 </template>
 
 <script lang="ts" setup>
-const props = defineProps<{
-  index: string
-  indicator: number
-}>()
-const isRender = props.indicator > 0
+const { data, pending } = await useTrolley().notifyTrolley()
 </script>

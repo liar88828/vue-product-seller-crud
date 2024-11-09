@@ -1,6 +1,15 @@
-<template>redirect</template>
+<template>
+  <ElLoading v-if="pending" />
+  <ElError v-else-if="error || !data" />
+  <PageShopMarketDetail v-else :data="data.profile" />
+</template>
 
 <script lang="ts" setup>
+definePageMeta({
+  layout: "shop",
+})
 const { id } = useRoute().params
-await navigateTo(`/shop/market/home/${id}`)
+
+const { data, pending, error } = await useMarket().findId(id)
+// import { dataProductDetails } from "~/assets/example/product/dataProduct"
 </script>

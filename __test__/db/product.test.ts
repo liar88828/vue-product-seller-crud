@@ -1,8 +1,6 @@
 import { beforeAll, describe, expect, it, test } from "vitest"
-import { ProductController } from "~/server/controllers/product/index"
-import { ProductDB } from "~/server/db/product"
 
-const product = new ProductDB()
+const product = new ProductService()
 export const testProductDb = test.extend({
   product,
 })
@@ -10,7 +8,7 @@ export const testProductDb = test.extend({
 testProductDb(
   "Describe can be tested product controller",
   async ({ product }) => {
-    const test = product.test("test")
+    const test = product.id(1)
     expect(test).toBe("test")
   }
 )
@@ -24,9 +22,10 @@ testProductDb.skip(
       name: "test",
       price: 100,
       stock: 100,
-      id_user: "test1",
+      // id_user: "test1",
       id_market: 1,
-      id_type: "Buku",
+      type: "Buku",
+      // sold: 1,
     })
 
     expect(test).toBe("test")

@@ -1,40 +1,51 @@
 import { prisma } from "~/server/config/prisma"
-import type { Pagination } from "~/types/globals/Pagination"
-import type { Product } from "@prisma/client"
-import type { ProductDetail, ProductItemServer } from "~/types/product/item"
-import { ProductUserDB } from "./ProductUserDB"
-import { ProductMarketDB } from "./ProductMarketDB"
-import { ProductStatic } from "./ProductStatic"
+import type { SearchPagination } from "~/types/globals/Pagination"
+import type { Market, Product } from "@prisma/client"
+import type {
+  ProductDetailServer,
+  ProductItemServer,
+  ProductServer,
+} from "~/types/product/item"
+import { statics } from "./ProductStatic"
 
-export class ProductDB extends ProductStatic {
-  user = new ProductUserDB()
-  market = new ProductMarketDB()
-
-  async findAll({ page, search }: Pagination) {
+export class ProductDB {
+  async marketFindId({ id_market, id_product }: ProductMarketId) {
+    const data = await prisma.product.findUnique({
+      where: { id_market, id: id_product },
+    })
+    if (!data) {
+      throw createError({
+        statusCode: 404,
+        statusMessage: "Product not found",
+      })
+    }
+    return data
+  }
+  async findAll({ page, search }: SearchPagination) {
     return prisma.product.findMany({
       where: {
-        id_type: search,
+        type: search,
       },
       take: 100,
       skip: page * 100,
     })
   }
 
-  async findAllId(id_user: string) {
+  async findAllId({ id_market }: Pick<SearchPagination, "id_market">) {
     return prisma.product.findMany({
-      where: { id_user },
+      where: { id_market },
       take: 100,
     })
   }
 
-  async findTest(): Promise<ProductDetail["relateds"]> {
+  async findTest(): Promise<Product[]> {
     const product: Product[] = await prisma.product.findMany({
       take: 100,
     })
     return product
   }
 
-  async findFull(id: number): Promise<ProductDetail["detail"]> {
+  async findFull(id: number): Promise<ProductDetailServer["detail"]> {
     const product = await prisma.product.findUnique({
       where: { id: Number(id) },
       include: {
@@ -53,18 +64,18 @@ export class ProductDB extends ProductStatic {
     return product as ProductItemServer
   }
 
-  async myProduct({ id_user, page, search }: Pagination) {
+  async myProduct({ id_market, page, search }: SearchPagination) {
     return prisma.product.findMany({
       where: {
-        id_user: id_user,
-        id_type: search,
+        id_market: id_market,
+        type: search,
       },
       take: 100,
       skip: page * 100,
     })
   }
 
-  async findCompany(id: number): Promise<ProductDetail["market"]> {
+  async findCompany(id: number): Promise<Market> {
     const data = await prisma.product
       .findUnique({ where: { id }, select: { Market: true } })
       .then((data) => data?.Market)
@@ -78,7 +89,7 @@ export class ProductDB extends ProductStatic {
     return data
   }
 
-  async detail(id: number): Promise<ProductItemServer> {
+  async detail(id: number): Promise<ProductServer> {
     const data = await prisma.product.findUnique({
       include: {
         Spec: {
@@ -103,16 +114,16 @@ export class ProductDB extends ProductStatic {
 
   async detailFull(id: number) {
     return tryCatch(async () => {
-      const valid = zods.id.number.parse(id)
-      const market = await db.product.findCompany(valid)
+      id = zods.id.number.parse(id)
+      const market = await db.product.findCompany(id)
       // console.log(valid, "valid")
       // console.log(market, "market")
       return {
-        product: await db.product.findFull(valid),
+        product: await db.product.findFull(id),
         productRelated: await db.product.findTest(),
-        userPreview: await db.preview.findUser(valid),
+        userPreview: await db.preview.findUser({ id }),
         market,
-        statics: await this.statics(valid, market),
+        statics: await statics(id, market),
       }
     })
   }

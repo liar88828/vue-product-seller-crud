@@ -1,19 +1,22 @@
 <template>
-  <NuxtLayout name="market">
-    {{ status }}
-    <ElLoading v-if="pending"/>
-    <ElError v-else-if="error|| !data?.products"/>
-    <PageProductMarketAll v-else :data="data?.products"/>
-  </NuxtLayout>
+  <ElLoading v-if="pending" />
+  <ErrorNotRegister v-else-if="error?.message" />
+  <ErrorNotFound
+    v-else-if="data?.products.length === 0"
+    :title="'Product is Empty'"
+    :description="'Please product in shop '"
+    :code="404"
+    :linkTitle="'Create'"
+    link="/market/product/create"
+  />
+  <ElError v-else-if="error || !data" />
+  <PageProductMarket v-else :data="data.products" />
 </template>
 
 <script lang="ts" setup>
-// import { dataProductDetails } from "~/assets/example/product/dataProduct"
-const { error, data, pending, status } = await useFetch("/api/market/product/")
-watch(data, () => {
-  console.log(data.value)
+definePageMeta({
+  middleware: ["market"],
+  layout: "market",
 })
-if (!data.value) {
-  throw new Error("data not found")
-}
+const { error, data, pending } = await useProduct().marketAll()
 </script>

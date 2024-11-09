@@ -1,16 +1,12 @@
 <template>
-  <NuxtLayout name="profile">
-    <!-- @vue-expect-error -->
-    <PageTransactionOrder :data="data?.histories" />
-  </NuxtLayout>
+  <ElLoading v-if="pending" />
+  <ElError v-else-if="error || !data" />
+  <PageHistoryUser v-else :data="data.histories" />
 </template>
 
 <script lang="ts" setup>
-const { data } = await useFetch("/api/user/history")
-watch(data, () => {
-  console.log(data.value)
+definePageMeta({
+  layout: "user",
 })
-if (!data.value) {
-  throw new Error("data not found")
-}
+const { data, pending, error } = await useHistoryUser().findAll()
 </script>

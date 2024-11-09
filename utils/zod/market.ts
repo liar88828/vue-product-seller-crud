@@ -1,12 +1,13 @@
 import { ZodType, z } from "zod"
 import type {
   UpdateSocial,
-  MarketServer,
   UpdateMarket,
   UpdateContact,
+  MarketRegisterClient,
+  MarketRegisterServer,
 } from "~/types/market/ProfileCompany"
 
-const create = z.object({
+const register = z.object({
   name: z.string(),
   industry: z.string(),
   address: z.string(),
@@ -15,7 +16,20 @@ const create = z.object({
   vision: z.string(),
   history: z.string(),
   since: z.date(),
-}) satisfies ZodType<MarketServer>
+  // id_user: z.string().uuid(),
+}) satisfies ZodType<MarketRegisterClient>
+
+const registerServer = z.object({
+  name: z.string(),
+  industry: z.string(),
+  address: z.string(),
+  description: z.string(),
+  mission: z.string(),
+  vision: z.string(),
+  history: z.string(),
+  since: z.date(),
+  id_user: z.string().uuid(),
+}) satisfies ZodType<MarketRegisterServer>
 
 const social = z.object({
   facebook: z.string().max(50),
@@ -36,6 +50,7 @@ const market = z.object({
   vision: z.string().max(50),
   history: z.string().max(50),
   since: z.date().max(new Date()),
+  id_user: z.string().uuid(),
 }) satisfies ZodType<UpdateMarket>
 
 const contact = z.object({
@@ -45,7 +60,8 @@ const contact = z.object({
 }) satisfies ZodType<UpdateContact>
 
 export const zodMarket = {
-  create,
+  register,
+  registerServer,
   social,
   market,
   contact,

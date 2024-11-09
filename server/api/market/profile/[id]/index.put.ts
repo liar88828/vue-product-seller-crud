@@ -5,7 +5,7 @@
 //
 export default defineEventHandler(async (event) => {
   const data = {
-    profile: control.market.owner.update(event),
+    profile: marketController.marketUpdate(event),
 
     toJson() {
       return this.profile

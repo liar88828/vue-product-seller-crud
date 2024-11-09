@@ -1,13 +1,15 @@
 export type CheckOther<T> = T extends null ? {} : T
-export type Pagination<T = null> = {
-  id_user: string
+export type SearchPagination<T = null> = {
+  id_market: number
+  id?: number
+  // id_user: string
   page: number
   search: string
   other: CheckOther<T>
 }
 
-const test: Pagination<{ type: string; order: number }> = {
-  id_user: "1",
+const test: SearchPagination<{ type: string; order: number }> = {
+  id_market: 1,
   page: 0,
   search: "",
   other: {

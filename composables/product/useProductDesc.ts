@@ -1,5 +1,3 @@
-import type { ProductItem } from "~/types/product/item"
-
 export const useProductDesc = (data: ProductItem["desc"]) => {
   const refEdit = ref(false)
   const multiple = ref(data || [])

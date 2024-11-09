@@ -1,14 +1,8 @@
 import type { Like, Product } from "@prisma/client"
 
-export default defineEventHandler<{ body: Product }>(async (event) => {
-  const { session } = await getUserSession(event)
-  const body = await readBody(event)
-
+export default defineEventHandler(async (event) => {
   const data = {
-    like: await control.user.like.add({
-      id: session.id_like,
-      id_product: body.id,
-    }),
+    like: await likeController.LikeProduct(event),
     toJson(): { like: Like } {
       return { like: this.like }
     },
